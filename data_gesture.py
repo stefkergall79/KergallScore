@@ -37,7 +37,7 @@ def ctk_git_status():
 	if not fichiers_modifies and not fichiers_non_suivis:
 		ctk_git_label("Aucun changement à sauvegarder.", title=True)
 		return False
- 
+
 	return True
 
 def ly_save():
