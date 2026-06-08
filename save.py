@@ -7,7 +7,7 @@ fichiers_modifies = REPO.index.diff(None)
 fichiers_non_suivis = REPO.untracked_files
 REPO.git.add(".")
 
-if fichiers_modifies:
+if fichiers_modifies: 
 	print("Modifications :")
 	for file in fichiers_modifies:
 		print(f"\t- {file.a_path}")
