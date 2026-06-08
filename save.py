@@ -25,12 +25,14 @@ def git_status():
 
 
 if not git_status():
-	raise git.exc.GitCommandError("Aucun changement à sauvegarder.")
-REPO.index.commit("Modifications")
-REPO.git.add(".")
-REPO.index.commit("Sauvegarde")
+	print("Aucun changement à sauvegarder.")
+	
+else:
+	REPO.index.commit("Modifications")
+	REPO.git.add(".")
+	REPO.index.commit("Sauvegarde")
 
-REPO.remote(name="origin").pull()
-REPO.remote(name="origin").push()
+	REPO.remote(name="origin").pull()
+	REPO.remote(name="origin").push()
 
-print("\nSauvegarde terminée.")
+	print("\nSauvegarde terminée.")
