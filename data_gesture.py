@@ -9,7 +9,7 @@ def git_status():
 	fichiers_non_suivis = REPO.untracked_files
 
 	if fichiers_modifies:
-		print("Fichiers modifiés :")
+		print("Modifications :")
 		for file in fichiers_modifies:
 			print(f"\t- {file.a_path}")
 
