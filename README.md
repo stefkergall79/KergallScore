@@ -1,6 +1,7 @@
 # Installation
-
+`python3 ~/Partitions/install.py`.
+Dans VSCode : `Ctrl+Maj+B` et Sélectionnez `Install`.
 
 # Sauvegarde
-Pour sauvegarder votre travail, lancez `python3 ~/Partitions/save.py`.
+`python3 ~/Partitions/save.py`.
 Dans VSCode : `Ctrl+Maj+B` et Sélectionnez `Save`.

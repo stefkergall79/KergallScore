@@ -9,6 +9,15 @@
                 "${workspaceFolder}/save.py"
             ],
             "group": "build"
+        },
+        {
+            "label": "Install",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": [
+                "${workspaceFolder}/install.py"
+            ],
+            "group": "build"
         }
     ]
 }
