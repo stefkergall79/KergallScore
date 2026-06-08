@@ -19,14 +19,13 @@ def git_status():
 			print(f"\t- {file}")
 
 	if not fichiers_modifies and not fichiers_non_suivis:
-		print("Aucun changement à sauvegarder.")
 		return False
 	return True
 
 
 if not git_status():
 	print("Aucun changement à sauvegarder.")
-	
+
 else:
 	REPO.index.commit("Modifications")
 	REPO.git.add(".")
