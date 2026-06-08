@@ -18,9 +18,7 @@ def git_status():
 		for file in fichiers_non_suivis:
 			print(f"\t- {file}")
 
-	if not fichiers_modifies and not fichiers_non_suivis:
-		return False
-	return True
+	return fichiers_modifies or fichiers_non_suivis
 
 
 if not git_status():
