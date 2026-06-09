@@ -29,17 +29,17 @@ class LilypondCreator(ctk.CTk):
 
         self.fields = {
             "title": {
-                "label": ctk.CTkLabel(self, text="Titre de la partition :", font=self.default_font),
+                "label": ctk.CTkLabel(self, text="Titre", font=self.default_font),
                 "var": ctk.StringVar(),
                 "entry": None,
             },
             "composer": {
-                "label": ctk.CTkLabel(self, text="Compositeur :", font=self.default_font),
+                "label": ctk.CTkLabel(self, text="Compositeur", font=self.default_font),
                 "var": ctk.StringVar(),
                 "entry": None,
             },
             "poet": {
-                "label": ctk.CTkLabel(self, text="Poète :", font=self.default_font),
+                "label": ctk.CTkLabel(self, text="Poète", font=self.default_font),
                 "var": ctk.StringVar(),
                 "entry": None,
             },
@@ -57,12 +57,30 @@ class LilypondCreator(ctk.CTk):
         self.button_create = ctk.CTkButton(self.button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file)
         self.label_status = ctk.CTkLabel(self, text="", text_color="#4B8BBE", font=self.default_font)
 
-        self.fields["title"]["label"].pack(pady=(16, 4), anchor="w", padx=20)
+        self.fields["title"]["label"].pack(pady=(2, 0), anchor="w", padx=20)
         self.fields["title"]["entry"].pack(padx=20)
-        self.fields["composer"]["label"].pack(pady=(12, 4), anchor="w", padx=20)
+        self.fields["composer"]["label"].pack(pady=(2, 0), anchor="w", padx=20)
         self.fields["composer"]["entry"].pack(padx=20)
-        self.fields["poet"]["label"].pack(pady=(12, 4), anchor="w", padx=20)
+        self.fields["poet"]["label"].pack(pady=(2, 0), anchor="w", padx=20)
         self.fields["poet"]["entry"].pack(padx=20)
+
+        self.optional_fields = {
+            "dedication": "Dédicace",
+            "subtitle": "Sous-titre",
+            "subsubtitle": "Sous-sous-titre",
+            "instrument": "Instrument",
+            "meter": "Tempo",
+            "arranger": "Arrangeur",
+            "tagline": "Mention spéciale (en dernière page)",
+            "copyright": "Copyright (en première page)",
+        }
+        self.extra_fields = {}
+        self.available_optional_fields = list(self.optional_fields.keys())
+
+        self.add_field_var = ctk.StringVar(value="+")
+        self.add_field_menu = ctk.CTkOptionMenu(self, values=[self.optional_fields[key] for key in self.available_optional_fields], variable=self.add_field_var, width=40, height=28, font=self.default_font, command=self.on_optional_field_selected)
+        self.add_field_menu.set("+")
+        self.add_field_menu.pack(pady=(8, 4), padx=20)
 
         self.label_category = ctk.CTkLabel(self, text="Catégorie :", font=self.default_font)
         self.categories = self._get_categories()
@@ -70,10 +88,10 @@ class LilypondCreator(ctk.CTk):
         self.category_var = ctk.StringVar(value=default_category)
         self.category_menu = ctk.CTkOptionMenu(self, values=self.categories, variable=self.category_var, width=360, height=28, font=self.default_font)
 
-        self.label_filename.pack(pady=(12, 4), anchor="w", padx=20)
-        self.entry_filename.pack(padx=20)
         self.label_category.pack(pady=(12, 4), anchor="w", padx=20)
         self.category_menu.pack(padx=20)
+        self.label_filename.pack(pady=(12, 4), anchor="w", padx=20)
+        self.entry_filename.pack(padx=20)
         self.button_frame.pack(pady=18)
         self.button_create.pack(side="left", padx=(0, 10))
         self.button_cancel.pack(side="left")
@@ -97,6 +115,40 @@ class LilypondCreator(ctk.CTk):
     def on_filename_edit(self, _event=None):
         self.filename_modified = True
 
+    def on_optional_field_selected(self, selected_label: str):
+        if not selected_label:
+            return
+        
+        selected_key = next(
+            (key for key, label in self.optional_fields.items() if label == selected_label),
+            None,
+        )
+        if not selected_key or selected_key not in self.available_optional_fields:
+            return
+
+        field_var = ctk.StringVar()
+        field_label = ctk.CTkLabel(self, text=f"{selected_label} :", font=self.default_font)
+        field_entry = ctk.CTkEntry(self, width=360, height=28, font=self.default_font, textvariable=field_var)
+        field_label.pack(pady=(2, 0), anchor="w", padx=20, before=self.add_field_menu)
+        field_entry.pack(padx=20, before=self.add_field_menu)
+
+        self.extra_fields[selected_key] = {
+            "label": field_label,
+            "var": field_var,
+            "entry": field_entry,
+        }
+        self.available_optional_fields.remove(selected_key)
+        
+        updated_values = [self.optional_fields[key] for key in self.available_optional_fields]
+        self.add_field_menu.configure(values=updated_values)
+        self.add_field_var.set("+")
+        
+        if not self.available_optional_fields:
+            self.add_field_menu.configure(state="disabled")
+
+        self.update_idletasks()
+        self.geometry(f"420x{self.winfo_reqheight()}")
+
     def get_target_filename(self) -> str:
         filename = os.path.basename(self.filename_var.get().strip())
         if not filename:
@@ -115,6 +167,10 @@ class LilypondCreator(ctk.CTk):
             "composer": self.fields["composer"]["var"].get().strip(),
             "poet": self.fields["poet"]["var"].get().strip(),
         }
+        values.update({
+            key: field["var"].get().strip()
+            for key, field in self.extra_fields.items()
+        })
 
         filename = self.get_target_filename()
         category = self.category_var.get().strip() or "Autres"
@@ -153,6 +209,7 @@ class LilypondCreator(ctk.CTk):
             entry for entry in os.listdir(base_dir)
             if os.path.isdir(os.path.join(base_dir, entry))
             and not entry.startswith('.')
+            and not entry.startswith('__')
             and entry not in excluded
         ]
         categories.sort(key=str.casefold)
