@@ -14,7 +14,7 @@ def build_default_filename(title: str, composer: str) -> str:
     if title:
         return f"{title}.ly"
     if composer:
-        return f"{composer}.ly"
+        return f"Oeuvre de {composer}.ly"
     return ""
 
 
@@ -137,6 +137,7 @@ class LilypondCreator(ctk.CTk):
             "\t}\n"
             "}\n"
         )
+        
         try:
             with open(filepath, "w", encoding="utf-8") as lily_file:
                 lily_file.write(content)
