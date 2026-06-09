@@ -65,15 +65,10 @@ class LilypondCreator(ctk.CTk):
         self.fields["poet"]["entry"].pack(padx=20)
 
         self.label_category = ctk.CTkLabel(self, text="Catégorie :", font=self.default_font)
-        self.category_var = ctk.StringVar(value="Autres")
-        self.category_menu = ctk.CTkOptionMenu(self, values=[
-            "Autres",
-            "Builded",
-            "Chants populaires",
-            "Chorale",
-            "Noël",
-            "Piano",
-        ], variable=self.category_var, width=360, height=28, font=self.default_font)
+        self.categories = self._get_categories()
+        default_category = self.categories[0] if self.categories else "Autres"
+        self.category_var = ctk.StringVar(value=default_category)
+        self.category_menu = ctk.CTkOptionMenu(self, values=self.categories, variable=self.category_var, width=360, height=28, font=self.default_font)
 
         self.label_filename.pack(pady=(12, 4), anchor="w", padx=20)
         self.entry_filename.pack(padx=20)
@@ -148,6 +143,19 @@ class LilypondCreator(ctk.CTk):
             self.destroy()
         except OSError as error:
             self.label_status.configure(text=f"Erreur d'écriture : {error}", text_color="#D32F2F")
+
+
+    def _get_categories(self) -> list[str]:
+        base_dir = os.path.dirname(__file__)
+        excluded = {"Modèles", "Grégorien"}
+        categories = [
+            entry for entry in os.listdir(base_dir)
+            if os.path.isdir(os.path.join(base_dir, entry))
+            and not entry.startswith('.')
+            and entry not in excluded
+        ]
+        categories.sort(key=str.casefold)
+        return categories or ["Autres"]
 
 
 if __name__ == "__main__":
