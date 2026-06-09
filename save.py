@@ -12,7 +12,7 @@ if fichiers_modifies:
 	for file in fichiers_modifies:
 		print(f"\t- {file.a_path}")
 	REPO.index.commit("Modifications")
-	
+
 if fichiers_non_suivis:
 	print("\nNouveaux fichiers :")
 	for file in fichiers_non_suivis:
