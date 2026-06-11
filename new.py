@@ -29,40 +29,45 @@ class LilypondCreator(ctk.CTk):
 
         self.fields = {
             "title": {
-                "label": ctk.CTkLabel(self, text="Titre", font=self.default_font),
+                "label": None,
                 "var": ctk.StringVar(),
                 "entry": None,
             },
             "composer": {
-                "label": ctk.CTkLabel(self, text="Compositeur", font=self.default_font),
+                "label": None,
                 "var": ctk.StringVar(),
                 "entry": None,
             },
             "poet": {
-                "label": ctk.CTkLabel(self, text="Poète", font=self.default_font),
+                "label": None,
                 "var": ctk.StringVar(),
                 "entry": None,
             },
         }
 
-        for field in self.fields.values():
-            field["entry"] = ctk.CTkEntry(self, width=360, height=28, font=self.default_font, textvariable=field["var"])
+        # Create frames for horizontal layout of labels and entries
+        self.title_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
+        self.composer_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
+        self.poet_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
 
-        self.label_filename = ctk.CTkLabel(self, text="Nom du fichier :", font=self.default_font)
-        self.filename_var = ctk.StringVar()
-        self.entry_filename = ctk.CTkEntry(self, width=360, height=28, font=self.default_font, textvariable=self.filename_var)
+        self.fields["title"]["label"] = ctk.CTkLabel(self.title_frame, text="Titre", font=self.default_font, width=100)
+        self.fields["title"]["entry"] = ctk.CTkEntry(self.title_frame, width=260, height=28, font=self.default_font, textvariable=self.fields["title"]["var"])
+        self.fields["title"]["label"].pack(side="left", padx=(0, 10))
+        self.fields["title"]["entry"].pack(side="left", padx=0)
 
-        self.button_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
-        self.button_cancel = ctk.CTkButton(self.button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#ff0000", hover_color="#8f8f8f", command=self.destroy)
-        self.button_create = ctk.CTkButton(self.button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file)
-        self.label_status = ctk.CTkLabel(self, text="", text_color="#4B8BBE", font=self.default_font)
+        self.fields["composer"]["label"] = ctk.CTkLabel(self.composer_frame, text="Compositeur", font=self.default_font, width=100)
+        self.fields["composer"]["entry"] = ctk.CTkEntry(self.composer_frame, width=260, height=28, font=self.default_font, textvariable=self.fields["composer"]["var"])
+        self.fields["composer"]["label"].pack(side="left", padx=(0, 10))
+        self.fields["composer"]["entry"].pack(side="left", padx=0)
 
-        self.fields["title"]["label"].pack(pady=(2, 0), anchor="w", padx=20)
-        self.fields["title"]["entry"].pack(padx=20)
-        self.fields["composer"]["label"].pack(pady=(2, 0), anchor="w", padx=20)
-        self.fields["composer"]["entry"].pack(padx=20)
-        self.fields["poet"]["label"].pack(pady=(2, 0), anchor="w", padx=20)
-        self.fields["poet"]["entry"].pack(padx=20)
+        self.fields["poet"]["label"] = ctk.CTkLabel(self.poet_frame, text="Poète", font=self.default_font, width=100)
+        self.fields["poet"]["entry"] = ctk.CTkEntry(self.poet_frame, width=260, height=28, font=self.default_font, textvariable=self.fields["poet"]["var"])
+        self.fields["poet"]["label"].pack(side="left", padx=(0, 10))
+        self.fields["poet"]["entry"].pack(side="left", padx=0)
+
+        self.title_frame.pack(pady=4, padx=20)
+        self.composer_frame.pack(pady=4, padx=20)
+        self.poet_frame.pack(pady=4, padx=20)
 
         self.optional_fields = {
             "dedication": "Dédicace",
@@ -82,16 +87,30 @@ class LilypondCreator(ctk.CTk):
         self.add_field_menu.set("+")
         self.add_field_menu.pack(pady=(8, 4), padx=20)
 
-        self.label_category = ctk.CTkLabel(self, text="Catégorie :", font=self.default_font)
+        # Category frame
+        self.category_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
+        self.label_category = ctk.CTkLabel(self.category_frame, text="Catégorie", font=self.default_font, width=100)
         self.categories = self._get_categories()
         default_category = self.categories[0] if self.categories else "Autres"
         self.category_var = ctk.StringVar(value=default_category)
-        self.category_menu = ctk.CTkOptionMenu(self, values=self.categories, variable=self.category_var, width=360, height=28, font=self.default_font)
+        self.category_menu = ctk.CTkOptionMenu(self.category_frame, values=self.categories, variable=self.category_var, width=260, height=28, font=self.default_font)
+        self.label_category.pack(side="left", padx=(0, 10))
+        self.category_menu.pack(side="left", padx=0)
+        self.category_frame.pack(pady=4, padx=20)
 
-        self.label_category.pack(pady=(12, 4), anchor="w", padx=20)
-        self.category_menu.pack(padx=20)
-        self.label_filename.pack(pady=(12, 4), anchor="w", padx=20)
-        self.entry_filename.pack(padx=20)
+        # Filename frame
+        self.filename_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
+        self.label_filename = ctk.CTkLabel(self.filename_frame, text="Nom du fichier :", font=self.default_font, width=100)
+        self.filename_var = ctk.StringVar()
+        self.entry_filename = ctk.CTkEntry(self.filename_frame, width=260, height=28, font=self.default_font, textvariable=self.filename_var)
+        self.label_filename.pack(side="left", padx=(0, 10))
+        self.entry_filename.pack(side="left", padx=0)
+        self.filename_frame.pack(pady=4, padx=20)
+
+        self.button_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
+        self.button_cancel = ctk.CTkButton(self.button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#ff0000", hover_color="#8f8f8f", command=self.destroy)
+        self.button_create = ctk.CTkButton(self.button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file)
+        self.label_status = ctk.CTkLabel(self, text="", text_color="#4B8BBE", font=self.default_font)
         self.button_frame.pack(pady=18)
         self.button_create.pack(side="left", padx=(0, 10))
         self.button_cancel.pack(side="left")
@@ -127,15 +146,18 @@ class LilypondCreator(ctk.CTk):
             return
 
         field_var = ctk.StringVar()
-        field_label = ctk.CTkLabel(self, text=f"{selected_label} :", font=self.default_font)
-        field_entry = ctk.CTkEntry(self, width=360, height=28, font=self.default_font, textvariable=field_var)
-        field_label.pack(pady=(2, 0), anchor="w", padx=20, before=self.add_field_menu)
-        field_entry.pack(padx=20, before=self.add_field_menu)
+        field_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
+        field_label = ctk.CTkLabel(field_frame, text=f"{selected_label}", font=self.default_font, width=100)
+        field_entry = ctk.CTkEntry(field_frame, width=260, height=28, font=self.default_font, textvariable=field_var)
+        field_label.pack(side="left", padx=(0, 10))
+        field_entry.pack(side="left", padx=0)
+        field_frame.pack(pady=2, padx=20, before=self.add_field_menu)
 
         self.extra_fields[selected_key] = {
             "label": field_label,
             "var": field_var,
             "entry": field_entry,
+            "frame": field_frame,
         }
         self.available_optional_fields.remove(selected_key)
         
@@ -201,6 +223,19 @@ class LilypondCreator(ctk.CTk):
         except OSError as error:
             self.label_status.configure(text=f"Erreur d'écriture : {error}", text_color="#D32F2F")
 
+
+    def _get_categories(self) -> list[str]:
+        base_dir = os.path.dirname(__file__)
+        excluded = {"Modèles", "Grégorien"}
+        categories = [
+            entry for entry in os.listdir(base_dir)
+            if os.path.isdir(os.path.join(base_dir, entry))
+            and not entry.startswith('.')
+            and not entry.startswith('__')
+            and entry not in excluded
+        ]
+        categories.sort(key=str.casefold)
+        return categories or ["Autres"]
 
     def _get_categories(self) -> list[str]:
         base_dir = os.path.dirname(__file__)
