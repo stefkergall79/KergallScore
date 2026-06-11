@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile",
+            "type": "shell",
+            "command": "flatpak",
+            "args": [
+                "run",
+                "--command=lilypond",
+                "org.frescobaldi.Frescobaldi",
+                "${file}"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "Save",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": [
+                "${workspaceFolder}/save.py"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "Install",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": [
+                "${workspaceFolder}/install.py"
+            ],
+            "group": "build"
+        }
+    ]
+}
