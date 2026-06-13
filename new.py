@@ -73,7 +73,7 @@ class LilypondCreator(ctk.CTk):
         self.add_field_menu = ctk.CTkOptionMenu(self, values=[self.optional_fields[key] for key in self.available_optional_fields], variable=self.add_field_var, width=40, height=28, font=self.default_font, command=self.on_optional_field_selected)
         self.add_field_menu.set("+")
         self.add_field_menu.pack(pady=(8, 4), padx=20)
-
+ 
         # Category frame
         self.category_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         self.label_category = ctk.CTkLabel(self.category_frame, text="Catégorie", font=self.default_font, width=100)
