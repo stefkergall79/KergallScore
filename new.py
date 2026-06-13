@@ -6,15 +6,12 @@ ctk.set_default_color_theme("blue")
 
 
 def build_default_filename(title: str, composer: str) -> str:
-    title = title.strip()
-    composer = composer.strip()
-
     if title and composer:
         return f"{title} - {composer}.ly"
     if title:
         return f"{title}.ly"
     if composer:
-        return f"Oeuvre de {composer}.ly"
+        return f"Pièce de {composer}.ly"
     return ""
 
 
@@ -22,33 +19,23 @@ class LilypondCreator(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.title("Assistant de création de partition Lilypond")
-        self.resizable(False, False)
+        self.resizable(True, True)
 
         self.default_font = ("Arial", 12)
         self.filename_modified = False
 
-        self.fields = {
-            "title": {
-                "label": None,
-                "var": ctk.StringVar(),
-                "entry": None,
-            },
-            "composer": {
-                "label": None,
-                "var": ctk.StringVar(),
-                "entry": None,
-            },
-            "poet": {
-                "label": None,
-                "var": ctk.StringVar(),
-                "entry": None,
-            },
-        }
 
-        # Create frames for horizontal layout of labels and entries
         self.title_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         self.composer_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         self.poet_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
+
+        self.fields = {}
+        for field in "title", "composer", "poet":
+            self.fields[field] = {
+                "label": None,
+                "var": ctk.StringVar(),
+                "entry": None,
+            }
 
         self.fields["title"]["label"] = ctk.CTkLabel(self.title_frame, text="Titre", font=self.default_font, width=100)
         self.fields["title"]["entry"] = ctk.CTkEntry(self.title_frame, width=260, height=28, font=self.default_font, textvariable=self.fields["title"]["var"])
@@ -76,8 +63,8 @@ class LilypondCreator(ctk.CTk):
             "instrument": "Instrument",
             "meter": "Tempo",
             "arranger": "Arrangeur",
-            "tagline": "Mention spéciale (en dernière page)",
-            "copyright": "Copyright (en première page)",
+            "tagline": "\"tagline\" (en dernière page)",
+            "copyright": "Copyrights (en première page)",
         }
         self.extra_fields = {}
         self.available_optional_fields = list(self.optional_fields.keys())

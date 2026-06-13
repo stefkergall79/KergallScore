@@ -8,7 +8,6 @@
     "stef.kergall@gmail.com"
     "- Partitions sur commande"
   }
-  system-system-spacing.basic-distance = #12
 }
 
 tocItemComposer =

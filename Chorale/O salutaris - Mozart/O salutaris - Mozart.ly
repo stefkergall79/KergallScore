@@ -43,6 +43,7 @@ bass = \fixed c {
 }
 
 verseOne = \lyricmode {
+  \set stanza = "1."
   O sa -- lu -- ta -- ris Hos -- ti -- a,
   quæ cæ -- li pan -- dis os -- ti -- um.
   Bel -- la pre -- munt hos -- ti -- li -- a,
@@ -50,6 +51,8 @@ verseOne = \lyricmode {
   A -- men.
 }
 verseTwo = \lyricmode {
+  \override LyricText.font-shape = #'italic
+  \set stanza = \markup \italic 2.
   U -- ni tri -- no -- que Do -- mi -- no
   sit sem -- pi -- ter -- na glo -- ri -- a,
   qui vi -- tam si -- ne ter -- mi -- no

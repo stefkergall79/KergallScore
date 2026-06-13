@@ -1,14 +1,10 @@
-\version "2.24.4"
+\version "2.26.0"
 
 \header {
   title = "Canon in D"
-  subtitle = "Johann Pachelbel"
-  subsubtitle = "Trois violons et clavier"
+  composer = "Johann Pachelbel"
+  subtitle = "Trois violons et clavier"
   tagline = ##f
-}
-
-\paper {
-  #(set-paper-size "a4")
 }
 
 global = {

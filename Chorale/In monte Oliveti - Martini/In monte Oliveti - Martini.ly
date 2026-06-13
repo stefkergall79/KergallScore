@@ -47,7 +47,6 @@ verse = \lyricmode {
   \header {
     title = "IN MONTE OLIVETI"
     composer = "Giambattista Martini (1706-1784)"
-    tagline = ##f
   }
   \new ChoirStaff <<
       \new Staff \with {
