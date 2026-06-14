@@ -30,9 +30,9 @@ class LilypondCreator(ctk.CTk):
         # champs de base
         self.fields = {}
         for field, text, frame in [
-            ("title", "Titre", self.title_frame),
-            ("composer", "Compositeur", self.composer_frame),
-            ("poet", "Paroles", self.poet_frame)
+            ("title",       "Titre",        self.title_frame),
+            ("composer",    "Compositeur",  self.composer_frame),
+            ("poet",        "Paroles",      self.poet_frame)
         ]:
             self.fields[field] = {
                 "label": ctk.CTkLabel(frame, text=text, font=self.default_font, width=100),
@@ -40,15 +40,11 @@ class LilypondCreator(ctk.CTk):
                 "entry": None,
                 "frame": frame,
                 "hidden": False,
-                "remove": None,
+                "remove": ctk.CTkButton(frame, text="-", width=28, height=28, fg_color="#E57373", hover_color="#EF9A9A", command=lambda k=field: self.remove_base_field(k))
             }
 
-            # create a consistent remove button for base fields
-            remove_btn = ctk.CTkButton(frame, text="-", width=28, height=28, fg_color="#E57373", hover_color="#EF9A9A", command=lambda k=field: self.remove_base_field(k))
-            self.fields[field]["remove"] = remove_btn
-
+            self.fields[field]["remove"].pack(side="right", padx=(10, 0))
             self.fields[field]["entry"] = ctk.CTkEntry(frame, width=260, height=28, font=self.default_font, textvariable=self.fields[field]["var"])
-            remove_btn.pack(side="left", padx=(0, 10))
             self.fields[field]["label"].pack(side="left", padx=(0, 10))
             self.fields[field]["entry"].pack(side="left", padx=0)
             frame.pack(pady=4, padx=20)
@@ -56,14 +52,14 @@ class LilypondCreator(ctk.CTk):
 
         # champs optionnels
         self.optional_fields = {
-            "dedication": "Dédicace",
-            "subtitle": "Sous-titre",
-            "subsubtitle": "Sous-sous-titre",
-            "instrument": "Instrument",
-            "meter": "Tempo",
-            "arranger": "Arrangeur",
-            "tagline": "\"tagline\" (en dernière page)",
-            "copyright": "Copyrights (en première page)",
+            "dedication":   "Dédicace",
+            "subtitle":     "Sous-titre",
+            "subsubtitle":  "Sous-sous-titre",
+            "instrument":   "Instrument",
+            "meter":        "Tempo",
+            "arranger":     "Arrangeur",
+            "tagline":      "\"tagline\" (en dernière page)",
+            "copyright":    "Copyrights (en première page)"
         }
         self.extra_fields = {}
         self.available_optional_fields = list(self.optional_fields.keys())
@@ -140,7 +136,7 @@ class LilypondCreator(ctk.CTk):
 
         # remove button for optional field (uses remove_optional_field)
         remove_btn = ctk.CTkButton(field_frame, text="-", width=28, height=28, fg_color="#E57373", hover_color="#EF9A9A", command=lambda k=selected_key: self.remove_optional_field(k))
-        remove_btn.pack(side="left", padx=(0, 10))
+        remove_btn.pack(side="right", padx=(10, 0))
         field_label.pack(side="left", padx=(0, 10))
         field_entry.pack(side="left", padx=0)
         field_frame.pack(pady=2, padx=20, before=self.add_field_menu)
