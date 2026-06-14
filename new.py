@@ -14,7 +14,6 @@ def build_default_filename(title: str, composer: str) -> str:
         return f"Pièce de {composer}.ly"
     return ""
 
-
 class LilypondCreator(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -24,38 +23,29 @@ class LilypondCreator(ctk.CTk):
         self.default_font = ("Arial", 12)
         self.filename_modified = False
 
-
         self.title_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         self.composer_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         self.poet_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
 
+        # champs de base
         self.fields = {}
-        for field in "title", "composer", "poet":
+        for field, text, frame in [
+            ("title", "Titre", self.title_frame),
+            ("composer", "Compositeur", self.composer_frame),
+            ("poet", "Paroles", self.poet_frame)
+        ]:
             self.fields[field] = {
-                "label": None,
+                "label": ctk.CTkLabel(frame, text=text, font=self.default_font, width=100),
                 "var": ctk.StringVar(),
                 "entry": None,
             }
+            self.fields[field]["entry"] = ctk.CTkEntry(frame, width=260, height=28, font=self.default_font, textvariable=self.fields[field]["var"])
+            self.fields[field]["label"].pack(side="left", padx=(0, 10))
+            self.fields[field]["entry"].pack(side="left", padx=0)
+            frame.pack(pady=4, padx=20)
 
-        self.fields["title"]["label"] = ctk.CTkLabel(self.title_frame, text="Titre", font=self.default_font, width=100)
-        self.fields["title"]["entry"] = ctk.CTkEntry(self.title_frame, width=260, height=28, font=self.default_font, textvariable=self.fields["title"]["var"])
-        self.fields["title"]["label"].pack(side="left", padx=(0, 10))
-        self.fields["title"]["entry"].pack(side="left", padx=0)
 
-        self.fields["composer"]["label"] = ctk.CTkLabel(self.composer_frame, text="Compositeur", font=self.default_font, width=100)
-        self.fields["composer"]["entry"] = ctk.CTkEntry(self.composer_frame, width=260, height=28, font=self.default_font, textvariable=self.fields["composer"]["var"])
-        self.fields["composer"]["label"].pack(side="left", padx=(0, 10))
-        self.fields["composer"]["entry"].pack(side="left", padx=0)
-
-        self.fields["poet"]["label"] = ctk.CTkLabel(self.poet_frame, text="Poète", font=self.default_font, width=100)
-        self.fields["poet"]["entry"] = ctk.CTkEntry(self.poet_frame, width=260, height=28, font=self.default_font, textvariable=self.fields["poet"]["var"])
-        self.fields["poet"]["label"].pack(side="left", padx=(0, 10))
-        self.fields["poet"]["entry"].pack(side="left", padx=0)
-
-        self.title_frame.pack(pady=4, padx=20)
-        self.composer_frame.pack(pady=4, padx=20)
-        self.poet_frame.pack(pady=4, padx=20)
-
+        # champs optionnels
         self.optional_fields = {
             "dedication": "Dédicace",
             "subtitle": "Sous-titre",
@@ -104,8 +94,7 @@ class LilypondCreator(ctk.CTk):
         self.label_status.pack(pady=(6, 10))
 
         self.update_idletasks()
-        self.geometry(f"420x{self.winfo_reqheight()}")
-
+        
         self.fields["title"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.fields["composer"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.entry_filename.bind("<KeyRelease>", self.on_filename_edit)
@@ -213,26 +202,12 @@ class LilypondCreator(ctk.CTk):
 
     def _get_categories(self) -> list[str]:
         base_dir = os.path.dirname(__file__)
-        excluded = {"Modèles", "Grégorien"}
         categories = [
             entry for entry in os.listdir(base_dir)
             if os.path.isdir(os.path.join(base_dir, entry))
             and not entry.startswith('.')
             and not entry.startswith('__')
-            and entry not in excluded
-        ]
-        categories.sort(key=str.casefold)
-        return categories or ["Autres"]
-
-    def _get_categories(self) -> list[str]:
-        base_dir = os.path.dirname(__file__)
-        excluded = {"Modèles", "Grégorien"}
-        categories = [
-            entry for entry in os.listdir(base_dir)
-            if os.path.isdir(os.path.join(base_dir, entry))
-            and not entry.startswith('.')
-            and not entry.startswith('__')
-            and entry not in excluded
+            and entry not in ("Modèles", "Grégorien")
         ]
         categories.sort(key=str.casefold)
         return categories or ["Autres"]
