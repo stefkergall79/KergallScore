@@ -11,7 +11,7 @@ def build_default_filename(title: str, composer: str) -> str:
     if title:
         return f"{title}.ly"
     if composer:
-        return f"Pièce de {composer}.ly"
+        return f"{composer}.ly"
     return ""
 
 class LilypondCreator(ctk.CTk):
@@ -240,9 +240,9 @@ class LilypondCreator(ctk.CTk):
 
     def create_lilypond_file(self):
         values = {
-            "title": self.fields["title"]["var"].get().strip(),
-            "composer": self.fields["composer"]["var"].get().strip(),
-            "poet": self.fields["poet"]["var"].get().strip(),
+            "title": self.fields["title"]["var"].get().upper(),
+            "composer": self.fields["composer"]["var"].get(),
+            "poet": self.fields["poet"]["var"].get(),
         }
         values.update({
             key: field["var"].get().strip()
@@ -256,15 +256,29 @@ class LilypondCreator(ctk.CTk):
         os.makedirs(target_folder, exist_ok=True)
         filepath = os.path.join(target_folder, filename)
 
+
         content = (
             "\\version \"2.26.0\"\n"
             "\\include \"../../settings.ly\"\n"
+        )
+
+        if values["composer"]:
+            content += (
+                "\\tocItemComposer "
+                f"\"{values['title']}\" "
+                f"\"{values['composer']}\"\n"
+                )
+        else:
+            content += (
+                "\\tocItem "
+                f"\"{values['title']}\"\n"
+            )
+        content += (
             "\\score {\n"
             "\t\\header {\n"
         )
         for key in values:
-            if values[key]:
-                content += f"\t\t{key} = \"{values[key]}\"\n"
+            content += f"\t\t{key} = \"{values[key]}\"\n"
 
         content += (
             "\t}\n"
