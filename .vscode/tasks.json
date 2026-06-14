@@ -11,6 +11,9 @@
                 "org.frescobaldi.Frescobaldi",
                 "${file}"
             ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
             "group": "build"
         },
         {

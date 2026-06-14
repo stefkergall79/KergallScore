@@ -38,8 +38,17 @@ class LilypondCreator(ctk.CTk):
                 "label": ctk.CTkLabel(frame, text=text, font=self.default_font, width=100),
                 "var": ctk.StringVar(),
                 "entry": None,
+                "frame": frame,
+                "hidden": False,
+                "remove": None,
             }
+
+            # create a consistent remove button for base fields
+            remove_btn = ctk.CTkButton(frame, text="-", width=28, height=28, fg_color="#E57373", hover_color="#EF9A9A", command=lambda k=field: self.remove_base_field(k))
+            self.fields[field]["remove"] = remove_btn
+
             self.fields[field]["entry"] = ctk.CTkEntry(frame, width=260, height=28, font=self.default_font, textvariable=self.fields[field]["var"])
+            remove_btn.pack(side="left", padx=(0, 10))
             self.fields[field]["label"].pack(side="left", padx=(0, 10))
             self.fields[field]["entry"].pack(side="left", padx=0)
             frame.pack(pady=4, padx=20)
@@ -99,6 +108,7 @@ class LilypondCreator(ctk.CTk):
         self.fields["composer"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.entry_filename.bind("<KeyRelease>", self.on_filename_edit)
 
+
     def on_title_or_composer_change(self, *_args):
         if self.filename_modified:
             return
@@ -107,8 +117,10 @@ class LilypondCreator(ctk.CTk):
         default_name = build_default_filename(title, composer)
         self.filename_var.set(default_name)
 
+
     def on_filename_edit(self, _event=None):
         self.filename_modified = True
+
 
     def on_optional_field_selected(self, selected_label: str):
         if not selected_label:
@@ -125,6 +137,10 @@ class LilypondCreator(ctk.CTk):
         field_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         field_label = ctk.CTkLabel(field_frame, text=f"{selected_label}", font=self.default_font, width=100)
         field_entry = ctk.CTkEntry(field_frame, width=260, height=28, font=self.default_font, textvariable=field_var)
+
+        # remove button for optional field (uses remove_optional_field)
+        remove_btn = ctk.CTkButton(field_frame, text="-", width=28, height=28, fg_color="#E57373", hover_color="#EF9A9A", command=lambda k=selected_key: self.remove_optional_field(k))
+        remove_btn.pack(side="left", padx=(0, 10))
         field_label.pack(side="left", padx=(0, 10))
         field_entry.pack(side="left", padx=0)
         field_frame.pack(pady=2, padx=20, before=self.add_field_menu)
@@ -134,6 +150,7 @@ class LilypondCreator(ctk.CTk):
             "var": field_var,
             "entry": field_entry,
             "frame": field_frame,
+            "remove": remove_btn,
         }
         self.available_optional_fields.remove(selected_key)
         
@@ -147,6 +164,58 @@ class LilypondCreator(ctk.CTk):
         self.update_idletasks()
         self.geometry(f"420x{self.winfo_reqheight()}")
 
+
+    def remove_optional_field(self, selected_key: str):
+        if selected_key not in self.extra_fields:
+            return
+
+        frame = self.extra_fields[selected_key].get("frame")
+        try:
+            frame.destroy()
+        except Exception:
+            pass
+
+        del self.extra_fields[selected_key]
+
+        if selected_key not in self.available_optional_fields:
+            self.available_optional_fields.append(selected_key)
+            # restore original ordering
+            self.available_optional_fields.sort(key=lambda k: list(self.optional_fields.keys()).index(k))
+
+        updated_values = [self.optional_fields[key] for key in self.available_optional_fields]
+        self.add_field_menu.configure(values=updated_values)
+        self.add_field_var.set("+")
+        self.add_field_menu.configure(state="normal")
+
+        self.update_idletasks()
+        self.geometry(f"420x{self.winfo_reqheight()}")
+
+
+    def remove_base_field(self, key: str):
+        field_info = self.fields.get(key)
+        if not field_info:
+            return
+
+        frame = field_info.get("frame")
+        if frame:
+            try:
+                frame.pack_forget()
+            except Exception:
+                try:
+                    frame.destroy()
+                except Exception:
+                    pass
+
+        try:
+            field_info["var"].set("")
+        except Exception:
+            pass
+        field_info["hidden"] = True
+
+        self.update_idletasks()
+        self.geometry(f"420x{self.winfo_reqheight()}")
+
+
     def get_target_filename(self) -> str:
         filename = os.path.basename(self.filename_var.get().strip())
         if not filename:
@@ -158,6 +227,20 @@ class LilypondCreator(ctk.CTk):
         if not filename.lower().endswith(".ly"):
             filename += ".ly"
         return filename
+
+
+    def _get_categories(self) -> list[str]:
+        base_dir = os.path.dirname(__file__)
+        categories = [
+            entry for entry in os.listdir(base_dir)
+            if os.path.isdir(os.path.join(base_dir, entry))
+            and not entry.startswith('.')
+            and not entry.startswith('__')
+            and entry not in ("Modèles", "Grégorien")
+        ]
+        categories.sort(key=str.casefold)
+        return categories or ["Autres"]
+
 
     def create_lilypond_file(self):
         values = {
@@ -198,19 +281,6 @@ class LilypondCreator(ctk.CTk):
             self.destroy()
         except OSError as error:
             self.label_status.configure(text=f"Erreur d'écriture : {error}", text_color="#D32F2F")
-
-
-    def _get_categories(self) -> list[str]:
-        base_dir = os.path.dirname(__file__)
-        categories = [
-            entry for entry in os.listdir(base_dir)
-            if os.path.isdir(os.path.join(base_dir, entry))
-            and not entry.startswith('.')
-            and not entry.startswith('__')
-            and entry not in ("Modèles", "Grégorien")
-        ]
-        categories.sort(key=str.casefold)
-        return categories or ["Autres"]
 
 
 if __name__ == "__main__":
