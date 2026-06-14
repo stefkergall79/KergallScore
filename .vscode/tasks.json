@@ -25,6 +25,14 @@
             ],
             "group": "build"
         },
+        {    "label": "New",
+            "type": "shell",
+            "command": "${command:python.interpreterPath}",
+            "args": [
+                "${workspaceFolder}/new.py"
+            ],
+            "group": "build"
+        },
         {
             "label": "Install",
             "type": "shell",
