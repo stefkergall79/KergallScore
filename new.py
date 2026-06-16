@@ -42,6 +42,7 @@ class LilypondCreator(ctk.CTk):
         for field in self.fields:
             frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
             self.fields[field] = {
+                "name": self.fields[field],
                 "label": ctk.CTkLabel(frame, text=self.fields[field], font=self.default_font, width=100),
                 "var": ctk.StringVar(),
                 "entry": None,
@@ -61,11 +62,17 @@ class LilypondCreator(ctk.CTk):
 
 
         self.add_field_var = ctk.StringVar(value="+")
-        self.add_field_menu = ctk.CTkOptionMenu(self, values=[self.fields[key] for key in self.available_fields], variable=self.add_field_var, width=40, height=28, font=self.default_font, command=self.on_optional_field_selected)
+
+        self.add_field_menu = ctk.CTkOptionMenu(
+            self, values=[self.fields[key]["name"] for key in self.available_fields], variable=self.add_field_var,
+            width=40, 
+            height=28, 
+            font=self.default_font, 
+            command=self.on_optional_field_selected
+        )
         self.add_field_menu.set("+")
         self.add_field_menu.pack(pady=(8, 4), padx=20)
   
-        # Category frame
         self.category_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         self.label_category = ctk.CTkLabel(self.category_frame, text="Catégorie", font=self.default_font, width=100)
         self.categories = self._get_categories()
@@ -76,7 +83,6 @@ class LilypondCreator(ctk.CTk):
         self.category_menu.pack(side="left", padx=0)
         self.category_frame.pack(pady=4, padx=20)
 
-        # Filename frame
         self.filename_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         self.label_filename = ctk.CTkLabel(self.filename_frame, text="Nom du fichier :", font=self.default_font, width=100)
         self.filename_var = ctk.StringVar()
@@ -88,12 +94,10 @@ class LilypondCreator(ctk.CTk):
         self.button_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         self.button_cancel = ctk.CTkButton(self.button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#ff0000", hover_color="#8f8f8f", command=self.destroy)
         self.button_create = ctk.CTkButton(self.button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file)
-        self.label_status = ctk.CTkLabel(self, text="", text_color="#4B8BBE", font=self.default_font)
         self.button_frame.pack(pady=18)
         self.button_create.pack(side="left", padx=(0, 10))
         self.button_cancel.pack(side="left")
-        self.label_status.pack(pady=(6, 10))
-
+        
         self.update_idletasks()
         
         self.fields["title"]["var"].trace_add("write", self.on_title_or_composer_change)
@@ -116,30 +120,32 @@ class LilypondCreator(ctk.CTk):
 
     def on_optional_field_selected(self, selected_label: str):
         selected_key = next(
-            (key for key, label in self.fields.items() if label == selected_label),
+            (key for key, info in self.fields.items() if info["name"] == selected_label),
             None,
         )
         
-        insert_before = self.add_field_menu
-        selected_index = list(self.fields.keys()).index(selected_key)
-        for key in self.fields.keys():
-            if key in self.fields:
-                key_index = list(self.fields.keys()).index(key)
-                if key_index > selected_index:
-                    insert_before = self.fields[key]["frame"]
-                    break
-        
-        self.fields[selected_key]["frame"].pack(pady=2, padx=20, before=insert_before)
+        insert_before_widget = None
+        all_keys = list(self.fields.keys())
+        selected_index = all_keys.index(selected_key)
+
+        for key in all_keys[selected_index + 1:]:
+            if not self.fields[key]["hidden"]:
+                insert_before_widget = self.fields[key]["frame"]
+                break
+
+        if insert_before_widget:
+            self.fields[selected_key]["frame"].pack(pady=4, padx=20, before=insert_before_widget)
+        else:
+            self.fields[selected_key]["frame"].pack(pady=4, padx=20, before=self.add_field_menu)
+
         self.fields[selected_key]["hidden"] = False
-        
         self.available_fields.remove(selected_key)
         
-        updated_values = [self.fields[key] for key in self.available_fields]
+        updated_values = [self.fields[key]["name"] for key in self.available_fields]
         self.add_field_menu.configure(values=updated_values)
         self.add_field_var.set("+")
         
         self.update_idletasks()
-        
 
     def remove_field(self, key: str):
         field_info = self.fields[key]
@@ -151,7 +157,7 @@ class LilypondCreator(ctk.CTk):
         self.available_fields.append(key)
         self.available_fields.sort(key=lambda k: list(self.fields.keys()).index(k))
         
-        updated_values = [self.fields[key] for key in self.available_fields]
+        updated_values = [self.fields[key]["name"] for key in self.available_fields]
         self.add_field_menu.configure(values=updated_values)
         self.add_field_var.set("+")
         self.add_field_menu.configure(state="normal")
@@ -237,8 +243,10 @@ class LilypondCreator(ctk.CTk):
                 lily_file.write(content)
             self.destroy()
         except OSError as error:
-            self.label_status.configure(text=f"Erreur d'écriture : {error}", text_color="#D32F2F")
-
+            error_window = ctk.CTkToplevel(self)
+            label = ctk.CTkLabel(error_window, text=error.strerror, text_color="#D32F2F", font=self.default_font)
+            label.pack(pady=20, padx=20)
+            
 
 if __name__ == "__main__":
     app = LilypondCreator()
