@@ -61,14 +61,9 @@ class LilypondCreator(ctk.CTk):
                 self.available_fields.remove(field)
 
 
-        self.add_field_var = ctk.StringVar(value="+")
-
+        self.add_field_var = ctk.StringVar()
         self.add_field_menu = ctk.CTkOptionMenu(
-            self, values=[self.fields[key]["name"] for key in self.available_fields], variable=self.add_field_var,
-            width=40, 
-            height=28, 
-            font=self.default_font, 
-            command=self.on_optional_field_selected
+            self, values=[self.fields[key]["name"] for key in self.available_fields], variable=self.add_field_var, width=40, height=28, font=self.default_font, command=self.on_optional_field_selected
         )
         self.add_field_menu.set("+")
         self.add_field_menu.pack(pady=(8, 4), padx=20)
@@ -194,10 +189,9 @@ class LilypondCreator(ctk.CTk):
     def create_lilypond_file(self):
         values = {}
         for key, field in self.fields.items():
-            if field.get("hidden"):
-                continue
-            value = field["var"].get().strip()
-            values[key] = value
+            if not field["hidden"]:
+                value = field["var"].get().strip()
+                values[key] = value
 
         filename = self.get_target_filename()
         category = self.category_var.get().strip() or "Autres"
