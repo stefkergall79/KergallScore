@@ -3,25 +3,40 @@ start = time.time()
 import os
 os.system("sudo -v")
 
-print("Mise à jour du cache...", end=" ", flush=True)
-os.system("sudo DEBIAN_FRONTEND=noninteractive apt-get update -qq > /dev/null 2>&1")
-print("Terminé.")
+def install_package(package_manager: str, package_name: str):
+    depot = packages[package_manager]
+    print(f"Installation de {package_name}...", end=" ", flush=True)
+    os.system(depot["command"].format(depot["apps"][package_name]))
+    print("Terminé.")
 
-print("Installation de pip...", end=" ", flush=True)
-os.system("sudo DEBIAN_FRONTEND=noninteractive apt-get install -qq pip -y")
-print("Terminé.")
+packages = {
+    "apt": {
+        "init": "sudo apt-get update -qq ",
+        "command": "sudo apt-get install -qq {} -y",
+        "apps": {
+            "pip": "pip",
+            "Tkinter": "python3-tk"
+        }
+    },
+    "pip": {
+        "init": None,
+        "command": "pip install -q {} --break-system-packages",
+        "apps": {
+            "CustomTkinter": "customtkinter",
+            "GitPython": "gitpython"
+        }
+    }
+}
 
-print("Installation de tkinter...", end=" ", flush=True)
-os.system("sudo DEBIAN_FRONTEND=noninteractive apt-get install -qq python3-tk -y")
-print("Terminé.")
+for depot in packages:
+    if packages[depot]["init"]:
+        print("Mise à jour du cache...", end=" ", flush=True)
+        os.system(packages[depot]["init"])
+        print("Terminé.")
 
-print("Installation de customtkinter...", end=" ", flush=True)
-os.system("pip install -q customtkinter --break-system-packages > /dev/null 2>&1")
-print("Terminé.")
+    for package in packages[depot]["apps"]:
+        install_package(depot, package)
 
-print("Installation de GitPython...", end=" ", flush=True)
-os.system("pip install -q gitpython --break-system-packages > /dev/null 2>&1")
-print("Terminé.")
 
 print("Configuration de Git...", end=" ", flush=True)
 import git

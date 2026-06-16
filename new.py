@@ -24,35 +24,7 @@ class LilypondCreator(ctk.CTk):
         self.default_font = ("Arial", 12)
         self.filename_modified = False
 
-        self.title_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
-        self.composer_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
-        self.poet_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
-
-        # champs de base
-        self.fields = {}
-        for field, text, frame in [
-            ("title",       "Titre",        self.title_frame),
-            ("composer",    "Compositeur",  self.composer_frame),
-            ("poet",        "Paroles",      self.poet_frame)
-        ]:
-            self.fields[field] = {
-                "label": ctk.CTkLabel(frame, text=text, font=self.default_font, width=100),
-                "var": ctk.StringVar(),
-                "entry": None,
-                "frame": frame,
-                "hidden": False,
-                "remove": ctk.CTkButton(frame, text="-", width=28, height=28, fg_color="#E57373", hover_color="#EF9A9A", command=lambda k=field: self.remove_field(k))
-            }
-
-            self.fields[field]["remove"].pack(side="right", padx=(10, 0))
-            self.fields[field]["entry"] = ctk.CTkEntry(frame, width=260, height=28, font=self.default_font, textvariable=self.fields[field]["var"])
-            self.fields[field]["label"].pack(side="left", padx=(0, 10))
-            self.fields[field]["entry"].pack(side="left", padx=0)
-            frame.pack(pady=4, padx=20)
-
-
-        # tous les champs
-        self.all_fields = {
+        self.fields = {
             "title":        "Titre",
             "composer":     "Compositeur",
             "poet":         "Paroles",
@@ -65,15 +37,31 @@ class LilypondCreator(ctk.CTk):
             "tagline":      "\"tagline\" (en dernière page)",
             "copyright":    "Copyrights (en première page)"
         }
-        self.optional_fields = {k: v for k, v in self.all_fields.items() if k not in ("title", "composer", "poet")}
-        self.available_fields = list(self.all_fields.keys())
-        # Les champs de base affichés sont retirés de la liste disponible
-        for key in ["title", "composer", "poet"]:
-            if key in self.available_fields:
-                self.available_fields.remove(key)
+        self.available_fields = list(self.fields.keys())
+        
+        for field in self.fields:
+            frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
+            self.fields[field] = {
+                "label": ctk.CTkLabel(frame, text=self.fields[field], font=self.default_font, width=100),
+                "var": ctk.StringVar(),
+                "entry": None,
+                "frame": frame,
+                "hidden": field not in ("title", "composer", "poet"),
+                "remove": ctk.CTkButton(frame, text="-", width=28, height=28, fg_color="#E57373", hover_color="#EF9A9A", command=lambda k=field: self.remove_field(k))
+            }
+
+            self.fields[field]["remove"].pack(side="right", padx=(10, 0))
+            self.fields[field]["entry"] = ctk.CTkEntry(frame, width=260, height=28, font=self.default_font, textvariable=self.fields[field]["var"])
+            self.fields[field]["label"].pack(side="left", padx=(0, 10))
+            self.fields[field]["entry"].pack(side="left", padx=0)
+            
+            if not self.fields[field]["hidden"]:
+                frame.pack(pady=4, padx=20)
+                self.available_fields.remove(field)
+
 
         self.add_field_var = ctk.StringVar(value="+")
-        self.add_field_menu = ctk.CTkOptionMenu(self, values=[self.all_fields[key] for key in self.available_fields], variable=self.add_field_var, width=40, height=28, font=self.default_font, command=self.on_optional_field_selected)
+        self.add_field_menu = ctk.CTkOptionMenu(self, values=[self.fields[key] for key in self.available_fields], variable=self.add_field_var, width=40, height=28, font=self.default_font, command=self.on_optional_field_selected)
         self.add_field_menu.set("+")
         self.add_field_menu.pack(pady=(8, 4), padx=20)
   
@@ -127,95 +115,43 @@ class LilypondCreator(ctk.CTk):
 
 
     def on_optional_field_selected(self, selected_label: str):
-        if not selected_label:
-            return
-        
         selected_key = next(
-            (key for key, label in self.all_fields.items() if label == selected_label),
+            (key for key, label in self.fields.items() if label == selected_label),
             None,
         )
-        if not selected_key or selected_key not in self.available_fields:
-            return
-
-        # Si c'est un champ de base caché, on le réaffiche simplement
-        if selected_key in ("title", "composer", "poet"):
-            field_info = self.fields.get(selected_key)
-            if field_info and field_info.get("hidden"):
-                frame = field_info.get("frame")
-                frame.pack(pady=4, padx=20)
-                field_info["hidden"] = False
-            self.available_fields.remove(selected_key)
-            updated_values = [self.all_fields[key] for key in self.available_fields]
-            self.add_field_menu.configure(values=updated_values)
-            self.add_field_var.set("+")
-            if not self.available_fields:
-                self.add_field_menu.configure(state="disabled")
-            self.update_idletasks()
-            return
-
-        field_var = ctk.StringVar()
-        field_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
-        field_label = ctk.CTkLabel(field_frame, text=f"{selected_label}", font=self.default_font, width=100)
-        field_entry = ctk.CTkEntry(field_frame, width=260, height=28, font=self.default_font, textvariable=field_var)
-        remove_btn = ctk.CTkButton(field_frame, text="-", width=28, height=28, fg_color="#E57373", hover_color="#EF9A9A", command=lambda k=selected_key: self.remove_field(k))
         
-        remove_btn.pack(side="right", padx=(10, 0))
-        field_label.pack(side="left", padx=(0, 10))
-        field_entry.pack(side="left", padx=0)
-        
-        # Calculer la position d'insertion pour maintenir l'ordre des champs
         insert_before = self.add_field_menu
-        selected_index = list(self.all_fields.keys()).index(selected_key)
+        selected_index = list(self.fields.keys()).index(selected_key)
         for key in self.fields.keys():
-            if key in self.all_fields:
-                key_index = list(self.all_fields.keys()).index(key)
+            if key in self.fields:
+                key_index = list(self.fields.keys()).index(key)
                 if key_index > selected_index:
                     insert_before = self.fields[key]["frame"]
                     break
         
-        field_frame.pack(pady=2, padx=20, before=insert_before)
-
-        self.fields[selected_key] = {
-            "label": field_label,
-            "var": field_var,
-            "entry": field_entry,
-            "frame": field_frame,
-            "remove": remove_btn,
-            "hidden": False,
-        }
+        self.fields[selected_key]["frame"].pack(pady=2, padx=20, before=insert_before)
+        self.fields[selected_key]["hidden"] = False
         
         self.available_fields.remove(selected_key)
         
-        updated_values = [self.all_fields[key] for key in self.available_fields]
+        updated_values = [self.fields[key] for key in self.available_fields]
         self.add_field_menu.configure(values=updated_values)
         self.add_field_var.set("+")
         
-        if not self.available_fields:
-            self.add_field_menu.configure(state="disabled")
-
         self.update_idletasks()
         
 
     def remove_field(self, key: str):
-        field_info = self.fields.get(key)
-        if not field_info:
-            return
-
-        frame = field_info.get("frame")
-        frame.pack_forget()
+        field_info = self.fields[key]
+        
+        field_info["frame"].pack_forget()
         field_info["var"].set("")
         field_info["hidden"] = True
 
-        # Pour les champs optionnels (non-base), supprimer l'entrée de self.fields
-        if key not in ("title", "composer", "poet"):
-            del self.fields[key]
-
-        if key not in self.available_fields:
-            self.available_fields.append(key)
-            # Réordonne les champs de manière cohérente
-            self.available_fields.sort(key=lambda k: list(self.all_fields.keys()).index(k))
+        self.available_fields.append(key)
+        self.available_fields.sort(key=lambda k: list(self.fields.keys()).index(k))
         
-        updated_values = [self.all_fields[key] for key in self.available_fields]
+        updated_values = [self.fields[key] for key in self.available_fields]
         self.add_field_menu.configure(values=updated_values)
         self.add_field_var.set("+")
         self.add_field_menu.configure(state="normal")
