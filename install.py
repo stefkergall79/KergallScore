@@ -4,10 +4,11 @@ import os
 os.system("sudo -v")
 
 def install_package(package_manager: str, package_name: str):
-    depot = packages[package_manager]
+    source = packages[package_manager]
     print(f"Installation de {package_name}...", end=" ", flush=True)
-    os.system(depot["command"].format(depot["apps"][package_name]))
+    os.system(source["command"].format(source["apps"][package_name]))
     print("Terminé.")
+
 
 packages = {
     "apt": {
