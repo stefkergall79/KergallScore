@@ -5,16 +5,6 @@ ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("blue")
 
 
-def build_default_filename(title: str, composer: str) -> str:
-    if title and composer:
-        return f"{title} - {composer}.ly"
-    if title:
-        return f"{title}.ly"
-    if composer:
-        return f"{composer}.ly"
-    return ""
-
-
 class LilypondCreator(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -100,12 +90,22 @@ class LilypondCreator(ctk.CTk):
         self.entry_filename.bind("<KeyRelease>", self.on_filename_edit)
 
 
+    def build_default_filename(self):
+        title = self.fields["title"]["var"].get().strip()
+        composer = self.fields["composer"]["var"].get().strip()
+        if title and composer:
+            return f"{title} - {composer}.ly"
+        if title:
+            return f"{title}.ly"
+        if composer:
+            return f"{composer}.ly"
+        return ""
+
+
     def on_title_or_composer_change(self, *_args):
         if self.filename_modified:
             return
-        title = self.fields["title"]["var"].get().strip()
-        composer = self.fields["composer"]["var"].get().strip()
-        default_name = build_default_filename(title, composer)
+        default_name = self.build_default_filename()
         self.filename_var.set(default_name)
 
 
@@ -155,18 +155,14 @@ class LilypondCreator(ctk.CTk):
         updated_values = [self.fields[key]["name"] for key in self.available_fields]
         self.add_field_menu.configure(values=updated_values)
         self.add_field_var.set("+")
-        self.add_field_menu.configure(state="normal")
-
+        
         self.update_idletasks()
 
 
     def get_target_filename(self) -> str:
         filename = os.path.basename(self.filename_var.get().strip())
         if not filename:
-            filename = build_default_filename(
-                self.fields["title"]["var"].get().strip(),
-                self.fields["composer"]["var"].get().strip(),
-            )
+            filename = self.build_default_filename()
 
         if not filename.lower().endswith(".ly"):
             filename += ".ly"
@@ -219,7 +215,7 @@ class LilypondCreator(ctk.CTk):
                     f"\"{values['title']}\"\n"
                 )
         content += (
-            "\\score {\n"
+            "\n\\score {\n"
             "\t\\header {\n"
         )
         for key in values:
