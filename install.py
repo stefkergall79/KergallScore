@@ -1,6 +1,7 @@
 import time
 start = time.time()
 import os
+import apt
 os.system("sudo -v")
 
 def install_package(package_manager: str, package_name: str):
@@ -31,13 +32,12 @@ packages = {
 
 for depot in packages:
     if packages[depot]["init"]:
-        print("Mise à jour du cache...", end=" ", flush=True)
+        print(f"Initialisation de {depot}...", end=" ", flush=True)
         os.system(packages[depot]["init"])
         print("Terminé.")
 
     for package in packages[depot]["apps"]:
         install_package(depot, package)
-
 
 print("Configuration de Git...", end=" ", flush=True)
 import git
