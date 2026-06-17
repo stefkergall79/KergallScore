@@ -29,7 +29,7 @@ packages = {
         }
     }
 }
-
+ 
 for depot in packages:
     if packages[depot]["init"]:
         print(f"Initialisation de {depot}...", end=" ", flush=True)
