@@ -2,7 +2,9 @@ from pathlib import Path
 import git
 
 REPO = git.Repo(Path(__file__).resolve().parent)
+print("Synchronisation...", end=" ", flush=True)
 REPO.remote(name="origin").pull()
+print("Terminé.")
 
 fichiers_modifies = REPO.index.diff(None)
 fichiers_non_suivis = REPO.untracked_files
