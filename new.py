@@ -14,6 +14,14 @@ class LilypondCreator(ctk.CTk):
         self.default_font = ("Arial", 12)
         self.filename_modified = False
 
+        self.tabview = ctk.CTkTabview(self)
+        self.tabview.pack(padx=10, pady=(10, 0), fill="both", expand=True)
+        
+        self.tabview.add("Titres et en-têtes")
+        self.tabview.add("Parties")
+        
+        ong_creation = self.tabview.tab("Titres et en-têtes")
+        
         self.fields = {
             "title":        "Titre",
             "composer":     "Compositeur",
@@ -30,7 +38,7 @@ class LilypondCreator(ctk.CTk):
         self.available_fields = list(self.fields.keys())
         
         for field in self.fields:
-            frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
+            frame = ctk.CTkFrame(ong_creation, fg_color="transparent", border_width=0)
             self.fields[field] = {
                 "name": self.fields[field],
                 "label": ctk.CTkLabel(frame, text=self.fields[field], font=self.default_font, width=100),
@@ -50,15 +58,14 @@ class LilypondCreator(ctk.CTk):
                 frame.pack(pady=4, padx=20)
                 self.available_fields.remove(field)
 
-
         self.add_field_var = ctk.StringVar()
         self.add_field_menu = ctk.CTkOptionMenu(
-            self, values=[self.fields[key]["name"] for key in self.available_fields], variable=self.add_field_var, width=40, height=28, font=self.default_font, command=self.on_optional_field_selected
+            ong_creation, values=[self.fields[key]["name"] for key in self.available_fields], variable=self.add_field_var, width=40, height=28, font=self.default_font, command=self.on_optional_field_selected
         )
         self.add_field_menu.set("+")
         self.add_field_menu.pack(pady=(8, 4), padx=20)
   
-        self.category_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
+        self.category_frame = ctk.CTkFrame(ong_creation, fg_color="transparent", border_width=0)
         self.label_category = ctk.CTkLabel(self.category_frame, text="Catégorie", font=self.default_font, width=100)
         self.categories = self._get_categories()
         default_category = self.categories[0] if self.categories else "Autres"
@@ -68,7 +75,7 @@ class LilypondCreator(ctk.CTk):
         self.category_menu.pack(side="left", padx=0)
         self.category_frame.pack(pady=4, padx=20)
 
-        self.filename_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
+        self.filename_frame = ctk.CTkFrame(ong_creation, fg_color="transparent", border_width=0)
         self.label_filename = ctk.CTkLabel(self.filename_frame, text="Nom du fichier :", font=self.default_font, width=100)
         self.filename_var = ctk.StringVar()
         self.entry_filename = ctk.CTkEntry(self.filename_frame, width=260, height=28, font=self.default_font, textvariable=self.filename_var)
@@ -79,7 +86,7 @@ class LilypondCreator(ctk.CTk):
         self.button_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         self.button_cancel = ctk.CTkButton(self.button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#ff0000", hover_color="#8f8f8f", command=self.destroy)
         self.button_create = ctk.CTkButton(self.button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file)
-        self.button_frame.pack(pady=18)
+        self.button_frame.pack(pady=15)
         self.button_create.pack(side="left", padx=(0, 10))
         self.button_cancel.pack(side="left")
         
@@ -88,7 +95,6 @@ class LilypondCreator(ctk.CTk):
         self.fields["title"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.fields["composer"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.entry_filename.bind("<KeyRelease>", self.on_filename_edit)
-
 
     def build_default_filename(self):
         title = self.fields["title"]["var"].get().strip()
@@ -101,17 +107,14 @@ class LilypondCreator(ctk.CTk):
             return f"{composer}.ly"
         return ""
 
-
     def on_title_or_composer_change(self, *_args):
         if self.filename_modified:
             return
         default_name = self.build_default_filename()
         self.filename_var.set(default_name)
 
-
     def on_filename_edit(self, _event=None):
         self.filename_modified = True
-
 
     def on_optional_field_selected(self, selected_label: str):
         selected_key = next(
@@ -158,7 +161,6 @@ class LilypondCreator(ctk.CTk):
         
         self.update_idletasks()
 
-
     def get_target_filename(self) -> str:
         filename = Path(self.filename_var.get().strip()).name
         if not filename:
@@ -167,7 +169,6 @@ class LilypondCreator(ctk.CTk):
         if not filename.lower().endswith(".ly"):
             filename += ".ly"
         return filename
-
 
     def _get_categories(self) -> list[str]:
         base_dir = Path(__file__).resolve().parent
@@ -180,7 +181,6 @@ class LilypondCreator(ctk.CTk):
         ]
         categories.sort(key=str.casefold)
         return categories or ["Autres"]
-
 
     def create_lilypond_file(self):
         values = {}
@@ -201,7 +201,6 @@ class LilypondCreator(ctk.CTk):
             filepath = target_folder / filename
             if filepath.exists():
                 raise OSError(f"Le fichier '{filename}' existe déjà dans la catégorie '{category}'. Veuillez choisir un autre nom de fichier.")
-            
             
             content = (
                 "\\version \"2.26.0\"\n"
@@ -237,15 +236,17 @@ class LilypondCreator(ctk.CTk):
             filepath.write_text(content, encoding="utf-8")
             self.destroy()
         
-
         except OSError as error:
             error_window = ctk.CTkToplevel(self)
             error_window.title("Erreur de création")
             error_window.geometry("400x150")
             
+            error_window.lift()
+            error_window.attributes("-topmost", True)
+            
             label = ctk.CTkLabel(
                 error_window, text=f"Une erreur est survenue :\n{str(error)}", 
-                text_color="#D32F2F", wraplength=360, justify="center"
+                text_color="#D32F2F", wraplength=360, justify="center", font=self.default_font
             )
             label.pack(expand=True, fill="both", pady=20, padx=20)
 
