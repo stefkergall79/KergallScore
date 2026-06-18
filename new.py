@@ -249,6 +249,7 @@ class LilypondCreator(ctk.CTk):
             )
             label.pack(expand=True, fill="both", pady=20, padx=20)
 
+
 if __name__ == "__main__":
     app = LilypondCreator()
     app.mainloop()
