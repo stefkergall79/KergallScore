@@ -201,6 +201,8 @@ class LilypondCreator(ctk.CTk):
             filepath = target_folder / filename
             if filepath.exists():
                 raise OSError(f"Le fichier '{filename}' existe déjà dans la catégorie '{category}'. Veuillez choisir un autre nom de fichier.")
+            
+            
             content = (
                 "\\version \"2.26.0\"\n"
                 "\\include \"../../settings.ly\"\n"
@@ -235,7 +237,7 @@ class LilypondCreator(ctk.CTk):
             filepath.write_text(content, encoding="utf-8")
             self.destroy()
         
-        
+
         except OSError as error:
             error_window = ctk.CTkToplevel(self)
             error_window.title("Erreur de création")
