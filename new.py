@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 import customtkinter as ctk
 
 ctk.set_appearance_mode("System")
@@ -160,7 +160,7 @@ class LilypondCreator(ctk.CTk):
 
 
     def get_target_filename(self) -> str:
-        filename = os.path.basename(self.filename_var.get().strip())
+        filename = Path(self.filename_var.get().strip()).name
         if not filename:
             filename = self.build_default_filename()
 
@@ -170,13 +170,13 @@ class LilypondCreator(ctk.CTk):
 
 
     def _get_categories(self) -> list[str]:
-        base_dir = os.path.dirname(__file__)
+        base_dir = Path(__file__).resolve().parent
         categories = [
-            entry for entry in os.listdir(base_dir)
-            if os.path.isdir(os.path.join(base_dir, entry))
-            and not entry.startswith('.')
-            and not entry.startswith('__')
-            and entry not in ("Modèles", "Grégorien")
+            entry.name for entry in base_dir.iterdir()
+            if entry.is_dir()
+            and not entry.name.startswith('.')
+            and not entry.name.startswith('__')
+            and entry.name not in ("Modèles", "Grégorien")
         ]
         categories.sort(key=str.casefold)
         return categories or ["Autres"]
@@ -191,52 +191,61 @@ class LilypondCreator(ctk.CTk):
 
         filename = self.get_target_filename()
         category = self.category_var.get().strip() or "Autres"
-        folder_name = os.path.splitext(filename)[0]
-        target_folder = os.path.join(os.path.dirname(__file__), category, folder_name)
-        os.makedirs(target_folder, exist_ok=True)
-        filepath = os.path.join(target_folder, filename)
-
-
-        content = (
-            "\\version \"2.26.0\"\n"
-            "\\include \"../../settings.ly\"\n"
-        )
         
-        if values.get("title"):
-            if values.get("composer"):
-                content += (
-                    "\\tocItemComposer "
-                    f"\"{values.get('title', '')}\" "
-                    f"\"{values.get('composer', '')}\"\n"
-                    )
-            else:
-                content += (
-                    "\\tocItem "
-                    f"\"{values['title']}\"\n"
-                )
-        content += (
-            "\n\\score {\n"
-            "\t\\header {\n"
-        )
-        for key in values:
-            if key == "title":
-                values[key] = values[key].upper()
-            content += f"\t\t{key} = \"{values[key]}\"\n"
-
-        content += (
-            "\t}\n"
-            "}\n"
-        )
+        folder_name = Path(filename).stem
+        base_dir = Path(__file__).resolve().parent
+        target_folder = base_dir / category / folder_name
         
         try:
-            with open(filepath, "w", encoding="utf-8") as lily_file:
-                lily_file.write(content)
+            target_folder.mkdir(parents=True, exist_ok=True)
+            filepath = target_folder / filename
+            if filepath.exists():
+                raise OSError(f"Le fichier '{filename}' existe déjà dans la catégorie '{category}'. Veuillez choisir un autre nom de fichier.")
+            content = (
+                "\\version \"2.26.0\"\n"
+                "\\include \"../../settings.ly\"\n"
+            )
+            
+            if values.get("title"):
+                if values.get("composer"):
+                    content += (
+                        "\\tocItemComposer "
+                        f"\"{values.get('title', '')}\" "
+                        f"\"{values.get('composer', '')}\"\n"
+                        )
+                else:
+                    content += (
+                        "\\tocItem "
+                        f"\"{values['title']}\"\n"
+                    )
+            content += (
+                "\n\\score {\n"
+                "\t\\header {\n"
+            )
+            for key in values:
+                if key == "title":
+                    values[key] = values[key].upper()
+                content += f"\t\t{key} = \"{values[key]}\"\n"
+
+            content += (
+                "\t}\n"
+                "}\n"
+            )
+            
+            filepath.write_text(content, encoding="utf-8")
             self.destroy()
+        
+        
         except OSError as error:
             error_window = ctk.CTkToplevel(self)
-            label = ctk.CTkLabel(error_window, text=error.strerror, text_color="#D32F2F", font=self.default_font)
-            label.pack(pady=20, padx=20)
+            error_window.title("Erreur de création")
+            error_window.geometry("400x150")
             
+            label = ctk.CTkLabel(
+                error_window, text=f"Une erreur est survenue :\n{str(error)}", 
+                text_color="#D32F2F", wraplength=360, justify="center"
+            )
+            label.pack(expand=True, fill="both", pady=20, padx=20)
 
 if __name__ == "__main__":
     app = LilypondCreator()
