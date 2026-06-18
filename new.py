@@ -83,6 +83,47 @@ class LilypondCreator(ctk.CTk):
         self.entry_filename.pack(side="left", padx=0)
         self.filename_frame.pack(pady=4, padx=20)
 
+        ong_parties = self.tabview.tab("Parties")
+
+        parties_main = ctk.CTkFrame(ong_parties, fg_color="transparent")
+        parties_main.pack(fill="both", expand=True, padx=10, pady=10)
+
+        left_frame = ctk.CTkFrame(parties_main, width=150)
+        left_frame.pack(side="left", fill="y", padx=(0, 10))
+        left_frame.pack_propagate(False)
+
+        ctk.CTkLabel(left_frame, text="Voix", font=self.default_font).pack(pady=(10, 6))
+
+        self.parts_buttons: dict[str, ctk.CTkButton] = {}
+        self.selected_part_key: str | None = None
+
+        for part in ("SA-TB", "S-A-T-B", "Solo", "Orgue"):
+            btn = ctk.CTkButton(
+                left_frame, text=part, width=130, font=self.default_font,
+                fg_color="transparent", text_color=("black", "white"),
+                hover_color=("gray75", "gray35"), border_width=1,
+                command=lambda p=part: self.select_part(p)
+            )
+            btn.pack(pady=3, padx=10)
+            self.parts_buttons[part] = btn
+
+        right_frame = ctk.CTkFrame(parties_main)
+        right_frame.pack(side="left", fill="both", expand=True)
+
+        ctk.CTkLabel(right_frame, text="Nombre de parties", font=self.default_font).pack(pady=(20, 10))
+
+        spinner_frame = ctk.CTkFrame(right_frame, fg_color="transparent")
+        spinner_frame.pack()
+
+        self.part_count_var = ctk.IntVar(value=1)
+
+        ctk.CTkButton(spinner_frame, text="▼", width=32, height=28, font=self.default_font,
+                      command=lambda: self.change_part_count(-1)).pack(side="left", padx=2)
+        ctk.CTkEntry(spinner_frame, width=56, height=28, font=self.default_font,
+                     textvariable=self.part_count_var, justify="center").pack(side="left", padx=2)
+        ctk.CTkButton(spinner_frame, text="▲", width=32, height=28, font=self.default_font,
+                      command=lambda: self.change_part_count(1)).pack(side="left", padx=2)
+
         self.button_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         self.button_cancel = ctk.CTkButton(self.button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#ff0000", hover_color="#8f8f8f", command=self.destroy)
         self.button_create = ctk.CTkButton(self.button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file)
@@ -95,6 +136,15 @@ class LilypondCreator(ctk.CTk):
         self.fields["title"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.fields["composer"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.entry_filename.bind("<KeyRelease>", self.on_filename_edit)
+
+    def select_part(self, key: str):
+        if self.selected_part_key:
+            self.parts_buttons[self.selected_part_key].configure(fg_color="transparent")
+        self.selected_part_key = key
+        self.parts_buttons[key].configure(fg_color=("#3B8ED0", "#1F6AA5"))
+
+    def change_part_count(self, delta: int):
+        self.part_count_var.set(max(1, self.part_count_var.get() + delta))
 
     def build_default_filename(self):
         title = self.fields["title"]["var"].get().strip()
