@@ -2,6 +2,7 @@ from pathlib import Path
 import git
 
 REPO = git.Repo(Path(__file__).resolve().parent)
+REPO.remote(name="origin").pull()
 
 fichiers_modifies = REPO.index.diff(None)
 fichiers_non_suivis = REPO.untracked_files
@@ -23,6 +24,5 @@ if not fichiers_modifies and not fichiers_non_suivis:
 	print("Aucun changement à sauvegarder.")
 
 else:
-	REPO.remote(name="origin").pull()
 	REPO.remote(name="origin").push()
 	print("\nSauvegarde terminée.")
