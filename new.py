@@ -98,8 +98,13 @@ class LilypondCreator(ctk.CTk):
         self.part_frames = {}
         self.parts_buttons = {}
         self.part_counts = {
-            "Solo": ctk.IntVar(value=1),
-            "Choeur": ctk.IntVar(value=1),
+            "Solo": {
+                "couplets": ctk.IntVar(value=1)
+            },
+            "Choeur": {
+                "schema": ctk.StringVar(value="SA-TB"),
+                "couplets": ctk.IntVar(value=1),
+            },
             "Clavier": ctk.StringVar(value="Piano")
         }
 
@@ -114,22 +119,24 @@ class LilypondCreator(ctk.CTk):
             voice_frame = ctk.CTkFrame(right_frame)
             self.part_frames[part] = voice_frame
             
-            ctk.CTkLabel(voice_frame, text=part, width=70, anchor="w").pack(side="left", padx=(15, 10), pady=8)
+            ctk.CTkLabel(voice_frame, text=part, font=("Arial", 12, "bold"), width=70, anchor="w").pack(side="top", padx=15, pady=(8, 2), anchor="w")
             
             if part in ("Solo", "Choeur"):
-                ctk.CTkLabel(voice_frame, text="Nombre de couplets :", font=self.default_font).pack(side="left", padx=(10, 5), pady=8)
-                ctk.CTkEntry(voice_frame, width=50, height=28, font=self.default_font,
-                             textvariable=self.part_counts[part], justify="center").pack(side="left", padx=5, pady=8)
+                couplets_frame = ctk.CTkFrame(voice_frame, fg_color="transparent", border_width=0)
+                ctk.CTkLabel(couplets_frame, text="Couplets :", font=self.default_font).pack(side="left", padx=(0, 5), pady=0)
+                ctk.CTkEntry(couplets_frame, width=50, height=28, font=self.default_font,
+                             textvariable=self.part_counts[part]["couplets"], justify="center").pack(side="left", padx=5, pady=0)
+                couplets_frame.pack(side="top", padx=15, pady=2, anchor="w")
             
             if part == "Choeur":
-                ctk.CTkLabel(voice_frame, text="Schéma de partition :", font=self.default_font).pack(side="left", padx=(10, 5), pady=8)
-                ctk.CTkComboBox(voice_frame, width=100, height=28, font=self.default_font,
-                                values=("SA-TB", "S-A-T-B", "S-S-A"), state="normal").pack(side="left", padx=5, pady=8)
-
+                ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.part_counts[part]["schema"],
+                                values=("SA-TB", "S-A-T-B", "S-S-A", "T-T-B")).pack(side="top", padx=15, pady=0, anchor="w")
+                
             if part == "Clavier":
-                ctk.CTkOptionMenu(voice_frame, width=50, height=28,# font=self.default_font,
-                             variable=self.part_counts[part], values=("Piano", "Orgue")).pack(side="left", padx=5, pady=8)
-
+                ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.part_counts[part],
+                                  values=("Piano", "Orgue")).pack(side="top", padx=15, pady=(2, 8), anchor="w")
+        
+        
         button_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         ctk.CTkButton(button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file).pack(side="left", padx=(0, 10))
         ctk.CTkButton(button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#ff0000", hover_color="#8f8f8f", command=self.destroy).pack(side="left")
