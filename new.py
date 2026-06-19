@@ -10,13 +10,13 @@ class LilypondCreator(ctk.CTk):
         super().__init__()
         self.title("Assistant de création de partition Lilypond")
         self.resizable(True, True)
-        self.geometry("500x600")
+        self.geometry("500x650")
 
         self.default_font = ("Arial", 12)
         self.filename_modified = False
 
-        tabview = ctk.CTkTabview(self)
-        tabview.pack(padx=10, pady=(10, 0), fill="both", expand=True)
+        tabview = ctk.CTkTabview(self, anchor="nw")
+        tabview.pack(padx=10, pady=(10, 0), fill="both", expand=True, side="top")
         
         tabview.add("Titres et en-têtes")
         tabview.add("Parties")
@@ -24,17 +24,17 @@ class LilypondCreator(ctk.CTk):
         ong_creation = tabview.tab("Titres et en-têtes")
         
         self.fields = {
-            "title":        "Titre",
-            "composer":     "Compositeur",
-            "poet":         "Paroles",
             "dedication":   "Dédicace",
+            "title":        "Titre",
             "subtitle":     "Sous-titre",
             "subsubtitle":  "Sous-sous-titre",
             "instrument":   "Instrument",
+            "composer":     "Compositeur",
+            "poet":         "Paroles",
             "meter":        "Tempo",
             "arranger":     "Arrangeur",
-            "tagline":      "\"tagline\" (en dernière page)",
-            "copyright":    "Copyrights (en première page)"
+            "copyright":    "Copyrights (en première page)",
+            "tagline":      "\"tagline\" (en dernière page)"
         }
         self.available_fields = list(self.fields.keys())
         
@@ -102,14 +102,13 @@ class LilypondCreator(ctk.CTk):
             ("Choeur", self.choeur_selected),
             ("Orgue", self.orgue_selected)
         ):
-            btn = ctk.CTkButton(
+            switcher = ctk.CTkSwitch(
                 left_frame, text=part[0], width=130, font=self.default_font,
-                fg_color="transparent", text_color=("black", "white"),
-                hover_color=("gray75", "gray35"), border_width=1,
+                text_color=("black", "white"), border_width=1,
                 command=part[1]
             )
-            btn.pack(pady=3, padx=10)
-            self.parts_buttons[part[0]] = btn
+            switcher.pack(pady=3, padx=10)
+            self.parts_buttons[part[0]] = switcher
 
         right_frame = ctk.CTkFrame(parties_main)
         right_frame.pack(side="left", fill="both", expand=True)
@@ -129,11 +128,8 @@ class LilypondCreator(ctk.CTk):
         self.fields["composer"]["var"].trace_add("write", self.on_title_or_composer_change)
 
     def select_part(self, key: str):
-        if self.selected_part_key:
-            self.parts_buttons[self.selected_part_key].configure(fg_color="transparent")
         self.selected_part_key = key
-        self.parts_buttons[key].configure(fg_color=("#3B8ED0", "#1F6AA5"))
-
+        
     def choeur_selected(self):
         self.select_part("Choeur")
 
