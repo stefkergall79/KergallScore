@@ -2,7 +2,7 @@ from pathlib import Path
 import git
 
 REPO = git.Repo(Path(__file__).resolve().parent)
-print("Synchronisation...", end=" ", flush=True)
+print("Récupération du travail des collaborateurs...", end=" ", flush=True)
 REPO.remote(name="origin").pull()
 print("Terminé.\n")
 
