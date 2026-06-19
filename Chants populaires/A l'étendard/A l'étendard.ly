@@ -17,7 +17,6 @@ global = {
 
 soprano = \fixed c' {
   \global
-  % En avant la musique !
   \sectionLabel"Couplet"
   d'16 d'4.. b16 b8. a16 g8. a16
   b4 g4. r16 d d8. a16
@@ -54,7 +53,6 @@ soprano = \fixed c' {
 
 alto = \fixed c' {
   \global
-  % En avant la musique !
   g16 g4.. d16 d8. d16 d8. d16
   d4 d4. r16 d d8. fis16
   fis4. r16 fis d4 d
@@ -91,7 +89,6 @@ alto = \fixed c' {
 
 tenor = \fixed c {
   \global
-  % En avant la musique !
   b16 b4.. g16 g8. d16 d8. fis16
   g4 g4. r16 g g8. d16
   d4. r16 d g4 b
@@ -128,7 +125,6 @@ tenor = \fixed c {
 
 bass = \fixed c {
   \global
-  % En avant la musique !
   b,16 b,4.. g16 g8. d16 b,8. d16
   g4 b,4. r16 b, b,8. d16
   d4. r16 d g,4 b,
@@ -164,7 +160,6 @@ bass = \fixed c {
 
 verseOne = \lyricmode {
   \set stanza = "1."
-  % Ajouter ici des paroles.
   Son -- nez, fan -- fa -- res tri -- om -- pha -- les_!
   Ton -- nez ca -- nons, bat -- tez tam -- bours_!
   Et vous, clo -- ches des ca -- thé -- dra -- les,
@@ -183,7 +178,6 @@ verseOne = \lyricmode {
 
 verseTwo = \lyricmode {
   \set stanza = "2."
-  % Ajouter ici des paroles.
   Sa -- lut à la blan -- che ban -- niè -- re,
   sa -- lut, sa -- lut aux noms bé -- nis
   du Christ et de sa Sain -- te- Mè -- re
