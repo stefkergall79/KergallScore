@@ -44,14 +44,13 @@ class LilypondCreator(ctk.CTk):
                 "name": self.fields[field],
                 "label": ctk.CTkLabel(frame, text=self.fields[field], font=self.default_font, width=100),
                 "var": ctk.StringVar(),
-                "entry": None,
                 "frame": frame,
                 "hidden": field not in ("title", "composer", "poet"),
                 "remove": ctk.CTkButton(frame, text="-", width=28, height=28, fg_color="#E57373", hover_color="#EF9A9A", command=lambda k=field: self.remove_field(k))
             }
 
-            self.fields[field]["remove"].pack(side="right", padx=(10, 0))
             self.fields[field]["entry"] = ctk.CTkEntry(frame, width=260, height=28, font=self.default_font, textvariable=self.fields[field]["var"])
+            self.fields[field]["remove"].pack(side="right", padx=(10, 0))
             self.fields[field]["label"].pack(side="left", padx=(0, 10))
             self.fields[field]["entry"].pack(side="left", padx=0)
             
@@ -69,7 +68,7 @@ class LilypondCreator(ctk.CTk):
         category_frame = ctk.CTkFrame(ong_creation, fg_color="transparent", border_width=0)
         ctk.CTkLabel(category_frame, text="Catégorie", font=self.default_font, width=100).pack(side="left", padx=(0, 10))
         self.categories = self._get_categories()
-        self.category_var = ctk.StringVar(value=self.categories[0] if self.categories else "Autres")
+        self.category_var = ctk.StringVar(value=self.categories[0])
         
         ctk.CTkOptionMenu(category_frame, values=self.categories, variable=self.category_var, width=260, height=28,
                           font=self.default_font, command=self.on_category_change).pack(side="left", padx=0)
@@ -96,29 +95,29 @@ class LilypondCreator(ctk.CTk):
         right_frame = ctk.CTkFrame(ong_parties)
         right_frame.pack(side="left", fill="both", expand=True)
 
-        self.part_frames = {}
-        self.parts_buttons = {}
-        self.part_counts = {
+        self.parts = {
             "Solo": {
                 "couplets": ctk.IntVar(value=1)
             },
             "Choeur": {
                 "schema": ctk.StringVar(value="SA-TB"),
-                "couplets": ctk.IntVar(value=1),
+                "couplets": ctk.IntVar(value=1)
             },
-            "Clavier": ctk.StringVar(value="Piano"),
-            "Flûte": None
+            "Clavier": {
+                "type": ctk.StringVar(value="Piano")
+            },
+            "Flûte": {}
         }
 
-        for part in self.part_counts.keys():
-            self.parts_buttons[part] = ctk.CTkSwitch(
+        for part in self.parts.keys():
+            self.parts[part]["btn"] = ctk.CTkSwitch(
                 left_frame, text=part, width=130, font=self.default_font,
                 border_width=1, command=self.update_parts_ui
             )
-            self.parts_buttons[part].pack(pady=3, padx=10)
+            self.parts[part]["btn"].pack(pady=3, padx=10)
             
             voice_frame = ctk.CTkFrame(right_frame)
-            self.part_frames[part] = voice_frame
+            self.parts[part]["frame"] = voice_frame
             
             ctk.CTkLabel(voice_frame, text=part, font=("Arial", 12, "bold"), width=70, anchor="w").pack(side="top", padx=15, pady=(8, 2), anchor="w")
             
@@ -126,15 +125,15 @@ class LilypondCreator(ctk.CTk):
                 couplets_frame = ctk.CTkFrame(voice_frame, fg_color="transparent", border_width=0)
                 ctk.CTkLabel(couplets_frame, text="Couplets :", font=self.default_font).pack(side="left", padx=(0, 5), pady=0)
                 ctk.CTkEntry(couplets_frame, width=50, height=28, font=self.default_font,
-                             textvariable=self.part_counts[part]["couplets"], justify="center").pack(side="left", padx=5, pady=0)
+                             textvariable=self.parts[part]["couplets"], justify="center").pack(side="left", padx=5, pady=0)
                 couplets_frame.pack(side="top", padx=15, pady=2, anchor="w")
             
             if part == "Choeur":
-                ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.part_counts[part]["schema"],
+                ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.parts[part]["schema"],
                                 values=("SA-TB", "S-A-T-B", "SA-H","S-S-A", "T-T-B", "T-T-B-B")).pack(side="top", padx=15, pady=0, anchor="w")
                 
             if part == "Clavier":
-                ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.part_counts[part],
+                ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.parts[part]["type"],
                                   values=("Piano", "Orgue")).pack(side="top", padx=15, pady=(2, 8), anchor="w")
 
             if part == "Flûte":
@@ -152,30 +151,30 @@ class LilypondCreator(ctk.CTk):
 
     def on_category_change(self, choice: str):
         if choice == "Piano":
-            for instrument in self.part_counts.keys():
+            for instrument in self.parts.keys():
                 if instrument in ("Clavier", "Flûte"):
-                    self.parts_buttons[instrument].select()
+                    self.parts[instrument]["btn"].select()
                 else:
-                    self.parts_buttons[instrument].deselect()
+                    self.parts[instrument]["btn"].deselect()
         elif choice in ("Chorale", "Chants populaires", "Noël"):
-            for instrument in self.part_counts.keys():
+            for instrument in self.parts.keys():
                 if instrument == "Choeur":
-                    self.parts_buttons[instrument].select()
+                    self.parts[instrument]["btn"].select()
                 else:
-                    self.parts_buttons[instrument].deselect()
+                    self.parts[instrument]["btn"].deselect()
         self.update_parts_ui()
     
 
     def update_parts_ui(self):
-        order = list(self.part_counts.keys())
+        order = list(self.parts.keys())
         for i, part in enumerate(order):
-            frame = self.part_frames[part]
-            is_active = self.parts_buttons[part].get() == 1
+            frame = self.parts[part]["frame"]
+            is_active = self.parts[part]["btn"].get() == 1
             is_visible = frame.winfo_manager() == "pack"
             
             if is_active and not is_visible:
                 frame.pack(fill="x", pady=4, padx=10,
-                           before=next((self.part_frames[p] for p in order[i+1:] if self.part_frames[p].winfo_manager() == "pack"), None))
+                           before=next((self.parts[p]["frame"] for p in order[i+1:] if self.parts[p]["frame"].winfo_manager() == "pack"), None))
             elif not is_active and is_visible:
                 frame.pack_forget()
     
