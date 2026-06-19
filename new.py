@@ -69,9 +69,10 @@ class LilypondCreator(ctk.CTk):
         category_frame = ctk.CTkFrame(ong_creation, fg_color="transparent", border_width=0)
         ctk.CTkLabel(category_frame, text="Catégorie", font=self.default_font, width=100).pack(side="left", padx=(0, 10))
         self.categories = self._get_categories()
-        default_category = self.categories[0] if self.categories else "Autres"
-        self.category_var = ctk.StringVar(value=default_category)
-        ctk.CTkOptionMenu(category_frame, values=self.categories, variable=self.category_var, width=260, height=28, font=self.default_font).pack(side="left", padx=0)
+        self.category_var = ctk.StringVar(value=self.categories[0] if self.categories else "Autres")
+        
+        ctk.CTkOptionMenu(category_frame, values=self.categories, variable=self.category_var, width=260, height=28,
+                          font=self.default_font, command=self.on_category_change).pack(side="left", padx=0)
         category_frame.pack(pady=4, padx=20)
 
         filename_frame = ctk.CTkFrame(ong_creation, fg_color="transparent", border_width=0)
@@ -105,14 +106,14 @@ class LilypondCreator(ctk.CTk):
                 "schema": ctk.StringVar(value="SA-TB"),
                 "couplets": ctk.IntVar(value=1),
             },
-            "Clavier": ctk.StringVar(value="Piano")
+            "Clavier": ctk.StringVar(value="Piano"),
+            "Flûte": None
         }
 
         for part in self.part_counts.keys():
             self.parts_buttons[part] = ctk.CTkSwitch(
                 left_frame, text=part, width=130, font=self.default_font,
-                border_width=1,
-                command=lambda: self.update_parts_ui()
+                border_width=1, command=self.update_parts_ui
             )
             self.parts_buttons[part].pack(pady=3, padx=10)
             
@@ -130,12 +131,15 @@ class LilypondCreator(ctk.CTk):
             
             if part == "Choeur":
                 ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.part_counts[part]["schema"],
-                                values=("SA-TB", "S-A-T-B", "S-S-A", "T-T-B")).pack(side="top", padx=15, pady=0, anchor="w")
+                                values=("SA-TB", "S-A-T-B", "SA-H","S-S-A", "T-T-B", "T-T-B-B")).pack(side="top", padx=15, pady=0, anchor="w")
                 
             if part == "Clavier":
                 ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.part_counts[part],
                                   values=("Piano", "Orgue")).pack(side="top", padx=15, pady=(2, 8), anchor="w")
-        
+
+            if part == "Flûte":
+                ctk.CTkSwitch(voice_frame, text="Paroles", width=130, font=self.default_font,
+                              border_width=1).pack(side="top", padx=15, pady=(2, 8), anchor="w")
         
         button_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         ctk.CTkButton(button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file).pack(side="left", padx=(0, 10))
@@ -145,6 +149,22 @@ class LilypondCreator(ctk.CTk):
         self.fields["title"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.fields["composer"]["var"].trace_add("write", self.on_title_or_composer_change)
 
+
+    def on_category_change(self, choice: str):
+        if choice == "Piano":
+            for instrument in self.part_counts.keys():
+                if instrument in ("Clavier", "Flûte"):
+                    self.parts_buttons[instrument].select()
+                else:
+                    self.parts_buttons[instrument].deselect()
+        elif choice in ("Chorale", "Chants populaires", "Noël"):
+            for instrument in self.part_counts.keys():
+                if instrument == "Choeur":
+                    self.parts_buttons[instrument].select()
+                else:
+                    self.parts_buttons[instrument].deselect()
+        self.update_parts_ui()
+    
 
     def update_parts_ui(self):
         order = list(self.part_counts.keys())
@@ -158,7 +178,7 @@ class LilypondCreator(ctk.CTk):
                            before=next((self.part_frames[p] for p in order[i+1:] if self.part_frames[p].winfo_manager() == "pack"), None))
             elif not is_active and is_visible:
                 frame.pack_forget()
-     
+    
     def build_default_filename(self):
         title = self.fields["title"]["var"].get().strip()
         composer = self.fields["composer"]["var"].get().strip()
@@ -171,10 +191,9 @@ class LilypondCreator(ctk.CTk):
         return ""
 
     def on_title_or_composer_change(self, *_args):
-        if self.filename_modified:
-            return
-        default_name = self.build_default_filename()
-        self.filename_var.set(default_name)
+        if not self.filename_modified:
+            default_name = self.build_default_filename()
+            self.filename_var.set(default_name)
 
     def on_filename_edit(self, _event=None):
         self.filename_modified = True
