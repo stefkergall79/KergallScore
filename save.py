@@ -4,7 +4,7 @@ import git
 REPO = git.Repo(Path(__file__).resolve().parent)
 print("Récupération du travail des collaborateurs...", end=" ", flush=True)
 REPO.remote(name="origin").pull()
-print("Terminé.\n")
+print("Fait.\n")
 
 fichiers_modifies = REPO.index.diff(None)
 fichiers_non_suivis = REPO.untracked_files
