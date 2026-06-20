@@ -5,7 +5,7 @@ global = {
   \autoBeamOff
   \partial 8
 }
-
+ 
 soprano = \fixed c' {
   \global
   fis8 4 b8 4 a8 b4. d' cis'4 b8 a4 b8 fis4. 8 r8
