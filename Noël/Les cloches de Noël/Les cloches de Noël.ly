@@ -16,7 +16,6 @@ soloVoice = \fixed c' {
   4 8 8 d'2 a r2
   4 8 8 2 2 r2
   4 8 8 e'2 a4 4 4(d')2
-  \override Staff.TimeSignature.break-visibility = #all-invisible
   
   r4 d'4 4 4 fis'2 cis'
   r4 b b b d'2 a2
@@ -42,8 +41,7 @@ soprano = \fixed c' {
   
   fis2 4 g b a fis2 a g4 fis e fis e2
   2 dis4 e g fis e2 g4 b a e g fis4 2
-  \bar"||" \break \override Staff.TimeSignature.break-visibility = #all-invisible
-  
+  \bar"||" \break
   fis2(b)ais1 d2(g)fis1
   a2 4 4 4(b a g)a1\bar"|."
 }
@@ -59,37 +57,31 @@ alto = \fixed c' {
   fis1 1 d1 1 e4(fis)g fis e1 fis
 }
 
-tenorCouplet = \fixed c {
+tenor = \fixed c {
   \global
   \repeat unfold 7 {a1}
   a~1
   \repeat unfold 3 { 2 4 4 4 4 2 }
   4 4 4 4 4 4 2
-  \override Staff.TimeSignature.break-visibility = #all-invisible
-}
-tenorRefrain = \fixed c {
-  \global
- <<{
-   d'1 cis' b a cis'4(d')e' d' cis'2(e')d'1
- }\\{
-   b2(fis)ais1 g2(d)fis1 a2 4 4 1 1
- }>>
+
+  d'1 cis' b a cis'4(d')e' d' cis'2(e')d'1
 }
 
-
-bassCouplet = \fixed c {
+bass = \fixed c {
   \global
   d1 1 1 a,1 1 1 1 d~1
   d2 4 4 4 4 2 2 4 4 a,4 4 2
   2 4 4 4 4 2 4 4 4 4 d4 4 2
+
+  b2(fis)ais1 g2(d)fis1 a2 4 4 1 1
 }
-bassRefain = \fixed c{
-  \global
- <<{
-   fis1 1 r2 g2 d1 g4(fis)e fis g2(e)fis1
- }\\{
-   b,1 fis, g, s a,2 4 4 1 <d d,>1
- }>>
+bassI = \fixed c {
+  R1*17
+  fis1 1 r2 g2 d1 g4(fis)e fis g2(e)fis1
+}
+bassII = \fixed c {
+  R1*17
+  b,1 fis, g, s a,2 4 4 1 <d d,>1
 }
 
 verseOne = \lyricmode {
@@ -146,6 +138,7 @@ verseBassRefrain = \lyricmode {
 
 
 choirPart =  \new ChoirStaff <<
+  % 1
   \new Staff \with {
     midiInstrument = "choir aahs"
     instrumentName = \markup \center-column { "S." "A." }
@@ -168,36 +161,34 @@ choirPart =  \new ChoirStaff <<
     \override VerticalAxisGroup.staff-affinity = #CENTER
   } \lyricsto "soprano" \verseFour
   
+  % 2
   \new Staff \with {
     midiInstrument = "choir aahs"
     instrumentName = \markup \center-column { "T." "B." }
     shortInstrumentName = \markup \center-column { "T." "B." }
     \consists Merge_rests_engraver
-  } {
-    <<
+  } <<
       \clef bass
-      \new Voice = "tenorCouplet" { \voiceOne \tenorCouplet }
-      \new Voice = "bass" { \voiceTwo \bassCouplet }
-    >>
-    <<
-      \new Staff = "tenorRefrain" \with{
-        midiInstrument = "choir aahs"
-        instrumentName = "T."
-        shortInstrumentName = "T."
-      }{ \clef "treble_8" \tenorRefrain }
-      \addlyrics \verseBassRefrain
-      \new Staff \with { 
-        midiInstrument = "choir aahs"
-        instrumentName = "B."
-        shortInstrumentName = "B."
-      }{ \clef bass \bassRefain }
-      \addlyrics \verseBassRefrain
-    >>
-  }
+      \new Voice = "tenor" { \voiceOne \tenor }
+      \new Voice = "bass" { \voiceTwo \bass }
+  >>
   \new Lyrics \with {
     \override VerticalAxisGroup.staff-affinity = #CENTER
-  } \lyricsto "tenorCouplet" \verseBassCouplet
+  } \lyricsto "tenor" { \verseBassCouplet \verseBassRefrain }
   
+  % 3
+  \new Staff \with {
+    midiInstrument = "choir aahs"
+    shortInstrumentName = "T."
+    \consists Merge_rests_engraver
+  } <<
+      \clef bass
+      \new Voice = "bassI" { \voiceOne \bassI }
+      \new Voice = "bassII" { \voiceTwo \bassII }
+  >>
+  \new Lyrics \with {
+    \override VerticalAxisGroup.staff-affinity = #CENTER
+  } \lyricsto "bassI" \verseBassRefrain
 >>
 
 
