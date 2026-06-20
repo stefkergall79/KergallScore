@@ -1,28 +1,17 @@
 from pathlib import Path
 import customtkinter as ctk
-
+import os
 ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("blue")
 
 
-class LilypondCreator(ctk.CTk):
-    def __init__(self):
-        super().__init__()
-        self.title("Assistant de création de partition Lilypond")
-        self.geometry("500x650")
-
-        self.default_font = ("Arial", 12)
+class HeaderTab(ctk.CTkFrame):
+    def __init__(self, master, app):
+        super().__init__(master, fg_color="transparent")
+        self.app = app
+        self.default_font = app.default_font
         self.filename_modified = False
 
-        tabview = ctk.CTkTabview(self, anchor="nw")
-        tabview.pack(padx=10, pady=(10, 0), fill="both", expand=True, side="top")
-        
-        tabview.add("Titres et en-têtes")
-        tabview.add("Parties")
-        
-        # 1ère partie
-        ong_creation = tabview.tab("Titres et en-têtes")
-        
         self.fields = {
             "dedication":   "Dédicace",
             "title":        "Titre",
@@ -39,7 +28,7 @@ class LilypondCreator(ctk.CTk):
         self.available_fields = list(self.fields.keys())
         
         for field in self.fields:
-            frame = ctk.CTkFrame(ong_creation, fg_color="transparent", border_width=0)
+            frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
             self.fields[field] = {
                 "name": self.fields[field],
                 "label": ctk.CTkLabel(frame, text=self.fields[field], font=self.default_font, width=100),
@@ -60,124 +49,51 @@ class LilypondCreator(ctk.CTk):
 
         self.add_field_var = ctk.StringVar()
         self.add_field_menu = ctk.CTkOptionMenu(
-            ong_creation, values=[self.fields[key]["name"] for key in self.available_fields], variable=self.add_field_var, width=40, height=28, font=self.default_font, command=self.on_optional_field_selected
+            self, values=[self.fields[key]["name"] for key in self.available_fields], variable=self.add_field_var, width=40, height=28, font=self.default_font, command=self.on_optional_field_selected
         )
         self.add_field_menu.set("+")
         self.add_field_menu.pack(pady=(8, 4), padx=20)
   
-        category_frame = ctk.CTkFrame(ong_creation, fg_color="transparent", border_width=0)
+        category_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         ctk.CTkLabel(category_frame, text="Catégorie", font=self.default_font, width=100).pack(side="left", padx=(0, 10))
         self.categories = self._get_categories()
-        self.category_var = ctk.StringVar(value=self.categories[0])
+        self.category_var = ctk.StringVar(value=self.categories[0] if self.categories else "Autres")
         
         ctk.CTkOptionMenu(category_frame, values=self.categories, variable=self.category_var, width=260, height=28,
                           font=self.default_font, command=self.on_category_change).pack(side="left", padx=0)
         category_frame.pack(pady=4, padx=20)
 
-        filename_frame = ctk.CTkFrame(ong_creation, fg_color="transparent", border_width=0)
+        filename_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         ctk.CTkLabel(filename_frame, text="Nom du fichier :", font=self.default_font, width=100).pack(side="left", padx=(0, 10))
         self.filename_var = ctk.StringVar()
         entry_filename = ctk.CTkEntry(filename_frame, width=260, height=28, font=self.default_font, textvariable=self.filename_var)
         entry_filename.pack(side="left", padx=0)
         filename_frame.pack(pady=4, padx=20)
         entry_filename.bind("<KeyRelease>", self.on_filename_edit)
-        
 
-        # 2ème partie
-        ong_parties = tabview.tab("Parties")
-        
-        left_frame = ctk.CTkFrame(ong_parties, width=150)
-        left_frame.pack(side="left", fill="y", padx=(0, 10))
-        left_frame.pack_propagate(False)
-
-        ctk.CTkLabel(left_frame, text="Voix", font=("Arial", 12, "bold")).pack(pady=(10, 6))
-
-        right_frame = ctk.CTkFrame(ong_parties)
-        right_frame.pack(side="left", fill="both", expand=True)
-
-        self.parts = {
-            "Solo": {
-                "couplets": ctk.IntVar(value=1)
-            },
-            "Choeur": {
-                "schema": ctk.StringVar(value="SA-TB"),
-                "couplets": ctk.IntVar(value=1)
-            },
-            "Clavier": {
-                "type": ctk.StringVar(value="Piano")
-            },
-            "Flûte": {}
-        }
-
-        for part in self.parts.keys():
-            self.parts[part]["btn"] = ctk.CTkSwitch(
-                left_frame, text=part, width=130, font=self.default_font,
-                border_width=1, command=self.update_parts_ui
-            )
-            self.parts[part]["btn"].pack(pady=3, padx=10)
-            
-            voice_frame = ctk.CTkFrame(right_frame)
-            self.parts[part]["frame"] = voice_frame
-            
-            ctk.CTkLabel(voice_frame, text=part, font=("Arial", 12, "bold"), width=70, anchor="w").pack(side="top", padx=15, pady=(8, 2), anchor="w")
-            
-            if part in ("Solo", "Choeur"):
-                couplets_frame = ctk.CTkFrame(voice_frame, fg_color="transparent", border_width=0)
-                ctk.CTkLabel(couplets_frame, text="Couplets :", font=self.default_font).pack(side="left", padx=(0, 5), pady=0)
-                ctk.CTkEntry(couplets_frame, width=50, height=28, font=self.default_font,
-                             textvariable=self.parts[part]["couplets"], justify="center").pack(side="left", padx=5, pady=0)
-                couplets_frame.pack(side="top", padx=15, pady=2, anchor="w")
-            
-            if part == "Choeur":
-                ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.parts[part]["schema"],
-                                values=("SA-TB", "S-A-T-B", "SA-H","S-S-A", "T-T-B", "T-T-B-B")).pack(side="top", padx=15, pady=0, anchor="w")
-                
-            if part == "Clavier":
-                ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.parts[part]["type"],
-                                  values=("Piano", "Orgue")).pack(side="top", padx=15, pady=(2, 8), anchor="w")
-
-            if part == "Flûte":
-                ctk.CTkSwitch(voice_frame, text="Paroles", width=130, font=self.default_font,
-                              border_width=1).pack(side="top", padx=15, pady=(2, 8), anchor="w")
-        
-        button_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
-        ctk.CTkButton(button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file).pack(side="left", padx=(0, 10))
-        ctk.CTkButton(button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#ff0000", hover_color="#8f8f8f", command=self.destroy).pack(side="left")
-        button_frame.pack(pady=15)
-        
         self.fields["title"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.fields["composer"]["var"].trace_add("write", self.on_title_or_composer_change)
 
+        self.pack(fill="both", expand=True)
 
     def on_category_change(self, choice: str):
+        if not hasattr(self.app, "parts_tab"):
+            return
+        parts = self.app.parts_tab.parts
         if choice == "Piano":
-            for instrument in self.parts.keys():
+            for instrument in parts.keys():
                 if instrument in ("Clavier", "Flûte"):
-                    self.parts[instrument]["btn"].select()
+                    parts[instrument]["btn"].select()
                 else:
-                    self.parts[instrument]["btn"].deselect()
+                    parts[instrument]["btn"].deselect()
         elif choice in ("Chorale", "Chants populaires", "Noël"):
-            for instrument in self.parts.keys():
+            for instrument in parts.keys():
                 if instrument == "Choeur":
-                    self.parts[instrument]["btn"].select()
+                    parts[instrument]["btn"].select()
                 else:
-                    self.parts[instrument]["btn"].deselect()
-        self.update_parts_ui()
-    
+                    parts[instrument]["btn"].deselect()
+        self.app.parts_tab.update_parts_ui()
 
-    def update_parts_ui(self):
-        order = list(self.parts.keys())
-        for i, part in enumerate(order):
-            frame = self.parts[part]["frame"]
-            is_active = self.parts[part]["btn"].get() == 1
-            is_visible = frame.winfo_manager() == "pack"
-            
-            if is_active and not is_visible:
-                frame.pack(fill="x", pady=4, padx=10,
-                           before=next((self.parts[p]["frame"] for p in order[i+1:] if self.parts[p]["frame"].winfo_manager() == "pack"), None))
-            elif not is_active and is_visible:
-                frame.pack_forget()
-    
     def build_default_filename(self):
         title = self.fields["title"]["var"].get().strip()
         composer = self.fields["composer"]["var"].get().strip()
@@ -223,11 +139,9 @@ class LilypondCreator(ctk.CTk):
         updated_values = [self.fields[key]["name"] for key in self.available_fields]
         self.add_field_menu.configure(values=updated_values)
         self.add_field_var.set("+")
-        
 
     def remove_field(self, key: str):
         field_info = self.fields[key]
-        
         field_info["frame"].pack_forget()
         field_info["var"].set("")
         field_info["hidden"] = True
@@ -260,15 +174,116 @@ class LilypondCreator(ctk.CTk):
         categories.sort(key=str.casefold)
         return categories or ["Autres"]
 
+
+class PartsTab(ctk.CTkFrame):
+    def __init__(self, master, app):
+        super().__init__(master, fg_color="transparent")
+        self.app = app
+        self.default_font = app.default_font
+
+        left_frame = ctk.CTkFrame(self, width=150)
+        left_frame.pack(side="left", fill="y", padx=(0, 10))
+        left_frame.pack_propagate(False)
+
+        ctk.CTkLabel(left_frame, text="Voix", font=("Arial", 12, "bold")).pack(pady=(10, 6))
+
+        right_frame = ctk.CTkFrame(self)
+        right_frame.pack(side="left", fill="both", expand=True)
+
+        self.parts = {
+            "Solo": {
+                "couplets": ctk.IntVar(value=1)
+            },
+            "Choeur": {
+                "schema": ctk.StringVar(value="SA-TB"),
+                "couplets": ctk.IntVar(value=1)
+            },
+            "Clavier": {
+                "type": ctk.StringVar(value="Piano")
+            },
+            "Flûte": {}
+        }
+
+        for part in self.parts:
+            self.parts[part]["btn"] = ctk.CTkSwitch(
+                left_frame, text=part, width=130, font=self.default_font,
+                border_width=1, command=self.update_parts_ui
+            )
+            self.parts[part]["btn"].pack(pady=3, padx=10)
+            
+            voice_frame = ctk.CTkFrame(right_frame)
+            self.parts[part]["frame"] = voice_frame
+            
+            ctk.CTkLabel(voice_frame, text=part, font=("Arial", 12, "bold"), width=70, anchor="w").pack(side="top", padx=15, pady=(8, 2), anchor="w")
+            
+            if part in ("Solo", "Choeur"):
+                couplets_frame = ctk.CTkFrame(voice_frame, fg_color="transparent", border_width=0)
+                ctk.CTkLabel(couplets_frame, text="Couplets :", font=self.default_font).pack(side="left", padx=(0, 5), pady=0)
+                ctk.CTkEntry(couplets_frame, width=50, height=28, font=self.default_font,
+                             textvariable=self.parts[part]["couplets"], justify="center").pack(side="left", padx=5, pady=0)
+                couplets_frame.pack(side="top", padx=15, pady=2, anchor="w")
+            
+            if part == "Choeur":
+                ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.parts[part]["schema"],
+                                values=("SA-TB", "S-A-T-B", "SA-H","S-S-A", "T-T-B", "T-T-B-B"),
+                                command=None
+                                ).pack(side="top", padx=15, pady=0, anchor="w")
+                
+            if part == "Clavier":
+                ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.parts[part]["type"],
+                                  values=("Piano", "Orgue")).pack(side="top", padx=15, pady=(2, 8), anchor="w")
+
+            if part == "Flûte":
+                ctk.CTkSwitch(voice_frame, text="Paroles", width=130, font=self.default_font,
+                              border_width=1).pack(side="top", padx=15, pady=(2, 8), anchor="w")
+
+        self.pack(fill="both", expand=True)
+
+    def update_parts_ui(self):
+        order = list(self.parts.keys())
+        for i, part in enumerate(order):
+            frame = self.parts[part]["frame"]
+            is_active = self.parts[part]["btn"].get() == 1
+            is_visible = frame.winfo_manager() == "pack"
+            
+            if is_active and not is_visible:
+                frame.pack(fill="x", pady=4, padx=10,
+                           before=next((self.parts[p]["frame"] for p in order[i+1:] if self.parts[p]["frame"].winfo_manager() == "pack"), None))
+            elif not is_active and is_visible:
+                frame.pack_forget()
+
+
+class LilypondCreator(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        self.title("Assistant de création de partition Lilypond")
+        self.geometry("500x650")
+
+        self.default_font = ("Arial", 12)
+
+        tabview = ctk.CTkTabview(self, anchor="nw")
+        tabview.pack(padx=10, pady=(10, 0), fill="both", expand=True, side="top")
+        
+        tabview.add("Titres et en-têtes")
+        tabview.add("Parties")
+        
+        self.header_tab = HeaderTab(tabview.tab("Titres et en-têtes"), self)
+        self.parts_tab = PartsTab(tabview.tab("Parties"), self)
+        
+        button_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
+        ctk.CTkButton(button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file).pack(side="left", padx=(0, 10))
+        ctk.CTkButton(button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#ff0000", hover_color="#8f8f8f", command=self.destroy).pack(side="left")
+        button_frame.pack(pady=15)
+
     def create_lilypond_file(self):
         values = {}
-        for key, field in self.fields.items():
+        for key, field in self.header_tab.fields.items():
             if not field["hidden"]:
                 value = field["var"].get().strip()
                 values[key] = value
 
-        filename = self.get_target_filename()
-        category = self.category_var.get().strip() or "Autres"
+        filename = self.header_tab.get_target_filename()
+        category = self.header_tab.category_var.get().strip() or "Autres"
         
         folder_name = Path(filename).stem
         base_dir = Path(__file__).resolve().parent
@@ -312,6 +327,7 @@ class LilypondCreator(ctk.CTk):
             )
             
             filepath.write_text(content, encoding="utf-8")
+            os.system(f"flatpak run org.frescobaldi.Frescobaldi {str(filepath)}")
             self.destroy()
         
         except OSError as error:
