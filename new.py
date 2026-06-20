@@ -1,7 +1,7 @@
 from pathlib import Path
 import customtkinter as ctk
-import os
 import subprocess
+import sys
 ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("blue")
 
@@ -50,7 +50,8 @@ class HeaderTab(ctk.CTkFrame):
 
         self.add_field_var = ctk.StringVar()
         self.add_field_menu = ctk.CTkOptionMenu(
-            self, values=[self.fields[key]["name"] for key in self.available_fields], variable=self.add_field_var, width=40, height=28, font=self.default_font, command=self.on_optional_field_selected
+            self, values=[self.fields[key]["name"] for key in self.available_fields], variable=self.add_field_var, width=40,
+            height=28, font=self.default_font,command=self.on_optional_field_selected
         )
         self.add_field_menu.set("+")
         self.add_field_menu.pack(pady=(8, 4), padx=20)
@@ -77,22 +78,20 @@ class HeaderTab(ctk.CTkFrame):
 
         self.pack(fill="both", expand=True)
 
+
+    def set_instrument_with_category(self, parts, *choice):
+        for instrument in parts:
+            if instrument in choice:
+                parts[instrument]["btn"].select()
+            else:
+                parts[instrument]["btn"].deselect()
+
     def on_category_change(self, choice: str):
-        if not hasattr(self.app, "parts_tab"):
-            return
         parts = self.app.parts_tab.parts
         if choice == "Piano":
-            for instrument in parts.keys():
-                if instrument in ("Clavier", "Flûte"):
-                    parts[instrument]["btn"].select()
-                else:
-                    parts[instrument]["btn"].deselect()
+            self.set_instrument_with_category(parts, "Clavier", "Flûte")
         elif choice in ("Chorale", "Chants populaires", "Noël"):
-            for instrument in parts.keys():
-                if instrument == "Choeur":
-                    parts[instrument]["btn"].select()
-                else:
-                    parts[instrument]["btn"].deselect()
+            self.set_instrument_with_category(parts, "Choeur")
         self.app.parts_tab.update_parts_ui()
 
     def build_default_filename(self):
@@ -197,12 +196,15 @@ class PartsTab(ctk.CTkFrame):
             },
             "Choeur": {
                 "schema": ctk.StringVar(value="SA-TB"),
-                "couplets": ctk.IntVar(value=1)
+                "couplets": ctk.IntVar(value=1),
+                "meme_paroles": ctk.BooleanVar(value=True)
             },
             "Clavier": {
                 "type": ctk.StringVar(value="Piano")
             },
-            "Flûte": {}
+            "Flûte": {
+                "paroles": ctk.BooleanVar(value=False)
+            }
         }
 
         for part in self.parts:
@@ -227,18 +229,27 @@ class PartsTab(ctk.CTkFrame):
             if part == "Choeur":
                 ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.parts[part]["schema"],
                                 values=("SA-TB", "S-A-T-B", "SA-H","S-S-A", "T-T-B", "T-T-B-B"),
-                                command=None
-                                ).pack(side="top", padx=15, pady=0, anchor="w")
-                
-            if part == "Clavier":
+                                command=self.schema_voices_changed).pack(side="top", padx=15, pady=0, anchor="w")
+                self.parts[part]["meme_paroles_switch"] = ctk.CTkSwitch(voice_frame, text="Même paroles pour toutes les voix", font=self.default_font,
+                                                        border_width=1, variable=self.parts[part]["meme_paroles"])
+            
+            elif part == "Clavier":
                 ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.parts[part]["type"],
                                   values=("Piano", "Orgue")).pack(side="top", padx=15, pady=(2, 8), anchor="w")
 
-            if part == "Flûte":
+            elif part == "Flûte":
                 ctk.CTkSwitch(voice_frame, text="Paroles", width=130, font=self.default_font,
-                              border_width=1).pack(side="top", padx=15, pady=(2, 8), anchor="w")
+                              border_width=1, variable=self.parts[part]["paroles"]).pack(side="top", padx=15, pady=(2, 8), anchor="w")
 
         self.pack(fill="both", expand=True)
+
+    def schema_voices_changed(self, selected_schema):
+        switch = self.parts["Choeur"]["meme_paroles_switch"]
+        if selected_schema.count("-") > 1:
+            switch.pack(side="top", padx=15, pady=(2, 8), anchor="w")
+        else:
+            switch.pack_forget()
+
 
     def update_parts_ui(self):
         order = list(self.parts.keys())
@@ -264,12 +275,8 @@ class LilypondCreator(ctk.CTk):
 
         tabview = ctk.CTkTabview(self, anchor="nw")
         tabview.pack(padx=10, pady=(10, 0), fill="both", expand=True, side="top")
-        
-        tabview.add("Titres et en-têtes")
-        tabview.add("Parties")
-        
-        self.header_tab = HeaderTab(tabview.tab("Titres et en-têtes"), self)
-        self.parts_tab = PartsTab(tabview.tab("Parties"), self)
+        self.header_tab = HeaderTab(tabview.add("Titres et en-têtes"), self)
+        self.parts_tab = PartsTab(tabview.add("Parties"), self)
         
         button_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         ctk.CTkButton(button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file).pack(side="left", padx=(0, 10))
@@ -294,13 +301,41 @@ class LilypondCreator(ctk.CTk):
             target_folder.mkdir(parents=True, exist_ok=True)
             filepath = target_folder / filename
             if filepath.exists():
-                raise OSError(f"Le fichier '{filename}' existe déjà dans la catégorie '{category}'. Veuillez choisir un autre nom de fichier.")
+                raise OSError(f"Le fichier '{filename}' existe déjà dans la catégorie '{category}'. Veuillez modifier le nom du fichier.")
             
             content = (
                 "\\version \"2.26.0\"\n"
                 "\\include \"../../settings.ly\"\n"
+                "\n"
+                "global = { \n"
+                "\t\n"
+                "}\n"
             )
             
+            voice_settings = {
+                "Solo": {
+                    "nb": 1,
+                    "couplets": True
+                },
+                "Choeur": {
+                    "nb": len(self.parts_tab.parts["Choeur"]["schema"].get().split("-")),
+                    "couplets": True
+                },
+                "Clavier": {
+                    "nb": 2 + (self.parts_tab.parts["Clavier"]["type"].get() == "Orgue"),
+                    "couplets": False
+                },
+                "Flûte": {
+                    "nb": 1,
+                    "couplets": self.parts_tab.parts["Flûte"]["paroles"].get()
+                }
+            }
+
+            for part in self.parts_tab.parts:
+                if self.parts_tab.parts[part]["btn"].get() == 1:
+                    for i in range(voice_settings[part]["nb"]):
+                        pass
+
             if values.get("title"):
                 if values.get("composer"):
                     content += (
@@ -328,7 +363,12 @@ class LilypondCreator(ctk.CTk):
             )
             
             filepath.write_text(content, encoding="utf-8")
-            subprocess.Popen(["flatpak", "run", "org.frescobaldi.Frescobaldi", str(filepath)])
+            if sys.platform == "win32":
+                subprocess.Popen(["frescobaldi", str(filepath)])
+            elif sys.platform == "darwin":
+                subprocess.Popen(["open", "-a", "Frescobaldi", str(filepath)])
+            else:
+                subprocess.Popen(["flatpak", "run", "org.frescobaldi.Frescobaldi", str(filepath)])
             self.destroy()
         
         except OSError as error:
