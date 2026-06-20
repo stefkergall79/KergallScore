@@ -64,6 +64,8 @@ tenor = \fixed c {
   \repeat unfold 3 { 2 4 4 4 4 2 }
   4 4 4 4 4 4 2
 
+  \set Staff.shortInstrumentName = #"T." \clef "treble_8"
+  \once \omit Staff.Clef
   d'1 cis' b a cis'4(d')e' d' cis'2(e')d'1
 }
 
@@ -179,7 +181,7 @@ choirPart =  \new ChoirStaff <<
   % 3
   \new Staff \with {
     midiInstrument = "choir aahs"
-    shortInstrumentName = "T."
+    shortInstrumentName = "B."
     \consists Merge_rests_engraver
   } <<
       \clef bass
