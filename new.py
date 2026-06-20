@@ -1,6 +1,7 @@
 from pathlib import Path
 import customtkinter as ctk
 import os
+import subprocess
 ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("blue")
 
@@ -327,7 +328,7 @@ class LilypondCreator(ctk.CTk):
             )
             
             filepath.write_text(content, encoding="utf-8")
-            os.system(f"flatpak run org.frescobaldi.Frescobaldi {str(filepath)}")
+            subprocess.Popen(["flatpak", "run", "org.frescobaldi.Frescobaldi", str(filepath)])
             self.destroy()
         
         except OSError as error:
