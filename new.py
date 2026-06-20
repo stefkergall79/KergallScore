@@ -203,7 +203,7 @@ class PartsTab(ctk.CTkFrame):
                 "type": ctk.StringVar(value="Piano")
             },
             "Flûte": {
-                "paroles": ctk.BooleanVar(value=False)
+                "paroles": ctk.IntVar(value=0)
             }
         }
 
@@ -311,31 +311,31 @@ class LilypondCreator(ctk.CTk):
                 "\t\n"
                 "}\n"
             )
-            
+            voices_parts = self.parts_tab.parts
             voice_settings = {
                 "Solo": {
                     "nb": 1,
-                    "couplets": True
+                    "couplets": voices_parts["Solo"]["couplets"].get()
                 },
                 "Choeur": {
-                    "nb": len(self.parts_tab.parts["Choeur"]["schema"].get().split("-")),
-                    "couplets": True
+                    "nb": len(voices_parts["Choeur"]["schema"].get().split("-")),
+                    "couplets": voices_parts["Choeur"]["couplets"].get(),
+                    "trad_voice": {"S": "soprano", "A": "alto", "T": "tenor", "B": "bass", "H": "homme"}
                 },
                 "Clavier": {
-                    "nb": 2 + (self.parts_tab.parts["Clavier"]["type"].get() == "Orgue"),
-                    "couplets": False
+                    "nb": 2 + (voices_parts["Clavier"]["type"].get() == "Orgue"),
+                    "couplets": 0
                 },
                 "Flûte": {
                     "nb": 1,
-                    "couplets": self.parts_tab.parts["Flûte"]["paroles"].get()
+                    "couplets": voices_parts["Flûte"]["paroles"].get()
                 }
             }
 
-            for part in self.parts_tab.parts:
-                if self.parts_tab.parts[part]["btn"].get() == 1:
-                    for i in range(voice_settings[part]["nb"]):
-                        pass
-
+            for part in voices_parts:
+                if voices_parts[part]["btn"].get() == 1:
+                    for i in range(voice_settings[part]["nb"]):pass
+                        
             if values.get("title"):
                 if values.get("composer"):
                     content += (
