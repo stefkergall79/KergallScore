@@ -63,10 +63,9 @@ tenor = \fixed c {
   a~1
   \repeat unfold 3 { 2 4 4 4 4 2 }
   4 4 4 4 4 4 2
-
-  \set Staff.shortInstrumentName = #"T." \clef "treble_8"
-  \once \omit Staff.Clef
-  d'1 cis' b a cis'4(d')e' d' cis'2(e')d'1
+  
+  \set Staff.shortInstrumentName = "B."
+  fis1 1 r2 g2 d1 g4(fis)e fis g2(e)fis1
 }
 
 bass = \fixed c {
@@ -75,15 +74,17 @@ bass = \fixed c {
   d2 4 4 4 4 2 2 4 4 a,4 4 2
   2 4 4 4 4 2 4 4 4 4 d4 4 2
 
-  b2(fis)ais1 g2(d)fis1 a2 4 4 1 1
+  b,1 fis, g, s a,2 4 4 1 <d d,>1
 }
 bassI = \fixed c {
   R1*17
-  fis1 1 r2 g2 d1 g4(fis)e fis g2(e)fis1
+
+  d'1 cis' b a cis'4(d')e' d' cis'2(e')d'1
 }
 bassII = \fixed c {
   R1*17
-  b,1 fis, g, s a,2 4 4 1 <d d,>1
+
+  b2(fis)ais1 g2(d)fis1 a2 4 4 1 1
 }
 
 verseOne = \lyricmode {
@@ -166,6 +167,21 @@ choirPart =  \new ChoirStaff <<
   % 2
   \new Staff \with {
     midiInstrument = "choir aahs"
+    shortInstrumentName = "T."
+    \consists Merge_rests_engraver
+  } <<
+      \clef bass
+      \new Voice = "bassI" { \voiceOne \bassI }
+      \new Voice = "bassII" { \voiceTwo \bassII }
+  >>
+  \new Lyrics \with {
+    \override VerticalAxisGroup.staff-affinity = #CENTER
+  } \lyricsto "bassI" \verseBassRefrain
+
+  
+  % 3
+  \new Staff \with {
+    midiInstrument = "choir aahs"
     instrumentName = \markup \center-column { "T." "B." }
     shortInstrumentName = \markup \center-column { "T." "B." }
     \consists Merge_rests_engraver
@@ -178,19 +194,6 @@ choirPart =  \new ChoirStaff <<
     \override VerticalAxisGroup.staff-affinity = #CENTER
   } \lyricsto "tenor" { \verseBassCouplet \verseBassRefrain }
   
-  % 3
-  \new Staff \with {
-    midiInstrument = "choir aahs"
-    shortInstrumentName = "B."
-    \consists Merge_rests_engraver
-  } <<
-      \clef bass
-      \new Voice = "bassI" { \voiceOne \bassI }
-      \new Voice = "bassII" { \voiceTwo \bassII }
-  >>
-  \new Lyrics \with {
-    \override VerticalAxisGroup.staff-affinity = #CENTER
-  } \lyricsto "bassI" \verseBassRefrain
 >>
 
 
