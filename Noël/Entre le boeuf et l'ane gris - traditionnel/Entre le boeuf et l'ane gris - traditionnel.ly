@@ -1,4 +1,5 @@
 \version "2.26.0"
+\include "../../settings.ily"
 
 global = {
   \key g \major
@@ -72,14 +73,8 @@ verseFour = \lyricmode {
   dors, dors, dors, le pe -- tit fils.
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = ##f
-}
-\tocItem \markup {
-  \pad-to-box #'(0 . 40) #'(0 . 0)
-  "Entre le bœuf et l'âne gris" "Traditionnel français"
-}
+\tocItemComposer "Entre le bœuf et l'âne gris" "Traditionnel français"
+
 \score {
   \header {
     title = "ENTRE LE BŒUF ET L'ÂNE GRIS"
