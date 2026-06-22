@@ -83,5 +83,5 @@ verse = \lyricmode {
   "Sur le mont des Oliviers, Il pria son Père :"
   "« Mon Père, s'il est possible que ce calice s'éloigne de moi ;"
   "   Car l'esprit est prompt, mais la chair est faible."
-  "   Mais que Ta volonté soit faite. »"
+  "   Mais que Votre volonté soit faite. »"
 }
