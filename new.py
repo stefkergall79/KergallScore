@@ -1,7 +1,6 @@
 from pathlib import Path
 import customtkinter as ctk
 import subprocess
-import sys
 ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("blue")
 
@@ -313,7 +312,7 @@ class LilypondCreator(ctk.CTk):
                 "\\version \"2.26.0\"\n"
                 "\\include \"../../settings.ly\"\n"
                 "\n"
-                "global = { \n"
+                "global = { \n\n"
                 "\t\n"
                 "}\n"
             )
@@ -336,21 +335,57 @@ class LilypondCreator(ctk.CTk):
                     "couplets": voices_parts["Flûte"]["paroles"].get()
                 }
             }
-
+            choir_voices = {"S": "soprano", "A" :"alto", "T": "tenor", "B": "bass", "H": "homme"}
+            
             for part in voices_parts:
                 if voices_parts[part]["btn"].get() == 1:
                     for voice in range(voice_settings[part]["nb"]):
+                        if part == "Choeur":
+                            name_voice = choir_voices[voices_parts[part]["schema"].get().replace("-", "")[voice]]
+                        else:
+                            name_voice = part.lower() + "I"*voice if part == "Clavier" else ""
+                        
                         ishigh = (voice < voice_settings[part]["nb"]/2)
                         content += (
-                            part.lower() + " = \fixed c"
-                            "'" if ishigh else ""
+                            f"{name_voice} = \\fixed c{"'" if ishigh else ""}"
                             " {\n"
                             "\t\\global\n"
-                            "\t\n"
-                            "}\n\n"
+                            "\t\n}"
+                            "\n"
                             )
-                    
                         
+                        if voice_settings[part]["couplets"]:
+                            content += (
+                                name_voice + "Verse = \\lyricmode {\n"
+                                "\t\n"
+                                "}\n"
+                                )
+                        content += "\n"
+                
+
+                content += f"{part}Part = \\new "
+                if part == "Choeur":
+                    content += "ChoirStaff <<\n"
+                    staffes = voices_parts[part]["schema"].get().split("-")
+                    for staff in staffes:
+                        content += (
+                            "\t\\new Staff \\with {\n"
+                            "\t\tmidiInstrument = \"choir aahs\"\n"
+                            )
+                        if category == "Chorale":
+                            content += "\t\tshortInstrumentName = "
+                            if len(staff) > 1:
+                                content += (
+                                    "\\markup \\center-column {"
+                                    f"\"{staff[0]}\" \"{staff[1]}\""
+                                    )
+                            else:
+                                content += f"\"{staff[0]}\""
+                            content += "}"
+                        
+                        if len(staff) > 1:
+                            content += " <<"
+            
             if values.get("title"):
                 if values.get("composer"):
                     content += (
