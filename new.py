@@ -383,9 +383,7 @@ class LilypondCreator(ctk.CTk):
                                 content += f"\"{staff[0]}\""
                             content += "}"
                         
-                        if len(staff) > 1:
-                            content += " <<"
-            
+                        
             if values.get("title"):
                 if values.get("composer"):
                     content += (
