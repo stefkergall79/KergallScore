@@ -1,7 +1,7 @@
 import time
 start = time.time()
 import os
-import apt
+import sys
 os.system("sudo -v")
 
 def install_package(package_manager: str, package_name: str):
@@ -13,7 +13,7 @@ def install_package(package_manager: str, package_name: str):
 
 packages = {
     "apt": {
-        "init": "sudo apt-get update -qq ",
+        "init": "sudo apt-get update",
         "command": "sudo apt-get install -qq {} -y",
         "apps": {
             "pip": "pip",
@@ -29,15 +29,30 @@ packages = {
         }
     }
 }
- 
+
+if "--code" in sys.argv:
+    packages["code"] = {
+        "init": None,
+        "command": "code --install-extension {} >/dev/null 2>&1",
+        "apps": {
+            "GABC": "AISCGre-BR.vscode-gregorio",
+            "PDF pour Lilypond": "lhl2617.lilypond-pdf-preview",
+            "Extension Lilypond": "bncummings.lytex-language-pack",
+            "Python": "ms-python.python"
+        }
+    }
+
 for depot in packages:
+    print(f"Installation pour {depot}")
     if packages[depot]["init"]:
-        print(f"Initialisation de {depot}...", end=" ", flush=True)
+        print(f"Initialisation du dépôt...")
         os.system(packages[depot]["init"])
         print("Terminé.")
 
     for package in packages[depot]["apps"]:
         install_package(depot, package)
+
+    print("\n")
 
 print("Configuration de Git...", end=" ", flush=True)
 import git
@@ -45,6 +60,6 @@ git_config = git.Git().config
 git_config("user.name", "Stéphane Kergall")
 git_config("user.email", "stef.kergall@gmail.com")
 git_config("pull.rebase", "false")
-print("Terminé.")
+print("Terminé.\n")
 
 print("Installation terminée en {:.2f} secondes.".format(time.time() - start))

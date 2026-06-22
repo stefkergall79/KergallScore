@@ -38,7 +38,8 @@
             "type": "shell",
             "command": "${command:python.interpreterPath}",
             "args": [
-                "${workspaceFolder}/install.py"
+                "${workspaceFolder}/install.py",
+                "--code"
             ],
             "group": "build"
         }

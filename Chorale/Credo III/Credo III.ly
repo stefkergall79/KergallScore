@@ -1,6 +1,7 @@
 \version "2.26.0"
 \include "../../settings.ily"
 #(ly:set-option 'backend 'cairo)
+#(set-global-staff-size 15)
 
 global = {
   \key d \major
@@ -39,11 +40,14 @@ verse = \lyricmode {
 \tocItem \markup "Credo III"
 \markup \column {
   \fill-line {\bold \fontsize #5 "CREDO III" }
-  \vspace #1
   \fill-line {
-    \epsfile #X #110 #"cache/credoiii_partie1.png"
+    \epsfile #X #140 #"cache/credoIII_1.png"
   }
-  \vspace #2
+  \vspace #0.5
+}
+\paper {
+  tagline = ##f
+  page-count = 1
 }
 \score {
   \new ChoirStaff <<
@@ -75,9 +79,8 @@ verse = \lyricmode {
 }
 
 \markup \column {
-  \vspace #2
-  \fill-line {\epsfile #X #110 #"cache/credoiii_partie2.png"}
+  \fill-line {\epsfile #X #140 #"cache/credoIII_2.png"}
 }
-\markup \column{
-  \fill-line {\epsfile #X #110 #"cache/credoiii_partie3.png"}
-}
+%{\markup \column{
+  %\fill-line {\epsfile #X #110 #"cache/credoiii_partie3.png"}
+%}
