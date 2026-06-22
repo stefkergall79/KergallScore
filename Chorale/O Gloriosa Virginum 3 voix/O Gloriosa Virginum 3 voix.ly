@@ -1,5 +1,5 @@
-\version "2.24.3"
-
+\version "2.26.0"
+\include "../../settings.ily"
 global = {
   \key es \major
   \time 4/4
@@ -59,10 +59,6 @@ verseFour = \lyricmode {
   in sem -- pi -- tér -- na sǽ -- cu -- la.
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = ##f
-}
 \tocItem \markup "O Gloriosa Virginum"
 \score {
   \header {

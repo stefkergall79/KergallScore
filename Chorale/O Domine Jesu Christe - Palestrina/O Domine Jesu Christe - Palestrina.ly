@@ -1,5 +1,5 @@
 \version "2.26.0"
-
+\include "../../settings.ily"
 globalo = {
   \key c \major
   \time 4/4
@@ -52,15 +52,7 @@ verse = \lyricmode {
   ut tú -- a vúl -- ne -- ra sint re -- mé -- di -- um
   á -- ni -- mæ me -- æ, á -- ni -- mæ me -- æ.
 }
-\paper{
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
+
 \tocItem \markup "O Domine Jesu Christe"
 \score {
   \header {

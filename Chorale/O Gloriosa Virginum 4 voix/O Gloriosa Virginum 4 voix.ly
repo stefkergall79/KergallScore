@@ -1,4 +1,5 @@
 \version "2.26.0"
+\include "../../settings.ily"
 
 global = {
   \key f \major
@@ -57,22 +58,12 @@ verseTwo = \lyricmode {
 }
 
 
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
 \tocItem \markup "O Gloriosa Virginum"
 \score {
   \header {
     title = "O GLORIÓSA VÍRGINUM"
-    meter = "Paroles : Saint Venance Fortunat (~530-609)"
-    piece = " "
-    arranger = "Anonyme"
+    poet = "Paroles : Saint Venance Fortunat (~530-609)"
+    composer = "Anonyme"
   }
   \new ChoirStaff <<
     \new Staff \with {
