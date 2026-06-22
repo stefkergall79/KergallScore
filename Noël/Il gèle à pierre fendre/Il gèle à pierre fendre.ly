@@ -1,4 +1,5 @@
 \version "2.26.0"
+\include "../../settings.ily"
 global = {
   \key f \major
   \time 3/8

@@ -45,7 +45,7 @@ class HeaderTab(ctk.CTkFrame):
             self.fields[field]["entry"].pack(side="left", padx=0)
             
             if not self.fields[field]["hidden"]:
-                frame.pack(pady=4, padx=20)
+                frame.pack(pady=4, padx=20, anchor="w")
                 self.available_fields.remove(field)
 
         self.add_field_var = ctk.StringVar()
@@ -54,7 +54,7 @@ class HeaderTab(ctk.CTkFrame):
             height=28, font=self.default_font,command=self.on_optional_field_selected
         )
         self.add_field_menu.set("+")
-        self.add_field_menu.pack(pady=(8, 4), padx=20)
+        self.add_field_menu.pack(pady=(8, 4), padx=20, anchor="w")
   
         category_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         ctk.CTkLabel(category_frame, text="Catégorie", font=self.default_font, width=100).pack(side="left", padx=(0, 10))
@@ -63,14 +63,14 @@ class HeaderTab(ctk.CTkFrame):
         
         ctk.CTkOptionMenu(category_frame, values=self.categories, variable=self.category_var, width=260, height=28,
                           font=self.default_font, command=self.on_category_change).pack(side="left", padx=0)
-        category_frame.pack(pady=4, padx=20)
+        category_frame.pack(pady=4, padx=20, anchor="w")
 
         filename_frame = ctk.CTkFrame(self, fg_color="transparent", border_width=0)
         ctk.CTkLabel(filename_frame, text="Nom du fichier :", font=self.default_font, width=100).pack(side="left", padx=(0, 10))
         self.filename_var = ctk.StringVar()
         entry_filename = ctk.CTkEntry(filename_frame, width=260, height=28, font=self.default_font, textvariable=self.filename_var)
         entry_filename.pack(side="left", padx=0)
-        filename_frame.pack(pady=4, padx=20)
+        filename_frame.pack(pady=4, padx=20, anchor="w")
         entry_filename.bind("<KeyRelease>", self.on_filename_edit)
 
         self.fields["title"]["var"].trace_add("write", self.on_title_or_composer_change)
@@ -92,6 +92,12 @@ class HeaderTab(ctk.CTkFrame):
             self.set_instrument_with_category(parts, "Clavier", "Flûte")
         elif choice in ("Chorale", "Chants populaires", "Noël"):
             self.set_instrument_with_category(parts, "Choeur")
+        if choice == "Chants populaires":
+            parts["Choeur"]["schema"].set("SA-TB")
+            parts["Choeur"]["meme_paroles"].set(True)
+        elif choice == "Chorale":
+            parts["Choeur"]["schema"].set("S-A-T-B")
+            parts["Choeur"]["meme_paroles"].set(True)
         self.app.parts_tab.update_parts_ui()
 
     def build_default_filename(self):
@@ -129,9 +135,9 @@ class HeaderTab(ctk.CTkFrame):
                 break
 
         if insert_before_widget:
-            self.fields[selected_key]["frame"].pack(pady=4, padx=20, before=insert_before_widget)
+            self.fields[selected_key]["frame"].pack(pady=4, padx=20, anchor="w", before=insert_before_widget)
         else:
-            self.fields[selected_key]["frame"].pack(pady=4, padx=20, before=self.add_field_menu)
+            self.fields[selected_key]["frame"].pack(pady=4, padx=20, anchor="w", before=self.add_field_menu)
 
         self.fields[selected_key]["hidden"] = False
         self.available_fields.remove(selected_key)
@@ -191,6 +197,9 @@ class PartsTab(ctk.CTkFrame):
         right_frame.pack(side="left", fill="both", expand=True)
 
         self.parts = {
+            "Flûte": {
+                "paroles": ctk.IntVar(value=0)
+            },
             "Solo": {
                 "couplets": ctk.IntVar(value=1)
             },
@@ -201,9 +210,6 @@ class PartsTab(ctk.CTkFrame):
             },
             "Clavier": {
                 "type": ctk.StringVar(value="Piano")
-            },
-            "Flûte": {
-                "paroles": ctk.IntVar(value=0)
             }
         }
 
@@ -318,9 +324,8 @@ class LilypondCreator(ctk.CTk):
                     "couplets": voices_parts["Solo"]["couplets"].get()
                 },
                 "Choeur": {
-                    "nb": len(voices_parts["Choeur"]["schema"].get().split("-")),
-                    "couplets": voices_parts["Choeur"]["couplets"].get(),
-                    "trad_voice": {"S": "soprano", "A": "alto", "T": "tenor", "B": "bass", "H": "homme"}
+                    "nb": len(voices_parts["Choeur"]["schema"].get().replace("-", "")),
+                    "couplets": voices_parts["Choeur"]["couplets"].get()
                 },
                 "Clavier": {
                     "nb": 2 + (voices_parts["Clavier"]["type"].get() == "Orgue"),
@@ -334,7 +339,17 @@ class LilypondCreator(ctk.CTk):
 
             for part in voices_parts:
                 if voices_parts[part]["btn"].get() == 1:
-                    for i in range(voice_settings[part]["nb"]):pass
+                    for voice in range(voice_settings[part]["nb"]):
+                        ishigh = (voice < voice_settings[part]["nb"]/2)
+                        content += (
+                            part.lower() + " = \fixed c"
+                            "'" if ishigh else ""
+                            " {\n"
+                            "\t\\global\n"
+                            "\t\n"
+                            "}\n\n"
+                            )
+                    
                         
             if values.get("title"):
                 if values.get("composer"):
@@ -363,21 +378,13 @@ class LilypondCreator(ctk.CTk):
             )
             
             filepath.write_text(content, encoding="utf-8")
-            if sys.platform == "win32":
-                subprocess.Popen(["frescobaldi", str(filepath)])
-            elif sys.platform == "darwin":
-                subprocess.Popen(["open", "-a", "Frescobaldi", str(filepath)])
-            else:
-                subprocess.Popen(["flatpak", "run", "org.frescobaldi.Frescobaldi", str(filepath)])
+            subprocess.Popen(["flatpak", "run", "org.frescobaldi.Frescobaldi", str(filepath)])
             self.destroy()
         
         except OSError as error:
             error_window = ctk.CTkToplevel(self)
             error_window.title("Erreur de création")
             error_window.geometry("400x150")
-            
-            error_window.lift()
-            error_window.attributes("-topmost", True)
             
             label = ctk.CTkLabel(
                 error_window, text=f"Une erreur est survenue :\n{str(error)}", 

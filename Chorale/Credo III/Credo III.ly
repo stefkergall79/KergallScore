@@ -34,7 +34,7 @@ bass = \fixed c \transpose a c' {
 verse = \lyricmode {
   Et in -- car -- ná -- tus est de Spí -- ri -- tu Sánc -- to
   ex Ma -- rí -- a Vír -- gi -- ne, et hó -- mo fac -- tus est.
-}i
+}
 
 \tocItem \markup "Credo III"
 \markup \column {
