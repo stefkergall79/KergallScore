@@ -1,4 +1,5 @@
 \version "2.26.0"
+\include "settings.ily"
 
 global = {
   \key a \major
@@ -581,19 +582,7 @@ pianoPart = \new PianoStaff \with {
 >>
 
 
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
-\tocItem \markup {
-  \pad-to-box #'(0 . 40) #'(0 . 0)
-  "Pueri concinite" "Herbeck"
-}
+\tocItemComposer "Pueri concinite" "Herbeck"
 \score {
   \header {
     title = "PUERI CONCINITE"
