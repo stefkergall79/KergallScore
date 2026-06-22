@@ -81,6 +81,3 @@ verse = \lyricmode {
 \markup \column {
   \fill-line {\epsfile #X #140 #"cache/credoIII_2.png"}
 }
-%{\markup \column{
-  %\fill-line {\epsfile #X #110 #"cache/credoiii_partie3.png"}
-%}
