@@ -1,0 +1,12 @@
+Gtk-Message: 14:24:05.688: Failed to load module "xapp-gtk3-module"
+/home/stephane/snap/code/common/.cache/gio-modules/libdconfsettings.so: Ne peut ouvrir le fichier d'objet partagé: Aucun fichier ou dossier de ce nom
+Failed to load module: /home/stephane/snap/code/common/.cache/gio-modules/libdconfsettings.so
+/home/stephane/snap/code/common/.cache/gio-modules/libgiolibproxy.so: Ne peut ouvrir le fichier d'objet partagé: Aucun fichier ou dossier de ce nom
+Failed to load module: /home/stephane/snap/code/common/.cache/gio-modules/libgiolibproxy.so
+/home/stephane/snap/code/common/.cache/gio-modules/libgiognutls.so: Ne peut ouvrir le fichier d'objet partagé: Aucun fichier ou dossier de ce nom
+Failed to load module: /home/stephane/snap/code/common/.cache/gio-modules/libgiognutls.so
+/home/stephane/snap/code/common/.cache/gio-modules/libgiognomeproxy.so: Ne peut ouvrir le fichier d'objet partagé: Aucun fichier ou dossier de ce nom
+Failed to load module: /home/stephane/snap/code/common/.cache/gio-modules/libgiognomeproxy.so
+Qt: Session management error: Could not open network socket
+QObject: Cannot create children for a parent that is in a different thread.
+(Parent is EditorDocument(0x5e828a5b19c0), parent's thread is QThread(0x5e828a3fda40), current thread is QThread(0x5e828a1ea630)

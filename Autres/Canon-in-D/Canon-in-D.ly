@@ -1,18 +1,14 @@
 \version "2.26.0"
-
-\header {
-  title = "Canon in D"
-  composer = "Johann Pachelbel"
-  subtitle = "Trois violons et clavier"
-  tagline = ##f
-}
+\include "../../settings.ily"
 
 global = {
   \key d \major
+  \overrideTimeSignatureSettings
+        4/4        % timeSignature
+        #1/4       % beatBase
+        1,1,1,1    % beatStructure
+        #'()       % beamExceptions
   \time 4/4
-  \set Timing.beamExceptions = #'()
-  \set Timing.baseMoment = #(ly:make-moment 1/4)
-  \set Timing.beatStructure = 1,1,1,1
 }
 
 #(set-global-staff-size 17.8)
@@ -20,7 +16,6 @@ ar = \arpeggio
 
 scoreAViolinI = \fixed c' {
   \global
-  % En avant la musique.
   R1*2 fis'4\p _\markup{\italic{espr.}}
   e' d' cis' b a b cis'
   d' cis' b a g_\> fis g e\!
@@ -120,9 +115,8 @@ scoreAViolinIII = \fixed c' {
 
 scoreARight = \fixed c' {
   \global
-  % En avant la musique.
-  ^\markup{\bold \italic Sostenuto}
-  \mf <d' a fis>4\ar <cis' a e cis>\ar <b fis d b,>\ar <a fis cis a,>\ar
+  \tempo Sostenuto
+  <d' a fis>4\ar\mf  <cis' a e cis>\ar <b fis d b,>\ar <a fis cis a,>\ar
   <g d b,>\ar <a fis d a,>\ar <b e d b,>\ar_\> <a e cis a,>\ar
   <a fis d a,>\ar\p <cis' a e> <b fis d> <a fis cis>
   <g d b,> <fis d a,> <g d b,> <e cis a,>
@@ -155,21 +149,21 @@ scoreARight = \fixed c' {
   < fis d> <cis' a e> < b fis d> < a fis cis>
   <b d b,> <a fis d> <b e d> <a e cis>
   <a fis d> <cis'a e> < b fis d> <a fis cis>
-  <<{b4} \new Voice{<d b,>8 [<cis e>]}>>\oneVoice <a fis d>4 <b g d> <a e cis>
+  <<{b4}\\{<d b,>8 [<cis e>]}>> <a fis d>4 <b g d> <a e cis>
   <a fis d> <a e cis> <fis d> <a d cis>
-  <g d b,> <fis d a,> <e d b,> <<{<e a,>4} \new Voice{d8. cis16}>>\oneVoice
+  <g d b,> <fis d a,> <e d b,> <<{<e a,>4}\\{d8. cis16}>>
   <fis d a,>4 <a fis cis> <fis d b,> <a d a,>
-  <g d b,> <fis d a,> <e d b,> <<{<e a,>4} \new Voice{d8. cis16}>>\oneVoice
-  <fis d a,>4 <<{<a cis>4_\markup{\italic{cresc.}}} \new Voice{fis8. e16}>>\oneVoice <fis d b,>4 <<{<a d>4} \new Voice{a,8. cis16}>>\oneVoice
-  <g d b,>4 <a fis d> <b g d> <<{<a e>4} \new Voice{d8. cis16}>>\oneVoice
-  <a fis d>4\mf <<{cis'} \new Voice{<cis fis>8. <e g>16}>>\oneVoice <b fis d>4 <<{a} \new Voice{<fis d>8. <e cis>16}>>\oneVoice
+  <g d b,> <fis d a,> <e d b,> <<{<e a,>4}\\{d8. cis16}>>
+  <fis d a,>4 <<{<a cis>4_\markup \italic cresc. }\\{fis8. e16}>> <fis d b,>4 <<{<a d>4}\\{a,8. cis16}>>
+  <g d b,>4 <a fis d> <b g d> <<{<a e>4}\\{d8. cis16}>>
+  <a fis d>4\mf <<{cis'}\\{<cis fis>8. <e g>16}>> <b fis d>4 <<{a}\\{<fis d>8. <e cis>16}>>
   <g d b,>4 <fis d a,> <g d b,> <e cis a,>
-  <fis d a,>8 <d' a fis>4 <cis' g e>8 <<{cis'8 b4} \new Voice{<d fis>4.}>>\oneVoice <a^( e cis>8
-  <<{a8) g4 fis8^(8) e} \new Voice{<d b,>4 <d a,> <d b,>}>>\oneVoice <e cis a,>
-  <fis d a,>8 <d' a fis>4 <cis' a e>8 <<{cis'8 b4} \new Voice{<d fis>4.}>>\oneVoice <a^( e c>8
-  <<{a8) g4 fis8^(8) e} \new Voice{<d b,>4 <d a,> <d b,>}>>\oneVoice <e cis! a,>4
-  <fis d a,>8 <d' a fis>4 <cis'( a e>8 <<{cis'8) b4 a8^(8) g4 fis8(8) e8} \new Voice{<fis d>4. <e c>8 <d b,>4 <d a,> <d b,>}>>\oneVoice <e cis! a,>4
-  <fis d a,>8_\markup{\italic{cresc.}} <d' a fis(> <<{cis'4} \new Voice{<a fis)>8 <g e>}>>\oneVoice <b fis d>4 <a d>
+  <fis d a,>8 <d' a fis>4 <cis' g e>8 <<{cis'8 b4}\\{<d fis>4.}>> <a e cis>8
+  <<{a8 g4 fis8^(8) e}\\{<d b,>4 <d a,> <d b,>}>> <e cis a,>
+  <fis d a,>8 <d' a fis>4 <cis' a e>8 <<{cis'8 b4}\\{<d fis>4.}>> <a e c>8
+  <<{a8 g4 fis8^(8) e}\\{<d b,>4 <d a,> <d b,>}>> <e cis! a,>4
+  <fis d a,>8 <d' a fis>4 <cis' a e>8 <<{cis'8 b4 a8^(8) g4 fis8(8) e8}\\{<fis d>4. <e c>8 <d b,>4 <d a,> <d b,>}>> <e cis! a,>4
+  <fis d a,>8_\markup{\italic{cresc.}} <d' a fis> <<{cis'4}\\{<a fis>8 <g e>}>> <b fis d>4 <a d>
   <b g d>4 <a fis d> <b e d> <a e cis>
   <a fis d>\f _\markup{\italic{arpeggiando}} <cis' a e> <b fis d> <a fis cis>
   <g d b,>_\< <a fis d a,> <b e d b,> <a e cis a,>
@@ -178,7 +172,6 @@ scoreARight = \fixed c' {
 
 scoreALeft = \fixed c, {
   \global
-  % En avant la musique.
   <d'' a' d'>4\ar <a' e' a>\ar <fis' b>\ar <fis' cis' fis>\ar
   <g' d' g>\ar <d' d>\ar <g' g>\ar <g' e' a>\ar
   <fis' d'>\ar
@@ -219,6 +212,12 @@ scoreAHarpsichordPart = \new PianoStaff \with {
 >>
 
 \score {
+  \header {
+    title = "Canon in D"
+    composer = "Johann Pachelbel"
+    subtitle = "Trois violons et clavier"
+    tagline = ##f
+  }
   <<
     \scoreAViolinIPart
     \scoreAViolinIIPart
@@ -226,7 +225,5 @@ scoreAHarpsichordPart = \new PianoStaff \with {
     \scoreAHarpsichordPart
   >>
   \layout { }
-  \midi {
-    \tempo 4=60
-  }
+  \midi { \tempo 4=60 }
 }

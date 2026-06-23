@@ -47,14 +47,8 @@
         {
             "label": "Frescobaldi",
             "type": "shell",
-            "command": "flatpak",
-            "args": [
-                "run",
-                "org.frescobaldi.Frescobaldi",
-                "${file}"
-            ],
-            "group": "build",
-            "isBackground": true
+            "command": "flatpak run org.frescobaldi.Frescobaldi \"${file}\"",
+            "group": "build"
         },
         {
             "label": "Lecteur midi",
