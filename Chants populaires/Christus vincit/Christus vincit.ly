@@ -41,62 +41,42 @@ verseOne = \lyricmode {
   "indútus est Dóminus fortitúdinem," et præ -- cín -- xit_se.
 }
 
-verseTwo = \lyricmode {
-  \repeat unfold 15 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \stropheMode 2 15 \lyricmode {
   E -- te -- "nim firmávit or" -- bem ter -- ræ,
   qui_non com -- mo -- vé -- bitur.
 }
 
-verseThree = \lyricmode {
-  \repeat unfold 15 \skip1
-  \set stanza = "3."
+verseThree = \stropheMode 3 15 \lyricmode {
   Pa -- rá -- "ta sedes tu" -- a ex tunc_:
   a_sǽ -- cu -- lo tu es.
 }
 
-verseFour = \lyricmode {
-  \repeat unfold 15 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseFour = \stropheMode 4 15 \lyricmode {
   E -- le -- vavérunt_flúmi -- na, Dó -- mine_:
   elevavérunt_flúmina vo -- cem su -- am.
 }
 
-verseFive = \lyricmode {
-  \repeat unfold 15 \skip1
-  \set stanza = "5."
+verseFive = \stropheMode 5 15 \lyricmode {
   E -- le -- "vavérunt flúmina fluc" -- tus su -- os,
   "a vócibus aquá" -- rum mul -- tá -- rum.
 }
 
-verseSix = \lyricmode {
-  \repeat unfold 15 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 6.
+verseSix = \stropheMode 6 15 \lyricmode {
   Mi -- rá -- biles_elatió -- nes ma -- ris_:
   mirábilis_in al -- tis Dó -- minus.
 }
 
-verseSeven = \lyricmode {
-  \repeat unfold 15 \skip1
-  \set stanza = "7."
+verseSeven = \stropheMode 7 15 \lyricmode {
   Tes -- ti -- "mónia tua credibília facta" sunt ni -- mis_:
   "domum tuam decet sanctitúdo, Dómine, in longitúdi - " -- nem di -- é -- rum.
 }
 
-verseEight = \lyricmode {
-  \repeat unfold 15 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 8.
+verseEight = \stropheMode 8 15 \lyricmode {
   Gló -- ri -- a_Patri, et Fí -- lio,
   et_Spirí -- tu -- i San -- cto.
 }
 
-verseNine = \lyricmode {
-  \repeat unfold 15 \skip1
-  \set stanza = "7."
+verseNine = \stropheMode 9 15 \lyricmode {
   Si -- cut "erat in princípio, et nunc," et sem -- per,
   "et in sǽcula sæcu" -- ló -- rum. A -- men.
 }
