@@ -10,7 +10,7 @@ global = {
 
 soprano = \fixed c' {
   \global
-  \markChanson "Couplet"
+  \markChanson "Couplets"
   d'16 d'4.. b16 b8. a16 g8. a16
   b4 g4. r16 d d8. a16
   a4. r16 a b4 g
@@ -151,7 +151,7 @@ bass = \fixed c {
   d1 g,2..
 }
 
-verseOne = \stropheMode 1 \lyricmode {
+verseOne = \strophemode 1 \lyricmode {
   Son -- nez, fan -- fa -- res tri -- om -- pha -- les_!
   Ton -- nez ca -- nons, bat -- tez tam -- bours_!
   Et vous, clo -- ches des ca -- thé -- dra -- les,
@@ -168,7 +168,7 @@ verseOne = \stropheMode 1 \lyricmode {
   chan -- tons com -- me_eux_: Vi -- ve Jean -- ne, vi -- ve la Fran -- ce_!
 }
 
-verseTwo = \stropheMode 2 \lyricmode {
+verseTwo = \strophemode 2 \lyricmode {
   Sa -- lut à la blan -- che ban -- niè -- re,
   sa -- lut, sa -- lut aux noms bé -- nis
   du Christ et de sa Sain -- te- Mè -- re

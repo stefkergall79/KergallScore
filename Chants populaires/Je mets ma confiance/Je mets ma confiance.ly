@@ -55,7 +55,7 @@ bass = \fixed c {
   e4 a,4. 8 b,8 8 e2
 }
 
-verseOne = \stropheMode 1 \lyricmode {
+verseOne = \strophemode 1 \lyricmode {
   Je mets ma con -- fi -- an -- ce,
   Vierge, en vo -- tre se -- cours,
   ser -- vez -_moi de dé -- fen -- se,
@@ -66,7 +66,7 @@ verseOne = \stropheMode 1 \lyricmode {
   De la plus sain -- te mort.
 }
 
-verseTwo = \stropheMode 2 \lyricmode {
+verseTwo = \strophemode 2 \lyricmode {
   Sain -- te Vier -- ge Ma -- ri -- e,
   a -- si -- le des pé -- cheurs,
   pre -- nez part, je vous pri -- e,
@@ -110,58 +110,46 @@ verseTwo = \stropheMode 2 \lyricmode {
     \layout {\context{\Staff \RemoveAllEmptyStaves}}
     \midi {\tempo 4=70}
 }
-\markup \fill-line {
-  \null
+
+\markup \couplets-markup #3 #2 {
   \column {
-    \line \italic { \bold "3."
-      \column {
-        "Ah ! Soyez-moi propice"
-        "Avant que de mourir,"
-        "Apaisez Sa justice,"
-        "Je crains de la subir ;"
-        "Mère pleine de zèle,"
-        "Protégez votre enfant,"
-        "Je vous serai fidèle"
-        "Jusqu’au dernier instant."
-      }}
-    \vspace #1
-    \line { \bold "4."
-      \column {
-        "À dessein de vous plaire,"
-        "O Reine de mon cœur !"
-        "Je promets de rien faire"
-        "Qui blesse votre honneur :"
-        "Je veux que, par hommage,"
-        "Ceux qui me sont sujets,"
-        "En tous lieux, à tout âge,"
-        "Prennent vos intérêts."
-      }}
+    "Ah ! Soyez-moi propice"
+    "Avant que de mourir,"
+    "Apaisez Sa justice,"
+    "Je crains de la subir ;"
+    "Mère pleine de zèle,"
+    "Protégez votre enfant,"
+    "Je vous serai fidèle"
+    "Jusqu’au dernier instant."
   }
-  \null
   \column {
-    \line \italic { \bold "5."
-      \column {
-        "Voyez couler mes larmes,"
-        "Mère du bel Amour ;"
-        "Finissez mes alarmes"
-        "Dans ce mortel séjour :"
-        "Venez rompre ma chaîne,"
-        "Pour m’approcher de vous,"
-        "Aimable Souveraine,"
-        "Que mon sort serait doux !"
-      }}
-    \vspace #1
-    \line { \bold "6."
-      \column {
-        "Vous êtes, Vierge Mère,"
-        "Après Dieu, mon support ;"
-        "Je sais qu’Il est mon Père,"
-        "Mais vous êtes mon fort :"
-        "Faites que dans la gloire,"
-        "Parmi les bienheureux,"
-        "Je chante la victoire"
-        "Du Monarque des cieux."
-      }}
+    "À dessein de vous plaire,"
+    "O Reine de mon cœur !"
+    "Je promets de rien faire"
+    "Qui blesse votre honneur :"
+    "Je veux que, par hommage,"
+    "Ceux qui me sont sujets,"
+    "En tous lieux, à tout âge,"
+    "Prennent vos intérêts."
   }
-  \null
+  \column {
+    "Voyez couler mes larmes,"
+    "Mère du bel Amour ;"
+    "Finissez mes alarmes"
+    "Dans ce mortel séjour :"
+    "Venez rompre ma chaîne,"
+    "Pour m’approcher de vous,"
+    "Aimable Souveraine,"
+    "Que mon sort serait doux !"
+  }
+  \column {
+    "Vous êtes, Vierge Mère,"
+    "Après Dieu, mon support ;"
+    "Je sais qu’Il est mon Père,"
+    "Mais vous êtes mon fort :"
+    "Faites que dans la gloire,"
+    "Parmi les bienheureux,"
+    "Je chante la victoire"
+    "Du Monarque des cieux."
+  }
 }

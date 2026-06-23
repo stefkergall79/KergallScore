@@ -41,42 +41,42 @@ verseOne = \lyricmode {
   "indútus est Dóminus fortitúdinem," et præ -- cín -- xit_se.
 }
 
-verseTwo = \stropheMode 2 15 \lyricmode {
+verseTwo = \strophemode 2 15 \lyricmode {
   E -- te -- "nim firmávit or" -- bem ter -- ræ,
   qui_non com -- mo -- vé -- bitur.
 }
 
-verseThree = \stropheMode 3 15 \lyricmode {
+verseThree = \strophemode 3 15 \lyricmode {
   Pa -- rá -- "ta sedes tu" -- a ex tunc_:
   a_sǽ -- cu -- lo tu es.
 }
 
-verseFour = \stropheMode 4 15 \lyricmode {
+verseFour = \strophemode 4 15 \lyricmode {
   E -- le -- vavérunt_flúmi -- na, Dó -- mine_:
   elevavérunt_flúmina vo -- cem su -- am.
 }
 
-verseFive = \stropheMode 5 15 \lyricmode {
+verseFive = \strophemode 5 15 \lyricmode {
   E -- le -- "vavérunt flúmina fluc" -- tus su -- os,
   "a vócibus aquá" -- rum mul -- tá -- rum.
 }
 
-verseSix = \stropheMode 6 15 \lyricmode {
+verseSix = \strophemode 6 15 \lyricmode {
   Mi -- rá -- biles_elatió -- nes ma -- ris_:
   mirábilis_in al -- tis Dó -- minus.
 }
 
-verseSeven = \stropheMode 7 15 \lyricmode {
+verseSeven = \strophemode 7 15 \lyricmode {
   Tes -- ti -- "mónia tua credibília facta" sunt ni -- mis_:
   "domum tuam decet sanctitúdo, Dómine, in longitúdi - " -- nem di -- é -- rum.
 }
 
-verseEight = \stropheMode 8 15 \lyricmode {
+verseEight = \strophemode 8 15 \lyricmode {
   Gló -- ri -- a_Patri, et Fí -- lio,
   et_Spirí -- tu -- i San -- cto.
 }
 
-verseNine = \stropheMode 9 15 \lyricmode {
+verseNine = \strophemode 9 15 \lyricmode {
   Si -- cut "erat in princípio, et nunc," et sem -- per,
   "et in sǽcula sæcu" -- ló -- rum. A -- men.
 }
@@ -135,4 +135,3 @@ verseNine = \stropheMode 9 15 \lyricmode {
     \layout {\context{\Staff \RemoveAllEmptyStaves}}
     \midi {\tempo 2=65}
   }
-
