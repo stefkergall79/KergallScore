@@ -3,7 +3,7 @@
     "tasks": [
         {
             "label": "Compile",
-            "type": "shell",
+            "type": "process",
             "command": "flatpak",
             "args": [
                 "run",
@@ -51,6 +51,16 @@
             "args": [
                 "run",
                 "org.frescobaldi.Frescobaldi",
+                "${file}"
+            ],
+            "group": "build",
+            "isBackground": true
+        },
+        {
+            "label": "Lecteur midi",
+            "type": "shell",
+            "command": "timidity",
+            "args": [
                 "${file}"
             ],
             "group": "build"

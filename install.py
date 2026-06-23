@@ -16,8 +16,9 @@ packages = {
         "init": "sudo apt-get update",
         "command": "sudo apt-get install -qq {} -y",
         "apps": {
+            "Lecteur midi": "timidity",
             "pip": "pip",
-            "Tkinter": "python3-tk"
+            "TKinter": "python3-tk"
         }
     },
     "pip": {
