@@ -1,9 +1,6 @@
 \version "2.26.0"
 \include "articulate.ly"
-
-\header {
-  tagline = ##f
-}
+\include "../../settings.ily"
 
 global = {
   \key d \major
