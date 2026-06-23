@@ -1,5 +1,5 @@
-\version "2.24.3"
-
+\version "2.26.0"
+\include "../../settings.ily"
 global = {
   \key c \major
   \time 4/4
@@ -33,21 +33,12 @@ bass = \fixed c {
   c f g c8[d] e[f] g2(g,) c1
 }
 
-verseOne = \lyricmode {
+verse = \lyricmode {
   Sán -- cte Pí -- e Dé -- ci -- me,
   glo -- ri -- ó -- se Pa -- tró -- ne,
   ó -- ra, ó -- ra pro nó -- bis_!
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
 \tocItem \markup "Sáncte Píe Décime"
 \score {
   \header {
@@ -64,7 +55,7 @@ verseOne = \lyricmode {
       >>
       \new Lyrics \with {
         \override VerticalAxisGroup.staff-affinity = #CENTER
-      } \lyricsto "soprano" \verseOne
+      } \lyricsto "soprano" \verse
       
       \new Staff \with {
         midiInstrument = "choir aahs"

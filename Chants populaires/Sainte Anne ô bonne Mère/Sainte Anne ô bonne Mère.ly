@@ -19,7 +19,7 @@ soprano = \fixed c' {
   b4. b4 g8
   a[ b] c' b[ a] b
   g2 r8 \break \bar "||"
-  \markChanson "Couplet" \repeat unfold 2 {d
+  \markChanson "Couplets" \repeat unfold 2 {d
   g4 g8 a[ g] a
   b4. b4 g8
   a[ b] c' b[ a] b
@@ -86,9 +86,7 @@ verseOne = \lyricmode {
   d'en -- tou -- rer ton au -- tel.
 }
 
-verseTwo = \lyricmode {
-  \repeat unfold 26 {\skip1}
-  \set stanza = "2."
+verseTwo = \strophemode 2 26 \lyricmode {
   Quand l’er -- reur se dé -- chaî -- ne
   pour vain -- cre no -- tre foi,
   puis -- san -- te Sou -- ve -- rai -- ne,
@@ -127,7 +125,7 @@ verseTwo = \lyricmode {
   \midi { \tempo 4=100 }
 }
 
-\markup \couplets-markup #3 #2 {
+\markup \couplets-markup #3 #3 {
   \column {
     "Protège le Saint-Père,"
     "Dont le cœur humble et grand"
