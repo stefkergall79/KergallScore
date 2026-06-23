@@ -55,82 +55,53 @@ verseOne = \lyricmode {
   \set stanza = "1."
   Quó -- ni -- "am confortávit séras portárum tu - " -- ár -- um_:
   "benedíxit fíliis" tú -- is in te.
-%{
-%}
 }
 
-verseTwo = \lyricmode {
-  \repeat unfold 31 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 31 \lyricmode {
   Qui pó -- "suit fínes túos" pá -- cem_:
   "et ádipe fruménti" sá -- ti -- at te.
 }
 
-verseThree = \lyricmode {
-  \repeat unfold 31 \skip1
-  \set stanza = "3."
+verseThree = \strophemode 3 31 \lyricmode {
   Qui e -- "míttit elóquium súum" tér -- rae_:
   "velóciter cúrrit" sér -- mo é -- jus.
 }
 
-verseFour = \lyricmode {
-  \repeat unfold 31 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseFour = \strophemode 4 31 \lyricmode {
   Qui dat "nívem sícut" lá -- nam_:
   "nébulam sícut" cí -- nerem spár -- git.
 }
 
-verseFive = \lyricmode {
-  \repeat unfold 31 \skip1
-  \set stanza = "5."
+verseFive = \strophemode 5 31 \lyricmode {
   Mít -- tit "crystállum súam sícut buc" -- cél -- las_:
   "ante fáciem frígoris éjus quis " sus -- ti -- né -- bit_?
 }
 
-verseSix = \lyricmode {
-  \repeat unfold 31 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 6.
+verseSix = \strophemode 6 31 \lyricmode {
   E -- mít -- "tet vérbum súum et liquefáciet" é -- a_:
   "flábit spíritus éjus, et" flú -- ent á -- quæ.
 }
 
-verseSeven = \lyricmode {
-  \repeat unfold 31 \skip1
-  \set stanza = "7."
+verseSeven = \strophemode 7 31 \lyricmode {
   Qui an -- "núntiat vérbum súum" Já -- cob_:
   "justítias et judícia" sú -- a Is -- raël.
 }
 
-verseEight = \lyricmode {
-  \repeat unfold 31 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 8.
+verseEight = \strophemode 8 31 \lyricmode {
   Non fé -- "cit táliter ómni nati" -- ó -- ni_:
   "et judícia súa non manifes" -- tá -- vit é -- is.
 }
 
-verseNine = \lyricmode {
-  \repeat unfold 31 \skip1
-  \set stanza = "9."
+verseNine = \strophemode 9 31 \lyricmode {
   Gló -- ri -- "a Pátri et" Fí -- lio_:
   "et Spi" -- rí -- tui Sán -- cto.
 }
 
-verseTen = \lyricmode {
-  \repeat unfold 31 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 10.
+verseTen = \strophemode 10 31 \lyricmode {
   Sí -- cut "érat in princípio et nunc et" sém -- per_:
   "et in sǽcula sæcu" -- ló -- rum. A -- men.
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = ##f
-}
 \tocItem \markup "Lauda Jerusalem"
 \score {
   \header {

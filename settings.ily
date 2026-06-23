@@ -31,7 +31,8 @@ strophemode =
   (let ((num-str (string-append (number->string num) "."))
         (skip_debut (if (> debut 0)
             #{ \lyricmode { \repeat unfold #debut \skip 1 } #}
-            ""))
+            #{
+            #}))
        )
   (if (odd? num)
     #{

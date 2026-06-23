@@ -1,5 +1,5 @@
-\version "2.24.3"
-
+\version "2.26.0"
+\include "../../settings.ily"
 global = {
   \key bes \major
   \numericTimeSignature
@@ -19,8 +19,7 @@ soprano = \fixed c' {
   g8 8 8 bes g bes d'4(c'8) bes4. c'8 d' c' bes4 a8 g4. r4 \bar "|."
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   Ô Croix dres -- sée sur le mon -- de,
   ô Croix de Jé -- sus -_Christ_!
   Fleu -- ve dont l'eau fé -- con -- de
@@ -29,9 +28,7 @@ verseOne = \lyricmode {
   ô Croix de Jé -- sus -_Christ_!
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo =  \strophemode 2 \lyricmode {
   Ô Croix, su -- bli -- me fo -- li -- e,
   ô Croix de Jé -- sus -_Christ_!
   Dieu rend par toi la vi -- e
@@ -40,8 +37,7 @@ verseTwo = \lyricmode {
   ô Croix de Jé -- sus -_Christ_!
 }
 
-verseThree = \lyricmode {
-  \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
   Ô Croix, sa -- ges -- se su -- prê -- me,
   ô Croix de Jé -- sus -_Christ_!
   Le Fils de Dieu lui -_mê -- me
@@ -50,9 +46,7 @@ verseThree = \lyricmode {
   ô Croix de Jé -- sus -_Christ_!
 }
 
-verseFour = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = "4."
+verseFour = \strophemode 4 \lyricmode {
   Ô Croix, vic -- toire é -- cla -- tan -- te,
   ô Croix de Jé -- sus -_Christ_!
   Tu ju -- ge -- ras le mon -- de
@@ -61,10 +55,6 @@ verseFour = \lyricmode {
   ô Croix de Jé -- sus -_Christ
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = ##f
-}
 \tocItem \markup "Ô Coix dressée sur le monde"
 \score {
   \header {

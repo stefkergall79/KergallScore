@@ -1,12 +1,5 @@
-\version "2.24.4"
-
-\header {
-  title = "Sainte Anne, ô bonne Mère"
-  composer = "Mélodie bretonne"
-  % Supprimer le pied de page par défaut
-  tagline = ##f
-}
-
+\version "2.26.00"
+\include "../../settings.ily"
 
 global = {
   \key g \major
@@ -17,8 +10,7 @@ global = {
 
 soprano = \fixed c' {
   \global
-  % En avant la musique.
-  \sectionLabel"Refrain"
+  \markChanson "Refrain"
   b8 b4 a8 b4 c'8
   d'4. d'4 b8
   b4 d'8 d'[ c'] b
@@ -27,7 +19,7 @@ soprano = \fixed c' {
   b4. b4 g8
   a[ b] c' b[ a] b
   g2 r8 \break \bar "||"
-  \sectionLabel"Couplet" \repeat unfold 2 {d
+  \markChanson "Couplet" \repeat unfold 2 {d
   g4 g8 a[ g] a
   b4. b4 g8
   a[ b] c' b[ a] b
@@ -36,7 +28,6 @@ soprano = \fixed c' {
 
 alto = \fixed c' {
   \global
-  % En avant la musique.
   g8 g4 fis8 g4 g8
   g4. g4 g8
   g4 g8 b[ a] g
@@ -53,7 +44,6 @@ alto = \fixed c' {
 
 tenor = \fixed c {
   \global
-  % En avant la musique.
   d'8 d'4 d'8 d'4 e'8
   d'4. d'4 e'8
   d'4 d'8 d'[ e'] d'
@@ -70,7 +60,6 @@ tenor = \fixed c {
 
 bass = \fixed c {
   \global
-  % En avant la musique.
   d8 4 8 4 c8
   b,4. b,4 c8
   g,4 b,8 g4 g8
@@ -86,7 +75,6 @@ bass = \fixed c {
 }
 
 verseOne = \lyricmode {
-  % Ajouter ici des paroles.
   Sainte Anne, ô bon -- ne Mè -- re,
   toi que nous im -- plo -- rons,
   en -- tends no -- tre pri -- è -- re
@@ -99,7 +87,6 @@ verseOne = \lyricmode {
 }
 
 verseTwo = \lyricmode {
-  % Ajouter ici des paroles.
   \repeat unfold 26 {\skip1}
   \set stanza = "2."
   Quand l’er -- reur se dé -- chaî -- ne
@@ -109,6 +96,10 @@ verseTwo = \lyricmode {
 }
 
 \score {
+  \header {
+    title = "Sainte Anne, ô bonne Mère"
+    composer = "Mélodie bretonne"
+  }
   \new ChoirStaff <<
     \new Staff \with {
       midiInstrument = "choir aahs"
@@ -118,10 +109,10 @@ verseTwo = \lyricmode {
       \new Voice = "alto" { \voiceTwo \alto }
     >>
     \new Lyrics \with {
-      \override VerticalAxisGroup #'staff-affinity = #CENTER
+      \override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "soprano" \verseOne
     \new Lyrics \with {
-      \override VerticalAxisGroup #'staff-affinity = #CENTER
+      \override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "soprano" \verseTwo
     \new Staff \with {
       midiInstrument = "choir aahs"
@@ -133,103 +124,68 @@ verseTwo = \lyricmode {
     >>
   >>
   \layout { }
-  \midi {
-    \tempo 4=100}}
+  \midi { \tempo 4=100 }
+}
 
-\markup {
-  \fill-line {
-    \hspace #0
-    \column {
-
-      \line { \italic \bold "3-"
-        \column {
-          "Protège le Saint-Père,"
-          "Dont le cœur humble et grand"
-          "Souffre sur le Calvaire"
-          "Comme Jésus mourrant."
-        }}
-      \combine \null \vspace #1
-
-      \line { \italic \bold "4-"
-        \column {
-          "Fais que la Sainte Église"
-          "Répande en liberté"
-          "Sur la terre soumise"
-          "L'auguste vérité."
-        }}
-      \combine \null \vspace #1
-
-      \line { \italic \bold "5-"
-        \column {
-          "Rends à la noble France"
-          "Sa gloire d'autrefois :"
-          "Fais grandir sa puissance"
-          "A l'ombre de la Croix."
-        }}
-        \combine \null \vspace #1
-
-      \line { \italic \bold "6-"
-        \column {
-          "Que le monde redise"
-          "En tout temps, en tout lieu :"
-          "La Fille de l'Église"
-          "Est le soldat de Dieu !"
-        }}
-        \combine \null \vspace #1
-
-      \line { \italic \bold "7-"
-        \column {
-          "Soutiens dans la tourmente"
-          "Les pauvres matelots :"
-          "Sauve la barque errante"
-          "De la fureur des flots."
-        }}}
-
-    \hspace #0.1
-    \column {
-
-      \line { \italic \bold "8-"
-        \column {
-          "Conserve à la Bretagne"
-          "Ses valeureux soldats :"
-          "Ton cœur les accompagne"
-          "Au milieu des combats."
-      }}
-      \combine \null \vspace #1
-
-      \line { \italic \bold "9-"
-        \column {
-          "Que le pauvre village"
-          "Et les riches cités"
-          "Sous ton doux patronage"
-          "Soient toujours abrités."
-      }}
-      \combine \null \vspace #1
-
-      \line { \italic \bold "10-"
-        \column {
-          "Ta Fille Immaculée,"
-          "Reine au divin séjour,"
-          "À notre âme troublée"
-          "Sourit avec amour."
-      }}
-      \combine \null \vspace #1
-
-      \line { \italic \bold "11-"
-        \column {
-          "Dis-lui notre misère,"
-          "Afin que sa bonté"
-          "Fléchisse la colère"
-          "De Jésus irrité."
-      }}
-      \combine \null \vspace #1
-
-      \line { \italic \bold "12-"
-        \column {
-          "Ô Sainte Anne, ô Marie,"
-          "Nos vœux montent vers vous !"
-          "Sauvez notre patrie :"
-          "Priez, priez pour nous !"
-    }}}
-    \hspace #0.1
-  }}
+\markup \couplets-markup #3 #2 {
+  \column {
+    "Protège le Saint-Père,"
+    "Dont le cœur humble et grand"
+    "Souffre sur le Calvaire"
+    "Comme Jésus mourrant."
+  }
+  \column {
+    "Fais que la Sainte Église"
+    "Répande en liberté"
+    "Sur la terre soumise"
+    "L'auguste vérité."
+  }
+  \column {
+    "Rends à la noble France"
+    "Sa gloire d'autrefois :"
+    "Fais grandir sa puissance"
+    "A l'ombre de la Croix."
+  }
+  \column {
+    "Que le monde redise"
+    "En tout temps, en tout lieu :"
+    "La Fille de l'Église"
+    "Est le soldat de Dieu !"
+  }
+  \column {
+    "Soutiens dans la tourmente"
+    "Les pauvres matelots :"
+    "Sauve la barque errante"
+    "De la fureur des flots."
+  }
+  \column {
+    "Conserve à la Bretagne"
+    "Ses valeureux soldats :"
+    "Ton cœur les accompagne"
+    "Au milieu des combats."
+  }
+  \column {
+    "Que le pauvre village"
+    "Et les riches cités"
+    "Sous ton doux patronage"
+    "Soient toujours abrités."
+  }
+  \column {
+    "Ta Fille Immaculée,"
+    "Reine au divin séjour,"
+    "À notre âme troublée"
+    "Sourit avec amour."
+  }
+  \column {
+    "Dis-lui notre misère,"
+    "Afin que sa bonté"
+    "Fléchisse la colère"
+    "De Jésus irrité."
+  }
+  \column {
+    "Ô Sainte Anne, ô Marie,"
+    "Nos vœux montent vers vous !"
+    "Sauvez notre patrie :"
+    "Priez, priez pour nous !"
+  }
+}

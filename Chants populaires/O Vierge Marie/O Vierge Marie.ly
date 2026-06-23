@@ -40,8 +40,7 @@ bass = \fixed c {
   es2 4 bes, c2 4 4 d2 2 g,
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne =  \strophemode 1 \lyricmode {
   Ô Vier -- ge Ma -- ri -- e, Mè -- re du Très -_Haut,
   Mè -- re du Mes -- si -- e, le Di -- vin A -- gneau,
   Vierge in -- com -- pa -- ra -- ble, Es -- poir d'Is -- ra -- ël,
@@ -50,9 +49,7 @@ verseOne = \lyricmode {
   Vier -- ge Ma -- ri -- e, pri -- ez pour nous.
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   Ô Mè -- re très pu -- re du Christ Ré -- demp -- teur,
   Mè -- re sans souil -- lu -- re, Mè -- re du Sau -- veur,
   Vier -- ge vé -- né -- ré -- e, Mys -- tique at -- tri -- but,
@@ -89,38 +86,29 @@ verseTwo = \lyricmode {
         \new Voice = "bass" { \voiceTwo \bass }
       >>
     >>
-    \layout {\context{\Staff \RemoveAllEmptyStaves}}
-    \midi {\tempo 4=70}
-  }
+  \layout {\context{\Staff \RemoveAllEmptyStaves}}
+  \midi {\tempo 4=70}
+}
 
-\markup {
-  \vspace #2
-  \hspace #5
+\markup \couplets-markup #3 #2 {
   \column {
-    \line { \bold 3. Miroir de justice, Palais du grand Roi,}
-    "    Mystique édifice, Arche de la Loi,"
-    "    Ô Céleste tige, Branche de Jessé,"
-    "    Illustre prodige au monde annoncé."
-    \vspace #1
-    \italic{
-      \line { \bold 4. Reine immaculée, Fille d'Aaron,}
-      "    Fleur de Galilée, Rose de Saron,"
-      "    Tendre et chaste Mère, pleine de bonté,"
-      "    Voyez ma misère, Lys de pureté."
-    }
+    "Mystique édifice, Arche de la Loi,"
+    "Ô Céleste tige, Branche de Jessé,"
+    "Illustre prodige au monde annoncé."
   }
-  \hspace #5
   \column {
-    \line { \bold 5. Reine des saints anges, Secours des chrétiens,}
-    "    À vous nos louanges, Trésor de tous biens."
-    "    Reine du Rosaire, Ô Temple immortel,"
-    "    À vous ma prière, Parure du ciel."
-    \vspace #1
-    \italic{
-      \line { \bold 6. Trône de sagesse, Ô vase d'honneur,}
-      "    Source d'allégresse, notre seul bonheur,"
-      "    Reine d'espérance, guérissez nos cœurs ;"
-      "    Notre délivrance, Salut des pécheurs."
-    }
+    "Fleur de Galilée, Rose de Saron,"
+    "Tendre et chaste Mère, pleine de bonté,"
+    "Voyez ma misère, Lys de pureté."
+  }
+  \column {
+    "À vous nos louanges, Trésor de tous biens."
+    "Reine du Rosaire, Ô Temple immortel,"
+    "À vous ma prière, Parure du ciel."
+  }
+  \column {
+    "Source d'allégresse, notre seul bonheur,"
+    "Reine d'espérance, guérissez nos cœurs ;"
+    "Notre délivrance, Salut des pécheurs."
   }
 }

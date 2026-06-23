@@ -1,5 +1,5 @@
 \version "2.26.0"
-
+\include "../../settings.ily"
 global = {
   \key d \major
   \numericTimeSignature
@@ -81,8 +81,7 @@ bass = \fixed c {
   d4.
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   Noble é -- poux de Ma -- ri -- e,
   digne ob -- jet de nos chants,
   no -- tre cœur vous sup -- pli -- e,
@@ -92,50 +91,34 @@ verseOne = \lyricmode {
   veil -- lez, veil -- lez sur vos en -- fants_!
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   Le Sau -- veur_ sur la ter -- re,
   re -- çut vos soins tou -- chants_;
   vous qu'il nom -- ma son pè -- re,
   veil -- lez sur vos en -- fants_!
 }
 
-verseThree = \lyricmode {
-  \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
   Té -- moin de sa nais -- san -- ce,
   et de ses jeu -- nes ans,
   gar -- dien de son en -- fan -- ce,
   veil -- lez sur vos en -- fants_!
 }
 
-verseFour = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseFour = \strophemode 4 \lyricmode {
   Au jour de la co -- lè -- re,
   vous ra -- vîtes aux ty -- rans
   le Sau -- veur et sa Mè -- re_;
   veil -- lez sur vos en -- fants_!
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
 \tocItem \markup "Noble époux de Marie"
-
 \score {
   \header {
     title = "NOBLE ÉPOUX DE MARIE"
     composer = "Jean-Noël Laprise (né en 1945)"
     poet = "Harmonisation : Stéphane Kergall (né en 2007)"
   }
-
   \new ChoirStaff <<
     \new Staff \with {
       midiInstrument = "choir aahs"
@@ -171,42 +154,29 @@ verseFour = \lyricmode {
   \midi {\tempo 4.=60 }
 }
 
-\markup \fill-line {
-  \null
+\markup \couplets-markup #5 #2 {
   \column {
-    \line { \bold \italic "5-"
-       \column {
-         "Vous dont l'obéissance,"
-         "En ces dangers pressants,"
-         "Devint leur providence,"
-         "Veillez sur vos enfants !"
-      }}
-    \vspace #1
-    \line { \bold \italic "6-"
-      \column {
-        "Vous dont la main féconde"
-        "A nourri si longtemps"
-        "Le Créateur du monde,"
-        "Veillez sur vos enfants !"
-     }}
+    "Vous dont l'obéissance,"
+    "En ces dangers pressants,"
+    "Devint leur providence,"
+    "Veillez sur vos enfants !"
   }
-  \hspace #0.1
   \column {
-    \line { \bold \italic "7-"
-      \column {
-        "Que votre main bénisse,"
-        "Ô Patron des mourrants,"
-        "Mon dernier sacrifice ;"
-        "Veillez sur vos enfants !"
-    }}
-    \vspace #1
-    \line { \bold \italic "8-"
-      \column {
-        "Votre amour nous rassemble :"
-        "Gardez-nous innocents !"
-        "Nous vous prions ensemble :"
-        "Veillez sur vos enfants !"
-    }}
+    "Vous dont la main féconde"
+    "A nourri si longtemps"
+    "Le Créateur du monde,"
+    "Veillez sur vos enfants !"
   }
-  \null
+  \column {
+    "Que votre main bénisse,"
+    "Ô Patron des mourrants,"
+    "Mon dernier sacrifice ;"
+    "Veillez sur vos enfants !"
+  }
+  \column {
+    "Votre amour nous rassemble :"
+    "Gardez-nous innocents !"
+    "Nous vous prions ensemble :"
+    "Veillez sur vos enfants !"
+  }
 }
