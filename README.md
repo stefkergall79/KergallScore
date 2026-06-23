@@ -15,8 +15,6 @@ Ce dépôt propose une soixantaine de partitions [lilypond](https://lilypond.org
 
 `Ctrl+Maj+B` et sélectionnez :
 
-
-
 - Installer les dépendances : `New`.
 - Sauvegarder sur le dépôt Git : `Save`.
 - Créer une nouvelle partition : `Install`.
