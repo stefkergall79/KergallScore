@@ -114,6 +114,7 @@ verseAlto = \lyricmode {
     \new Staff \with {
       midiInstrument = "choir aahs"
       instrumentName = "Soprano"
+      \consists "Ambitus_engraver"
     } \new Voice = "soprano" \soprano
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
@@ -122,6 +123,7 @@ verseAlto = \lyricmode {
     \new Staff \with {
       midiInstrument = "choir aahs"
       instrumentName = "Alto"
+      \consists "Ambitus_engraver"
     } \new Voice = "alto" \alto
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
@@ -130,6 +132,7 @@ verseAlto = \lyricmode {
     \new Staff \with {
       midiInstrument = "choir aahs"
       instrumentName = "Ténor"
+      \consists "Ambitus_engraver"
     } {
       \clef "treble_8"
       \new Voice = "tenor" \tenor
@@ -141,6 +144,7 @@ verseAlto = \lyricmode {
     \new Staff \with {
       midiInstrument = "choir aahs"
       instrumentName = "Basse"
+      \consists "Ambitus_engraver"
     } {
       \clef bass
       \new Voice = "bass" \bass
