@@ -1,5 +1,5 @@
 \version "2.26.0"
-
+\include "../../settings.ily"
 global = {
   \key g \major
   \time 3/4
@@ -55,8 +55,7 @@ bass = \fixed c {
   e4 a,4. 8 b,8 8 e2
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \stropheMode 1 \lyricmode {
   Je mets ma con -- fi -- an -- ce,
   Vierge, en vo -- tre se -- cours,
   ser -- vez -_moi de dé -- fen -- se,
@@ -67,9 +66,7 @@ verseOne = \lyricmode {
   De la plus sain -- te mort.
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \stropheMode 2 \lyricmode {
   Sain -- te Vier -- ge Ma -- ri -- e,
   a -- si -- le des pé -- cheurs,
   pre -- nez part, je vous pri -- e,
@@ -80,14 +77,8 @@ verseTwo = \lyricmode {
   in -- ter -- cé -- dez pour moi.
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = ##f
-}
-\tocItem \markup {
-  \pad-to-box #'(0 . 40) #'(0 . 0)
-  "Je mets ma confiance" ""
-}
+\tocItem \markup "Je mets ma confiance"
+
 \score {
   \header {
     title = "JE METS MA CONFIANCE"

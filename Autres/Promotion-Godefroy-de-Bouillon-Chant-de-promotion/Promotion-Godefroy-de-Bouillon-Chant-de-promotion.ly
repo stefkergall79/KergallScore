@@ -1,9 +1,8 @@
-\version "2.24.3"
+\version "2.26.0"
 
 \header {
   title = "Chant de promotion"
   composer = "Promotion Godefroy de Bouillon"
-  % Supprimer le pied de page par défaut
   tagline = ##f
 }
 

@@ -1,8 +1,5 @@
 \version "2.26.0"
-
-\header {
-  title = "L'OURS"
-}
+\include "../../settings.ily"
 
 global = {
   \key f \major
@@ -25,7 +22,6 @@ soprano = \fixed c' {
 
 alto = \fixed c' {
   \global
-  % En avant la musique.
   
 }
 
@@ -57,6 +53,9 @@ verse = \lyricmode {
 }
 
 \score {
+  \header {
+    title = "L'OURS"
+  }
   \new ChoirStaff <<
     \new Staff \with {
       midiInstrument = "choir aahs"
