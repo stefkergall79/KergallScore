@@ -21,3 +21,4 @@ Ce dépôt propose une soixantaine de partitions [lilypond](https://lilypond.org
 - Compiler un fichier source: `Compile`.
 - Jouer un fichier son : `Lecteur midi`.
 - Ouvrir un fichier source dans [Frescobaldi](https://frescobaldi.org/) : `Frescobaldi`.
+
