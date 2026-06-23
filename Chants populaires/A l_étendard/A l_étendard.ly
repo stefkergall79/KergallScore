@@ -1,12 +1,5 @@
-\version "2.24.4"
-
-\header {
-  title = "À L'ÉTENDARD"
-  arranger = "Abbé Marcel Laurent"
-  meter = "Paroles : Chanoine Gustave Vié"
-  piece = " "
-  tagline = ##f
-}
+\version "2.26.0"
+\include "../../settings.ily"
 
 global = {
   \key g \major
@@ -17,7 +10,7 @@ global = {
 
 soprano = \fixed c' {
   \global
-  \sectionLabel"Couplet"
+  \markChanson "Couplet"
   d'16 d'4.. b16 b8. a16 g8. a16
   b4 g4. r16 d d8. a16
   a4. r16 a b4 g
@@ -34,7 +27,7 @@ soprano = \fixed c' {
   bes4 g4. r16 g g8. g16
   bes4.. bes16 c'4.. c'16
   d'2~8 r
-  \bar "||" \break \sectionLabel"Refrain"
+  \bar "||" \break \markChanson "Refrain"
   d'8. d'16
   b2 b8. a16 g8. a16
   b2 g8 r16 e e8. e16
@@ -158,8 +151,7 @@ bass = \fixed c {
   d1 g,2..
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \stropheMode 1 \lyricmode {
   Son -- nez, fan -- fa -- res tri -- om -- pha -- les_!
   Ton -- nez ca -- nons, bat -- tez tam -- bours_!
   Et vous, clo -- ches des ca -- thé -- dra -- les,
@@ -176,8 +168,7 @@ verseOne = \lyricmode {
   chan -- tons com -- me_eux_: Vi -- ve Jean -- ne, vi -- ve la Fran -- ce_!
 }
 
-verseTwo = \lyricmode {
-  \set stanza = "2."
+verseTwo = \stropheMode 2 \lyricmode {
   Sa -- lut à la blan -- che ban -- niè -- re,
   sa -- lut, sa -- lut aux noms bé -- nis
   du Christ et de sa Sain -- te- Mè -- re
@@ -189,6 +180,11 @@ verseTwo = \lyricmode {
 }
 
 \score {
+  \header {
+    title = "À L'ÉTENDARD"
+    composer = "Abbé Marcel Laurent"
+    poet = "Paroles : Chanoine Gustave Vié"
+  }
   \new ChoirStaff <<
     \new Staff \with {
       midiInstrument = "choir aahs"
@@ -215,7 +211,5 @@ verseTwo = \lyricmode {
     >>
   >>
   \layout { }
-  \midi {
-    \tempo 4=100
-  }
+  \midi { \tempo 4=100 }
 }

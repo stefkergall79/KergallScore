@@ -1,5 +1,6 @@
 \version "2.26.0"
 \include "../../settings.ily"
+
 global = {
   \key f \major
   \time 4/4
@@ -59,40 +60,27 @@ verseOne = \lyricmode {
   "in lóco páscuæ íbi me" col -- lo -- cá -- vit.
 }
 
-verseTwo = \lyricmode {
-  \repeat unfold 41 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \stropheMode 2 41 \lyricmode {
   Sú -- per "áquam refectiónis e" du -- cá -- vit_me_:
   "ánimam mé" -- am con -- vér -- tit.
 }
 
-verseThree = \lyricmode {
-  \repeat unfold 41 \skip1
-  \set stanza = "3."
+verseThree = \stropheMode 3 41 \lyricmode {
   De -- dú -- "xit me súper sémitas" jus -- ti -- tiæ_:
   própter nó -- men sú -- um.
 }
 
-verseFour = \lyricmode {
-  \repeat unfold 41 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseFour = \stropheMode 4 41 \lyricmode {
   Nam et "si ambulávero in médio úmbræ mórtis, non timé - " -- bo má -- la_:
   quóniam tu mé -- cum es.
 }
 
-verseFive = \lyricmode {
-  \repeat unfold 41 \skip1
-  \set stanza = "5."
+verseFive = \stropheMode 5 41 \lyricmode {
   Vír -- ga "túa et bácu" -- lus tú -- us_:
   "ípsa me con" -- so -- lá -- ta sunt.
 }
 
-verseSix = \lyricmode {
-  \repeat unfold 41 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 6.
+verseSix = \stropheMode 6 41 \lyricmode {
   Pa -- rá -- "sti in conspéctu mé" -- o mén -- sam_:
   "advérsus éos, qui" trí -- bu -- lant me.
 }
@@ -101,7 +89,6 @@ verseSix = \lyricmode {
 \score {
   \header {
     title = "BENEDICTUS"
-    composer = ""
   }
   \new ChoirStaff <<
       \new Staff \with {

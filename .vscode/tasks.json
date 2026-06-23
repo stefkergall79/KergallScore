@@ -25,7 +25,8 @@
             ],
             "group": "build"
         },
-        {    "label": "New",
+        {   
+            "label": "New",
             "type": "shell",
             "command": "${command:python.interpreterPath}",
             "args": [
@@ -40,6 +41,17 @@
             "args": [
                 "${workspaceFolder}/install.py",
                 "--code"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "Frescobaldi",
+            "type": "shell",
+            "command": "flatpak",
+            "args": [
+                "run",
+                "org.frescobaldi.Frescobaldi",
+                "${file}"
             ],
             "group": "build"
         }

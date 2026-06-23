@@ -28,5 +28,5 @@ if not fichiers_modifies and not fichiers_non_suivis:
 else:
 	print("Exportation...", end=" ", flush = True)
 	REPO.remote(name="origin").push()
-	print("Terminé.\n")
+	print("Fait.\n")
 	print("\nSauvegarde terminée.")
