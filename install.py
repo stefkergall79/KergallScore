@@ -36,8 +36,7 @@ if "--code" in sys.argv:
         "init": None,
         "command": "code --install-extension {} >/dev/null 2>&1",
         "apps": {
-            "GABC": "AISCGre-BR.vscode-gregorio",
-            "PDF pour Lilypond": "lhl2617.lilypond-pdf-preview",
+            "Extension GABC": "AISCGre-BR.vscode-gregorio",
             "Extension Lilypond": "lhl2617.VSLilyPond",
             "Extension Python": "ms-python.python"
         }
