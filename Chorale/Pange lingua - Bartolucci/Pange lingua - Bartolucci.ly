@@ -46,8 +46,7 @@ bass = \fixed c {
   es1( bes,) f,\breve
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   Pan -- ge lin -- gua glo -- ri -- ó -- si
   Cor -- pó -- ris mys -- té -- ri -- um,
   San -- gui -- nís -- que pre -- ti -- ó -- si,
@@ -56,9 +55,7 @@ verseOne = \lyricmode {
   rex ef -- fú -- dit gén -- ti -- um, rex ef -- fú -- dit gén -- ti -- um.
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   No -- bis da -- tus, no -- bis na -- tus
   ex in -- tác -- ta Vír -- gi -- ne,
   et in mun -- do con -- ver -- sá -- tus,
@@ -70,8 +67,7 @@ verseTwo = \lyricmode {
   A -- men.
 }
 
-verseThree = \lyricmode {
-  \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
   In su -- pré -- mae noc -- te ce -- nae
   re -- cúm -- bens cum frá -- tri -- bus,
   ob -- ser -- vá -- ta le -- ge ple -- ne
@@ -116,34 +112,27 @@ verseThree = \lyricmode {
 }
 
 
-\markup \fill-line {
-  \null
-  \column \italic {
-    \line {\bold 4. Verbum caro, panem verum}
-    "    Verbo carnem éfficit ;"
-    "    Fitque sanguis Christi merum,"
-    "    Et, si sensus déficit,"
-    "    Ad firmándum cor sincérum"
-    "    Sola fides súfficit."
-  }
-  \null
+\markup \couplets-markup #4 #3 {
   \column {
-    \line {\bold 5. Tantum ergo Sacraméntum}
-    "    Venerémur cérnui,"
-    "    Et antíquum documéntum"
-    "    Novo cedat rítui ;"
-    "    Præstet fides supplémentum"
-    "    Sénsuum deféctui."
+    "Verbo carnem éfficit ;"
+    "Fitque sanguis Christi merum,"
+    "Et, si sensus déficit,"
+    "Ad firmándum cor sincérum"
+    "Sola fides súfficit."
   }
-  \null
-  \column \italic {
-    \line {\bold 6. Genitóri Genitóque}
-    "    Laus et jubilátio,"
-    "    Salus, honor, virtus quoque"
-    "    Sit et benedíctio ;"
-    "    Procedénti ab utróque"
-    "    Compar sit laudátio."
-    \line \bold { "    Amen."}
+  \column {
+    "Venerémur cérnui,"
+    "Et antíquum documéntum"
+    "Novo cedat rítui ;"
+    "Præstet fides supplémentum"
+    "Sénsuum deféctui."
   }
-  \null
+  \column {
+    "Laus et jubilátio,"
+    "Salus, honor, virtus quoque"
+    "Sit et benedíctio ;"
+    "Procedénti ab utróque"
+    "Compar sit laudátio."
+    \line \bold { "Amen."}
+  }
 }

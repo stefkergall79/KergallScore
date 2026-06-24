@@ -25,34 +25,28 @@ bass = \fixed c {
   bes, c es as8[g]f[es]d4 c8[d]es4 bes,4 es g f c f,8[g,]as,[bes,]es2
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   O glo -- ri -- ó -- sa vir -- gí -- num,
   su -- blí -- mis in -- ter sí -- de -- ra,
   qui te cre -- á -- vit pár -- vu -- lum
   lac -- tén -- te nú -- tris ú -- be -- re.
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   Quod Hé -- va trís -- tis ábs -- tu -- lit,
   tu réd -- dis ál -- mo gér -- mi -- ne_;
   in -- trent ut ás -- tra flé -- bi -- les
   cǽ -- li re -- clú -- dis cár -- di -- nes.
 }
 
-verseThree = \lyricmode {
-  \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
   Tu Ré -- gis ál -- ti já -- nu -- a,
   et áu -- la lú -- cis fúl -- gi -- da_;
   ví -- tam dá -- tam per Vír -- gi -- nem,
   gén -- tes re -- dém -- ptæ, pláu -- di -- te.
 }
 
-verseFour = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseFour = \strophemode 4 \lyricmode {
   Jé -- su, tí -- bi sit gló -- ri -- a,
   qui ná -- tus est de Vír -- gi -- ne,
   cum Pá -- tr(e),_et ál -- mo Spí -- ri -- tu,
@@ -96,4 +90,3 @@ verseFour = \lyricmode {
     \layout {\context{\Staff \RemoveAllEmptyStaves}}
     \midi {\tempo 4=70}
   }
-

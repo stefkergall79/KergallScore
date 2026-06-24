@@ -39,26 +39,21 @@ bass = \fixed c {
     c2 d es f g g, c1
 }
 
-verseOne = \lyricmode {
-    \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
     Stá -- bat Má -- ter do -- lo -- ró -- sa,
     iúx -- ta cru -- cem la -- cri -- mó -- sa,
     dum pen -- dé -- bat Fí -- li -- us,
     dum pen -- dé -- bat Fí -- li -- us.
 }
 
-verseTwo = \lyricmode {
-    \override LyricText.font-shape = #'italic
-    \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
     Cú -- ius á -- ni -- mam ge -- mén -- tem,
     con -- tris -- tá -- tam et do -- lén -- tem
     per -- tran -- sí -- vit glá -- di -- us,
     per -- tran -- sí -- vit glá -- di -- us.
-    
 }
 
-verseThree = \lyricmode {
-    \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
     O quam tris -- tis et af -- flíc -- ta
     fu -- it il -- la be -- ne -- díc -- ta
     Má -- ter U -- ni -- gé -- ni -- ti,
@@ -68,7 +63,7 @@ verseThree = \lyricmode {
 \tocItemComposer "Stabat Mater" "Kodaly"
 \score {
   \header {
-    title = "STÁBAT MÁTER"
+    title = "STABAT MATER"
     composer = "Zoltán Kodály (1882-1967)"
   }
   \new ChoirStaff <<
@@ -102,6 +97,7 @@ verseThree = \lyricmode {
     \layout { }
     \midi {\tempo 2=60 }
 }
+
 \markup{
   * Pour finir, on reprendra les quatre dernières mesures sur "\""A-men"\"",
   avec un mi \tiny { \text-accidental #0 } à l'alto.

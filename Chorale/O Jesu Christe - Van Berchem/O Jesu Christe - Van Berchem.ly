@@ -1,5 +1,5 @@
 \version "2.26.0"
-
+\include "../../settings.ily"
 global = {
     \key d \major
     \time 4/4
@@ -18,7 +18,6 @@ soprano = \fixed c' {
     \break \bar "||" \time 3/4
     fis4 4 4 e2 r4 g4 g g fis
     b2 a4(g4. fis8) 4.(e16[d]e4) fis2.~2.~2. \bar "|."
-
 }
 
 alto = \fixed c' {
@@ -31,7 +30,6 @@ alto = \fixed c' {
     cis1 2 d r2 fis~2 2 g fis~4 g8[fis] g2 fis1
     d4 4 4 cis2 r4 e4 4 4 d fis2~4 d2~4 b,4. cis8 d4
     a,(b,) cis(d2) cis2.
-
 }
 
 tenor = \fixed c {
@@ -45,7 +43,6 @@ tenor = \fixed c {
     a1 2 2 r d'~2 2 b d'~1 1
     a4 4 4 2 r4 b4 4 4 4 d'2 cis'4(b2)
     a4 g2 fis4 2 4(b2) ais2.
-
 }
 
 bass = \fixed c {
@@ -59,7 +56,6 @@ bass = \fixed c {
     1 2 d r b2~2 2 e b(4 a g2) d1
     d4 4 4 a,2 r4 e4 4 4 b,4 2 fis4(g2)
     d4 e2 b,4 d2 a,4(b,2) fis2.
-
 }
 
 sopranoVerse = \lyricmode {
@@ -101,22 +97,8 @@ bassVerse = \lyricmode {
 
 }
 
-tempog = #60
 instrument = "acoustic grand"
-
-\tocItem \markup {
-  \pad-to-box #'(0 . 40) #'(0 . 0)
-  "O Jesu Christe" "Van Berchem"
-}
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
+\tocItemComposer "O Jesu Christe" "Van Berchem"
 \score {
   \header {
     title = "O JESU CHRISTE"
@@ -127,30 +109,29 @@ instrument = "acoustic grand"
             midiInstrument = \instrument
             instrumentName = "S."
             \consists "Ambitus_engraver"
-        } { \soprano }
+        } { \new Voice = "soprano" \soprano }
         \addlyrics { \sopranoVerse }
         \new Staff \with {
             midiInstrument = \instrument
             instrumentName = "A."
             \consists "Ambitus_engraver"
-        } { \alto }
+        } { \new Voice = "alto" \alto }
         \addlyrics { \altoVerse }
         \new Staff \with {
             midiInstrument = \instrument
             instrumentName = "T."
             \consists "Ambitus_engraver"
-        } { \clef "treble_8" \tenor }
+        } { \clef "treble_8" \new Voice = "tenor" \tenor }
         \addlyrics { \tenorVerse }
         \new Staff \with {
             midiInstrument = \instrument
             instrumentName = "B."
             \consists "Ambitus_engraver"
-        } { \clef bass \bass }
+        } { \clef bass \new Voice = "bass" \bass }
         \addlyrics { \bassVerse }
     >>
     \layout { }
-    \midi { \tempo 4= 60 }
-    \midi { \tempo 4 = 80}
+    \midi { \tempo 4 = 70}
 }
 
 
@@ -162,58 +143,9 @@ instrument = "acoustic grand"
   "Ayez pitié de moi"
 }
 
-
-%{rehearsalMidi = #
-(define-music-function
- (parser location name midiInstrument lyrics) (string? string? ly:music?)
- #{
-     \unfoldRepeats <<
-         \new Staff = "soprano" \new Voice = "soprano" { \soprano }
-         \new Staff = "alto" \new Voice = "alto" { \alto }
-         \new Staff = "tenor" \new Voice = "tenor" { \tenor }
-         \new Staff = "bass" \new Voice = "bass" { \bass }
-         \context Staff = $name {
-             \set Score.midiMinimumVolume = #0.5
-             \set Score.midiMaximumVolume = #0.5
-             \set Staff.midiMinimumVolume = #0.8
-             \set Staff.midiMaximumVolume = #1.0
-             \set Staff.midiInstrument = $midiInstrument
-         }
-         \new Lyrics \with {
-             alignBelowContext = $name
-         } \lyricsto $name $lyrics
-     >>
- #})
-
-\book {
-    \bookOutputSuffix "soprano"
-    \score {
-        \rehearsalMidi "soprano" "soprano sax" \sopranoVerse
-        \midi {\tempo 4=\tempog }
-    }
-}
-
-\book {
-    \bookOutputSuffix "alto"
-    \score {
-        \rehearsalMidi "alto" "soprano sax" \altoVerse
-        \midi {\tempo 4=\tempog }
-    }
-}
-
-\book {
-    \bookOutputSuffix "tenor"
-    \score {
-        \rehearsalMidi "tenor" "tenor sax" \tenorVerse
-        \midi {\tempo 4=\tempog }
-    }
-}
-
-\book {
-    \bookOutputSuffix "bass"
-    \score {
-        \rehearsalMidi "bass" "tenor sax" \bassVerse
-        \midi {\tempo 4=\tempog }
-    }
-%}
-
+\generate-rehearsal-midi #70 #`(
+  ("soprano" . ,sopranoVerse)
+  ("alto"    . ,altoVerse)
+  ("tenor"   . ,tenorVerse)
+  ("bass"    . ,bassVerse)
+)

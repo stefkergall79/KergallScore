@@ -1,5 +1,5 @@
-\version "2.24.3"
-
+\version "2.26.0"
+\include "../../settings.ily"
 global = {
   \key c \major
   \time 2/2
@@ -51,8 +51,7 @@ bass = \fixed c {
   r4 s4 d2 a,
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   Tán -- tum ér -- go Sa -- cra -- mén -- tum
   ve -- ne -- ré -- mur cér -- nu -- i,
   et an -- tí -- quum do -- cu -- mén -- tum
@@ -63,9 +62,7 @@ verseOne = \lyricmode {
   A -- men.
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   Ge -- ni -- tó -- ri Ge -- ni -- tó -- que
   laus et ju -- bi -- lá -- ti -- o,
   sá -- lus, hó -- nor, vír -- tus quó -- que
@@ -74,14 +71,7 @@ verseTwo = \lyricmode {
   cóm -- par sit lau -- dá -- ti -- o.
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = ##f
-}
-\tocItem \markup {
-  \pad-to-box #'(0 . 40) #'(0 . 0)
-  "Tantum ergo" "Bach"
-}
+\tocItemComposer "Tantum ergo" "Bach"
 \score {
   \header {
     title = "TANTUM ERGO"
@@ -114,4 +104,3 @@ verseTwo = \lyricmode {
     \layout {\context{\Staff \RemoveAllEmptyStaves}}
     \midi {\tempo 4=70}
   }
-

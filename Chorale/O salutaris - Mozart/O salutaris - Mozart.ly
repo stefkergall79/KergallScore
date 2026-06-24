@@ -42,17 +42,14 @@ bass = \fixed c {
   c g,
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   O sa -- lu -- ta -- ris Hos -- ti -- a,
   quæ cæ -- li pan -- dis os -- ti -- um.
   Bel -- la pre -- munt hos -- ti -- li -- a,
   da ro -- bur, fer au -- xi -- li -- um.
   A -- men.
 }
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   U -- ni tri -- no -- que Do -- mi -- no
   sit sem -- pi -- ter -- na glo -- ri -- a,
   qui vi -- tam si -- ne ter -- mi -- no
@@ -91,4 +88,3 @@ verseTwo = \lyricmode {
     \layout {\context{\Staff \RemoveAllEmptyStaves}}
     \midi {\tempo 4=90}
   }
-

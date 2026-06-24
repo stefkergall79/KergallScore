@@ -45,7 +45,7 @@ bass = \fixed c {
   c d(e4.) 8 a,2
 }
 
-verseOne = \lyricmode {
+verse = \lyricmode {
   Pan -- is an -- gé -- li -- cus
   fit pan -- is hó -- mi -- num.
   Fit pan -- is hó -- mi -- num.
@@ -80,7 +80,7 @@ verseOne = \lyricmode {
       >>
       \new Lyrics \with {
         \override VerticalAxisGroup.staff-affinity = #CENTER
-      } \lyricsto "alto" \verseOne
+      } \lyricsto "alto" \verse
       
       \new Staff \with {
         midiInstrument = "choir aahs"
@@ -88,7 +88,7 @@ verseOne = \lyricmode {
       } << \clef bass \bass  >>
     >>
     \layout {\context{\Staff \RemoveAllEmptyStaves}}
-    \midi {\tempo 4=85}
+    \midi {\tempo 4=85 }
 }
 
 \markup \column {

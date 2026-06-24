@@ -145,16 +145,14 @@ verseTenorBass = \lyricmode {
       midiInstrument = "choir aahs"
       \consists "Ambitus_engraver"
     } \new Voice = "soprano" \soprano
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
+    \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "soprano" \verseSoprano
     
     \new Staff \with {
       midiInstrument = "choir aahs"
       \consists "Ambitus_engraver"
     } \new Voice = "alto" \alto
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
+    \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "alto" \verseAlto
     
     \new Staff \with {
@@ -164,8 +162,7 @@ verseTenorBass = \lyricmode {
       \clef "treble_8"
       \new Voice = "tenor" \tenor
     }
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
+    \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "tenor" \verseTenorBass
     
     \new Staff \with {
@@ -175,12 +172,11 @@ verseTenorBass = \lyricmode {
       \clef bass
       \new Voice = "bass" \bass
     }
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
+    \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "bass" \verseTenorBass
   >>
   \layout {\context{\Staff \RemoveAllEmptyStaves}}
-  \midi {\tempo 2=60}
+  \midi { \tempo 2=60 }
 }
 \markup \column {
   "Prenez vos offrandes et adorez le Seigneur dans son sanctuaire."

@@ -1,5 +1,5 @@
 \version "2.26.0"
-
+\include "../../settings.ily"
 global = {
   \key g \major
   \numericTimeSignature
@@ -12,11 +12,11 @@ global = {
 
 soprano = \fixed c' {
   \global
-  \sectionLabel "Couplets"
+  \markChanson "Couplets"
   e8 g4 8 fis[g] fis e4. 4 8 a4 g8 fis4 8 4
   8 8[g] a g4. fis8[g fis] g4. d4 g8 a4 8 4 g8 fis4. r4 \bar "||" \break
 
-  \sectionLabel "Refrain"
+  \markChanson "Refrain"
   e8 b4 8 4 a8 b4. 4 e8 c'4 8 8[b] a b4. 8 e' d' c'4.~8[b] a b4. 4
   g8 fis4 8 8[g] fis e4.~4 \bar "|."
 }
@@ -48,55 +48,37 @@ bass = \fixed c {
   8 b,4 8 8[cis] dis e4.~4
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   Vous ê -- tes dans mon â -- me, Jé -- sus, ô Roi des Cieux_!
   Mon cœur d'a -- mour s'en -- flam -- me, au com -- ble de mes vœux_!
   Jé -- sus Eu -- cha -- ris -- ti -- e, ô Fils de l'É -- ter -- nel_!
   Pour moi dans l'humble Hos -- ti -- e, Vous des -- cen -- dez du Ciel.
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   Doux Maî -- tre je Vous don -- ne ma foi, mon humble a -- mour,
   que Vo -- tre main si bon -- ne me gui -- de cha -- que jour.
 }
 
-verseThree = \lyricmode {
-  \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
   Mon âme est triste et las -- se sans Vo -- tre bon se -- cours_;
   j'im -- plo -- re Vo -- tre grâ -- ce, res -- tez en moi tou -- jours.
 }
 
-verseFour = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseFour = \strophemode 4 \lyricmode {
   Jé -- sus, mon  cœur Vous ai -- me, gar -- dez lui sa fer -- veur,
   Jé -- sus, Bon -- té su -- prê -- me, Jé -- sus, Di -- vin Sau -- veur.
 }
 
-
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  } 
-}
 \score {
   \header {
     title = "VOUS ÊTES DANS MON ÂME"
     composer = "Jeanne Barbey (née en 1977)"
   }
-
   \new ChoirStaff <<
     \new Staff \with {
       midiInstrument = "choir aahs"
       \consists Merge_rests_engraver
-      instrumentName = \markup \center-column { "S." "A." }
     } <<
       \new Voice = "soprano" { \voiceOne \soprano }
       \new Voice = "alto" { \voiceTwo \alto }
@@ -116,7 +98,6 @@ verseFour = \lyricmode {
     \new Staff \with {
       midiInstrument = "choir aahs"
       \consists Merge_rests_engraver
-      instrumentName = \markup \center-column { "T." "B." }
     } <<
       \clef bass
       \new Voice = "tenor" { \voiceOne \tenor }

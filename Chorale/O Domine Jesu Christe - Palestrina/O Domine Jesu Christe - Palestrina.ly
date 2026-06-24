@@ -56,7 +56,7 @@ verse = \lyricmode {
 \tocItem \markup "O Domine Jesu Christe"
 \score {
   \header {
-    title = "O DÓMINE JÉSU CHRÍSTE"
+    title = "O DOMINE JESU CHRISTE"
     composer = "Giovanni da Palestrina (1525-1594)"
     }
   \new ChoirStaff <<

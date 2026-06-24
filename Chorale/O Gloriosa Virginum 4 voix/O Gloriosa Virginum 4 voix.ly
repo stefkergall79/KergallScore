@@ -9,7 +9,6 @@ global = {
 
 soprano = \fixed c' {
   \global
-  % En avant la musique.
   a4(g) bes a g2 f4(g) a(c' d') a c'1
   f'4(e') d' c' d'2 c'4(g) a(c'2) b4 c'2 r4
   4 bes(a g) d' c'(bes) a(c') bes(a g) d' c'(bes a) \breathe
@@ -19,7 +18,6 @@ soprano = \fixed c' {
 
 alto = \fixed c' {
   \global
-  % En avant la musique.
   f4(g) f4 4 4(e) f(c) f(g f) f e(g f e)
   f(g) a g a(g8[f]) e4(g) f(a g) g e2 r4
   f4 4(e d) e f(e) f2 4(e d) e f8([c d e] f4)
@@ -42,16 +40,13 @@ bass = \fixed c {
   f es2 2 d2. c4 bes,2 c f1 bes,2 f
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
-  % Ajouter ici des paroles.
+verseOne = \strophemode 1 \lyricmode {
   O Glo -- ri -- ó -- sa Vír -- gi -- num, su -- blí -- mis in -- ter sí -- de -- ra_:
   qui te cre -- á -- vit pár -- vu -- lum lac -- tén -- te nú -- tris ú -- be -- ra.
   A -- men.
 }
 
-verseTwo = \lyricmode {
-  \set stanza = "2."
+verseTwo = \strophemode 2 \lyricmode {
   Jé -- su tí -- bi sit gló -- ri -- a, qui ná -- tus est de Vír -- gi -- ne,
   cum \markup {\concat{ Pátr(\italic e )}} et ál -- mo Spí -- ri -- tu,
   in sem -- pi -- tér -- na sǽ -- cu -- la.
@@ -61,7 +56,7 @@ verseTwo = \lyricmode {
 \tocItem \markup "O Gloriosa Virginum"
 \score {
   \header {
-    title = "O GLORIÓSA VÍRGINUM"
+    title = "O GLORIOSA VIRGINUM"
     poet = "Paroles : Saint Venance Fortunat (~530-609)"
     composer = "Anonyme"
   }
@@ -91,4 +86,5 @@ verseTwo = \lyricmode {
     >>
   >>
   \layout { }
-  \midi {\tempo 4=100}}
+  \midi {\tempo 4=100}
+}

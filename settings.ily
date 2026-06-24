@@ -117,7 +117,6 @@ rehearsalMidi = #(define-music-function
      \context Staff = $name {
        \set Score.midiMinimumVolume = #0.5
        \set Score.midiMaximumVolume = #0.5
-       \set Score.tempoWholesPerMinute = #1/1
        \set Staff.midiMinimumVolume = #0.8
        \set Staff.midiMaximumVolume = #1.0
        \set Staff.midiInstrument = "choir aahs"
@@ -129,14 +128,21 @@ rehearsalMidi = #(define-music-function
  #})
 
 generate-rehearsal-midi =
-#(define-void-function (voice-lyrics-list) (list?)
+#(define-void-function (tempo-val voice-lyrics-list) (integer? list?)
    (for-each
     (lambda (pair)
       (let* ((voice-name (car pair))     
              (lyrics-var (cdr pair)))
         
         (ly:book-process
-         #{ \book { \score { \rehearsalMidi #voice-name #lyrics-var \midi {} } } #}
+         #{ 
+           \book { 
+             \score { 
+               \rehearsalMidi #voice-name #lyrics-var 
+               \midi {  \tempo 4 = #tempo-val } 
+             } 
+           } 
+ #}
          #{ \paper {} #}
          #{ \layout {} #}
          (string-append (ly:parser-output-name) "-" voice-name))))
