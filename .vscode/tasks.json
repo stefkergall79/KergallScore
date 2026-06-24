@@ -55,7 +55,7 @@
             "type": "shell",
             "command": "timidity",
             "args": [
-                "${file}"
+                "${fileDirname}/${fileBasenameNoExtension}.midi"
             ],
             "group": "build"
         }

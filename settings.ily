@@ -104,3 +104,40 @@ strophemode =
      (interpret-markup layout props
        (make-fill-line-markup balanced-columns)))
    ))
+
+
+rehearsalMidi = #(define-music-function
+ (parser location name lyrics) (string? ly:music?)
+ #{
+   \unfoldRepeats <<
+     \new Staff = "soprano" \new Voice = "soprano" { \soprano }
+     \new Staff = "alto" \new Voice = "alto" { \alto }
+     \new Staff = "tenor" \new Voice = "tenor" { \tenor }
+     \new Staff = "bass" \new Voice = "bass" { \bass }
+     \context Staff = $name {
+       \set Score.midiMinimumVolume = #0.5
+       \set Score.midiMaximumVolume = #0.5
+       \set Score.tempoWholesPerMinute = #1/1
+       \set Staff.midiMinimumVolume = #0.8
+       \set Staff.midiMaximumVolume = #1.0
+       \set Staff.midiInstrument = "choir aahs"
+     }
+     \new Lyrics \with {
+       alignBelowContext = $name
+     } \lyricsto $name $lyrics
+   >>
+ #})
+
+generate-rehearsal-midi =
+#(define-void-function (voice-lyrics-list) (list?)
+   (for-each
+    (lambda (pair)
+      (let* ((voice-name (car pair))     
+             (lyrics-var (cdr pair)))
+        
+        (ly:book-process
+         #{ \book { \score { \rehearsalMidi #voice-name #lyrics-var \midi {} } } #}
+         #{ \paper {} #}
+         #{ \layout {} #}
+         (string-append (ly:parser-output-name) "-" voice-name))))
+    voice-lyrics-list))

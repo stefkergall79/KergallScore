@@ -1,5 +1,5 @@
 \version "2.26.0"
-
+\include "../../settings.ily"
 global = {
   \key es \major
   \time 4/4
@@ -77,8 +77,7 @@ bass = \fixed c {
   as bes8[bes,]es2|
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   A -- dó -- ro Te de -- vó -- te,
   lá -- tens Dé -- i -- tas,
   quæ sub his fi -- gú -- ris
@@ -93,10 +92,7 @@ verseOne = \lyricmode {
   óm -- ni -- um cre -- dén -- ti -- um.
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \skip1
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 1 \lyricmode {
   Jé -- su, quem ve -- lá -- tum
   nunc as -- pí -- ci -- o,
   ó -- ro fí -- at íl -- lud,
@@ -107,19 +103,7 @@ verseTwo = \lyricmode {
   Tú -- æ gló -- ri -- æ.
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
-\tocItem \markup {
-  \pad-to-box #'(0 . 40) #'(0 . 0)
-  "Adoro te devote" ""
-}
+\tocItem \markup "Adoro te devote"
 \score {
   \header {
     title = "ADORO TE DEVOTE"

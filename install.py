@@ -38,8 +38,8 @@ if "--code" in sys.argv:
         "apps": {
             "GABC": "AISCGre-BR.vscode-gregorio",
             "PDF pour Lilypond": "lhl2617.lilypond-pdf-preview",
-            "Extension Lilypond": "bncummings.lytex-language-pack",
-            "Python": "ms-python.python"
+            "Extension Lilypond": "lhl2617.VSLilyPond",
+            "Extension Python": "ms-python.python"
         }
     }
 

@@ -81,44 +81,29 @@ verst = \lyricmode {
   \midi { \tempo 4=85}
 }
 
-\markup \fill-line {
-  \null
+\markup \couplets-markup #2 #2 {
   \column {
-      \line \italic { \bold "2-"
-        \column {
-          "Quándo cor nóstrum vísita,"
-          "Tunc lúcet et véritas,"
-          "Múndi viléscit vánitas,"
-          "Et íntus férvet cáritas."
-        }}
-      \vspace #1
-      \line { \bold "3-"
-        \column {
-          "Jésu, dulcédo córdium,"
-          "Fons vívus, lúmen méntium,"
-          "Excédens ómne gáudium,"
-          "Et ómne desidérium."
-        }}
-      \vspace #3
+    "Quándo cor nóstrum vísita,"
+    "Tunc lúcet et véritas,"
+    "Múndi viléscit vánitas,"
+    "Et íntus férvet cáritas."
   }
-
-  \null
   \column {
-      \line \italic { \bold "4-"
-        \column {
-          "Jésum ómnes agnóscite,"
-          "Amórem éjus póscite :"
-          "Jésum ardénter quǽrite,"
-          "Quǽrendo inardéscite."
-      }}
-      \vspace #1
-      \line { \bold "5-"
-        \column {
-          "Te nóstra, Jésu, vox sónet,"
-          "Nóstri te móres éxprimant,"
-          "Te córda nóstra díligant,"
-          "Et nunc et in perpétuum."
-    }}
+    "Jésu, dulcédo córdium,"
+    "Fons vívus, lúmen méntium,"
+    "Excédens ómne gáudium,"
+    "Et ómne desidérium."
   }
-  \null
+  \column {
+    "Jésum ómnes agnóscite,"
+    "Amórem éjus póscite :"
+    "Jésum ardénter quǽrite,"
+    "Quǽrendo inardéscite."
+    }
+  \column {
+    "Te nóstra, Jésu, vox sónet,"
+    "Nóstri te móres éxprimant,"
+    "Te córda nóstra díligant,"
+    "Et nunc et in perpétuum."
+  }
 }

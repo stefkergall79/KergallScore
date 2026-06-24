@@ -1,5 +1,5 @@
 \version "2.26.0"
-
+\include "../../settings.ily"
 global = {
   \key d \major
   \time 4/4
@@ -35,6 +35,7 @@ verseOne = \lyricmode {
 
 verseTwo = \lyricmode {
   2 1*9
+  \override LyricText.font-shape = #'italic
   \set stanza = \markup \italic 2.
   Ne4 per4 -- mit4 -- tas8 a8 te8 me8 se8 -- pa8 -- ra4 -- ri,4
   ab8 hos -- te ma -- li4 -- gno8 de -- fen4 -- de me,2
@@ -51,13 +52,13 @@ verseThree = \lyricmode {
 
 soprano = \fixed c' {
   \global
-  \sectionLabel \markup \bold "Refrain"
+  \markChanson "Refrain"
   fis4 8 8 b4 8 8 a4 8 g fis2
   e4 fis8[g] d4 e fis4. e8 fis2
   fis4 4 b cis'8 d' d'[cis'] b a b2
   4 fis a8[g] fis e d4 e fis4. 8 2\bar "||"
 
-  \sectionLabel \markup \bold "Couplets"
+  \markChanson "Couplets"
   fis2 g fis2. e8[d] e4 b,2 d4 4 e fis2
   2. e4 2 d2 4 cis2 b,4 d cis b,2
 }
@@ -182,21 +183,11 @@ orguePart = \new PianoStaff \with {
   } { \clef bass << \leftOne \\ \leftTwo >> }
 >>
 
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
 \score {
   \header {
     title = "ANIMA CHRISTI"
     composer = "Mgr Marco Frisina (né en 1954)"
   }
-
   <<
     \sopranoVoicePart
     \choirPart

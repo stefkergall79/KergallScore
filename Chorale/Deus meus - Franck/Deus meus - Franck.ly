@@ -141,28 +141,6 @@ pianoPart = \new PianoStaff  <<
   } { \clef bass << \leftOne \\ \leftTwo >> }
 >>
 
-rehearsalMidi = #(define-music-function
- (parser location name lyrics) (string? ly:music?)
- #{
-   \unfoldRepeats <<
-     \new Staff = "soprano" \new Voice = "soprano" { \soprano }
-     \new Staff = "alto" \new Voice = "alto" { \alto }
-     \new Staff = "tenor" \new Voice = "tenor" { \tenor }
-     \new Staff = "bass" \new Voice = "bass" { \bass }
-     \context Staff = $name {
-       \set Score.midiMinimumVolume = #0.5
-       \set Score.midiMaximumVolume = #0.5
-       \set Score.tempoWholesPerMinute = #(ly:make-moment 60 4)
-       \set Staff.midiMinimumVolume = #0.8
-       \set Staff.midiMaximumVolume = #1.0
-       \set Staff.midiInstrument = "choir aahs"
-     }
-     \new Lyrics \with {
-       alignBelowContext = $name
-     } \lyricsto $name $lyrics
-   >>
- #})
-
 \score {
   \header {
     title = "DEUS MEUS"
@@ -178,34 +156,9 @@ rehearsalMidi = #(define-music-function
   \midi {}
 }
 
-\book {
-  \bookOutputSuffix "soprano"
-  \score {
-    \rehearsalMidi "soprano" \verse
-    \midi {}
-  }
-}
-
-\book {
-  \bookOutputSuffix "alto"
-  \score {
-    \rehearsalMidi "alto" \verse
-    \midi {}
-  }
-}
-
-\book {
-  \bookOutputSuffix "tenor"
-  \score {
-    \rehearsalMidi "tenor" \verset
-    \midi {}
-  }
-}
-
-\book {
-  \bookOutputSuffix "bass"
-  \score {
-    \rehearsalMidi "bass" \verse
-    \midi {}
-  }
-}
+\generate-rehearsal-midi #`(
+  ("soprano" . ,verse)
+  ("alto"    . ,verse)
+  ("tenor"   . ,verset)
+  ("bass"    . ,verse)
+)

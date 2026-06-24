@@ -1,5 +1,5 @@
 \version "2.26.0"
-
+\include "../../settings.ily"
 global = {
   \key d \major
   \time 4/4
@@ -395,20 +395,7 @@ pianoPart = \new PianoStaff \with {
   } { \clef bass << \leftOne \\ \leftTwo >> }
 >>
 
-
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
-\tocItem \markup {
-  \pad-to-box #'(0 . 40) #'(0 . 0)
-  "Ave verum" "Mozart"
-}
+\tocItemComposer "Ave verum" "Mozart"
 \score {
   \header {
     title = "AVE VERUM"

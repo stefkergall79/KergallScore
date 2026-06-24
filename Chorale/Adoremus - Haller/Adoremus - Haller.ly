@@ -10,7 +10,7 @@ soprano = \fixed c' {
   fis2.^\pp 4 g1\espressivo fis2 r4 a^\<~4 4 b2 cis'4\! 4 d'4. 8 cis'4 b2 a4 1^\> 1\!\fermata\bar "||"
 
   \break\cadenzaOn fis\breve \cadenzaOff \bar"|"
-  b2 a4.( g8 fis1\fermata)\bar "||"
+  b2 a4.( g8 fis1\fermata)\bar "||" \break
   \cadenzaOn fis\breve \cadenzaOff \bar"|"
   a4.~8 g4.( fis8 e1\fermata) \bar"|."
 }
@@ -26,60 +26,58 @@ tenor = \fixed c {
   \global
   a2. 4 b1\espressivo a2 r4 d'~4 e'4 d'2 e'4 4 d'4. e'8 fis'4 d'2 4 4(cis'8 b cis'2) d'1\fermata
 
- a\breve g2 e( s1)\fermata d\breve fis4.~8 d2(a1)\fermata
+ a\breve g2 e s1\fermata d\breve fis2 d2 a1\fermata
 }
 
 bass = \fixed c {
   \global
   d2. 4 g1 d2 r4 d'4~4 cis'4 b2 a4 4 b4. 8 fis4 g2 d4 a,1 d1
 
-  d\breve g,2 a,(d1) b,\breve fis,4.~8 g,2(a,1)
+  d\breve g,2 a, d1 b,\breve fis,2 g,2 a,1
+}
+
+verseRefrain = \lyricmode {
+  A -- do -- ré -- mus
+  in æ -- tér -- num
+  San -- ctís -- si -- mum
+  Sa -- cra -- mén -- tum.
 }
 
 verseOne = \lyricmode {
- A -- do -- ré -- mus
- in æ -- tér -- num
- San -- ctís -- si -- mum
- Sa -- cra -- mén -- tum.
+  \skip 1*8
   \set stanza = "1."
-  "Quam dilécta tabernácula tua  //  Dómine vir    -   " -- tú -- tum_;
-  "concupíscit, et déficit ánima mea  //  in átria      " Dó__-__mi -- ni.
+  "Quam dilécta tabernácula tua  //  Dómine vir    -   "\breve -- tú2 -- tum_;1.
+  "concupíscit, et déficit ánima mea  //  in átria      "\breve Dó4. -- mi8 -- ni.1.
 }
 
-verseTwo = \lyricmode {
-  \repeat unfold 16 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup  \italic"2."
+verseTwo = \strophemode 2 16 \lyricmode {
   "Cor meum, et caro " me -- a_;
   "exsultavérunt in Deum" vi -- vum.
 }
 
-verseThree = \lyricmode {
-  \repeat unfold 16 \skip1
-  \set stanza = "3."
+verseThree = \strophemode 3 16 \lyricmode {
   "Etenim passer invénit sibi" do -- mum_;
   "et turtur nidum sibi  //  ubi ponat pullos" su -- os.
 }
 
-verseFour = \lyricmode {
-  \repeat unfold 16 \skip1
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic"4."
+verseFour = \strophemode 4 16 \lyricmode {
   "Altária tua, Dómine vir " -- tú -- tum_;
   "rex meus et Deus" me -- us.
 }
 
 verseFive = \lyricmode {
-  \repeat unfold 16 \skip1
+  \skip 1*8
   \set stanza = "5."
-  "Beáti qui habítant in domo tua," Dó -- mi_______-_______ne_;
-  "in sǽcula sæculórum lau " -- dá -- bunt_____________te.
+  "Beáti qui habítant in domo tua,"\breve Dó2 -- mi2 -- ne_;1
+  "in sǽcula sæculórum lau "\breve -- dá4. -- bunt8 te.1.
 }
 
 
 versete = \lyricmode {
   1*8
-  \markup \italic B.F.
+  \markup \italic B.F.\breve
+  1*2
+  \markup \italic B.F.\breve
 }
 
 \tocItemComposer "Adoremus" "Haller"
@@ -93,15 +91,14 @@ versete = \lyricmode {
     \new Staff \with {
       midiInstrument = "choir aahs"
       \consists Merge_rests_engraver
-      instrumentName = \markup \center-column { "S." "A." }
     } <<
       \new Voice = "soprano" { \voiceOne \soprano }
       \new Voice = "alto" { \voiceTwo \alto }
     >>
-    \new Lyrics \with {
-      \override LyricText.self-alignment-X = #LEFT
-      \override VerticalAxisGroup.staff-affinity = #DOWN
-    } \lyricsto "soprano" \verseOne
+    \new Lyrics \with {\override LyricText.self-alignment-X = #LEFT
+    } \lyricsto "soprano" \verseRefrain
+    \new Lyrics \with {\override LyricText.self-alignment-X = #LEFT
+    } \verseOne
     \new Lyrics \with {\override LyricText.self-alignment-X = #LEFT
     } \lyricsto "soprano" \verseTwo
     \new Lyrics \with {\override LyricText.self-alignment-X = #LEFT
@@ -109,11 +106,11 @@ versete = \lyricmode {
     \new Lyrics \with {\override LyricText.self-alignment-X = #LEFT
     } \lyricsto "soprano" \verseFour
     \new Lyrics \with {\override LyricText.self-alignment-X = #LEFT
-    } \lyricsto "soprano" \verseFive
+    } \verseFive
+    
     \new Staff \with {
       midiInstrument = "choir aahs"
       \consists Merge_rests_engraver
-      instrumentName = \markup \center-column { "T." "B." }
     } <<
       \clef bass
       \new Voice = "tenor" { \voiceOne \tenor }

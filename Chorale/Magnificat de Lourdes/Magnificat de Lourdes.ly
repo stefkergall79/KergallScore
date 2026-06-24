@@ -1,10 +1,9 @@
 \version "2.26.0"
-
+\include "../../settings.ily"
 global = {
   \key f \major
   \cadenzaOn
   \autoBeamOff
-  \override Staff.Parentheses.font-size = 1
   \omit Staff.TimeSignature
 }
 
@@ -15,11 +14,11 @@ psalm = \fixed c' {
 
 soprano = \fixed c' {
   \global
-  \sectionLabel \markup \bold "Psalmodia"
+  \markChanson "Psalmodia"
   f8 g8[a] a\breve c'8 bes a8 g2 \bar "|"
   g\breve a8 bes8[a] g4 f2 \bar "||" \break
   
-  \sectionLabel \markup \bold "Falsus bordonus"
+  \markChanson "Falsus bordonus"
   
   \set Staff.shortInstrumentName = \markup \center-column { "S." "A." }
   c'\breve \bar "|" \cadenzaOff
@@ -128,20 +127,8 @@ verseTwelve = \lyricmode {
   "Sicut érat in princípio, et nunc, et       " sém -- per,
   "et in saécula sæculórum." A -- men.
 }
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
-\tocItem \markup {
-  \pad-to-box #'(0 . 40) #'(0 . 0)
-  "Magnificat" "ton royal"
-}
 
+\tocItemComposer "Magnificat" "ton royal"
 \score {
   \header {
     title = "MAGNIFICAT"
@@ -149,7 +136,6 @@ verseTwelve = \lyricmode {
     composer = "Ton dit “de Lourdes” "
     poet = "Harmonisation : Mgr Joseph Besnier (1898-1984)"
   }
-  
   \new ChoirStaff <<
     \new Staff \with {
       midiInstrument = "choir aahs"

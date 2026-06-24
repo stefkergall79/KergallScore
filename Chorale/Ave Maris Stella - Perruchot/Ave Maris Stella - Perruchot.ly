@@ -8,6 +8,7 @@ global = {
   \mergeDifferentlyDottedOn
 }
 #(ly:set-option 'backend 'cairo)
+
 soprano = \fixed c' {
   \global
   d4 a a g4 8[f e f] e2
@@ -84,33 +85,32 @@ verseThree = \lyricmode {
 }
 \score {
   \new ChoirStaff <<
-      \new Staff \with {
-        midiInstrument = "choir aahs"
-        \consists Merge_rests_engraver
-      } <<
-        \new Voice = "soprano" { \voiceOne \soprano }
-        \new Voice = "alto" { \voiceTwo \alto }
-      >>
-      \new Lyrics \with {
-        \override VerticalAxisGroup.staff-affinity = #CENTER
-      } \lyricsto "soprano" \verseOne
-      \new Lyrics \with {
-        \override VerticalAxisGroup.staff-affinity = #CENTER
-      } \lyricsto "soprano" \verseTwo
-      \new Lyrics \with {
-        \override VerticalAxisGroup.staff-affinity = #CENTER
-      } \lyricsto "soprano" \verseThree
-      
-      \new Staff \with {
-        midiInstrument = "choir aahs"
-        \consists Merge_rests_engraver
-      } <<
-        \clef bass
-        \new Voice = "tenor" { \voiceOne \tenor }
-        \new Voice = "bass" { \voiceTwo \bass }
-      >>
+    \new Staff \with {
+      midiInstrument = "choir aahs"
+      \consists Merge_rests_engraver
+    } <<
+      \new Voice = "soprano" { \voiceOne \soprano }
+      \new Voice = "alto" { \voiceTwo \alto }
     >>
-    \layout {\context{\Staff \RemoveAllEmptyStaves}}
-    \midi {\tempo 4=70}
-  }
-
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+    } \lyricsto "soprano" \verseOne
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+    } \lyricsto "soprano" \verseTwo
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+    } \lyricsto "soprano" \verseThree
+    
+    \new Staff \with {
+      midiInstrument = "choir aahs"
+      \consists Merge_rests_engraver
+    } <<
+      \clef bass
+      \new Voice = "tenor" { \voiceOne \tenor }
+      \new Voice = "bass" { \voiceTwo \bass }
+    >>
+  >>
+  \layout {\context{\Staff \RemoveAllEmptyStaves}}
+  \midi {\tempo 4=70}
+}

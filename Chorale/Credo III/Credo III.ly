@@ -73,7 +73,6 @@ verse = \lyricmode {
       \new Voice = "bass" { \voiceTwo \bass }
     >>
   >>
-  
   \layout {}
   \midi { \tempo 4=100 }
 }

@@ -1,11 +1,5 @@
-\version "2.24.4"
-
-\header {
-    title = "LOCUS ISTE"
-    composer = "Anton Bruckner (1824–1896)"
-    % Supprimer le pied de page par défaut
-    tagline = ##f
-}
+\version "2.26.0"
+\include "../../settings.ily"
 
 global = {
     \key c \major
@@ -129,8 +123,14 @@ verse_bass = \lyricmode {
     a Dé -- o, Dé -- o fá -- ctus est.
 
 }
-
+\paper {
+  page-count = 2
+}
 \score {
+    \header {
+        title = "LOCUS ISTE"
+        composer = "Anton Bruckner (1824–1896)"
+    }
     \new ChoirStaff <<
         \new Staff \with {
             midiInstrument = "choir aahs"
@@ -151,10 +151,7 @@ verse_bass = \lyricmode {
         \new Staff \with {
             midiInstrument = "choir aahs"
             instrumentName = "T."
-        } {
-            \clef "treble_8"
-            \new Voice = "tenor" \tenor
-        }
+        } { \clef "treble_8" \new Voice = "tenor" \tenor }
         \new Lyrics \with {
             \override VerticalAxisGroup.staff-affinity = #CENTER
         } \lyricsto "tenor" \verse_tenor
@@ -162,17 +159,11 @@ verse_bass = \lyricmode {
         \new Staff \with {
             midiInstrument = "choir aahs"
             instrumentName = "B."
-        } {
-            \clef bass
-            \new Voice = "bass" \bass
-        }
+        } {\clef bass \new Voice = "bass" \bass }
         \new Lyrics \with {
             \override VerticalAxisGroup.staff-affinity = #CENTER
         } \lyricsto "bass" \verse_bass
-
     >>
     \layout { }
-    \midi {
-        \tempo 4=85
-    }
+    \midi { \tempo 4=85 }
 }

@@ -37,7 +37,7 @@ bass = \fixed c {
   f2 4(d)g2 es4(d) c(d)es(f)bes,2 c f c4(f) bes,2 f c4(d)g,(c) f,2 2
 }
 
-verseOne = \lyricmode {
+verse = \lyricmode {
   Al -- ta Tri -- ni -- tà be -- a -- ta
   da noi sem -- pre a -- do -- ra -- ta.
   Tri -- ni -- tà glo -- ri -- o -- sa.
@@ -63,7 +63,7 @@ verseOne = \lyricmode {
       >>
       \new Lyrics \with {
         \override VerticalAxisGroup.staff-affinity = #CENTER
-      } \lyricsto "soprano" \verseOne
+      } \lyricsto "soprano" \verse
       \new Staff \with {
         midiInstrument = "choir aahs"
         \consists Merge_rests_engraver
