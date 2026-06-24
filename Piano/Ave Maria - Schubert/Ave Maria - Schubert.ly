@@ -1,19 +1,13 @@
-\version "2.24.3"
+\version "2.26.0"
+\include "../../settings.ily"
+#(set-global-staff-size 18.3)
 
-#(set-global-staff-size 19.3)
-
-\header {
-    title = "AVE MARIA"
-    composer = "Franz Schubert (1797-1828)"
-    tagline = ##f
-}
 
 global = {
     \key bes \major
     \time 2/4
     \tempo "Lento"
 }
-
 
 sopranoVoice = \fixed c' {
     \global
@@ -58,8 +52,6 @@ arpegeSimple = #(define-music-function
         }
     #})
 
-
-
 arpegePiano = #(define-music-function
   (parser location n1 n2 n3 n4)
   (ly:music? ly:music? ly:music? ly:music?)
@@ -67,7 +59,6 @@ arpegePiano = #(define-music-function
      \times 4/6 { r16}
      \arpegeSimple $n1 $n2 $n3 $n4
   #})
-
 
 arpegeFin = #(define-music-function
   (parser location n1 n2 n3 n4)
@@ -152,7 +143,6 @@ right = \fixed c' {
     s2
 }
 
-
 octave =
 #(define-music-function
   (parser location note)
@@ -202,14 +192,14 @@ pianoPart = \new PianoStaff \with {
 >>
 
 \score {
+    \header {
+        title = "AVE MARIA"
+        composer = "Franz Schubert (1797-1828)"
+    }
     <<
         \sopranoVoicePart
         \pianoPart
     >>
-    \layout { \context {
-        \Staff \RemoveEmptyStaves
-    }}
-    \midi {
-        \tempo 4 = 30
-    }
+    \layout { \context {\Staff \RemoveEmptyStaves }}
+    \midi {\tempo 4 = 30 }
 }

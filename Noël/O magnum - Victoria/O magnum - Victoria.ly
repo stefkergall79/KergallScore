@@ -1,4 +1,6 @@
 \version "2.26.0"
+\include "../../settings.ily"
+
 #(set-global-staff-size 18.4)
 global = {
   \time 4/4
@@ -261,19 +263,7 @@ bassLyrics = \lyricmode {
 	al -- le -- lú -- ja.
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
-\tocItem \markup {
-  \pad-to-box #'(0 . 40) #'(0 . 0)
-  "O magnum mysterium" "Victoria"
-}
+\tocItemComposer "O magnum mysterium" "Victoria"
 \score {
   \header {
     title = "O MAGNUM MYSTERIUM"
@@ -285,8 +275,7 @@ bassLyrics = \lyricmode {
       instrumentName = "S."
       \consists "Ambitus_engraver"
     } \new Voice = "soprano" \transpose f e {\sopranoMelody}
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
+    \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "soprano" \sopranoLyrics
     
     \new Staff \with {
@@ -294,8 +283,7 @@ bassLyrics = \lyricmode {
       instrumentName = "A."
       \consists "Ambitus_engraver"
     } \new Voice = "alto" \transpose f e {\altoMelody}
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
+    \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "alto" \altoLyrics
     
     \new Staff \with {
@@ -306,8 +294,7 @@ bassLyrics = \lyricmode {
       \clef "treble_8"
       \new Voice = "tenor" \transpose f e { \tenorMelody}
     }
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
+    \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "tenor" \tenorLyrics
     
     \new Staff \with {
@@ -318,10 +305,9 @@ bassLyrics = \lyricmode {
       \clef bass
       \new Voice = "bass" \transpose f e {\bassMelody}
     }
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
+    \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "bass" \bassLyrics
   >>
   \layout {}
-  \midi {\tempo 4=95}
+  \midi {\tempo 4=95 }
 }

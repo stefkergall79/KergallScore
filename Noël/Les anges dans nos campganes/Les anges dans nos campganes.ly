@@ -1,5 +1,5 @@
 \version "2.26.0"
-
+\include "../../settings.ily"
 global = {
   \key g \major
   \time 2/2
@@ -8,12 +8,12 @@ global = {
 
 soprano = \fixed c' {
   \global
-  \sectionLabel"Couplets"
+  \markChanson "Couplets"
   \repeat unfold 2 {
     b4 4 4 8[d']4. c'8 b4 g
     b4 8 a b4 8[d']4. c'8 b4 r
   }
-  \bar"||" \break \sectionLabel "Refrain"
+  \bar"||" \break \markChanson "Refrain"
   d'2 e'8[d' c' b]c'2 d'8[c' b a]b2 c'8[b a g] a4. 8 d4 r
   g-. a-. b-. c'-. b2 a\breathe
   d'2 e'8[d' c' b]c'2 d'8[c' b a]b2 c'8[b a g] a4. 8 d4 r
@@ -58,8 +58,7 @@ bass = \fixed c {
   d4(g8[b] d'2) g
 }
 
-verseSopranoOne = \lyricmode {
-  \set stanza = "1."
+verseSopranoOne = \strophemode 1 \lyricmode {
   Les an -- ges dans nos cam -- pa -- gnes
   ont en -- ton -- né l’hym -- ne des cieux,
   et l’é -- cho de nos mon -- ta -- gnes
@@ -69,24 +68,20 @@ verseSopranoOne = \lyricmode {
     in ex -- cél -- sis Dé -- o_!
   }
 }
-verseSopranoTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseSopranoTwo = \strophemode 2 \lyricmode {
   Cher -- chons tous l’heu -- reux vil -- la -- ge
   qui l’a vu naî -- tre sous ses toits_;
   of -- frons -_lui le tendre hom -- ma -- ge
   et de nos cœurs et de nos voix_:
 }
-verseSopranoThree = \lyricmode {
-  \set stanza = "3."
+verseSopranoThree = \strophemode 3 \lyricmode {
   Ber -- gers, quit -- tez vos re -- trai -- tes,
   u -- nis -- sez -_vous à leurs con -- certs,
   et que vos ten -- dres mu -- set -- tes
   fas -- sent re -- ten -- tir dans les airs_:
 }
 
-verseAltoOne = \lyricmode {
-  \set stanza = "1."
+verseAltoOne = \strophemode 1 \lyricmode {
   Les an -- ges dans nos cam -- pa -- gnes
   ont en -- ton -- né l’hym -- ne des cieux,
   et l’é -- cho de nos mon -- ta -- gnes
@@ -97,57 +92,48 @@ verseAltoOne = \lyricmode {
   in ex -- cél -- sis Dé -- o_!
 }
 
-verseTenorOne = \lyricmode {
-  \set stanza = "1."
+verseTenorOne = \strophemode 1 \lyricmode {
   Les an -- ges dans nos cam -- pa -- gnes
   ont en -- ton -- né l’hym -- ne des cieux,
   et l’é -- cho, l'é -- cho de nos mon -- ta -- gnes
   re -- dit ce chant mé -- lo -- di -- eux_:
+  
   Gló -- ri -- a
   in ex -- cél -- sis Dé -- o_!
   Gló __ _ _ _ _ _ _ _ _ _ ri -- a
   in ex -- cél -- sis Dé -- o_!
 }
-verseTenorTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTenorTwo = \strophemode 2 \lyricmode {
   Cher -- chons tous l’heu -- reux vil -- la -- ge
   qui l’a vu naî -- tre sous ses toits_;
   of -- frons, of -- frons -_lui le tendre hom -- ma -- ge
   et de nos cœurs et de nos voix_:
 }
-verseTenorThree = \lyricmode {
- \set stanza = "3."
- Ber -- gers, quit -- tez vos re -- trai -- tes,
- u -- nis -- sez -_vous à leurs con -- certs,
- et que vos, que vos ten -- dres mu -- set -- tes
- fas -- sent re -- ten -- tir dans les airs_:
+verseTenorThree = \strophemode 3 \lyricmode {
+  Ber -- gers, quit -- tez vos re -- trai -- tes,
+  u -- nis -- sez -_vous à leurs con -- certs,
+  et que vos, que vos ten -- dres mu -- set -- tes
+  fas -- sent re -- ten -- tir dans les airs_:
 }
 
-verseBassOne = \lyricmode {
+verseBassOne = \strophemode 1 \lyricmode {
   Ont en -- ton -- né l’hym -- ne des cieux,
   Re -- dit ce chant mé -- lo -- di -- eux_:
+  
   Gló __ _ _ _ _ _ _ _ ri -- a
   Dé -- o_!
 }
-verseBassTwo = \lyricmode {
+verseBassTwo = \strophemode 2 \lyricmode {
   \override LyricText.font-shape = #'italic
   Qui l’a vu naî -- tre sous ses toits_;
   Et de nos cœurs et de nos voix_:
 }
-verseBassThree = \lyricmode {
+verseBassThree = \strophemode 3 \lyricmode {
   U -- nis -- sez -_vous à leurs con -- certs,
   Fas -- sent re -- ten -- tir dans les airs_:
 }
-  
-\paper {
-  print-all-headers = ##t
-  tagline = ##f
-}
-\tocItem \markup {
-  \pad-to-box #'(0 . 40) #'(0 . 0)
-  "Les anges dans nos campagnes" "Gevaert"
-}
+
+\tocItemComposer "Les anges dans nos campagnes" "Gevaert"
 \score {
   \header {
     title = "LES ANGES DANS NOS CAMPAGNES"
@@ -222,5 +208,5 @@ verseBassThree = \lyricmode {
     
   >>
   \layout {}
-  \midi {\tempo 2=60}
+  \midi {\tempo 2=60 }
 }

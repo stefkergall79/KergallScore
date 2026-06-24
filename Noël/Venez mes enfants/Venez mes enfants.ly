@@ -78,49 +78,34 @@ bass = \fixed c {
   g2 c4 4 f2
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   Ve -- nez, mes en -- fants, ac -- cou -- rez, ve -- nez tous,
   mer -- veil -- les di -- vi -- nes se pas -- sent chez nous.
   Voy -- ez dans la Crè -- che l’En -- fant nou -- veau -_né
   que dans la nuit fraî -- che Dieu nous a don -- né.
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   U -- ne pauvre é -- ta -- ble lui sert de mai -- son,
   ni chai -- se ni ta -- ble, rien que paille et son_;
   une hum -- ble chan -- del -- le suf -- fit à l’En -- fant
   que le monde ap -- pel -- le le Dieu Tout -_Puis -- sant.
 }
 
-verseThree = \lyricmode {
-  \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
   On n’a vu per -- son -- ne mon -- ter au clo -- cher,
   mais la clo -- che son -- ne pour le nou -- veau -_né.
   L’oi -- seau sur la bran -- che s’est mis à chan -- ter,
   l’œil de la per -- ven -- che s’en est é -- veil -- lé.
 }
 
-verseFour = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseFour = \strophemode 4 \lyricmode {
   Ber -- gers et ber -- gè -- res por -- tent leurs pré -- sents
   “Do -- do, pe -- tit frè -- re” chan -- tent les en -- fants.
   Mille an -- ges fo -- lâ -- trent dans un ray -- on d’or_;
   les Ma -- ges se hâ -- tent vers Jé -- sus qui dort.
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
 \tocItem \markup "Venez, mes enfants"
 \score {
   \header {
@@ -161,4 +146,3 @@ verseFour = \lyricmode {
     \layout{\context{\Staff \RemoveAllEmptyStaves}}
     \midi {}
   }
-

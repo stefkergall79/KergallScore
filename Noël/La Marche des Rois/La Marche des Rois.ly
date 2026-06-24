@@ -1,5 +1,5 @@
 \version "2.26.0"
-
+\include "../../settings.ily"
 
 global = {
   \key bes \major
@@ -32,7 +32,6 @@ soprano = \fixed c' {
 
 alto = \fixed c' {
   \global
-  % En avant la musique !
   d16 d4 c
   d4.. d16 g8. f16 g8. ees16
   g4~16 r g8 a4 g
@@ -53,7 +52,6 @@ alto = \fixed c' {
 
 tenor = \fixed c {
   \global
-  % En avant la musique !
   bes16 bes4 c'
   bes4.. a16 g8. a16 g8. bes16
   d'4~16 r ees'8 ees'4 d'
@@ -74,7 +72,6 @@ tenor = \fixed c {
 
 bass = \fixed c {
   \global
-  % En avant la musique !
   g16 g4 a
   g4.. f16 ees8. f16 ees8. ees16
   bes4~16 r bes8 a4 bes
@@ -93,9 +90,7 @@ bass = \fixed c {
   c8 bes, a, g, d4 d4 g4.
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
-  % Ajouter ici des paroles.
+verseOne = \strophemode 1 \lyricmode {
   De bon ma -- tin j'ai ren -- con -- tré le train
   de trois grands rois qui par -- taient en voy -- a -- ge,
   de bon ma -- tin j'ai ren -- con -- tré le train
@@ -106,11 +101,6 @@ verseOne = \lyricmode {
   les gens ar -- més des -- sus leur jus -- tau -- corps.
 }
 
-
-\paper {
-  print-all-headers = ##t
-  tagline = ##f
-}
 \tocItem \markup "La Marche des Rois"
 \score {
   \header {
@@ -147,34 +137,25 @@ verseOne = \lyricmode {
   }}
 
 
-\markup \fill-line {
-  \null
-  \column \italic {
-    \line { \bold "2-"
-      \column {
-        "Puis sur un char doré de toutes parts,"
-        "On voit trois rois modestes comme d'anges,"
-        "Puis sur un char doré de toutes parts,"
-        "On voit trois rois parmi les étendards."
-        "L'étoile luit et les rois conduits"
-        "Par long chemin devant une pauvre étable,"
-        "L'étoile luit et les rois conduits"
-        "Par long chemin devant l'humble réduit."
-    }}
-  }
-  \null
+\markup \couplets-markup #2 #2 {
   \column {
-    \line { \bold "3-"
-      \column {
-        "Au Fils de Dieu qui naquit en ces lieux,"
-        "Ils viennent tous présenter leurs hommages,"
-        "Au Fils de Dieu qui naquit en ces lieux,"
-        "Ils viennent tous présenter leurs doux vœux."
-        "De beaux présents, or, myrrhe et encens,"
-        "Ils vont offrir au Maître tant admirable,"
-        "De beaux présents, or, myrrhe et encens,"
-        "Ils vont offrir au bienheureux Enfant."
-    }}
+    "Puis sur un char doré de toutes parts,"
+    "On voit trois rois modestes comme d'anges,"
+    "Puis sur un char doré de toutes parts,"
+    "On voit trois rois parmi les étendards."
+    "L'étoile luit et les rois conduits"
+    "Par long chemin devant une pauvre étable,"
+    "L'étoile luit et les rois conduits"
+    "Par long chemin devant l'humble réduit."
   }
-  \null
+  \column {
+    "Au Fils de Dieu qui naquit en ces lieux,"
+    "Ils viennent tous présenter leurs hommages,"
+    "Au Fils de Dieu qui naquit en ces lieux,"
+    "Ils viennent tous présenter leurs doux vœux."
+    "De beaux présents, or, myrrhe et encens,"
+    "Ils vont offrir au Maître tant admirable,"
+    "De beaux présents, or, myrrhe et encens,"
+    "Ils vont offrir au bienheureux Enfant."
+  }
 }

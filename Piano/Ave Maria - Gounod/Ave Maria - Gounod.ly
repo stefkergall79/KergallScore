@@ -1,14 +1,7 @@
 \version "2.26.0"
+\include "../../settings.ily"
 
-\header {
-  title = "AVE MARIA"
-  composer = "Charles Gounod (1818-1893)"
-  poet = "D'après le prélude en Do majeur (BWV 846)"
-  meter = "de Jean-Sébastien Bach"
-  tagline = ##f
-}
-
-#(set-global-staff-size 15 )
+#(set-global-staff-size 14.2 )
 
 global = {
   \key c \major
@@ -60,7 +53,7 @@ right = \fixed c' {
   r8 a16    d'   f'   a    d'   f'   r8   a16    d'   f'   a    d'   f'
   r8 g16    d'   f'   g    d'   f'   r8   g16    d'   f'   g    d'   f'
   r8 g16    c'   e'   g    c'   e'   r8   g16    c'   e'   g    c'   e'
-  r8 a16	    e'   a'   a    e'   a'   r8   a16    e'   a'   a    e'   a'
+  r8 a16	  e'   a'   a    e'   a'   r8   a16    e'   a'   a    e'   a'
   r8 fis16  a    d'   fis  a    d'   r8   fis16  a    d'   fis  a    d'
   r8 g16    d'   g'   g    d'   g'   r8   g16    d'   g'   g    d'   g'
   r8 e16    g    c'   e    g    c'   r8   e16    g    c'   e    g    c'
@@ -168,7 +161,13 @@ pianoPart = \new PianoStaff \with {
 >>
 
 \score {
-  <<
+  \header {
+    title = "AVE MARIA"
+    composer = "Charles Gounod (1818-1893)"
+    poet = "D'après le prélude en Do majeur (BWV 846)"
+    meter = "de Jean-Sébastien Bach"
+  }
+<<
     \sopranoVoicePart
     \pianoPart
   >>

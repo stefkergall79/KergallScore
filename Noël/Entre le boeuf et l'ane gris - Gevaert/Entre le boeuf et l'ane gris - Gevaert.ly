@@ -6,7 +6,6 @@ global = {
   \time 4/4
   \autoBeamOff
   \tempo "Andantino"
-  %\partial 2
   \dynamicUp
 }
 
@@ -41,8 +40,7 @@ bass = \fixed c {
   R1 bes,2(c)f bes,(a,)bes, <f f,>\fermata
 }
 
-verseOneSoprano = \lyricmode {
-  \set stanza = "1."
+verseOneSoprano = \strophemode 1 \lyricmode {
   En -- tre le bœuf et l’â -- ne gris,
   dors, dors, dors, le pe -- tit fils_;
   mille an -- ges di -- vins,
@@ -52,20 +50,15 @@ verseOneSoprano = \lyricmode {
   Dors_!
 }
 
-verseTwoSoprano = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwoSoprano = \strophemode 2 \lyricmode {
   En -- tre les pas -- tou -- reaux jo -- lis,
 }
 
-verseThreeSoprano = \lyricmode {
-  \set stanza = "3."
+verseThreeSoprano = \strophemode 3 \lyricmode {
   En -- tre les ro -- ses et les lys,
 }
 
-verseFourSoprano = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseFourSoprano = \strophemode 4 \lyricmode {
   En -- tre les deux bras de Ma -- rie,
 }
 
@@ -83,7 +76,6 @@ verseBass = \lyricmode {
 }
 
 \tocItemComposer "Entre le bœuf et l'âne gris" "Gevaert"
-
 \score {
   \header {
     title = "ENTRE LE BŒUF ET L'ÂNE GRIS"
@@ -140,5 +132,5 @@ verseBass = \lyricmode {
     } \lyricsto "bass" \verseBass
   >>
   \layout {}
-  \midi {\tempo 4=80}
+  \midi {\tempo 4=80 }
 }

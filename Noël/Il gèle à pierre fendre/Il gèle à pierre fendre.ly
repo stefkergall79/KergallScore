@@ -18,8 +18,7 @@ solo = \fixed c' {
   d8 f a g4 e16[f] d4.\fermata
 }
 
-verseOneSolo = \lyricmode {
-  \set stanza = "1."
+verseOneSolo = \strophemode 1 \lyricmode {
   Il gèle à pier -- re fen -- dre,
   ô qu’il fait froid ce soir_;
   et l’âp -- re nuit vient ten -- dre
@@ -29,9 +28,7 @@ verseOneSolo = \lyricmode {
   l’En -- fant gé -- mit de froid.
 }
 
-verseTwoSolo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwoSolo = \strophemode 2 \lyricmode {
   Il git sur pau -- vre pail -- le
   en -- tre deux a -- ni -- maux.
   Où vou -- lez -_vous qu’il ail -- le_?
@@ -41,8 +38,7 @@ verseTwoSolo = \lyricmode {
   quand Dieu des -- cend chez nous.
 }
 
-verseThreeSolo = \lyricmode {
-  \set stanza = "3."
+verseThreeSolo = \strophemode 3 \lyricmode {
   Le pau -- vre qui fris -- son -- ne,
   le gueux qui meurt de faim,
   l’En -- fant qu’on a -- ban -- don -- ne,
@@ -73,7 +69,6 @@ alto = \fixed c' {
 
 tenor = \fixed c {
   \global
-  %\mergeDifferentlyHeadedOn
   \mergeDifferentlyDottedOn
   d4. d cis d4 e8 f4. e e\fermata
   f bes a f a4 g8 f4. f g a f a a
@@ -89,9 +84,7 @@ bass = \fixed c {
   f e d g a4 a,8 d4.
 }
 
-verseOne = \lyricmode {
-  \repeat unfold 19 \skip1
-  \set stanza = "1."
+verseOne = \strophemode 1 19 \lyricmode {
   Le vent chas -- sant la nei -- ge
   s’en -- gouf -- fre sous le toit.
 }
@@ -106,27 +99,19 @@ verseTwo = \lyricmode {
   B.F.
 }
 
-verseThree = \lyricmode {
-  \repeat unfold 19 { \skip1 }
-  \set stanza = "3."
+verseThree = \strophemode 3 19 \lyricmode {
   Il gèle à pier -- re fen -- dre,
   c'est l'hi -- ver dans nos cœurs.
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = ##f
-}
-\tocItem \markup "Il gèle à pierre fendre"
 soloPart = << \new Staff \with {
   shortInstrumentName = "Sl."
     midiInstrument = "choir aahs"
   } \new Voice = "sopranoVoice" \solo
   \new Lyrics \lyricsto "sopranoVoice" \verseOneSolo
-  \new Lyrics \lyricsto "sopranoVoice"\verseTwoSolo
-  \new Lyrics \lyricsto "sopranoVoice"\verseThreeSolo
+  \new Lyrics \lyricsto "sopranoVoice" \verseTwoSolo
+  \new Lyrics \lyricsto "sopranoVoice" \verseThreeSolo
 >>
-
 
 choirPart = \new ChoirStaff <<
     \new Staff \with {
@@ -156,7 +141,7 @@ choirPart = \new ChoirStaff <<
     >>
   >>
 
-
+\tocItem \markup "Il gèle à pierre fendre"
 \score {
   \header {
     title = "IL GÈLE À PIERRE FENDRE"

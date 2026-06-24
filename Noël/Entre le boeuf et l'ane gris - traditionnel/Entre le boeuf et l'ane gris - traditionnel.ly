@@ -9,9 +9,11 @@ global = {
 
 soprano = \fixed c' {
   \global
+  \markChanson "Couplets"
   e4 8 fis g4 8[a]4. b8 2
   d' b a8 b c' a b2
   
+  \markChanson "Refrain"
   b8 c' d' e' b2 a8 g a b g2
   a8 g a b c'4 a8 g fis4. e8 2\bar"|."
 }
@@ -43,8 +45,7 @@ bass = \fixed c {
   d8 8 c b, a,4 8 8 b,4 4 e2
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   En -- tre le bœuf et l’â -- ne gris,
   dors, dors, dors, le pe -- tit fils.
   Mille an -- ges di -- vins,
@@ -53,28 +54,19 @@ verseOne = \lyricmode {
   de ce Dieu d’a -- mour.
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   En -- tre les pas -- tou -- reaux jo -- lis,
-  dors, dors, dors, le pe -- tit fils.
 }
 
-verseThree = \lyricmode {
-  \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
   En -- tre les ro -- ses et les lys,
-  dors, dors, dors, le pe -- tit fils.
 }
 
-verseFour = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseFour = \strophemode 4 \lyricmode {
   En -- tre les deux bras de Ma -- rie,
-  dors, dors, dors, le pe -- tit fils.
 }
 
 \tocItemComposer "Entre le bœuf et l'âne gris" "Traditionnel français"
-
 \score {
   \header {
     title = "ENTRE LE BŒUF ET L'ÂNE GRIS"
@@ -111,6 +103,6 @@ verseFour = \lyricmode {
       >>
     >>
     \layout {\context{\Staff \RemoveAllEmptyStaves}}
-    \midi {\tempo 4=70}
+    \midi {\tempo 4=70 }
   }
 

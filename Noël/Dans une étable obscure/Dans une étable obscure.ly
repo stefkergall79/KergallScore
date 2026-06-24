@@ -1,4 +1,5 @@
 \version "2.26.0"
+\include "../../settings.ily"
 global = {
   \key f \major
   \time 4/4
@@ -43,8 +44,7 @@ bass = \fixed c {
   f4 4 4 bes, f c2 d g, a,4 bes, c2 2 <f, c>
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   Dans une é -- table ob -- scu -- re,
   sous le ciel é -- toi -- lé,
   et d'u -- ne Vier -- ge pu -- re,
@@ -54,9 +54,7 @@ verseOne = \lyricmode {
   quand a son -- né mi -- nuit.
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   Tan -- dis que les Rois ma -- ges,
   tan -- dis que les ber -- gers,
   lui por -- tent leurs hom -- ma -- ges,
@@ -66,8 +64,7 @@ verseTwo = \lyricmode {
   en cette heu -- reu -- se nuit.
 }
 
-verseThree = \lyricmode {
-  \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
   Plein d'u -- ne foi pro -- fon -- de,
   le monde est à ge -- noux.
   Frê -- le Ma -- jes -- té blon -- de,
@@ -76,10 +73,7 @@ verseThree = \lyricmode {
   Le monde en -- tier t'ac -- cla -- me
   dans l'a -- do -- ra -- ble nuit.
 }
-\paper {
-  print-all-headers = ##t
-  tagline = ##f
-}
+
 \tocItem \markup "Dans une étable obscure"
 \score {
   \header {

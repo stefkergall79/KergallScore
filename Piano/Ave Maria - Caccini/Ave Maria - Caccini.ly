@@ -1,11 +1,5 @@
 \version "2.26.0"
-
-\header {
-    title = "AVE MARIA"
-    composer = "Vladimir Vavilov (1925-1973)"
-    arranger = "Attribué à Giulio Caccini (1551-1618)"
-    tagline = ##f
-}
+\include "../../settings.ily"
 
 global = {
     \key c \major
@@ -201,12 +195,15 @@ pianoPart = \new PianoStaff \with {
 >>
 
 \score {
+    \header {
+        title = "AVE MARIA"
+        composer = "Vladimir Vavilov (1925-1973)"
+        arranger = "Attribué à Giulio Caccini (1551-1618)"
+    }
     <<
         \sopranoVoicePart
         \pianoPart
     >>
-    \layout { \context {
-        \Staff \RemoveEmptyStaves
-    }}
+    \layout { \context { \Staff \RemoveEmptyStaves }}
     \midi { \tempo 4 = 85 }
 }

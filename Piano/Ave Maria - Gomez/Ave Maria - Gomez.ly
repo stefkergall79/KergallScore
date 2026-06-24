@@ -1,13 +1,6 @@
-\version "2.24.3"
-
-\header {
-    title = "AVE MARIA"
-    composer = "William Gomez (1939-2000)"
-    % Supprimer le pied de page par défaut
-    tagline = ##f
-}
-
-#(set-global-staff-size 19.5)
+\version "2.26.0"
+\include "../../settings.ily"
+#(set-global-staff-size 18.7)
 
 global = {
     \key d \major
@@ -37,19 +30,19 @@ sopranoVoice = \fixed c' {
         b~16 cis'16 16 d' \tuplet 3/2 {e'8 d' cis'}
         \alternative{
             \volta 1 {d'2. r4}
-            \volta 2 {d'2 r4
-                      \tuplet 3/2 {8 cis' b} d'2. a4 1~1\fermata \bar "|." }
+            \volta 2 {
+                d'2 r4
+              \tuplet 3/2 {8 cis' b} d'2. a4 1~1\fermata \bar "|." }
         }
     }
 }
 
 verse = \lyricmode {
-    A -- ve, a -- ve Ma -- ri -- a, lle -- na, lle -- na e -- res de gra -- cia,
-    ben -- di -- ta'e -- res tu en -- tre to -- das las mu -- je -- res,
-    y ben -- di -- to'es el fruc -- to de tu vien -- tre, Je -- sus.
-    A -- ve, a -- ve Ma -- ri -- a, lle -- na, lle -- na e -- res de gra -- cia,
-    ben -- di -- ta'e -- res tu en -- tre to -- das las mu -- je -- res,
-    y ben -- di -- to'es el fruc -- to de tu vien -- tre, Je -- sus.
+    \repeat unfold 2 {
+        A -- ve, a -- ve Ma -- ri -- a, lle -- na, lle -- na e -- res de gra -- cia,
+        ben -- di -- ta'e -- res tu en -- tre to -- das las mu -- je -- res,
+        y ben -- di -- to'es el fruc -- to de tu vien -- tre, Je -- sus.
+    }
     San -- ta, San -- ta Ma -- ri -- a, San -- ta Ma -- ri -- a, ma -- dre de Dios,
     rue -- ga por no -- so -- tros pe -- ca -- do -- res
     a -- ho -- ra'y en la ho -- ra de nues -- tra muer -- te A -- men.
@@ -161,7 +154,11 @@ pianoPart = \new PianoStaff \with {
 >>
 
 \score {
-    <<
+    \header {
+        title = "AVE MARIA"
+        composer = "William Gomez (1939-2000)"
+    }
+<<
         \sopranoVoicePart
         \pianoPart
     >>

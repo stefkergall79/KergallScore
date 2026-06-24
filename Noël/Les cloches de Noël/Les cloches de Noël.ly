@@ -1,6 +1,6 @@
 \version "2.26.0"
-
-#(set-global-staff-size 17.8)
+\include "../../settings.ily"
+#(set-global-staff-size 18.3)
 
 global = {
   \key d \major
@@ -87,8 +87,7 @@ bassII = \fixed c {
   b2(fis)ais1 g2(d)fis1 a2 4 4 1 1
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   \repeat unfold 2 {
     Les clo -- ches de No -- ël
     tin -- tent dans la val -- lée_:
@@ -98,9 +97,7 @@ verseOne = \lyricmode {
   A -- ve, A -- ve, A -- ve Ma -- rí -- a.
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   \repeat unfold 2 {
     Les ber -- gers du pa -- ys,
     qui gar -- dent les trou -- peaux,
@@ -109,8 +106,7 @@ verseTwo = \lyricmode {
   }
 }
 
-verseThree = \lyricmode {
-  \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
   \repeat unfold 2 {
     En rou -- te, pas -- tou -- reaux,
     pré -- pa -- rons nos flu -- tiaux,
@@ -119,9 +115,7 @@ verseThree = \lyricmode {
   }
 }
 
-verseFour = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseFour = \strophemode 4 \lyricmode {
   \repeat unfold 2 {
     Clo -- ches, clo -- ches, son -- nez,
     son -- nez dans la val -- lée,
@@ -151,17 +145,13 @@ choirPart =  \new ChoirStaff <<
     \new Voice = "soprano" { \voiceOne \soprano }
     \new Voice = "alto" { \voiceTwo \alto }
   >>
-  \new Lyrics \with {
-    \override VerticalAxisGroup.staff-affinity = #CENTER
+  \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
   } \lyricsto "soprano" \verseOne
-  \new Lyrics \with {
-    \override VerticalAxisGroup.staff-affinity = #CENTER
+  \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
   } \lyricsto "soprano" \verseTwo
-  \new Lyrics \with {
-    \override VerticalAxisGroup.staff-affinity = #CENTER
+  \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
   } \lyricsto "soprano" \verseThree
-  \new Lyrics \with {
-    \override VerticalAxisGroup.staff-affinity = #CENTER
+  \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
   } \lyricsto "soprano" \verseFour
   
   % 2
@@ -196,20 +186,7 @@ choirPart =  \new ChoirStaff <<
   
 >>
 
-
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
-\tocItem \markup {
-  \pad-to-box #'(0 . 40) #'(0 . 0)
-  "" ""
-}
+\tocItemComposer "Les cloches de Noël" "Noël d'Autriche"
 \score {
   \header {
     title = "AVE MARIA"
@@ -220,5 +197,5 @@ choirPart =  \new ChoirStaff <<
     \choirPart
   >>
   \layout {\context{\Staff \RemoveAllEmptyStaves}}
-  \midi {\tempo 2=100}
+  \midi {\tempo 2=100 }
 }

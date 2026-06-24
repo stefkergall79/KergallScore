@@ -1,4 +1,5 @@
 \version "2.26.0"
+\include "../../settings.ily"
 global = {
   \key c \major
   \time 3/4
@@ -44,19 +45,16 @@ bass = \fixed c {
   2 4 g,4. 8 4 c2.
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   Dou -- ce nuit_! Sain -- te nuit_!
-Dans les cieux, l'as -- tre luit.
-Le mys -- tère an -- non -- cé s'ac -- com -- plit_:
-cet En -- fant sur la paille en -- dor -- mi,
-c'est l'A -- mour in -- fi -- ni_!
-C'est l'A -- mour in -- fi -- ni_!
+  Dans les cieux, l'as -- tre luit.
+  Le mys -- tère an -- non -- cé s'ac -- com -- plit_:
+  cet En -- fant sur la paille en -- dor -- mi,
+  c'est l'A -- mour in -- fi -- ni_!
+  C'est l'A -- mour in -- fi -- ni_!
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   Saint En -- fant_! Doux A -- gneau_!
   Qu'il est grand_! Qu'il est beau_!
   En -- ten -- dez ré -- son -- ner les pi -- peaux
@@ -65,8 +63,7 @@ verseTwo = \lyricmode {
   vers son hum -- ble ber -- ceau.
 }
 
-verseThree = \lyricmode {
-  \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
   C'est vers nous qu'il ac -- court,
   en un don sans re -- tour_!
   De ce monde i -- gno -- rant de l'a -- mour
@@ -75,9 +72,7 @@ verseThree = \lyricmode {
   qu'il soit Roi pour tou -- jours_!
 }
 
-verseFour = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseFour = \strophemode 4 \lyricmode {
   Paix à tous_! Gloire au ciel_!
   Gloire au sein ma -- ter -- nel,
   qui pour nous, en ce jour de No -- ël,
@@ -86,15 +81,6 @@ verseFour = \lyricmode {
   qu'at -- ten -- dait Is -- ra -- ël_!
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
 \tocItem \markup "Douce nuit"
 \score {
   \header {
@@ -102,7 +88,6 @@ verseFour = \lyricmode {
     composer = "Franz Xaver Gruber (1787-1863)"
     poet = "Paroles : Abbé Joseph Mohr (1792-1848)"
   }
-
   \new ChoirStaff <<
     \new Staff \with {
       midiInstrument = "choir aahs"
@@ -134,5 +119,5 @@ verseFour = \lyricmode {
     >>
   >>
   \layout {\context{\Staff \RemoveAllEmptyStaves}}
-  \midi {\tempo 4=80}
+  \midi {\tempo 4=80 }
 }

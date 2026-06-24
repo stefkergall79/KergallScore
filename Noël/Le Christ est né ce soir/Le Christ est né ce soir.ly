@@ -1,4 +1,5 @@
 \version "2.26.0"
+\include "../../settings.ily"
 global = {
   \key d \major
   \time 6/8
@@ -38,8 +39,7 @@ bass = \fixed c {
   fis, g,4 a,8 b,4. cis d e fis4 8 g4 a8 b4.
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   Le Christ est né ce soir
   de la Vier -- ge Ma -- ri -- e,
   sous le ciel é -- toi -- lé,
@@ -49,8 +49,7 @@ verseOne = \lyricmode {
   il a de son ber -- ceau
   fait son pre -- mier au -- tel.
 }
-verseOneTenor = \lyricmode {
-  \set stanza = "1."
+verseOneTenor = \strophemode 1 \lyricmode {
   Le Christ est né ce soir
   de la Vier -- ge Ma -- ri -- e,
   sous le ciel é -- toi -- lé,
@@ -62,9 +61,7 @@ verseOneTenor = \lyricmode {
 }
 
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   Ce soir comme un é -- cho
   du fond de Pa -- les -- ti -- ne,
   de val -- lon en val -- lon,
@@ -74,9 +71,7 @@ verseTwo = \lyricmode {
   aux hom -- mes paix sur terre
   et gloire au Dieu du ciel_!
 }
-verseTwoTenor = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwoTenor = \strophemode 2 \lyricmode {
   Ce soir comme un é -- cho
   du fond de Pa -- les -- ti -- ne,
   de val -- lon en val -- lon,
@@ -87,8 +82,7 @@ verseTwoTenor = \lyricmode {
   et gloire au Dieu du ciel_!
 }
 
-verseThree = \lyricmode {
-  \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
   A -- vec les pas -- tou -- reaux,
   loin du mon -- de cou -- pa -- ble,
   ah_! Ve -- nez à ge -- noux
@@ -98,8 +92,7 @@ verseThree = \lyricmode {
   l’hom -- ma -- ge de nos cœurs_:
   Il est le Roi des rois_!
 }
-verseThreeTenor = \lyricmode {
-  \set stanza = "3."
+verseThreeTenor = \strophemode 3 \lyricmode {
   A -- vec les pas -- tou -- reaux,
   loin du mon -- de cou -- pa -- ble,
   ah_! Ve -- nez à ge -- noux
@@ -110,11 +103,6 @@ verseThreeTenor = \lyricmode {
   Il est, Il est le Roi des rois_!
 }
 
-
-\paper {
-  print-all-headers = ##t
-  tagline = ##f
-}
 \tocItem \markup "Le Christ est né ce soir"
 \score {
   \header {
@@ -122,7 +110,6 @@ verseThreeTenor = \lyricmode {
     poet = "Mélodie : Noël de Basse-Bretagne"
     composer = "Harmonisation : Bernard Lallement (1936-2023)"
   }
-
   \new ChoirStaff <<
     \new Staff \with {
       midiInstrument = "choir aahs"
@@ -184,5 +171,5 @@ verseThreeTenor = \lyricmode {
     
   >>
   \layout { \context{\Staff \RemoveAllEmptyStaves}}
-  \midi {\tempo 4=90}
+  \midi {\tempo 4=90 }
 }
