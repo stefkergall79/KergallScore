@@ -1,5 +1,5 @@
 \version "2.26.0"
-
+\include "../../settings.ily"
 global = {
   \key c \major
   \time 4/4
@@ -42,14 +42,7 @@ verseBass = \lyricmode {
   
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = ##f
-}
-\tocItem \markup {
-  \pad-to-box #'(0 . 40) #'(0 . 0)
-  "" ""
-}
+\tocItemComposer "" ""
 \score {
   \header {
     title = ""
@@ -61,8 +54,7 @@ verseBass = \lyricmode {
       instrumentName = "S."
       \consists "Ambitus_engraver"
     } \new Voice = "soprano" \soprano
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
+    \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "soprano" \verseSoprano
     
     \new Staff \with {
@@ -70,8 +62,7 @@ verseBass = \lyricmode {
       instrumentName = "A."
       \consists "Ambitus_engraver"
     } \new Voice = "alto" \alto
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
+    \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "alto" \verseAlto
     
     \new Staff \with {
@@ -82,8 +73,7 @@ verseBass = \lyricmode {
       \clef "treble_8"
       \new Voice = "tenor" \tenor
     }
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
+    \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "tenor" \verseTenor
     
     \new Staff \with {
@@ -94,10 +84,9 @@ verseBass = \lyricmode {
       \clef bass
       \new Voice = "bass" \bass
     }
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
+    \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "bass" \verseBass
   >>
   \layout {}
-  \midi {\tempo 4=70}
+  \midi {\tempo 4=70 }
 }

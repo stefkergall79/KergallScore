@@ -41,8 +41,7 @@ bass = \fixed c {
   R1 * 3 r2 r4 g,4 a, b, c cis d(dis) e(a,) d2 2 <g g,>
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   A -- des -- te, fi -- de -- les,
   læ -- ti tr -- ium -- phan -- tes,
   ve -- ni -- te, ve -- ni -- te in
@@ -53,9 +52,7 @@ verseOne = \lyricmode {
   ve -- ni -- te, a -- do -- re -- mus Do -- mi -- num.
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   En gre -- ge re -- lic -- to
   hu -- mi -- les ad cu -- nas,
   vo -- ca -- ti pas -- to -- res
@@ -64,8 +61,7 @@ verseTwo = \lyricmode {
   gra -- du fes -- ti -- ne -- mus.
 }
 
-verseThree = \lyricmode {
-  \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
   Æ -- ter -- ni Pa -- ren -- tis
   splen -- do -- rem æ -- ter -- num,
   ve -- la -- tum sub car -- ne
@@ -74,9 +70,7 @@ verseThree = \lyricmode {
   pan -- nis in -- vo -- lu -- tum.
 }
 
-verseFour = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseFour = \strophemode 4 \lyricmode {
   Pro no -- bis e -- ge -- num
   et fœ -- no cu -- ban -- tem
   pi -- is fo -- ve -- a -- mus

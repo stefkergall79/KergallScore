@@ -1,5 +1,5 @@
 \version "2.26.0"
-
+\include "../../settings.ily"
 global = {
   \key c \major
   \time 4/4
@@ -26,46 +26,27 @@ bass = \fixed c {
   
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode 1 \lyricmode {
   
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 2.
+verseTwo = \strophemode 2 \lyricmode {
   
 }
 
-verseThree = \lyricmode {
-  \set stanza = "3."
+verseThree = \strophemode 3 \lyricmode {
   
 }
 
-verseFour = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseFour = \strophemode 4 \lyricmode {
   
 }
 
-verseFive = \lyricmode {
-  \set stanza = "5."
+verseFive = \strophemode 5 \lyricmode {
   
 }
 
-\paper {
-  print-all-headers = ##t
-  tagline = \markup {
-    \italic \with-color #blue 
-    \with-url #"mailto:stef.kergall@gmail.com"
-    "stef.kergall@gmail.com"
-    "- Partitions sur commande"
-  }
-}
-\tocItem \markup {
-  \pad-to-box #'(0 . 40) #'(0 . 0)
-  "" ""
-}
+\tocItemComposer "" ""
 \score {
   \header {
     title = ""
@@ -105,6 +86,6 @@ verseFive = \lyricmode {
       >>
     >>
     \layout {\context{\Staff \RemoveAllEmptyStaves}}
-    \midi {\tempo 4=70}
+    \midi {\tempo 4=70 }
   }
 
