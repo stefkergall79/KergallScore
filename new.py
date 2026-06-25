@@ -437,8 +437,7 @@ class LilypondCreator(ctk.CTk):
                         )
                 else:
                     content += (
-                        "\\tocItem "
-                        f"\"{values['title']}\"\n"
+                        f"\\tocItem \\markup \"{values['title']}\"\n"
                     )
             content += (
                 "\n\\score {\n"
