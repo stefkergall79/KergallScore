@@ -282,7 +282,7 @@ def Voice(voice, indice = None):
         "}\n"
     )
 
-def Lyrcis(voice, nb=None):
+def Lyrics(voice, nb=None):
     return (
         "\t\\new Lyrics \\with { \\override VerticalAxisGroup.staff-affinity = #CENTER\n\t}"
         f'\\lyricsto "{VOICES[voice]}" \\verse{NUMBERS[nb]}\n'
@@ -324,7 +324,7 @@ def ChoirStaff(schema: str, lyrics: int):
         #lyrics
         if len(staffes) > 2 or nb == indice == 0:
             for lyr in range(lyrics):
-                st += Lyrcis(staff, lyr)
+                st += Lyrics(staff, lyr)
             st += "\n"
     st += ">>"
     return st
@@ -375,7 +375,7 @@ class LilypondCreator(ctk.CTk):
                 "\n"
                 "global = { \n\n"
                 "\t\n"
-                "}\n"
+                "}\n\n"
             )
             voices_parts = self.parts_tab.parts
             voice_settings = {
@@ -398,7 +398,7 @@ class LilypondCreator(ctk.CTk):
             }
             
             for part in voices_parts:
-                if voices_parts[part]["btn"].get() == 1:
+                if voices_parts[part]["btn"].get():
                     for voice in range(voice_settings[part]["nb"]):
                         if part == "Choeur":
                             name_voice = VOICES[voices_parts[part]["schema"].get().replace("-", "")[voice]]
