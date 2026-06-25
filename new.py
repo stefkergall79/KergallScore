@@ -423,10 +423,10 @@ class LilypondCreator(ctk.CTk):
                         content += "\n"
                 
 
-                content += f"{part}Part = "
-                if part == "Choeur":
-                    content += ChoirStaff(voices_parts[part]["schema"].get(), voice_settings["Choeur"]["couplets"])
-                
+                    content += f"{part}Part = "
+                    if part == "Choeur":
+                        content += ChoirStaff(voices_parts[part]["schema"].get(), voice_settings["Choeur"]["couplets"])
+                    
                         
             if values.get("title"):
                 if values.get("composer"):
@@ -473,6 +473,7 @@ class LilypondCreator(ctk.CTk):
                 text_color="#D32F2F", wraplength=360, justify="center", font=self.default_font
             )
             label.pack(expand=True, fill="both", pady=20, padx=20)
+            
 
 
 if __name__ == "__main__":
