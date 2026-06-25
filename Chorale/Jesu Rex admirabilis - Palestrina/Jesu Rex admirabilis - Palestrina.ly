@@ -53,7 +53,7 @@ verst = \lyricmode {
   \header {
     title = "JESU, REX ADMIRABILIS"
     composer = "Giovanni da Palestrina (1525-1594)"
-    }
+  }
   \new ChoirStaff <<
     \new Staff = "upStaff" \with {
       midiInstrument = "choir aahs"
@@ -78,7 +78,7 @@ verst = \lyricmode {
     } \lyricsto "tenor" \verst
   >>
   \layout { }
-  \midi { \tempo 4=85}
+  \midi { \tempo 4=85 }
 }
 
 \markup \couplets-markup #2 #2 {

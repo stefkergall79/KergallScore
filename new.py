@@ -269,6 +269,67 @@ class PartsTab(ctk.CTkFrame):
             elif not is_active and is_visible:
                 frame.pack_forget()
 
+NUMBERS = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
+VOICES  = {"S": "soprano", "A": "alto", "T": "tenor", "B": "bass", "H": "homme"}
+
+def Voice(voice, indice = None):
+    return (
+        f"\t\t\\new Voice = \"{VOICES[voice]}\" "
+        "{ "
+        "\\clef bass " if voice in "BH" else '\\clef "treble_8 "' if voice == "T" else ""
+        f"{"\\voice"+NUMBERS[indice] if indice else ""}"
+        f" \\{VOICES[voice]}"
+        "}\n"
+    )
+
+def Lyrcis(voice, nb=None):
+    return (
+        "\t\\new Lyrics \\with { \\override VerticalAxisGroup.staff-affinity = #CENTER\n\t}"
+        f'\\lyricsto "{VOICES[voice]}" \\verse{NUMBERS[nb]}\n'
+    )
+
+def ChoirStaff(schema: str, lyrics: int):
+    staffes = schema.split("-")
+    st = "\\new ChoirStaff <<\n"
+    
+    for nb, staff in enumerate(staffes):
+        polyph = len(staff) > 1
+        #with
+        st += (
+            "\t\\new Staff \\with {\n"
+            "\t\tmidiInstrument = \"choir aahs\""
+        )
+        if any(len(stf) > 1 for stf in staffes):
+            st += "\t\tinstrumentName = "
+            if polyph:
+                st += "\\markup \\center-column { "
+                for voice in staff:
+                    st += f"\"{voice}.\" "
+                st += "}\n"
+            else:
+                st += f'"{staff}."\n'  
+        if polyph:
+            st += "\t\t\\consists Merge_rests_engraver\n"
+        st += "\t}"
+
+        #voice
+        if polyph:
+            st += "<<\n"
+            for indice, voice in enumerate(staff):
+                st += Voice(voice, indice)
+            st += "\t>>\n"
+        else:
+            st += Voice(staff)
+        
+        #lyrics
+        if len(staffes) > 2 or nb == indice == 0:
+            for lyr in range(lyrics):
+                st += Lyrcis(staff, lyr)
+            st += "\n"
+    st += ">>"
+    return st
+
+
 
 class LilypondCreator(ctk.CTk):
     def __init__(self):
@@ -335,15 +396,14 @@ class LilypondCreator(ctk.CTk):
                     "couplets": voices_parts["Flûte"]["paroles"].get()
                 }
             }
-            choir_voices = {"S": "soprano", "A" :"alto", "T": "tenor", "B": "bass", "H": "homme"}
             
             for part in voices_parts:
                 if voices_parts[part]["btn"].get() == 1:
                     for voice in range(voice_settings[part]["nb"]):
                         if part == "Choeur":
-                            name_voice = choir_voices[voices_parts[part]["schema"].get().replace("-", "")[voice]]
+                            name_voice = VOICES[voices_parts[part]["schema"].get().replace("-", "")[voice]]
                         else:
-                            name_voice = part.lower() + "I"*voice if part == "Clavier" else ""
+                            name_voice = part.lower() + ("I"*voice if part == "Clavier" else "")
                         
                         ishigh = (voice < voice_settings[part]["nb"]/2)
                         content += (
@@ -363,26 +423,10 @@ class LilypondCreator(ctk.CTk):
                         content += "\n"
                 
 
-                content += f"{part}Part = \\new "
+                content += f"{part}Part = "
                 if part == "Choeur":
-                    content += "ChoirStaff <<\n"
-                    staffes = voices_parts[part]["schema"].get().split("-")
-                    for staff in staffes:
-                        content += (
-                            "\t\\new Staff \\with {\n"
-                            "\t\tmidiInstrument = \"choir aahs\"\n"
-                            )
-                        if category == "Chorale":
-                            content += "\t\tshortInstrumentName = "
-                            if len(staff) > 1:
-                                content += (
-                                    "\\markup \\center-column {"
-                                    f"\"{staff[0]}\" \"{staff[1]}\""
-                                    )
-                            else:
-                                content += f"\"{staff[0]}\""
-                            content += "}"
-                        
+                    content += ChoirStaff(voices_parts[part]["schema"].get(), voice_settings["Choeur"]["couplets"])
+                
                         
             if values.get("title"):
                 if values.get("composer"):
@@ -405,8 +449,13 @@ class LilypondCreator(ctk.CTk):
                     values[key] = values[key].upper()
                 content += f"\t\t{key} = \"{values[key]}\"\n"
 
+            content += "\t}\n\t<<\n"
+            for part in voices_parts:
+                content += f"\t\t{part}Part\n"
             content += (
-                "\t}\n"
+                "\t>>\n"
+                "\t\\layout {}\n"
+                "\t\\midi{}\n"
                 "}\n"
             )
             
