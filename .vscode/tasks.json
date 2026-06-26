@@ -46,8 +46,16 @@
         },
         {
             "label": "Frescobaldi",
-            "type": "shell",
-            "command": "flatpak run org.frescobaldi.Frescobaldi \"${file}\"",
+            "type": "process",
+            "command": "flatpak",
+            "args": [
+                "run",
+                "org.frescobaldi.Frescobaldi",
+                "${file}"
+            ],
+            "presentation": {
+                "reveal": "never"
+            },
             "group": "build"
         },
         {
