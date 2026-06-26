@@ -1,6 +1,7 @@
 from pathlib import Path
 import customtkinter as ctk
 import subprocess
+import math
 ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("blue")
 
@@ -97,6 +98,8 @@ class HeaderTab(ctk.CTkFrame):
         elif choice == "Chorale":
             parts["Choeur"]["schema"].set("S-A-T-B")
             parts["Choeur"]["meme_paroles"].set(True)
+        if choice in ("Chants populaires", "Chorale"):
+            self.app.parts_tab.schema_voices_changed(parts["Choeur"]["schema"].get())
         self.app.parts_tab.update_parts_ui()
 
     def build_default_filename(self):
@@ -159,11 +162,11 @@ class HeaderTab(ctk.CTkFrame):
         self.add_field_var.set("+")
 
     def get_target_filename(self) -> str:
-        filename = Path(self.filename_var.get().strip()).name
+        filename = self.filename_var.get().strip()
         if not filename:
-            filename = self.build_default_filename()
+            filename = "Sans titre.ly"
 
-        if not filename.lower().endswith(".ly"):
+        elif "." not in filename:
             filename += ".ly"
         return filename
 
@@ -232,7 +235,7 @@ class PartsTab(ctk.CTkFrame):
                 couplets_frame.pack(side="top", padx=15, pady=2, anchor="w")
             
             if part == "Choeur":
-                ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.parts[part]["schema"],
+                ctk.CTkComboBox(voice_frame, width=100, height=28, variable=self.parts[part]["schema"],
                                 values=("SA-TB", "S-A-T-B", "SA-H","S-S-A", "T-T-B", "T-T-B-B"),
                                 command=self.schema_voices_changed).pack(side="top", padx=15, pady=0, anchor="w")
                 self.parts[part]["meme_paroles_switch"] = ctk.CTkSwitch(voice_frame, text="Même paroles pour toutes les voix", font=self.default_font,
@@ -271,35 +274,63 @@ class PartsTab(ctk.CTkFrame):
 
 NUMBERS = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
 VOICES  = {"S": "soprano", "A": "alto", "T": "tenor", "B": "bass", "H": "homme"}
+PIANOSTAFFES = ["right", "left", "pedal"]
 
-def Voice(voice, indice = None):
+def Voice(voice, indice):
     return (
-        f"\t\t\\new Voice = \"{VOICES[voice]}\" "
-        "{ "
-        "\\clef bass " if voice in "BH" else '\\clef "treble_8 "' if voice == "T" else ""
-        f"{"\\voice"+NUMBERS[indice] if indice else ""}"
-        f" \\{VOICES[voice]}"
-        "}\n"
+        (" " if indice is None else "\t\t") +
+        f"\\new Voice = \"{VOICES[voice]}\" " +
+        ("{ \\clef bass " if voice in "BH" else '{ \\clef "treble_8 "' if voice == "T" else "{ ") +
+        (f"\\voice{NUMBERS[indice]}" if indice is not None else "") +
+        f"\\{VOICES[voice]} }}\n"
     )
 
-def Lyrics(voice, nb=None):
+def lyricName(voice, nb, to_voice):
+    return f"{VOICES[voice] if to_voice else ""}Verse{NUMBERS[nb]}"
+
+def Lyrics(voice, nb, to_voice: bool):
     return (
         "\t\\new Lyrics \\with { \\override VerticalAxisGroup.staff-affinity = #CENTER\n\t}"
-        f'\\lyricsto "{VOICES[voice]}" \\verse{NUMBERS[nb]}\n'
+        f' \\lyricsto "{VOICES[voice]}" \\{lyricName(voice, nb, to_voice)}\n'
     )
 
-def ChoirStaff(schema: str, lyrics: int):
+def ChoirVars(schema: str, lyrics: int, same_lyrics: bool):
+    st = ""
+    parts = schema.replace("-", "")
+    for num, voice in enumerate(parts):
+        ishigh = num < math.ceil(len(schema)/2)
+        st += (
+            f"{VOICES[voice]} = \\fixed c{"'" if ishigh else ""}"
+            " {\n\t\\global\n\t\n}\n"
+        )
+        if not same_lyrics:
+            for nb in range(lyrics):
+                st += (
+                    f"{lyricName(voice, nb, True)} = \\lyricmode"
+                    " {\n\t\n}\n"
+                )
+        st += "\n"
+    if same_lyrics:
+        for nb in range(lyrics):
+            st += (
+                f"{lyricName(voice, nb, False)} = \\lyricmode"
+                " {\n\t\n}\n"
+            )
+    st += "\n"
+    return st
+
+def ChoirStaff(schema: str, lyrics: int, same_lyrics: bool):
     staffes = schema.split("-")
-    st = "\\new ChoirStaff <<\n"
+    st = "ChoeurPart = \\new ChoirStaff <<\n"
     
     for nb, staff in enumerate(staffes):
         polyph = len(staff) > 1
-        #with
+        
         st += (
             "\t\\new Staff \\with {\n"
-            "\t\tmidiInstrument = \"choir aahs\""
+            "\t\tmidiInstrument = \"choir aahs\"\n"
         )
-        if any(len(stf) > 1 for stf in staffes):
+        if any(len(stf) != 2 for stf in staffes):
             st += "\t\tinstrumentName = "
             if polyph:
                 st += "\\markup \\center-column { "
@@ -310,25 +341,49 @@ def ChoirStaff(schema: str, lyrics: int):
                 st += f'"{staff}."\n'  
         if polyph:
             st += "\t\t\\consists Merge_rests_engraver\n"
-        st += "\t}"
+        st += "\t} "
 
-        #voice
         if polyph:
             st += "<<\n"
             for indice, voice in enumerate(staff):
                 st += Voice(voice, indice)
             st += "\t>>\n"
         else:
-            st += Voice(staff)
+            st += Voice(staff, None)
         
-        #lyrics
-        if len(staffes) > 2 or nb == indice == 0:
+        if (len(staffes) > 2 and same_lyrics) or nb == 0:
             for lyr in range(lyrics):
-                st += Lyrics(staff, lyr)
+                st += Lyrics(staff[0], lyr, not same_lyrics)
             st += "\n"
-    st += ">>"
+    st += ">>\n"
     return st
 
+
+def PianoStaff(name, staffes):
+    st = (
+        "\\new PianoStaff \\with {\n"
+        f'\tinstrumentName = "{name}"\n'
+        f'\tmidiInstrument = "{'acoustic grand' if name == "Piano" else 'church organ'}"\n'
+        "} <<\n"
+    )
+    for num, staff in enumerate(staffes):
+        st += (
+            '\\new Staff = "{PIANOSTAFFES[num]}" '
+            "{ \\clef bass " if num > len(staff)/2 else "{ "
+            )
+        if staff == 1:
+            st += (
+                f"\\{PIANOSTAFFES[num]} "
+                "}\n"
+            )
+        else:
+            st += "<< "
+            for voice in range(staff):
+                st += (
+                    f"\\{PIANOSTAFFES[num]}{NUMBERS[voice]} "
+                    "\\\\ " if voice < staff-1 else ""
+                )
+            st += ">>\n"
 
 
 class LilypondCreator(ctk.CTk):
@@ -367,17 +422,24 @@ class LilypondCreator(ctk.CTk):
             target_folder.mkdir(parents=True, exist_ok=True)
             filepath = target_folder / filename
             if filepath.exists():
-                raise OSError(f"Le fichier '{filename}' existe déjà dans la catégorie '{category}'. Veuillez modifier le nom du fichier.")
+                if filename == "Sans titre.ly":
+                    new_name, i = "Sans titre ({})", 1
+                    while Path(new_name.format(i)).exists():
+                        i += 1
+                    filepath = target_folder / new_name.format(i)
+                else:
+                    raise OSError(f"Le fichier '{filename}' existe déjà dans la catégorie '{category}'. Veuillez modifier le nom du fichier.")
             
             content = (
                 "\\version \"2.26.0\"\n"
-                "\\include \"../../settings.ly\"\n"
+                "\\include \"../../settings.ily\"\n"
                 "\n"
                 "global = { \n\n"
                 "\t\n"
                 "}\n\n"
             )
             voices_parts = self.parts_tab.parts
+            
             voice_settings = {
                 "Solo": {
                     "nb": 1,
@@ -396,38 +458,21 @@ class LilypondCreator(ctk.CTk):
                     "couplets": voices_parts["Flûte"]["paroles"].get()
                 }
             }
+            voices_parts = {k: v for k, v in self.parts_tab.parts.items() if v["btn"].get()}
             
             for part in voices_parts:
-                if voices_parts[part]["btn"].get():
-                    for voice in range(voice_settings[part]["nb"]):
-                        if part == "Choeur":
-                            name_voice = VOICES[voices_parts[part]["schema"].get().replace("-", "")[voice]]
-                        else:
-                            name_voice = part.lower() + ("I"*voice if part == "Clavier" else "")
-                        
-                        ishigh = (voice < voice_settings[part]["nb"]/2)
-                        content += (
-                            f"{name_voice} = \\fixed c{"'" if ishigh else ""}"
-                            " {\n"
-                            "\t\\global\n"
-                            "\t\n}"
-                            "\n"
-                            )
-                        
-                        if voice_settings[part]["couplets"]:
-                            content += (
-                                name_voice + "Verse = \\lyricmode {\n"
-                                "\t\n"
-                                "}\n"
-                                )
-                        content += "\n"
-                
-
-                    content += f"{part}Part = "
-                    if part == "Choeur":
-                        content += ChoirStaff(voices_parts[part]["schema"].get(), voice_settings["Choeur"]["couplets"])
-                    
-                        
+                if part == "Choeur":
+                    content += ChoirVars(
+                        voices_parts[part]["schema"].get(),
+                        voice_settings["Choeur"]["couplets"],
+                        voices_parts[part]["meme_paroles"].get()
+                    ) + ChoirStaff(
+                        voices_parts[part]["schema"].get(),
+                        voice_settings["Choeur"]["couplets"],
+                        voices_parts[part]["meme_paroles"].get()
+                    )
+            
+            content += "\n"     
             if values.get("title"):
                 if values.get("composer"):
                     content += (
@@ -440,21 +485,26 @@ class LilypondCreator(ctk.CTk):
                         f"\\tocItem \\markup \"{values['title']}\"\n"
                     )
             content += (
-                "\n\\score {\n"
+                "\\score {\n"
                 "\t\\header {\n"
             )
             for key in values:
                 if key == "title":
                     values[key] = values[key].upper()
                 content += f"\t\t{key} = \"{values[key]}\"\n"
+            
+            content += "\t}\n"
 
-            content += "\t}\n\t<<\n"
-            for part in voices_parts:
-                content += f"\t\t{part}Part\n"
+            if len(voices_parts) < 2:
+                content += f"\t\\{part}Part\n"
+            else:
+                content += "\t<<\n"
+                for part in voices_parts:
+                    content += f"\t\t\\{part}Part\n"
+                content += "\t>>\n"
             content += (
-                "\t>>\n"
                 "\t\\layout {}\n"
-                "\t\\midi{}\n"
+                "\t\\midi {}\n"
                 "}\n"
             )
             
@@ -462,18 +512,26 @@ class LilypondCreator(ctk.CTk):
             subprocess.Popen(["flatpak", "run", "org.frescobaldi.Frescobaldi", str(filepath)])
             self.destroy()
         
-        except OSError as error:
-            error_window = ctk.CTkToplevel(self)
-            error_window.title("Erreur de création")
-            error_window.geometry("400x150")
-            
-            label = ctk.CTkLabel(
-                error_window, text=f"Une erreur est survenue :\n{str(error)}", 
-                text_color="#D32F2F", wraplength=360, justify="center", font=self.default_font
-            )
-            label.pack(expand=True, fill="both", pady=20, padx=20)
-            
 
+        except OSError as error:
+            self.error_window = ctk.CTkToplevel(self)
+            self.error_window.title("Erreur de création")
+            self.error_window.geometry("400x150")
+            self.error_window.resizable(False, False)
+            
+            ctk.CTkLabel(
+                self.error_window, text=f"Une erreur est survenue :\n{str(error)}", 
+                text_color="#D32F2F", wraplength=360, justify="center", font=self.default_font
+            ).pack(expand=True, fill="both", pady=20, padx=20)
+            
+            ctk.CTkButton(
+                self.error_window, text="Relancer", width=160,
+                 font=self.default_font, command=self.relaunch
+            ).pack(pady=10)
+
+    def relaunch(self):
+        self.error_window.destroy()
+        self.create_lilypond_file()
 
 if __name__ == "__main__":
     app = LilypondCreator()
