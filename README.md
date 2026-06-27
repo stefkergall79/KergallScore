@@ -15,10 +15,9 @@ Ce dépôt propose une soixantaine de partitions [lilypond](https://lilypond.org
 
 `Ctrl+Maj+B` et sélectionnez :
 
-- Installer les dépendances : `New`.
+- Installer les dépendances : `Install`.
 - Sauvegarder sur le dépôt Git : `Save`.
-- Créer une nouvelle partition : `Install`.
-- Compiler un fichier source: `Compile`.
+- Créer une nouvelle partition : `New`.
+- Compiler un fichier source : `Compile`.
 - Jouer un fichier son : `Lecteur midi`.
 - Ouvrir un fichier source dans [Frescobaldi](https://frescobaldi.org/) : `Frescobaldi`.
-
