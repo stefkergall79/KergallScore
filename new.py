@@ -283,23 +283,26 @@ class MusicTab(ctk.CTkFrame):
         
         self.vars = {
             "Armure": {
+                "def": "c",
                 "var": ctk.StringVar(value="c"),
                 "val": ["c", "cis", "d", "dis", "e", "f", "fis", "g", "gis", "a", "bes", "b"],
                 "ly": "key"
             },
             "Chiffre de mesure": {
+                "def": "4/4",
                 "var": ctk.StringVar(value="4/4"),
                 "val": ["4/4", "2/2", "2/4", "3/4", "6/8", "9/8", "12/8"],
                 "ly": "time"
             },
             "Anacrouse": {
+                "def": "0",
                 "var": ctk.StringVar(value="0"),
                 "val": ["0"] + [str(2**i) for i in range(5)] + [str(2**i)+"." for i in range(5)],
                 "ly": "partial"
             },
             "Tempo": {
                 "var": ctk.StringVar(value="70"),
-                "ly":"tempo"
+                "ly":"tempo 4="
             }
         }
 
@@ -353,8 +356,8 @@ def ChoirVars(schema: str, lyrics: int, same_lyrics: bool):
         if not same_lyrics:
             for nb in range(lyrics):
                 st += (
-                    f"{lyricName(voice, nb, True)} = \\strophemode {nb+1} \\lyricmode"
-                    " {\n\t\n}\n\n"
+                    f"{lyricName(voice, nb, True)} = \\strophemode {nb+1} "
+                    "##" + ("f" if nb%2 else "t")+" \\lyricmode {\n\t\n}\n\n"
                 )
         st += "\n"
     if same_lyrics:
@@ -491,10 +494,11 @@ class LilypondCreator(ctk.CTk):
                 "\t\\autoBeamOff\n"
             )
             for settings in self.music_tab.vars.values():
-                content += (
-                    f"\t\\{settings["ly"]} = {settings["var"].get()}" +
-                    ("\\major" if settings["ly"] == "key" else "") + "\n"
-                )
+                if "def" not in settings or settings["var"].get() != settings["def"]:
+                    content += (
+                        f"\t\\{settings["ly"]} = {settings["var"].get()}" +
+                        (" \\major" if settings["ly"] == "key" else "") + "\n"
+                    )
             content += "}\n\n"
             voices_parts = self.parts_tab.parts
             
