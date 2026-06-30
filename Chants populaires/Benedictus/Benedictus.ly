@@ -60,27 +60,27 @@ verseOne = \lyricmode {
   "in lóco páscuæ íbi me" col -- lo -- cá -- vit.
 }
 
-verseTwo = \strophemode 2 41 \lyricmode {
+verseTwo = \strophemode #2 ##t #41 \lyricmode {
   Sú -- per "áquam refectiónis e" du -- cá -- vit_me_:
   "ánimam mé" -- am con -- vér -- tit.
 }
 
-verseThree = \strophemode 3 41 \lyricmode {
+verseThree = \strophemode #3 ##f #41 \lyricmode {
   De -- dú -- "xit me súper sémitas" jus -- ti -- tiæ_:
   própter nó -- men sú -- um.
 }
 
-verseFour = \strophemode 4 41 \lyricmode {
+verseFour = \strophemode #4 ##t #41 \lyricmode {
   Nam et "si ambulávero in médio úmbræ mórtis, non timé - " -- bo má -- la_:
   quóniam tu mé -- cum es.
 }
 
-verseFive = \strophemode 5 41 \lyricmode {
+verseFive = \strophemode #5 ##f #41 \lyricmode {
   Vír -- ga "túa et bácu" -- lus tú -- us_:
   "ípsa me con" -- so -- lá -- ta sunt.
 }
 
-verseSix = \strophemode 6 41 \lyricmode {
+verseSix = \strophemode #6 ##t #41 \lyricmode {
   Pa -- rá -- "sti in conspéctu mé" -- o mén -- sam_:
   "advérsus éos, qui" trí -- bu -- lant me.
 }

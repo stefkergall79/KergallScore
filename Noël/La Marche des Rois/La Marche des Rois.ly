@@ -90,7 +90,7 @@ bass = \fixed c {
   c8 bes, a, g, d4 d4 g4.
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode 1 ##f \lyricmode {
   De bon ma -- tin j'ai ren -- con -- tré le train
   de trois grands rois qui par -- taient en voy -- a -- ge,
   de bon ma -- tin j'ai ren -- con -- tré le train

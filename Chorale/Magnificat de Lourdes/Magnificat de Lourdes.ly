@@ -49,81 +49,63 @@ bass = \fixed c {
   f\breve bes4(a g4 4) f1
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode #1 ##f \lyricmode {
   Ma -- gní -- ficat, ma -- gní _ -- ficat ánima mé -- a Dó -- minum.
 }
 
-verseTwo = \lyricmode {
-  \set stanza = "2."
+verseTwo = \strophemode #2 ##f \lyricmode {
   "Et exultávit spíritus" mé -- us "in Déo salutári" mé -- o.
 }
 
-verseThree = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 3.
+verseThree = \strophemode #3 ##t \lyricmode {
   Qui8 -- a4 "respéxit humilitátem an"\breve
   -- cíl8 -- læ sú -- æ,2
   "ecce enim ex hoc beátam me dícent ómnes gene - "\breve
   -- ra8 -- ti4 -- ó4 -- nes.2
 }
 
-verseFour = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic "4."
+verseFour = \strophemode #4 ##t \lyricmode {
   "Quia fécit míhi mágna qui"\breve
   pó2. -- tens4 est_:1
   "et sánctum nómen"\breve é1 -- jus.1
 }
 
-verseFive = \lyricmode {
-  \set stanza = "5."
+verseFive = \strophemode #5 ##f \lyricmode {
   Et mi -- "sericórdia éjus a progénie " in pro -- gé -- nies
   "timén" -- ti -- bus é -- um.
 }
 
-verseSix = \lyricmode {
-  \set stanza = "6."
+verseSix = \strophemode #6 ##f \lyricmode {
   "Fécit poténtiam in bráchio" sú -- o_:
   "dispérsit supérbos ménte córdis       " sú -- i.
 }
 
-verseSeven = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 7.
+verseSeven = \strophemode #7 ##t \lyricmode {
   De -- pó -- "suit po" -- téntes de sé -- de,
   "et exal" -- tá -- vit hú -- miles.
 }
 
-verseEight = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 8.
-   "Esuriéntes implévit" bó -- nis_:
-   "et dívites dimísit i" -- ná -- nes.
+verseEight = \strophemode #8 ##t \lyricmode {
+  "Esuriéntes implévit" bó -- nis_:
+  "et dívites dimísit i" -- ná -- nes.
 }
 
-verseNine = \lyricmode {
-  \set stanza = "9."
-   Sus8 -- cé4 -- "pit Israël"\breve púe8 -- rum8 sú8 -- um,2
-   "recordátus misericór"\breve -- di8 -- æ4 sú4 -- æ.2
+verseNine = \strophemode #9 ##f \lyricmode {
+  Sus8 -- cé4 -- "pit Israël"\breve púe8 -- rum8 sú8 -- um,2
+  "recordátus misericór"\breve -- di8 -- æ4 sú4 -- æ.2
 }
 
-verseTen = \lyricmode {
-  \set stanza = "10."
+verseTen = \strophemode #10 ##f \lyricmode {
   "Sicut locútus est ad pátres"\breve nós1 -- tros_:1
   "Abraham et sémini éjus in"\breve saé2. -- cu4 -- la.1
 }
 
-verseEleven = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 11.
+verseEleven = \strophemode #11 ##t \lyricmode {
   Gló -- ri -- a Pátri et Fí -- lio
   "et Spirí" -- tu -- i Sán -- cto.
 }
 
-verseTwelve = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 12.
+verseTwelve = \strophemode #12 ##t \lyricmode {
   "Sicut érat in princípio, et nunc, et       " sém -- per,
   "et in saécula sæculórum." A -- men.
 }

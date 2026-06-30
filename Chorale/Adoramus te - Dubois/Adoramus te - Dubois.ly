@@ -76,8 +76,8 @@ verseOne = \lyricmode {
       \new Staff \with {
         midiInstrument = "choir aahs"
         \consists Merge_rests_engraver
-      } <<
         \clef bass
+      } <<
         \new Voice = "tenor" { \voiceOne \tenor }
         \new Voice = "bass" { \voiceTwo \bass }
       >>

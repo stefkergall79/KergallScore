@@ -53,37 +53,37 @@ verseOne = \lyricmode {
   quí -- a má -- jor óm -- ni láu -- de
   nec láu -- da -- re súf -- fi -- cis.
 }
-verseTwo = \strophemode 2 23 \lyricmode {
+verseTwo = \strophemode #2 ##t 23 \lyricmode {
   Láu -- dis thé -- ma spe -- ci -- á -- lis,
   Pá -- nis ví -- vus et ví -- ta -- lis
   hó -- di -- e pro -- pó -- ni -- tur.
 }
-verseThree = \strophemode 3 23 \lyricmode {
+verseThree = \strophemode #3 ##f 23 \lyricmode {
   Quem in sá -- cræ mén -- sa cé -- næ
   túr -- bæ frá -- trum du -- ó -- de -- næ
   dá -- tum non am -- bí -- gi -- tur.
 }
-verseFour = \strophemode 4 23 \lyricmode {
+verseFour = \strophemode #4 ##t 23 \lyricmode {
   Sit laus plé -- na, sit so -- nó -- ra_;
   sit ju -- cún -- da, sit de -- có -- ra_;
   mén -- tis ju -- bi -- lá -- ti -- o.
 }
-verseFive = \strophemode 5 23 \lyricmode {
+verseFive = \strophemode #5 ##f 23 \lyricmode {
   In hac mén -- sa nó -- vi Ré -- gis,
   nó -- vum Pás -- cha nó -- væ lé -- gis,
   phá -- se vé -- tus tér -- mi -- nat.
 }
-verseSix = \strophemode 6 23 \lyricmode {
+verseSix = \strophemode #6 ##t 23 \lyricmode {
   Quod in cé -- na Chrís -- tus gés -- sit,
   fa -- ci -- én -- dum hoc ex -- prés -- sit,
   in su -- í me -- mó -- ri -- am.
 }
-verseSeven = \strophemode 7 23 \lyricmode {
+verseSeven = \strophemode #7 ##f 23 \lyricmode {
   Dóc -- ti sá -- cris ins -- ti -- tú -- tis,
   pá -- nem, ví -- num in sa -- lú -- tis
   con -- se -- crá -- mus hós -- ti -- am.
 }
-verseEight = \strophemode 8 23 \lyricmode {
+verseEight = \strophemode #8 ##t 23 \lyricmode {
   Dóg -- ma dá -- tur chris -- ti -- á -- nis,
   quod in cár -- nem trán -- sit pá -- nis
   et ví -- num in sán -- gui -- nem.

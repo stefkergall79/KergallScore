@@ -46,7 +46,7 @@ bass = \fixed c {
   d4(a)b(fis)d2 4 4 a,1 d,
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f \lyricmode {
   O sanc -- tís -- si -- ma,
   o pi -- ís -- si -- ma,
   dúl -- cis Vír -- go Ma -- rí -- a_!
@@ -54,7 +54,7 @@ verseOne = \strophemode 1 \lyricmode {
   ó -- ra, ó -- ra pro nó -- bis.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
   Tu so -- lá -- ti -- um
   et re -- fú -- gi -- um
   Vír -- go Má -- ter, Ma -- rí -- a_!
@@ -63,7 +63,7 @@ verseTwo = \strophemode 2 \lyricmode {
   ó -- ra, ó -- ra pro nó -- bis.
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode #3 ##f \lyricmode {
   Tu -- a gáu -- di -- a
   et sus -- pí -- ri -- a
   jú -- vent nos, o Ma -- rí -- a_!
@@ -106,5 +106,5 @@ verseThree = \strophemode 3 \lyricmode {
       >>
     >>
     \layout {\context{\Staff \RemoveAllEmptyStaves}}
-    \midi {\tempo 4=80}
+    \midi {\tempo 4=80 }
   }

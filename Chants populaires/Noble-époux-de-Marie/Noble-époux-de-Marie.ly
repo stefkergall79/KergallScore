@@ -81,7 +81,7 @@ bass = \fixed c {
   d4.
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f\lyricmode {
   Noble é -- poux de Ma -- ri -- e,
   digne ob -- jet de nos chants,
   no -- tre cœur vous sup -- pli -- e,
@@ -91,21 +91,21 @@ verseOne = \strophemode 1 \lyricmode {
   veil -- lez, veil -- lez sur vos en -- fants_!
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
   Le Sau -- veur_ sur la ter -- re,
   re -- çut vos soins tou -- chants_;
   vous qu'il nom -- ma son pè -- re,
   veil -- lez sur vos en -- fants_!
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode #3 ##f \lyricmode {
   Té -- moin de sa nais -- san -- ce,
   et de ses jeu -- nes ans,
   gar -- dien de son en -- fan -- ce,
   veil -- lez sur vos en -- fants_!
 }
 
-verseFour = \strophemode 4 \lyricmode {
+verseFour = \strophemode #4 ##t \lyricmode {
   Au jour de la co -- lè -- re,
   vous ra -- vîtes aux ty -- rans
   le Sau -- veur et sa Mè -- re_;

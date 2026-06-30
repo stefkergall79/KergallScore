@@ -51,7 +51,7 @@ bass = \fixed c {
   r4 s4 d2 a,
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f \lyricmode {
   Tán -- tum ér -- go Sa -- cra -- mén -- tum
   ve -- ne -- ré -- mur cér -- nu -- i,
   et an -- tí -- quum do -- cu -- mén -- tum
@@ -62,7 +62,7 @@ verseOne = \strophemode 1 \lyricmode {
   A -- men.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
   Ge -- ni -- tó -- ri Ge -- ni -- tó -- que
   laus et ju -- bi -- lá -- ti -- o,
   sá -- lus, hó -- nor, vír -- tus quó -- que

@@ -87,7 +87,7 @@ bassII = \fixed c {
   b2(fis)ais1 g2(d)fis1 a2 4 4 1 1
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode 1 ##f \lyricmode {
   \repeat unfold 2 {
     Les clo -- ches de No -- ël
     tin -- tent dans la val -- lée_:
@@ -97,7 +97,7 @@ verseOne = \strophemode 1 \lyricmode {
   A -- ve, A -- ve, A -- ve Ma -- rí -- a.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode 2 ##t \lyricmode {
   \repeat unfold 2 {
     Les ber -- gers du pa -- ys,
     qui gar -- dent les trou -- peaux,
@@ -106,7 +106,7 @@ verseTwo = \strophemode 2 \lyricmode {
   }
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode 3 ##f \lyricmode {
   \repeat unfold 2 {
     En rou -- te, pas -- tou -- reaux,
     pré -- pa -- rons nos flu -- tiaux,
@@ -115,7 +115,7 @@ verseThree = \strophemode 3 \lyricmode {
   }
 }
 
-verseFour = \strophemode 4 \lyricmode {
+verseFour = \strophemode 4 ##t \lyricmode {
   \repeat unfold 2 {
     Clo -- ches, clo -- ches, son -- nez,
     son -- nez dans la val -- lée,
@@ -159,8 +159,8 @@ choirPart =  \new ChoirStaff <<
     midiInstrument = "choir aahs"
     shortInstrumentName = "T."
     \consists Merge_rests_engraver
+    \clef "treble_8"
   } <<
-      \clef bass
       \new Voice = "bassI" { \voiceOne \bassI }
       \new Voice = "bassII" { \voiceTwo \bassII }
   >>

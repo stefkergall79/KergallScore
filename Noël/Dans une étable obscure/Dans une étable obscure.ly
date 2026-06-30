@@ -44,7 +44,7 @@ bass = \fixed c {
   f4 4 4 bes, f c2 d g, a,4 bes, c2 2 <f, c>
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode 1 ##f \lyricmode {
   Dans une é -- table ob -- scu -- re,
   sous le ciel é -- toi -- lé,
   et d'u -- ne Vier -- ge pu -- re,
@@ -54,7 +54,7 @@ verseOne = \strophemode 1 \lyricmode {
   quand a son -- né mi -- nuit.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode 2 ##t \lyricmode {
   Tan -- dis que les Rois ma -- ges,
   tan -- dis que les ber -- gers,
   lui por -- tent leurs hom -- ma -- ges,
@@ -64,7 +64,7 @@ verseTwo = \strophemode 2 \lyricmode {
   en cette heu -- reu -- se nuit.
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode 3 ##f \lyricmode {
   Plein d'u -- ne foi pro -- fon -- de,
   le monde est à ge -- noux.
   Frê -- le Ma -- jes -- té blon -- de,

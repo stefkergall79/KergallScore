@@ -55,7 +55,7 @@ bass = \fixed c {
   e4 a,4. 8 b,8 8 e2
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f\lyricmode {
   Je mets ma con -- fi -- an -- ce,
   Vierge, en vo -- tre se -- cours,
   ser -- vez -_moi de dé -- fen -- se,
@@ -66,7 +66,7 @@ verseOne = \strophemode 1 \lyricmode {
   De la plus sain -- te mort.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
   Sain -- te Vier -- ge Ma -- ri -- e,
   a -- si -- le des pé -- cheurs,
   pre -- nez part, je vous pri -- e,

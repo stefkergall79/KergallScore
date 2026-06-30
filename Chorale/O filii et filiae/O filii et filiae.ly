@@ -45,20 +45,20 @@ bass = \fixed c {
 
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f \lyricmode {
   O fi -- li -- i et fi -- li -- æ,
   Rex cæ -- lés -- tis, Rex gló -- ri -- æ,
   mór -- te sur -- ré -- xit hó -- di -- e. Al -- le -- lú -- ia.
   Al -- le -- lú -- ia, al -- le -- lú -- ia, al -- le -- lú -- ia.
 }
 
-verseTwo = \strophemode 3 \lyricmode {
+verseTwo = \strophemode #3 ##f \lyricmode {
   In ál -- bis sé -- dens An -- ge -- lus,
   re -- spón -- dit mu -- li -- é -- ri -- bus,
   qui -- a sur -- ré -- xit Dó -- mi -- nus. Al -- le -- lú -- ia.
 }
 
-verseThree = \strophemode 5 \lyricmode {
+verseThree = \strophemode #5 ##f \lyricmode {
   Sed Io -- án -- nes A -- pós -- to -- lus
   cu -- cúr -- rit Pé -- tro cí -- ti -- us,
   ad se -- púl -- crum vé -- nit pri -- us. Al -- le -- lú -- ia.

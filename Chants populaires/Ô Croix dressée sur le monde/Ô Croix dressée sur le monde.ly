@@ -19,7 +19,7 @@ soprano = \fixed c' {
   g8 8 8 bes g bes d'4(c'8) bes4. c'8 d' c' bes4 a8 g4. r4 \bar "|."
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f \lyricmode {
   Ô Croix dres -- sée sur le mon -- de,
   ô Croix de Jé -- sus -_Christ_!
   Fleu -- ve dont l'eau fé -- con -- de
@@ -28,7 +28,7 @@ verseOne = \strophemode 1 \lyricmode {
   ô Croix de Jé -- sus -_Christ_!
 }
 
-verseTwo =  \strophemode 2 \lyricmode {
+verseTwo =  \strophemode #2 ##t \lyricmode {
   Ô Croix, su -- bli -- me fo -- li -- e,
   ô Croix de Jé -- sus -_Christ_!
   Dieu rend par toi la vi -- e
@@ -37,7 +37,7 @@ verseTwo =  \strophemode 2 \lyricmode {
   ô Croix de Jé -- sus -_Christ_!
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode #3 ##f \lyricmode {
   Ô Croix, sa -- ges -- se su -- prê -- me,
   ô Croix de Jé -- sus -_Christ_!
   Le Fils de Dieu lui -_mê -- me
@@ -46,7 +46,7 @@ verseThree = \strophemode 3 \lyricmode {
   ô Croix de Jé -- sus -_Christ_!
 }
 
-verseFour = \strophemode 4 \lyricmode {
+verseFour = \strophemode #4 ##t \lyricmode {
   Ô Croix, vic -- toire é -- cla -- tan -- te,
   ô Croix de Jé -- sus -_Christ_!
   Tu ju -- ge -- ras le mon -- de

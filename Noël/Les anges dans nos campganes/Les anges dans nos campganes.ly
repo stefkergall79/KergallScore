@@ -58,7 +58,7 @@ bass = \fixed c {
   d4(g8[b] d'2) g
 }
 
-verseSopranoOne = \strophemode 1 \lyricmode {
+verseSopranoOne = \strophemode 1 ##f \lyricmode {
   Les an -- ges dans nos cam -- pa -- gnes
   ont en -- ton -- né l’hym -- ne des cieux,
   et l’é -- cho de nos mon -- ta -- gnes
@@ -68,20 +68,20 @@ verseSopranoOne = \strophemode 1 \lyricmode {
     in ex -- cél -- sis Dé -- o_!
   }
 }
-verseSopranoTwo = \strophemode 2 \lyricmode {
+verseSopranoTwo = \strophemode 2 ##t\lyricmode {
   Cher -- chons tous l’heu -- reux vil -- la -- ge
   qui l’a vu naî -- tre sous ses toits_;
   of -- frons -_lui le tendre hom -- ma -- ge
   et de nos cœurs et de nos voix_:
 }
-verseSopranoThree = \strophemode 3 \lyricmode {
+verseSopranoThree = \strophemode 3 ##f \lyricmode {
   Ber -- gers, quit -- tez vos re -- trai -- tes,
   u -- nis -- sez -_vous à leurs con -- certs,
   et que vos ten -- dres mu -- set -- tes
   fas -- sent re -- ten -- tir dans les airs_:
 }
 
-verseAltoOne = \strophemode 1 \lyricmode {
+verseAltoOne = \strophemode 1 ##f \lyricmode {
   Les an -- ges dans nos cam -- pa -- gnes
   ont en -- ton -- né l’hym -- ne des cieux,
   et l’é -- cho de nos mon -- ta -- gnes
@@ -92,7 +92,7 @@ verseAltoOne = \strophemode 1 \lyricmode {
   in ex -- cél -- sis Dé -- o_!
 }
 
-verseTenorOne = \strophemode 1 \lyricmode {
+verseTenorOne = \strophemode 1 ##f \lyricmode {
   Les an -- ges dans nos cam -- pa -- gnes
   ont en -- ton -- né l’hym -- ne des cieux,
   et l’é -- cho, l'é -- cho de nos mon -- ta -- gnes
@@ -103,32 +103,32 @@ verseTenorOne = \strophemode 1 \lyricmode {
   Gló __ _ _ _ _ _ _ _ _ _ ri -- a
   in ex -- cél -- sis Dé -- o_!
 }
-verseTenorTwo = \strophemode 2 \lyricmode {
+verseTenorTwo = \strophemode 2 ##t \lyricmode {
   Cher -- chons tous l’heu -- reux vil -- la -- ge
   qui l’a vu naî -- tre sous ses toits_;
   of -- frons, of -- frons -_lui le tendre hom -- ma -- ge
   et de nos cœurs et de nos voix_:
 }
-verseTenorThree = \strophemode 3 \lyricmode {
+verseTenorThree = \strophemode 3 ##f \lyricmode {
   Ber -- gers, quit -- tez vos re -- trai -- tes,
   u -- nis -- sez -_vous à leurs con -- certs,
   et que vos, que vos ten -- dres mu -- set -- tes
   fas -- sent re -- ten -- tir dans les airs_:
 }
 
-verseBassOne = \strophemode 1 \lyricmode {
+verseBassOne = \strophemode 1 ##f \lyricmode {
   Ont en -- ton -- né l’hym -- ne des cieux,
   Re -- dit ce chant mé -- lo -- di -- eux_:
   
   Gló __ _ _ _ _ _ _ _ ri -- a
   Dé -- o_!
 }
-verseBassTwo = \strophemode 2 \lyricmode {
+verseBassTwo = \strophemode 2 ##t \lyricmode {
   \override LyricText.font-shape = #'italic
   Qui l’a vu naî -- tre sous ses toits_;
   Et de nos cœurs et de nos voix_:
 }
-verseBassThree = \strophemode 3 \lyricmode {
+verseBassThree = \strophemode 3 ##f \lyricmode {
   U -- nis -- sez -_vous à leurs con -- certs,
   Fas -- sent re -- ten -- tir dans les airs_:
 }

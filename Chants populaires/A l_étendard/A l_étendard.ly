@@ -151,7 +151,7 @@ bass = \fixed c {
   d1 g,2..
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f \lyricmode {
   Son -- nez, fan -- fa -- res tri -- om -- pha -- les_!
   Ton -- nez ca -- nons, bat -- tez tam -- bours_!
   Et vous, clo -- ches des ca -- thé -- dra -- les,
@@ -168,7 +168,7 @@ verseOne = \strophemode 1 \lyricmode {
   chan -- tons com -- me_eux_: Vi -- ve Jean -- ne, vi -- ve la Fran -- ce_!
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
   Sa -- lut à la blan -- che ban -- niè -- re,
   sa -- lut, sa -- lut aux noms bé -- nis
   du Christ et de sa Sain -- te- Mè -- re

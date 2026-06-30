@@ -77,7 +77,7 @@ bass = \fixed c {
   as bes8[bes,]es2|
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f \lyricmode {
   A -- dó -- ro Te de -- vó -- te,
   lá -- tens Dé -- i -- tas,
   quæ sub his fi -- gú -- ris
@@ -92,7 +92,7 @@ verseOne = \strophemode 1 \lyricmode {
   óm -- ni -- um cre -- dén -- ti -- um.
 }
 
-verseTwo = \strophemode 2 1 \lyricmode {
+verseTwo = \strophemode #2 ##t #1 \lyricmode {
   Jé -- su, quem ve -- lá -- tum
   nunc as -- pí -- ci -- o,
   ó -- ro fí -- at íl -- lud,

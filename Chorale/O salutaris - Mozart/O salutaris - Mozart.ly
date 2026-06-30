@@ -42,19 +42,20 @@ bass = \fixed c {
   c g,
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f \lyricmode {
   O sa -- lu -- ta -- ris Hos -- ti -- a,
   quæ cæ -- li pan -- dis os -- ti -- um.
   Bel -- la pre -- munt hos -- ti -- li -- a,
   da ro -- bur, fer au -- xi -- li -- um.
   A -- men.
 }
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
   U -- ni tri -- no -- que Do -- mi -- no
   sit sem -- pi -- ter -- na glo -- ri -- a,
   qui vi -- tam si -- ne ter -- mi -- no
   no -- bis do -- net in pa -- tri -- a. 
 }
+
 \tocItemComposer "O salutaris Hostia" "Mozart"
 \score {
   \header {

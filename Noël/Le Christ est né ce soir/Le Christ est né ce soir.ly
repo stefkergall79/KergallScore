@@ -39,7 +39,7 @@ bass = \fixed c {
   fis, g,4 a,8 b,4. cis d e fis4 8 g4 a8 b4.
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode 1 ##f \lyricmode {
   Le Christ est né ce soir
   de la Vier -- ge Ma -- ri -- e,
   sous le ciel é -- toi -- lé,
@@ -49,7 +49,7 @@ verseOne = \strophemode 1 \lyricmode {
   il a de son ber -- ceau
   fait son pre -- mier au -- tel.
 }
-verseOneTenor = \strophemode 1 \lyricmode {
+verseOneTenor = \strophemode 1 ##f\lyricmode {
   Le Christ est né ce soir
   de la Vier -- ge Ma -- ri -- e,
   sous le ciel é -- toi -- lé,
@@ -61,7 +61,7 @@ verseOneTenor = \strophemode 1 \lyricmode {
 }
 
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode 2 ##t \lyricmode {
   Ce soir comme un é -- cho
   du fond de Pa -- les -- ti -- ne,
   de val -- lon en val -- lon,
@@ -71,7 +71,7 @@ verseTwo = \strophemode 2 \lyricmode {
   aux hom -- mes paix sur terre
   et gloire au Dieu du ciel_!
 }
-verseTwoTenor = \strophemode 2 \lyricmode {
+verseTwoTenor = \strophemode 2 ##t \lyricmode {
   Ce soir comme un é -- cho
   du fond de Pa -- les -- ti -- ne,
   de val -- lon en val -- lon,
@@ -82,7 +82,7 @@ verseTwoTenor = \strophemode 2 \lyricmode {
   et gloire au Dieu du ciel_!
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode 3 ##f\lyricmode {
   A -- vec les pas -- tou -- reaux,
   loin du mon -- de cou -- pa -- ble,
   ah_! Ve -- nez à ge -- noux
@@ -92,7 +92,7 @@ verseThree = \strophemode 3 \lyricmode {
   l’hom -- ma -- ge de nos cœurs_:
   Il est le Roi des rois_!
 }
-verseThreeTenor = \strophemode 3 \lyricmode {
+verseThreeTenor = \strophemode 3 ##f \lyricmode {
   A -- vec les pas -- tou -- reaux,
   loin du mon -- de cou -- pa -- ble,
   ah_! Ve -- nez à ge -- noux

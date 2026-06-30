@@ -25,19 +25,18 @@ tenors = \fixed c {
   d a, a, d4 4 f4. f,8 4 f f e d4. 8 4 c bes,4 4 4 a, g,2 f, g,8([ a, bes, c] d4.) 8 g,2
 }
 
-verso = \lyricmode {
-  \set stanza = "1."
+verso = \strophemode #1 ##f \lyricmode {
   Jé -- su, Rex Ad -- mi -- rá -- bi -- lis,
-et Tri -- um -- phá -- tor nó -- bi -- lis,
-Dul -- cé -- do in -- ef -- fá -- bi -- lis
-tó -- tus de -- si -- de -- rá -- bi -- lis,
-tó -- tus de -- si -- de -- rá -- bi -- lis.
+  et Tri -- um -- phá -- tor nó -- bi -- lis,
+  Dul -- cé -- do in -- ef -- fá -- bi -- lis
+  tó -- tus de -- si -- de -- rá -- bi -- lis,
+  tó -- tus de -- si -- de -- rá -- bi -- lis.
 }
 
 versa = \lyricmode {
   \repeat unfold 24 {\skip1}
   tó -- tus de -- si -- de -- rá -- bi -- lis,
-tó -- tus
+  tó -- tus
 }
 
 verst = \lyricmode {

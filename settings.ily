@@ -27,21 +27,14 @@ markChanson =
    #})
 
 strophemode =
-#(define-music-function (num debut paroles) (integer? (integer? 0) ly:music?)
+#(define-music-function (num italic debut paroles) (integer? boolean? (integer? 0) ly:music?)
   (let ((num-str (string-append (number->string num) "."))
         (skip_debut (if (> debut 0)
             #{ \lyricmode { \repeat unfold #debut \skip 1 } #}
             #{
             #}))
        )
-  (if (odd? num)
-    #{
-      \lyricmode {
-        #skip_debut
-        \set stanza = #num-str
-        #paroles
-      }
-    #}
+  (if italic
     #{
       \lyricmode {
         #skip_debut
@@ -49,7 +42,15 @@ strophemode =
         \set stanza = \markup \italic #num-str
         #paroles
       }
-    #})))
+    #}
+    #{
+      \lyricmode {
+        #skip_debut
+        \set stanza = #num-str
+        #paroles
+      }
+    #}
+    )))
 
 #(define-markup-command (couplets-markup layout props start-num num-cols lines) 
   (integer? integer? markup-list?)

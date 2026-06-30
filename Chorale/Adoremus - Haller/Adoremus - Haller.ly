@@ -43,24 +43,22 @@ verseRefrain = \lyricmode {
   Sa -- cra -- mén -- tum.
 }
 
-verseOne = \lyricmode {
-  \skip 1*8
-  \set stanza = "1."
+verseOne = \strophemode #1 ##f #8 \lyricmode {
   "Quam dilécta tabernácula tua  //  Dómine vir    -   "\breve -- tú2 -- tum_;1.
   "concupíscit, et déficit ánima mea  //  in átria      "\breve Dó4. -- mi8 -- ni.1.
 }
 
-verseTwo = \strophemode 2 16 \lyricmode {
+verseTwo = \strophemode #2 ##t #16 \lyricmode {
   "Cor meum, et caro " me -- a_;
   "exsultavérunt in Deum" vi -- vum.
 }
 
-verseThree = \strophemode 3 16 \lyricmode {
+verseThree = \strophemode #3 ##f #16 \lyricmode {
   "Etenim passer invénit sibi" do -- mum_;
   "et turtur nidum sibi  //  ubi ponat pullos" su -- os.
 }
 
-verseFour = \strophemode 4 16 \lyricmode {
+verseFour = \strophemode #4 ##t #16 \lyricmode {
   "Altária tua, Dómine vir " -- tú -- tum_;
   "rex meus et Deus" me -- us.
 }

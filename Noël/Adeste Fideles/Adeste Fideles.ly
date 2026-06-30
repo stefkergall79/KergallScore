@@ -21,7 +21,7 @@ alto = \fixed c' {
   \global
   s4 \skip1 s2. r4 \skip1 * 5 s2. r4
   b2 a4 g e(fis) g2 d8[c] b,4 e8[d] cis4 d4.(cis8) d4 r
-  R1 r2 r4 g4 4 fis g a g2 d4
+  s1 r2 r4 g4 4 fis g a g2 d4
   g8[f] e4 d c e d(c) b,(e) g2(fis4.) g8 2
 }
 
@@ -38,10 +38,10 @@ bass = \fixed c {
   \global
   s4 \skip1 * 8
   b4(g) fis g a2 g d4 dis e a, d2 4 r
-  R1 * 3 r2 r4 g,4 a, b, c cis d(dis) e(a,) d2 2 <g g,>
+  s1 * 3 r2 r4 g,4 a, b, c cis d(dis) e(a,) d2 2 <g g,>
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode 1 ##f \lyricmode {
   A -- des -- te, fi -- de -- les,
   læ -- ti tr -- ium -- phan -- tes,
   ve -- ni -- te, ve -- ni -- te in
@@ -52,7 +52,7 @@ verseOne = \strophemode 1 \lyricmode {
   ve -- ni -- te, a -- do -- re -- mus Do -- mi -- num.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode 2 ##t \lyricmode {
   En gre -- ge re -- lic -- to
   hu -- mi -- les ad cu -- nas,
   vo -- ca -- ti pas -- to -- res
@@ -61,7 +61,7 @@ verseTwo = \strophemode 2 \lyricmode {
   gra -- du fes -- ti -- ne -- mus.
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode 3 ##f \lyricmode {
   Æ -- ter -- ni Pa -- ren -- tis
   splen -- do -- rem æ -- ter -- num,
   ve -- la -- tum sub car -- ne
@@ -70,7 +70,7 @@ verseThree = \strophemode 3 \lyricmode {
   pan -- nis in -- vo -- lu -- tum.
 }
 
-verseFour = \strophemode 4 \lyricmode {
+verseFour = \strophemode 4 ##t \lyricmode {
   Pro no -- bis e -- ge -- num
   et fœ -- no cu -- ban -- tem
   pi -- is fo -- ve -- a -- mus

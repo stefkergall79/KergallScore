@@ -86,7 +86,7 @@ verseOne = \lyricmode {
   d'en -- tou -- rer ton au -- tel.
 }
 
-verseTwo = \strophemode 2 26 \lyricmode {
+verseTwo = \strophemode #2 ##t #26 \lyricmode {
   Quand l’er -- reur se dé -- chaî -- ne
   pour vain -- cre no -- tre foi,
   puis -- san -- te Sou -- ve -- rai -- ne,

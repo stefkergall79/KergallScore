@@ -73,21 +73,21 @@ bass = \fixed c {
   e e e b,4 b,8 e4.
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f \lyricmode {
   Sui -- vons sur la mon -- ta -- gne sain -- te
   No -- tre Sau -- veur san -- glant, dé -- fi -- gu -- ré_;
   et mar -- chons a -- près lui sans crain -- te
   sous le poids, sous le poids de l'ar -- bre sa -- cré.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
   Hé -- las, sous cet -- te croix pe -- san -- te,
   Di -- vin A -- gneau, vous por -- tez nos pé -- chés_;
   c'est sur vo -- tre chair in -- no -- cen -- te
   que l'a -- mour, que l'a -- mour les tient at -- ta -- chés.
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode #3 ##f \lyricmode {
     Ô Ciel_! le Dieu de la na -- tu -- re
     tombe af -- fai -- bli sous son cru -- el far -- deau,
     et sa per -- fi -- de cré -- a -- tu -- re,

@@ -57,47 +57,47 @@ verseOne = \lyricmode {
   "benedíxit fíliis" tú -- is in te.
 }
 
-verseTwo = \strophemode 2 31 \lyricmode {
+verseTwo = \strophemode #2 ##t 31 \lyricmode {
   Qui pó -- "suit fínes túos" pá -- cem_:
   "et ádipe fruménti" sá -- ti -- at te.
 }
 
-verseThree = \strophemode 3 31 \lyricmode {
+verseThree = \strophemode #3 ##f 31 \lyricmode {
   Qui e -- "míttit elóquium súum" tér -- rae_:
   "velóciter cúrrit" sér -- mo é -- jus.
 }
 
-verseFour = \strophemode 4 31 \lyricmode {
+verseFour = \strophemode #4 ##t 31 \lyricmode {
   Qui dat "nívem sícut" lá -- nam_:
   "nébulam sícut" cí -- nerem spár -- git.
 }
 
-verseFive = \strophemode 5 31 \lyricmode {
+verseFive = \strophemode #5 ##f 31 \lyricmode {
   Mít -- tit "crystállum súam sícut buc" -- cél -- las_:
   "ante fáciem frígoris éjus quis " sus -- ti -- né -- bit_?
 }
 
-verseSix = \strophemode 6 31 \lyricmode {
+verseSix = \strophemode #6 ##t 31 \lyricmode {
   E -- mít -- "tet vérbum súum et liquefáciet" é -- a_:
   "flábit spíritus éjus, et" flú -- ent á -- quæ.
 }
 
-verseSeven = \strophemode 7 31 \lyricmode {
+verseSeven = \strophemode #7 ##f 31 \lyricmode {
   Qui an -- "núntiat vérbum súum" Já -- cob_:
   "justítias et judícia" sú -- a Is -- raël.
 }
 
-verseEight = \strophemode 8 31 \lyricmode {
+verseEight = \strophemode #8 ##t 31 \lyricmode {
   Non fé -- "cit táliter ómni nati" -- ó -- ni_:
   "et judícia súa non manifes" -- tá -- vit é -- is.
 }
 
-verseNine = \strophemode 9 31 \lyricmode {
+verseNine = \strophemode #9 ##f 31 \lyricmode {
   Gló -- ri -- "a Pátri et" Fí -- lio_:
   "et Spi" -- rí -- tui Sán -- cto.
 }
 
-verseTen = \strophemode 10 31 \lyricmode {
+verseTen = \strophemode #10 ##t 31 \lyricmode {
   Sí -- cut "érat in princípio et nunc et" sém -- per_:
   "et in sǽcula sæcu" -- ló -- rum. A -- men.
 }

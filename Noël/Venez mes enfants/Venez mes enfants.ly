@@ -5,7 +5,7 @@ global = {
   \time 2/2
   \autoBeamOff
   \partial 4
-  \tempo "Sans lenteur" 2=96
+  \tempo "Sans lenteur" 2=120
   \dynamicUp
 }
 
@@ -78,28 +78,28 @@ bass = \fixed c {
   g2 c4 4 f2
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode 1 ##f \lyricmode {
   Ve -- nez, mes en -- fants, ac -- cou -- rez, ve -- nez tous,
   mer -- veil -- les di -- vi -- nes se pas -- sent chez nous.
   Voy -- ez dans la Crè -- che l’En -- fant nou -- veau -_né
   que dans la nuit fraî -- che Dieu nous a don -- né.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode 2 ##t \lyricmode {
   U -- ne pauvre é -- ta -- ble lui sert de mai -- son,
   ni chai -- se ni ta -- ble, rien que paille et son_;
   une hum -- ble chan -- del -- le suf -- fit à l’En -- fant
   que le monde ap -- pel -- le le Dieu Tout -_Puis -- sant.
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode 3 ##f \lyricmode {
   On n’a vu per -- son -- ne mon -- ter au clo -- cher,
   mais la clo -- che son -- ne pour le nou -- veau -_né.
   L’oi -- seau sur la bran -- che s’est mis à chan -- ter,
   l’œil de la per -- ven -- che s’en est é -- veil -- lé.
 }
 
-verseFour = \strophemode 4 \lyricmode {
+verseFour = \strophemode 4 ##t \lyricmode {
   Ber -- gers et ber -- gè -- res por -- tent leurs pré -- sents
   “Do -- do, pe -- tit frè -- re” chan -- tent les en -- fants.
   Mille an -- ges fo -- lâ -- trent dans un ray -- on d’or_;

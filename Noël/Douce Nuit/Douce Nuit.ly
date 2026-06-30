@@ -45,7 +45,7 @@ bass = \fixed c {
   2 4 g,4. 8 4 c2.
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode 1 ##f \lyricmode {
   Dou -- ce nuit_! Sain -- te nuit_!
   Dans les cieux, l'as -- tre luit.
   Le mys -- tère an -- non -- cé s'ac -- com -- plit_:
@@ -54,7 +54,7 @@ verseOne = \strophemode 1 \lyricmode {
   C'est l'A -- mour in -- fi -- ni_!
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode 2 ##t \lyricmode {
   Saint En -- fant_! Doux A -- gneau_!
   Qu'il est grand_! Qu'il est beau_!
   En -- ten -- dez ré -- son -- ner les pi -- peaux
@@ -63,7 +63,7 @@ verseTwo = \strophemode 2 \lyricmode {
   vers son hum -- ble ber -- ceau.
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode 3 ##f \lyricmode {
   C'est vers nous qu'il ac -- court,
   en un don sans re -- tour_!
   De ce monde i -- gno -- rant de l'a -- mour
@@ -72,7 +72,7 @@ verseThree = \strophemode 3 \lyricmode {
   qu'il soit Roi pour tou -- jours_!
 }
 
-verseFour = \strophemode 4 \lyricmode {
+verseFour = \strophemode 4 ##t \lyricmode {
   Paix à tous_! Gloire au ciel_!
   Gloire au sein ma -- ter -- nel,
   qui pour nous, en ce jour de No -- ël,

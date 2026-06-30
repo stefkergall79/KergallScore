@@ -36,26 +36,26 @@ bass = \fixed c {
 
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode 1 ##f \lyricmode {
   Voy -- ez ô No -- tre_- Da -- me, vos en -- fants de -- vant vous.
   Ils vien -- nent vous pri -- er, Gra -- ti -- a Ple -- na_;
   vous les é -- cou -- te -- rez, Ma -- ter Al -- ma.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode 2 ##t \lyricmode {
   Ils vou -- draient que leur â -- me soit tou -- jours belle pour vous_;
   et leur vie à vos yeux, Gra -- ti -- a Ple -- na,
   comme un re -- flet de Dieu, Ma -- ter Al -- ma.
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode 3 ##f \lyricmode {
   Ô vous l'A -- mour im -- men -- se,
   ren -- dez leur cœur plus grand,
   et d'a -- mour dé -- bor -- dant, Gra -- ti -- a Ple -- na,
   comme un re -- flet de Dieu, Ma -- ter Al -- ma.
 }
 
-verseFour = \strophemode 4 \lyricmode {
+verseFour = \strophemode 4 ##t \lyricmode {
   Ac -- cor -- dez -_leur la grâ -- ce,
   leur ser -- vice a -- che -- vé,
   d'ac -- cueil -- lir ce mo -- ment, Gra -- ti -- a Ple -- na,

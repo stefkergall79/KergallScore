@@ -23,7 +23,7 @@ sopranoVoice = \fixed c' {
   \bar "|."
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f \lyricmode {
   Vi -- ve Jé -- sus, vi -- ve sa Croix_!
   Oh_! Qu'il est bien jus -- te qu'on l'ai -- me,
   puis -- qu'en ex -- pi -- rant sur ce bois,
@@ -34,14 +34,14 @@ verseOne = \strophemode 1 \lyricmode {
   }
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
   Vi -- ve Jé -- sus, vi -- ve sa Croix_!
   C'est l'é -- ten -- dard de sa vic -- toi -- re_;
   de ce trône il don -- ne ses lois,
   il con -- quiert le ciel et sa gloi -- re.
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode #3 ##f \lyricmode {
   Vi -- ve Jé -- sus, vi -- ve sa Croix_!
   De nos biens la sour -- ce fé -- con -- de_!
   saint au -- tel où le Roi des rois,

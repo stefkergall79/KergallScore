@@ -43,34 +43,34 @@ bass = \fixed c {
   es4 bes,2 as4 es4(d) c g,(as,)bes, es2
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f \lyricmode {
   Règne à ja -- mais, Cœur glo -- ri -- eux,
   dans tous les temps, dans tous les lieux,
   sur ter -- re com -- me dans les cieux.
-  Ô Cœur sa -- cré, sois not -- re Roi_!
+  Ô Cœur Sa -- cré, sois not -- re Roi_!
   Nous vou -- lons vi -- vre sous Ta loi_!
   Nous n'ai -- me -- rons ja -- mais que Toi_!
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
   Règne à ja -- mais sur nos foy -- ers_;
   sur eux tou -- jours re -- viens veil -- ler_:
   a -- vec foi, nous sau -- rons pri -- er.
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode #3 ##f \lyricmode {
   Aux peu -- ples trem -- blants dans leur foi,
   il faut un chef, il faut un Roi_!
   Ce Roi sau -- veur, Jé -- sus, c'est Toi_!
 }
 
-verseFour = \strophemode 4 \lyricmode {
+verseFour = \strophemode #4 ##t \lyricmode {
   De -- puis qu'à Reims, au temps ja -- dis,
   Tu bap -- ti -- sas le fier Clo -- vis,
   Tu dois ré -- gner sur nous, ses fils_!
 }
 
-verseFive = \strophemode 5 \lyricmode {
+verseFive = \strophemode #5 ##f \lyricmode {
   Règne, ô Jé -- sus, sur tous les cœurs,
   sur tes a -- mis, sur les pé -- cheurs,
   sur les bre -- bis et les pas -- teurs_!

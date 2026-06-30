@@ -40,7 +40,7 @@ bass = \fixed c {
   es2 4 bes, c2 4 4 d2 2 g,
 }
 
-verseOne =  \strophemode 1 \lyricmode {
+verseOne =  \strophemode #1 ##f \lyricmode {
   Ô Vier -- ge Ma -- ri -- e, Mè -- re du Très -_Haut,
   Mè -- re du Mes -- si -- e, le Di -- vin A -- gneau,
   Vierge in -- com -- pa -- ra -- ble, Es -- poir d'Is -- ra -- ël,
@@ -49,7 +49,7 @@ verseOne =  \strophemode 1 \lyricmode {
   Vier -- ge Ma -- ri -- e, pri -- ez pour nous.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
   Ô Mè -- re très pu -- re du Christ Ré -- demp -- teur,
   Mè -- re sans souil -- lu -- re, Mè -- re du Sau -- veur,
   Vier -- ge vé -- né -- ré -- e, Mys -- tique at -- tri -- but,

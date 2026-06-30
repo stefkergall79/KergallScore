@@ -47,8 +47,7 @@ bass = \fixed c {
   e4 c g,8 8 a,4 b,4 8 8 c4 a, b,8 8 e2
 }
 
-verseOne = \lyricmode {
-  \set stanza = "1."
+verseOne = \strophemode #1 ##f \lyricmode {
   Jé -- sus -_Christ monte au Cal -- vai -- re,
   il y va pour y mou -- rir.
   Sui -- vons -_Le, c’est no -- tre Frè -- re,
@@ -59,7 +58,7 @@ verseOne = \lyricmode {
   sous la Croix de -- vra mar -- cher.
 }
 
-verseTwo = \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
   \override LyricText.font-shape = #'italic
   \set stanza = \markup \italic"2."
   Chez Pi -- late, on le com -- pa -- re
@@ -72,7 +71,7 @@ verseTwo = \lyricmode {
   Jé -- sus -_Christ est con -- dam -- né_!
 }
 
-verseThree = \lyricmode {
+verseThree = \strophemode #3 ##f \lyricmode {
   \set stanza = "3."
   Ô Jé -- sus, vos mains cal -- leu -- ses
   ont ma -- nié bien d’au -- tres bois.

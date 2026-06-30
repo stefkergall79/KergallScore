@@ -45,7 +45,7 @@ bass = \fixed c {
   d8 8 c b, a,4 8 8 b,4 4 e2
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode 1 ##f\lyricmode {
   En -- tre le bœuf et l’â -- ne gris,
   dors, dors, dors, le pe -- tit fils.
   Mille an -- ges di -- vins,
@@ -54,15 +54,15 @@ verseOne = \strophemode 1 \lyricmode {
   de ce Dieu d’a -- mour.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode 2 ##t \lyricmode {
   En -- tre les pas -- tou -- reaux jo -- lis,
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode 3 ##f \lyricmode {
   En -- tre les ro -- ses et les lys,
 }
 
-verseFour = \strophemode 4 \lyricmode {
+verseFour = \strophemode 4 ##t \lyricmode {
   En -- tre les deux bras de Ma -- rie,
 }
 

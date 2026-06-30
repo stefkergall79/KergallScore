@@ -40,13 +40,13 @@ bass = \fixed c {
   f es2 2 d2. c4 bes,2 c f1 bes,2 f
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f \lyricmode {
   O Glo -- ri -- ó -- sa Vír -- gi -- num, su -- blí -- mis in -- ter sí -- de -- ra_:
   qui te cre -- á -- vit pár -- vu -- lum lac -- tén -- te nú -- tris ú -- be -- ra.
   A -- men.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
   Jé -- su tí -- bi sit gló -- ri -- a, qui ná -- tus est de Vír -- gi -- ne,
   cum \markup {\concat{ Pátr(\italic e )}} et ál -- mo Spí -- ri -- tu,
   in sem -- pi -- tér -- na sǽ -- cu -- la.
@@ -86,5 +86,5 @@ verseTwo = \strophemode 2 \lyricmode {
     >>
   >>
   \layout { }
-  \midi {\tempo 4=100}
+  \midi {\tempo 4=100 }
 }

@@ -294,20 +294,17 @@ class MusicTab(ctk.CTkFrame):
             },
             "Anacrouse": {
                 "var": ctk.StringVar(value="0"),
-                "val": [0]+([str(2**i) for i in range(5)] + [str(2**i)+"." for i in range(5)]),
+                "val": ["0"] + [str(2**i) for i in range(5)] + [str(2**i)+"." for i in range(5)],
                 "ly": "partial"
             },
             "Tempo": {
-                "var": ctk.IntVar(value=70),
+                "var": ctk.StringVar(value="70"),
                 "ly":"tempo"
             }
         }
 
         for texte in self.vars:
-            frame = ctk.CTkFrame(self)
-            ctk.CTkLabel(
-                frame, font=self.default_font, text=texte
-            ).pack(side="left", padx=5)
+            frame = ctk.CTkFrame(self, fg_color="transparent")
             
             if "val" in self.vars[texte]:
                 ctk.CTkComboBox(
@@ -320,6 +317,9 @@ class MusicTab(ctk.CTkFrame):
                     textvariable=self.vars[texte]["var"],
                 ).pack(side="left", padx=5)
             
+            ctk.CTkLabel(
+                frame, font=self.default_font, text=texte
+            ).pack(side="left", padx=5)
             frame.pack(side="top", pady=5, anchor="w")
 
         self.pack(fill="both", expand=True)
@@ -327,8 +327,7 @@ class MusicTab(ctk.CTkFrame):
 def Voice(voice, indice):
     return (
         (" " if indice is None else "\t\t") +
-        f"\\new Voice = \"{VOICES[voice]}\" " +
-        ("{ \\clef bass " if voice in "BH" else '{ \\clef "treble_8 "' if voice == "T" else "{ ") +
+        f"\\new Voice = \"{VOICES[voice]}\" {{" +
         (f"\\voice{NUMBERS[indice]} " if indice is not None else "") +
         f"\\{VOICES[voice]} }}\n"
     )
@@ -355,7 +354,7 @@ def ChoirVars(schema: str, lyrics: int, same_lyrics: bool):
             for nb in range(lyrics):
                 st += (
                     f"{lyricName(voice, nb, True)} = \\strophemode {nb+1} \\lyricmode"
-                    " {\n\t\n}\n"
+                    " {\n\t\n}\n\n"
                 )
         st += "\n"
     if same_lyrics:
@@ -389,6 +388,11 @@ def ChoirStaff(schema: str, lyrics: int, same_lyrics: bool):
                 st += f'"{staff}."\n'  
         if polyph:
             st += "\t\t\\consists Merge_rests_engraver\n"
+        if "B" in staff or "H" in staff:
+            st += "\t\t\\clef bass\n"
+        elif staff == "T":
+            st += "\t\t\\clef \"treble_8\"\n"
+
         st += "\t} "
 
         if polyph:
@@ -446,7 +450,7 @@ class LilypondCreator(ctk.CTk):
         tabview.pack(padx=10, pady=(10, 0), fill="both", expand=True, side="top")
         self.header_tab = HeaderTab(tabview.add("Titres et en-têtes"), self)
         self.parts_tab = PartsTab(tabview.add("Parties"), self)
-        #self.music_tab = MusicTab(tabview.add("Réglages musicaux"), self)
+        self.music_tab = MusicTab(tabview.add("Réglages musicaux"), self)
 
         button_frame = ctk.CTkFrame(self)
         ctk.CTkButton(button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file).pack(side="left", padx=(0, 10))
@@ -483,10 +487,15 @@ class LilypondCreator(ctk.CTk):
                 "\\version \"2.26.0\"\n"
                 "\\include \"../../settings.ily\"\n"
                 "\n"
-                "global = { \n\n"
-                "\t\n"
-                "}\n\n"
+                "global = {\n"
+                "\t\\autoBeamOff\n"
             )
+            for settings in self.music_tab.vars.values():
+                content += (
+                    f"\t\\{settings["ly"]} = {settings["var"].get()}" +
+                    ("\\major" if settings["ly"] == "key" else "") + "\n"
+                )
+            content += "}\n\n"
             voices_parts = self.parts_tab.parts
             
             voice_settings = {
@@ -552,7 +561,7 @@ class LilypondCreator(ctk.CTk):
                     content += f"\t\t\\{part}Part\n"
                 content += "\t>>\n"
             content += (
-                "\t\\layout {}\n"
+                "\t\\layout {\\context{\\Staff \\RemoveAllEmptyStaves }}\n"
                 "\t\\midi {}\n"
                 "}\n"
             )

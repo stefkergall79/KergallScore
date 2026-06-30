@@ -46,7 +46,7 @@ bass = \fixed c {
   es1( bes,) f,\breve
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f \lyricmode {
   Pan -- ge lin -- gua glo -- ri -- ó -- si
   Cor -- pó -- ris mys -- té -- ri -- um,
   San -- gui -- nís -- que pre -- ti -- ó -- si,
@@ -55,7 +55,7 @@ verseOne = \strophemode 1 \lyricmode {
   rex ef -- fú -- dit gén -- ti -- um, rex ef -- fú -- dit gén -- ti -- um.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
   No -- bis da -- tus, no -- bis na -- tus
   ex in -- tác -- ta Vír -- gi -- ne,
   et in mun -- do con -- ver -- sá -- tus,
@@ -67,7 +67,7 @@ verseTwo = \strophemode 2 \lyricmode {
   A -- men.
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode #3 ##f \lyricmode {
   In su -- pré -- mae noc -- te ce -- nae
   re -- cúm -- bens cum frá -- tri -- bus,
   ob -- ser -- vá -- ta le -- ge ple -- ne
@@ -75,6 +75,7 @@ verseThree = \strophemode 3 \lyricmode {
   ci -- bum tur -- bae du -- o -- dé -- nae
   Se dat su -- is má -- ni -- bus, Se dat su -- is má -- ni -- bus.
 }
+
 \tocItemComposer "Pange Lingua" "Bartolucci"
 \score {
   \header {

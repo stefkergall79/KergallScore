@@ -43,7 +43,7 @@ verseOne = \lyricmode {
 }
 
 verseTwo = \lyricmode {
-  \repeat unfold 12 {\skip1}
+  \repeat unfold 12 \skip1
   cet En -- fant sur la paille en -- dor -- mi,
 }
 

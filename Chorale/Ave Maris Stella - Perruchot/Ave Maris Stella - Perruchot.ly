@@ -45,17 +45,14 @@ bass = \fixed c {
   4(bes, g,2) d1
 }
 
-verseOne = \lyricmode {
-  \set stanza = "2."
+verseOne = \strophemode #2 ##f \lyricmode {
   Sú -- mens íl -- lud A -- ve
   Ga -- bri -- é -- lis ó -- re,
   fún -- da nos in pá -- ce,
   mú -- tans Hé -- væ nó -- men.
 }
 
-verseTwo = \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic 4.
+verseTwo = \strophemode #4 ##t \lyricmode {
   Móns -- tra t(e)_és -- se má -- trem_:
   Sú -- mat per te pré -- ces,
   qui pro nó -- bis ná -- tus
@@ -64,8 +61,7 @@ verseTwo = \lyricmode {
   A -- men.
 }
 
-verseThree = \lyricmode {
-  \set stanza = "6."
+verseThree = \strophemode #6 ##f \lyricmode {
   Ví -- tam prǽs -- ta pú -- ram,
   i -- ter pá -- ra tú -- tum,
   ut vi -- dén -- tes Jé -- sum,

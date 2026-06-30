@@ -39,21 +39,21 @@ bass = \fixed c {
     c2 d es f g g, c1
 }
 
-verseOne = \strophemode 1 \lyricmode {
+verseOne = \strophemode #1 ##f \lyricmode {
     Stá -- bat Má -- ter do -- lo -- ró -- sa,
     iúx -- ta cru -- cem la -- cri -- mó -- sa,
     dum pen -- dé -- bat Fí -- li -- us,
     dum pen -- dé -- bat Fí -- li -- us.
 }
 
-verseTwo = \strophemode 2 \lyricmode {
+verseTwo = \strophemode #2 ##t \lyricmode {
     Cú -- ius á -- ni -- mam ge -- mén -- tem,
     con -- tris -- tá -- tam et do -- lén -- tem
     per -- tran -- sí -- vit glá -- di -- us,
     per -- tran -- sí -- vit glá -- di -- us.
 }
 
-verseThree = \strophemode 3 \lyricmode {
+verseThree = \strophemode #3 ##f \lyricmode {
     O quam tris -- tis et af -- flíc -- ta
     fu -- it il -- la be -- ne -- díc -- ta
     Má -- ter U -- ni -- gé -- ni -- ti,

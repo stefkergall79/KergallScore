@@ -154,7 +154,7 @@ verseAlto = \lyricmode {
     } \lyricsto "bass" \verseSoprano
   >>
   \layout {}
-  \midi {\tempo 2.=50}
+  \midi {\tempo 2.=50 }
 }
 \markup \column{
   "Chantez au Seigneur un chant nouveau ;"

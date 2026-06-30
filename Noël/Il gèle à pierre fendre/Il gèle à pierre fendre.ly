@@ -18,7 +18,7 @@ solo = \fixed c' {
   d8 f a g4 e16[f] d4.\fermata
 }
 
-verseOneSolo = \strophemode 1 \lyricmode {
+verseOneSolo = \strophemode 1 ##f \lyricmode {
   Il gèle à pier -- re fen -- dre,
   ô qu’il fait froid ce soir_;
   et l’âp -- re nuit vient ten -- dre
@@ -28,7 +28,7 @@ verseOneSolo = \strophemode 1 \lyricmode {
   l’En -- fant gé -- mit de froid.
 }
 
-verseTwoSolo = \strophemode 2 \lyricmode {
+verseTwoSolo = \strophemode 2 ##t \lyricmode {
   Il git sur pau -- vre pail -- le
   en -- tre deux a -- ni -- maux.
   Où vou -- lez -_vous qu’il ail -- le_?
@@ -38,7 +38,7 @@ verseTwoSolo = \strophemode 2 \lyricmode {
   quand Dieu des -- cend chez nous.
 }
 
-verseThreeSolo = \strophemode 3 \lyricmode {
+verseThreeSolo = \strophemode 3 ##f \lyricmode {
   Le pau -- vre qui fris -- son -- ne,
   le gueux qui meurt de faim,
   l’En -- fant qu’on a -- ban -- don -- ne,
@@ -84,7 +84,7 @@ bass = \fixed c {
   f e d g a4 a,8 d4.
 }
 
-verseOne = \strophemode 1 19 \lyricmode {
+verseOne = \strophemode 1 ##f 19 \lyricmode {
   Le vent chas -- sant la nei -- ge
   s’en -- gouf -- fre sous le toit.
 }
@@ -99,7 +99,7 @@ verseTwo = \lyricmode {
   B.F.
 }
 
-verseThree = \strophemode 3 19 \lyricmode {
+verseThree = \strophemode 3 ##f 19 \lyricmode {
   Il gèle à pier -- re fen -- dre,
   c'est l'hi -- ver dans nos cœurs.
 }
