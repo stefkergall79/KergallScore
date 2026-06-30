@@ -43,7 +43,7 @@ if "--code" in sys.argv:
 
 for depot in packages:
     if packages[depot]["init"]:
-        print(f"Initialisation du dépôt...")
+        print(f"Initialisation de {depot}...")
         os.system(packages[depot]["init"])
         print("\n")
 
