@@ -2,6 +2,7 @@
 \include "../../settings.ily"
 
 \paper {
+  print-page-number = ##f
   tocTitleMarkup = \markup \column {
     \fontsize #5 \bold \fill-line {INDEX}
     \vspace #2 
@@ -47,7 +48,6 @@
 \include "../../Chorale/Tantum ergo - Bach/Tantum ergo - Bach.ly" \pageBreak
 \include "../../Chorale/O salutaris - Mozart/O salutaris - Mozart.ly"
 
-%\pageBreak
 \tocItem \markup {\bold "Sainte-Vierge" \vspace #1 }
 \include "../../Chorale/O Sanctissima - Sicilien/O Sanctissima - Sicilien.ly"
 \include "../../Chorale/O Gloriosa Virginum 3 voix/O Gloriosa Virginum 3 voix.ly"
