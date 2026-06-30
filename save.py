@@ -2,7 +2,7 @@ from pathlib import Path
 import git
 
 REPO = git.Repo(Path(__file__).resolve().parent)
-print("Récupération du travail des collaborateurs...")
+print("Récupération du travail des collaborateurs...", end="\n\n")
 REPO.remote(name="origin").pull()
 
 fichiers_modifies = REPO.index.diff(None)
