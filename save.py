@@ -2,9 +2,8 @@ from pathlib import Path
 import git
 
 REPO = git.Repo(Path(__file__).resolve().parent)
-print("Récupération du travail des collaborateurs...", end=" ", flush=True)
+print("Récupération du travail des collaborateurs...")
 REPO.remote(name="origin").pull()
-print("Fait.\n")
 
 fichiers_modifies = REPO.index.diff(None)
 fichiers_non_suivis = REPO.untracked_files
@@ -26,7 +25,6 @@ if not fichiers_modifies and not fichiers_non_suivis:
 	print("Aucun changement à sauvegarder.")
 
 else:
-	print("\nExportation...", end=" ", flush = True)
+	print("\nExportation...")
 	REPO.remote(name="origin").push()
-	print("Fait.\n")
 	print("\nSauvegarde terminée.")

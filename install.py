@@ -6,9 +6,8 @@ os.system("sudo -v")
 
 def install_package(package_manager: str, package_name: str):
     source = packages[package_manager]
-    print(f"Installation de {package_name}...", end="\t", flush=True)
+    print(f"Installation de {package_name}...")
     os.system(source["command"].format(source["apps"][package_name]))
-    print("Terminé.")
 
 
 packages = {
@@ -43,23 +42,19 @@ if "--code" in sys.argv:
     }
 
 for depot in packages:
-    print(f"Installation pour {depot}")
     if packages[depot]["init"]:
         print(f"Initialisation du dépôt...")
         os.system(packages[depot]["init"])
-        print("Terminé.")
+        print("\n")
 
     for package in packages[depot]["apps"]:
         install_package(depot, package)
 
-    print("\n")
-
-print("Configuration de Git...", end="\t", flush=True)
+print("Configuration de Git...")
 import git
 git_config = git.Git().config
 git_config("user.name", "Stéphane Kergall")
 git_config("user.email", "stef.kergall@gmail.com")
 git_config("pull.rebase", "false")
-print("Terminé.\n")
 
 print("Installation terminée en {:.2f} secondes.".format(time.time() - start))
