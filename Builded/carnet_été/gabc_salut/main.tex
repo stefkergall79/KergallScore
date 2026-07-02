@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage[a4paper,margin=1.8cm]{geometry}
+\usepackage[autocompile]{gregoriotex}
+\usepackage{pgffor}
+\usepackage{needspace}
+
+\newcommand{\scoretitle}[1]{
+    \begin{center}
+        \LARGE \textbf{#1}
+    \end{center}
+    \nopagebreak
+}
+
+\newcommand{\gregorianscore}[1]{
+    \needspace{5\baselineskip}%
+    \scoretitle{#1}%
+    \nopagebreak
+    \gregorioscore{#1}%
+}
+
+\newcommand{\gregorianpart}[2]{%
+    \section*{#1}%
+    \gresetgregpath{{../../../Grégorien/#1/}}%
+    \foreach \gregorien in {#2} {%
+        \gregorianscore{\gregorien}%
+    }%
+}
+
+\begin{document}
+
+\title{Salut du Très Saint-Sacrement}
+\author{}
+\date{}
+\maketitle
+
+\gregorianpart{In exhibitione}{Adoro te,Anima Christi,Ave verum,O salutaris Hostia II,Ubi caritas}
+
+\gregorianpart{Ad beatam Mariam Virginem}{Ave Maria I,Ave maris stella,Inviolata}
+
+
+\end{document}
