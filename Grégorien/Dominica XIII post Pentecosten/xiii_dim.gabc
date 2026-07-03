@@ -1,4 +1,4 @@
-name: Dominica XIII post Pentecosten;
+name: ;
 office-part: Introitus;
 mode: 7;
 book: Graduale Romanum, 1961, p. 354 & The Liber Usualis, 1961, p. 1032;
@@ -6,11 +6,8 @@ transcriber: Andrew Hinkley;
 commentary: Ps 73: 20, 19, 23, 1;
 annotation: Intr.;
 annotation: vii;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
-%spacing: vichi;
+fontsize: 14;
+font: Crimson;
 %%
 (c3) RE(ei)spi(i)ce,(ikj) * D{ó}(kjki)mi(i)ne,(i.) (,) in(i) tes(iji)ta(h_g)mén(gh!jki)tum(h_f) tu(f!gwh_e)um,(e.) (;) et(e) á(ef/hgh)ni(h)mas(h) páu(gh~)pe(h)rum(hhh) tu(f)ó(hh)rum(f!gwh.) (,) ne(f) de(hg)re(hi)lín(iih)quas(f) in(h) fi(gihh)nem:(hg..) (:)
 ex(h)súr(g!hwi'!jv)ge(i) Dó(kk)mi(lvKI)ne,(i.) (;) et(i) jú(iji)di(h)ca(hhh) cau(fh/ihi)sam(ihh) tu(f!gwh_f)am:(f.) (:)
@@ -28,10 +25,8 @@ transcriber: Andrew Hinkley;
 commentary: Ps 73: 20, 19, 22;
 annotation: Grad.;
 annotation: v;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c4) RE(ff)spi(f)ce,(gh) *(,) Dó(h)mi(fg)ne,(ixg_d//f_eg.higgf.0) (;) in(f) tes(g)ta(h)mén(jj)tum(j_h) tu(hjjh)um:(jjjh/jkjj'j/hih.) (:)
 et(jjk) á(j)ni(jik)mas(kjjvIH.) (,) páu(ixhi~)pe(hg)rum(gig/iii) tu(fg)ó(fg)rum(ixf!iiig/jjjh) (,) (jjjvIH'jggf.0) (:)
@@ -47,10 +42,8 @@ book: Graduale Romanum, 1961, p. 355 & The Liber Usualis, 1961, p. 1034;
 transcriber: Andrew Hinkley;
 commentary: Ps 89: 1;
 annotation: vii;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c3) AL(ef)le(e)lú(ehg/ij)ia.(ijIG.) {*}~<i>ij.</i>(,) (h!iwjij//hiH'Gh.) (;) (fh'!jv//hji/jhhvG'E//f!gwhg) (,) (ijh./ghF'Ef_gffe.) (::)
 <sp>V/</sp> D{ó}(e.f!gwhghvGF'fe//f!gwh_g/hihi)mi(ji)ne,(i.) (;) re(i)fú(ijh//ijIG.hiH'Gh_iH'F)gi(f!gw!hvG'FEfg)um(fe..) (;) fac(h!iwji)tus(ihhg) es(fhGF'g) no(e/hhf/ijH'Gh.,f!gwh'!iv//gihhvGF)bis(f!gwh_fgvFEfe..) (:)
@@ -64,10 +57,8 @@ transcriber: Andrew Hinkley;
 commentary: Ps 30: 15-16;
 annotation: Offert.;
 annotation: ii;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (f3) IN(c) te(ef'g) spe(f)rá(h.f!gwh/i_h)vi,(hhhvGEf!gw!hvGF') *(,)
 Dó(f)mi(f!gwhgh)ne:(gf..) (:)
@@ -83,10 +74,8 @@ transcriber: Andrew Hinkley;
 commentary: Sap 16: 20;
 annotation: Comm.;
 annotation: v;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c3) PA(dde)nem(d) de(df) cæ(feede)lo(e_[ll:1]d) *(,)
 de(d)dís(ef)ti(hffe) no(hhi)bis,(h) Dó(hji)mi(ihhf)ne,(f.) (;) ha(f)bén(hi~)tem(h) om(h)ne(hhh) de(fg'h)lec(e_[ll:1]d)ta(fdf)mén(fe/gf)tum,(f.) (:)

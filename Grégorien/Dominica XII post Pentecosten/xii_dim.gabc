@@ -1,4 +1,4 @@
-name: Dominica XII post Pentecosten;
+name: ;
 office-part: Introitus;
 mode: 7;
 book: Graduale Romanum, 1961, p. 350 & The Liber Usualis, 1961, p. 1027;
@@ -6,11 +6,8 @@ transcriber: Andrew Hinkley;
 commentary: Ps 69: 2-3, 4;
 annotation: Intr.;
 annotation: vii;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
-%spacing: vichi;
+fontsize: 14;
+font: Crimson;
 %%
 (c2) DE(figgf)us(f.) *(,) in(exge) ad(f)ju(g)tó(iij)ri(i)um(i) me(iji)um(ihi.) (,) in(exgv.egf)tén(f_g_f_)de:(f.) (:)
 Dó(f)mi(f)ne(hih.) (,) ad(g) ad(ghg)ju(f)ván(fff)dum(d) me(gi) fes(ihig)tí(f)na:(fgff) (:)
@@ -28,10 +25,8 @@ transcriber: Andrew Hinkley;
 commentary: Ps 33: 2-3;
 annotation: Grad.;
 annotation: vii;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c3) BE(ef)ne(e)dí(ef!hhhffe)cam(e_f) *(,)
 Dó(ef'h)mi(hhh)num(h.0/[-0.5]ijhh'hvF'E) (,) (hhhfhvGE'fe'//hf/gffe.) (;) in(e) om(ehg~)ni(hi) tém(i)po(ihkvJIkvJI)re:(ig/hi!kvvI'H//i!jwk/lkk/iji.) (,) (hj/iji/jg/hih/ihhg.) (:)
@@ -47,11 +42,10 @@ book: Graduale Romanum, 1961, p. 351 & The Liber Usualis, 1961, p. 1029;
 transcriber: Andrew Hinkley;
 commentary: Ps 87: 2;
 annotation: iii;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
+
 (c4) AL(e)le(egfefE'Dee[ll:1]d)lú(g!hwi'!jv)ia.(ih) {*}~<i>ij.</i>(,) (jvIHjji//gh/ihhg) (;) (gh!jvvIGhh//gh/i_g) (,) (gh!jvvIGhhvGF//ghg/hgge.) (::)
 <sp>V/</sp> D{ó}(efE'D)mi(g)ne(hjj) De(j)us(ih/jkJH'Ghhg.) (,) sa(hih)lú(iji)tis(h_g/h!iwj) me(ikJ'I)æ,(i.) (:)
 in(g) di(g!jj)e(i_h) cla(i)má(g/hhf/gg//egee[ll:1]d/ef)vi,(e.) (;) et(e) noc(egf)te(ef'g) *()
@@ -65,10 +59,8 @@ transcriber: Andrew Hinkley;
 commentary: Exodi 32: 11, 13, 14;
 annotation: Offert.;
 annotation: viii;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c3) PRe(e)cá(fhe)tus(d!ewfef) est(f_e) *(,)
 Mó(f)y(h)ses(hihhvGEf.) (;) in(b) con(b)spéc(de)tu(de) Dó(f_e/f!gw!hvGF)mi(e!gw!hvGF'g)ni(g_f) (,) De(f)i(e[ll:1]d) su(ef!gvFE'f)i,(fe..) (;) et(e) di(e!hhe/ff//df!hvED'db//cd!efe)xit.(e.) (:)
@@ -86,10 +78,8 @@ transcriber: Andrew Hinkley;
 commentary: Ps 103: 13, 14-15;
 annotation: Comm.;
 annotation: vi;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c4) DE(f) fruc(gh)tu(h) *() ó(h)pe(g)rum(g) tu(g)ó(h)rum,(gf~) Dó(g)mi(f)ne,(f_e) (,) sa(f)ti(ghg)á(h)bi(g)tur(fe~) ter(f!gwhgh)ra:(gf..) (:)
 ut(f) e(f)dú(gh)cas(f) pa(g)nem(f) de(e) ter(fg)ra,(f.) (;) et(f) vi(ixfg/ihi)num(h) læ(h)tí(jhhgh)fi(f)cet(fg'h) cor(fe) hó(d)mi(de!fvED'e)nis:(e[ll:1]d..) (:)

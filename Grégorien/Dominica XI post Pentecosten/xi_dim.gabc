@@ -1,4 +1,4 @@
-name: Dominica XI post Pentecosten;
+name: ;
 office-part: Introitus;
 mode: 5;
 book: Graduale Romanum, 1961, p. 347 & The Liber Usualis, 1961, p. 1024;
@@ -6,11 +6,8 @@ transcriber: Andrew Hinkley;
 commentary: Ps 67: 6-7, 36, 2;
 annotation: Intr.;
 annotation: v;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
-%spacing: vichi;
+fontsize: 14;
+font: Crimson;
 %%
 (c3) DE(hhi)us(h) *() in(h) lo(hihh)co(f_e) sanc(f!gwh)to(f_d) su(d_e_d_)o:(d.) (;) De(fd)us,(d) qui(d) in(f)ha(fef)bi(fef)tá(hf/hhhi)re(h) fa(hjI'H)cit(h_f) (,) u(f!h'i)ná(ij)ni(i)mes(h) in(hi) do(hihh)mo:(gf..) (:)
 ip(f)se(hh) da(h_i)bit(f) vir(hh)tú(hv.gihghf)tem(f.) (,) et(f) for(gxfg~)ti(f_e)tú(fgF'D)di(dfE'De[ll:1]d)nem(d.) (;) ple(gxde/gf/g_h)bi(hgge!fwg) su(d_e_d_)æ.(d.) (::)
@@ -27,10 +24,8 @@ transcriber: Andrew Hinkley;
 commentary: Ps 27: 7, 1;
 annotation: Grad.;
 annotation: v;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c4) IN(d) De(ffg)o(f.) *(,) spe(f)rá(fg)vit(f) cor(ghgh) me(hvGF'fvED)um,(e[ll:1]d..) (;) et(fe) ad(fg~)jú(ggf)tus(g) sum:(fe/fg/hghvGFgf..) (;) et(fg) re(f)fló(gh)ru(gf)it(f.) (,) ca(f)ro(g) me(f)a:(fv.d!ff/ge'/fgd'/e[ll:1]ddc.) (:)
 et(h) ex(f) vo(g)lun(h)tá(hj/kjk)te(j) me(ixi_h)a(iii/ghg.___) (;) con(ixih~)fi(i)té(jv.ikJI'ivH'GF)bor(ggf.0) (,) il(gf/ggf/gff//gf~)li.(gv.fgff'f//f'hg/hggf.0) (z0::c3)
@@ -45,10 +40,8 @@ book: Graduale Romanum, 1961, p. 348 & The Liber Usualis, 1961, p. 1026;
 transcriber: Andrew Hinkley;
 commentary: Ps 80: 2-3;
 annotation: vii;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c2) AL(c)le(cfe)lú(fg~)ia.(g.) {*}~<i>ij.</i>(,) (ffg/e!g'h//fhg___!hwi_g.e.[ll:1]d!ewf/gffc) (,) (fffd//!fe/!gf/!fvD'C/!d_ed/!dc.) (::)
 <sp>V/</sp> Ex(cd)sul(c)tá(cfe)te(fg) De(ghF'Ef_g)o(g.) (;) ad(g)ju(g)tó(g)ri(i.g!hw!ivHG) nos(ghF'Ef_g)tro,(ghfgvFEfe..) (:)
@@ -63,10 +56,8 @@ transcriber: Andrew Hinkley;
 commentary: Ps 29: 2-3;
 annotation: Offert.;
 annotation: ii;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c3) EX(c)al(e)tá(egf)bo(f) te(f.) *(,) Dó(f)mi(f!hhh)ne,(fefe..) (;) quón(hh)i(fef)am(f/hhh//giH'GhvGFgf..) (,) su(fhF'Ef')sce(d)pís(df!hvF'D)ti(d_e_d_) me,(d.) (:)
 nec(f/hhi) de(f!hhh)lec(f!hhh)tás(e/fgf)ti(fe/f!hhhvFE'ece.) (;) in(c)i(c)mí(ef)cos(fe~) me(f/hh/i_h)os(h.) (,) su(hi/jij)per(h_f/ih'/ihhe/f!gw!hvGFgv_F~E~) me:(fe..) (:)
@@ -80,10 +71,8 @@ transcriber: Andrew Hinkley;
 commentary: Prov 3: 9-10;
 annotation: Comm.;
 annotation: vi;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c4) HO(d)nó(ffg)ra(f) * D{ó}(ghgh)mi(gf)num(f.) (,) de(f) tu(fv.egF'D)a(d_c) sub(ixfv.eg!hvi.g!hw!ivHG')stán(f)ti(fg!hvGF'g)a,(gf..) (:)
 et(f) de(f) pri(hj)mí(j)ti(ixkjjhi)is(i_h) (,) fru(ixh.g!hwi)gum(h) tu(ghg)á(fg!hvGF'g)rum:(gf..) (:)

@@ -1,4 +1,4 @@
-name: Missa XI;
+name: ;
 office-part: Antiphona;
 mode: 7;
 book: Graduale Romanum, 1961, p. 1* & The Liber Usualis, 1961, p. 11 & Graduale Romanum, 1974, p. 707 & Chants of the Church, 1956, p. 1 & Gregorian Missal, 1990, p. 70 & Liber cantualis, 1983, p. 32;
@@ -8,9 +8,6 @@ annotation: Ant.;
 annotation: vii;
 fontsize: 14;
 font: Crimson;
-width: 7.27;
-height: 11.69;
-spacing: vichi;
 %%
 (c2) A(cd)sper(fvED)ges(ef) me,(g.) *(,)
 Dó(h!iwj)mi(ji)ne,(hg) (,) hys(h)só(g_f)po,(ef) et(gvFD') mun(e)dá(cdc___)bor:(c.) (:)
@@ -28,10 +25,8 @@ book: Graduale Romanum, 1961, p. 35* & The Liber Usualis, 1961, p. 43 & Graduale
 transcriber: Andrew Hinkley;
 commentary: XI. s.;
 annotation: i;
-%fontsize: 14;
-%font: Crimson;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c4) KY(df/hg)ri(fe)e(d.) *() e(evDC'd)lé(f_)i(d)son.(d.) (::)
 Ký(a)ri(cb)e(cd) e(evDC'd)lé(f_)i(d)son.(d.) (::)
@@ -50,9 +45,8 @@ book: Graduale Romanum, 1961, p. 36* & The Liber Usualis, 1961, p. 43 & Graduale
 transcriber: Andrew Hinkley;
 commentary: XV. s.;
 annotation: viii;
-%font: GaramondPremierPro;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c4) GLó(j)ri(hg)a(g') in(e) ex(f')cél(g)sis(hi) De(hg)o.(g.) (::)
 Et(e') in(f) ter(g)ra(hih') pax(g) ho(ge)mí(f')ni(e)bus(d.) (,) bo(g')næ(g) vo(f')lun(h)tá(h.)tis.(g.) (::)
@@ -80,9 +74,8 @@ book: Graduale Romanum, 1961, p. 64* & The Liber Usualis, 1961, p. 68 & Graduale
 transcriber: Andrew Hinkley;
 commentary: XVII. s.;
 annotation: v;
-%font: GaramondPremierPro;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c3) CRe(h)do(f) in(d) u(gxg)num(f) De(fvED)um,(d.) (::)
 Pa(gxfg)trem(f') om(h)ni(f')pot(d)én(e)tem,(d.) (;) fac(d)tó(f')rem(gxg) cæ(h')li(h) et(h') ter(i)ræ,(h.) (;) vi(h')si(h)bí(i')li(i)um(k) óm(jhi)ni(i)um,(h.) (;) et(h') in(f)vi(d')si(gxg)bí(fde)li(e)um.(d.) (::)
@@ -108,9 +101,8 @@ name: ;
 office-part: Toni Communes;
 book: Graduale Romanum, 1961, p. 130* & The Liber Usualis, 1961, p. 109;
 transcriber: Benjamin Bloomfield;
-%font: GaramondPremierPro;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c3) PER(c) óm(e)ni(f)a(f) sǽ(g)cu(f)la(f) sæ(e)cu(f)ló(fe)rum.(e.) (::)
 <sp>R/</sp> A(e)men.(ef..) (::)
@@ -127,9 +119,8 @@ mode: 4;
 book: Graduale Romanum, 1961, p. 37* & The Liber Usualis, 1961, p. 45 & Graduale Romanum, 1974, p. 747 & Chants of the Church, 1956, p. 29 & Gregorian Missal, 1990, p. 112;
 transcriber: Andrew Hinkley;
 annotation: iv;
-%font: GaramondPremierPro;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c4) SAnc(eeg)tus,(e.) *(,) Sanc(fff)tus,(dc) (,) Sanc(dfd)tus(e.) (;) Dó(g')mi(f)nus(g') De(g)us(gf) Sá(g)ba(fe)oth.(e.) (:)
 Ple(g')ni(f) sunt(dc) cæ(d)li(f') et(d) ter(de)ra(e.) (,) gló(g')ri(f)a(g) tu(fe)a.(e.) (:)
@@ -144,9 +135,8 @@ book: Graduale Romanum, 1961, p. 38* & The Liber Usualis, 1961, p. 45 & Graduale
 transcriber: Andrew Hinkley;
 commentary: XII. s.;
 annotation: iv;
-%font: GaramondPremierPro;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (f3) A(g)gnus(fe) De(fg)i,(g.) *(,) qui(g) tol(i')lis(j) pec(ih)cá(i)ta(ih) mun(g.)di:(g.) (;) mi(g)se(gf)ré(h)re(fg) no(g.)bis.(g.) (::)
 A(i)gnus(i') De(j)i,(i.) *(,) qui(h) tol(i')lis(j) pec(ih)cá(i)ta(ih) mun(g.)di:(g.) (;) mi(hg)se(hi)ré(hhg)re(fe) no(fg)bis.(g.) (::)
@@ -158,9 +148,8 @@ mode: 1;
 book: Graduale Romanum, 1961, p. 35* & The Liber Usualis, 1961, p. 43 & Chants of the Church, 1956, p. 26;
 transcriber: Andrew Hinkley;
 annotation: i;
-%font: GaramondPremierPro;
-%width: 7.27;
-%height: 11.69;
+fontsize: 14;
+font: Crimson;
 %%
 (c4) I(df!ghG'F)te,(e[ll:1]d..fvDC'd//cd) mis(fg)sa(f) est.(e[ll:1]d..) (::)
 (Z-)
