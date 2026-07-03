@@ -2,8 +2,8 @@ name: ;
 mode: 6;
 book: The Liber Usualis, 1961, p. 1861 & Chants of the Church, 1956, p. 98;
 transcriber: Benjamin George;
-%font: Crimson;
-%fontsize: 14;
+font: Crimson;
+fontsize: 14;
 %%
 (c4) IN(f')vi(g)o(f')lá(g)ta,(h.) *() ín(ixi')te(h)gra,(g') et(h) cas(g)ta(f') es(g) Ma(f')rí(g)a:(h.) (::)
 2. Qu{æ}(f') es(h) ef(ixi')féc(h)ta(g') fúl(h)gi(g)da(f') cæ(g)li(f') por(g)ta.(h.) (::)
