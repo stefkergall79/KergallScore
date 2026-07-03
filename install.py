@@ -37,8 +37,7 @@ if "--code" in sys.argv:
         "apps": {
             "Extension GABC": "AISCGre-BR.vscode-gregorio",
             "Extension Lilypond": "lhl2617.VSLilyPond",
-            "Extension Python": "ms-python.python",
-            "Extension LaTeX": "James-Yu.latex-workshop"
+            "Extension Python": "ms-python.python"
         }
     }
 
