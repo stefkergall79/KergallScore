@@ -1,9 +1,7 @@
-office-part: Hymnus;
+name: ;
 mode: 1;
 book: The Liber Usualis, 1961, p. 1259 & Chants of the Church, 1956, p. 87 & Liber antiphonarius, 1960, p. [117];
 transcriber: Andrew Hinkley;
-annotation: Hymn.;
-annotation: i;
 %fontsize: 14;
 %font: Crimson;
 %%

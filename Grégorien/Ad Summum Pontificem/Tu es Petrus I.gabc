@@ -1,8 +1,7 @@
-office-part: Antiphona;
+name: ;
 book: The Liber Usualis, 1961, p. 1515 & The Liber Usualis, 1961, p. 1578 & Cantus selecti, 1957, p. 230*;
 transcriber: Andrew Hinkley;
-annotation: Ant.;
-annotation: vii.;
+mode: 7;
 %fontsize: 14;
 %font: Crimson;
 %%

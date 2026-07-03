@@ -1,9 +1,6 @@
-office-part: Hymnus;
+name: ;
 mode: 6;
 transcriber: Tuan Hoang;
-annotation: Hymn.;
-annotation: vi.;
-%spacing: vichi;
 %fontsize: 14;
 %font: Crimson;
 %%

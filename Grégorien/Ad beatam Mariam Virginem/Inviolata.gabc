@@ -1,9 +1,7 @@
-office-part: Sequentia;
+name: ;
 mode: 6;
 book: The Liber Usualis, 1961, p. 1861 & Chants of the Church, 1956, p. 98;
 transcriber: Benjamin George;
-annotation: Seq.;
-annotation: vi;
 %font: Crimson;
 %fontsize: 14;
 %%
