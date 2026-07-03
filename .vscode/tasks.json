@@ -2,13 +2,10 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Compile",
+            "label": "Lilypond",
             "type": "process",
-            "command": "flatpak",
+            "command": "/opt/lilypond-2.26.0/bin/lilypond",
             "args": [
-                "run",
-                "--command=lilypond",
-                "org.frescobaldi.Frescobaldi",
                 "${file}"
             ],
             "options": {
@@ -71,6 +68,18 @@
             "label": "Clean LaTeX",
             "type": "shell",
             "command": "find \"${fileDirname}\" -maxdepth 1 -type f \\( -name '*.aux' -o -name '*.gaux' -o -name '*.log' -o -name '*.out' -o -name '*.toc' -o -name '*.synctex.gz' -o -name '*.fdb_latexmk' -o -name '*.fls' \\) -delete && rm -rf \"${fileDirname}/tmp-gre\"",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Gregorio",
+            "type": "shell",
+            "command": "gregorio",
+            "args": [
+                "${fileBasename}"
+            ],
             "options": {
                 "cwd": "${fileDirname}"
             },
