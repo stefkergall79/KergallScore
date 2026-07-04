@@ -7,7 +7,7 @@ global = {
   \dynamicUp
 }
 
-soprano = \fixed c' {
+soprano = \fixed c' { 
   \global
   c'4\p 8 8 b4 4 a2 g a4 8 8 c'4 8 8 4(b) c'2
   c'4 8 8 b4 4 a2 g a4 8\cresc 8 c'4 8 8 d'2 2
