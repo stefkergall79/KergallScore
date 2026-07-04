@@ -22,7 +22,7 @@
             ],
             "group": "build"
         },
-        {   
+        {
             "label": "New",
             "type": "shell",
             "command": "${command:python.interpreterPath}",
@@ -56,33 +56,12 @@
             "group": "build"
         },
         {
-            "label": "Lecteur midi",
+            "label": "Timidity++",
             "type": "shell",
             "command": "timidity",
             "args": [
                 "${fileDirname}/${fileBasenameNoExtension}.midi"
             ],
-            "group": "build"
-        },
-        {
-            "label": "Clean LaTeX",
-            "type": "shell",
-            "command": "find \"${fileDirname}\" -maxdepth 1 -type f \\( -name '*.aux' -o -name '*.gaux' -o -name '*.log' -o -name '*.out' -o -name '*.toc' -o -name '*.synctex.gz' -o -name '*.fdb_latexmk' -o -name '*.fls' \\) -delete && rm -rf \"${fileDirname}/tmp-gre\"",
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "group": "build"
-        },
-        {
-            "label": "Gregorio",
-            "type": "shell",
-            "command": "gregorio",
-            "args": [
-                "${fileBasename}"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
             "group": "build"
         }
     ]
