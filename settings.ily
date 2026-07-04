@@ -50,7 +50,7 @@ strophemode =
         #paroles
       }
     #}
-    )))
+)))
 
 #(define-markup-command (couplets-markup layout props start-num num-cols lines) 
   (integer? integer? markup-list?)
@@ -136,14 +136,14 @@ generate-rehearsal-midi =
              (lyrics-var (cdr pair)))
         
         (ly:book-process
-         #{ 
-           \book { 
-             \score { 
+         #{
+           \book {
+             \score {
                \rehearsalMidi #voice-name #lyrics-var 
-               \midi {  \tempo 4 = #tempo-val } 
+               \midi { \tempo 4 = #tempo-val } 
              } 
            } 
- #}
+         #}
          #{ \paper {} #}
          #{ \layout {} #}
          (string-append (ly:parser-output-name) "-" voice-name))))
