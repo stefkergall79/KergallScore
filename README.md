@@ -7,4 +7,4 @@
 - Vous cherchez un éditeur à votre dernière composition ?
 - Vous aimeriez harmoniser une mélodie ?
 
-Je propose des solutions. Contactez-moi : "stef.kergall@gmail.com".
+Je propose des solutions. Contactez-moi : stef.kergall@gmail.com.
