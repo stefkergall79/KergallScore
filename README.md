@@ -1,23 +1,10 @@
-# Fonctionalités
+# CommandScores
 
-Ce dépôt propose une soixantaine de partitions [lilypond](https://lilypond.org), ainsi que des scripts Python pour sauvegarder les modifications et créer de nouvelles partitions en respectant les contraintes d'intégration de partitions dans des recueils de chant.
+> Une base de données. Des commandes. De la musique.
 
-# Installation
+- Vous voudriez relooker une vieille partition de musique multi-photocopiée, bricolée sur 4 pages ?
+- Vous aimeriez un livret propre pour une cérémonie, tout inclus, avec table des matières ?
+- Vous cherchez un éditeur à votre dernière composition ?
+- Vous aimeriez harmoniser une mélodie ?
 
-`python3 ~/Partitions/install.py`.
-
-# Scripts
-
-- Sauvegarde : `python3 ~/Partitions/save.py`.
-- Création : `python3 ~/Partitions/new.py`.
-
-# Dans VSCode
-
-`Ctrl+Maj+B` et sélectionnez :
-
-- Installer les dépendances : `Install`.
-- Sauvegarder sur le dépôt Git : `Save`.
-- Créer une nouvelle partition : `New`.
-- Compiler un fichier source : `Compile`.
-- Jouer un fichier son : `Lecteur midi`.
-- Ouvrir un fichier source dans [Frescobaldi](https://frescobaldi.org/) : `Frescobaldi`.
+Je propose des solutions. Contactez-moi : "stef.kergall@gmail.com".
