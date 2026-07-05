@@ -1,4 +1,4 @@
-name: ;
+name: Kyriale XI;
 office-part: Antiphona;
 mode: 7;
 book: Graduale Romanum, 1961, p. 1* & The Liber Usualis, 1961, p. 11 & Graduale Romanum, 1974, p. 707 & Chants of the Church, 1956, p. 1 & Gregorian Missal, 1990, p. 70 & Liber cantualis, 1983, p. 32;
@@ -6,8 +6,11 @@ transcriber: Andrew Hinkley;
 commentary: Ps 50: 9, 3a;
 annotation: Ant.;
 annotation: vii;
-fontsize: 14;
-font: Crimson;
+%fontsize: 14;
+%font: Crimson;
+%width: 7.27;
+%height: 11.69;
+%spacing: vichi;
 %%
 (c2) A(cd)sper(fvED)ges(ef) me,(g.) *(,)
 Dó(h!iwj)mi(ji)ne,(hg) (,) hys(h)só(g_f)po,(ef) et(gvFD') mun(e)dá(cdc___)bor:(c.) (:)
@@ -21,51 +24,47 @@ et(ge) in(fg) sǽ(g)cu(g)la(g') sæ(g)cu(g!hwi)ló(g')rum.(f) A(fff)men.(dc..) (
 name: ;
 office-part: Kyriale;
 mode: 1;
-book: Graduale Romanum, 1961, p. 35* & The Liber Usualis, 1961, p. 43 & Graduale Romanum, 1974, p. 745 & Chants of the Church, 1956, p. 26 & Gregorian Missal, 1990, p. 110;
+book: Graduale Romanum, 1961, p. 38* & The Liber Usualis, 1961, p. 46 & Chants of the Church, 1956, p. 30;
 transcriber: Andrew Hinkley;
-commentary: XI. s.;
 annotation: i;
-fontsize: 14;
-font: Crimson;
+%font: GaramondPremierPro;
+%width: 7.27;
+%height: 11.69;
 %%
-(c4) KY(df/hg)ri(fe)e(d.) *() e(evDC'd)lé(f_)i(d)son.(d.) (::)
-Ký(a)ri(cb)e(cd) e(evDC'd)lé(f_)i(d)son.(d.) (::)
-Ký(df/hg)ri(fe)e(d.) e(evDC'd)lé(f_)i(d)son.(d.) (::)
-Chris(h)te(hg) e(hvGF)lé(g_)i(h)son.(h.) (::)
-Chris(hhg)te(fvED.) e(evDC'd)lé(f_)i(d)son.(d.) (::)
-Chris(h)te(hg) e(hvGF)lé(g_)i(h)son.(h.) (::)
-Ký(j')ri(k)e(jkhhg) e(hvGF)lé(g_)i(h)son.(h.) (::)
-Ký(hhg)ri(fe)e(d.) e(evDC'd)lé(f_)i(d)son.(d.) (::)
-Ký(j')ri(k)e(jkhhg//hvGFghh) *(,) (jk/jkhhg//hvGFghh) <c>**</c>(,) (hvGF'ED.) e(evDC'd)lé(f_)i(d)son.(d.) (::)
+(c4) KY(ixhi)ri(hg)e(hd..) *(,) e(ixfgh!ivHGfvED)lé(c')i(d)son.(d.) <i>iij.</i>() (::)
+Chris(hg)te(kv.jkJH'Gh.) (,) e(ixfgh!ivHGfvED)lé(c')i(d)son.(d.) <i>iij.</i>() (::)
+Ký(ixhi)ri(hg)e(hd..) (,) e(ixfgh!ivHGfvED)lé(c')i(d)son.(d.) <i>ij.</i>() (::)
+Ký(dfd)ri(cd)e(d.gv.fgFD'Cd.) *(,) e(ixfgh!ivHGfvED)lé(c')i(d)son.(d.) (::)
 
 name: ;
 office-part: Kyriale;
-mode: 8;
-book: Graduale Romanum, 1961, p. 36* & The Liber Usualis, 1961, p. 43 & Graduale Romanum, 1974, p. 745 & Chants of the Church, 1956, p. 27 & Gregorian Missal, 1990, p. 110;
+mode: 2;
+book: Graduale Romanum, 1961, p. 39* & The Liber Usualis, 1961, p. 46 & Chants of the Church, 1956, p. 30;
 transcriber: Andrew Hinkley;
-commentary: XV. s.;
-annotation: viii;
-fontsize: 14;
-font: Crimson;
+commentary: X. s.;
+annotation: ii;
+%font: GaramondPremierPro;
+%width: 7.27;
+%height: 11.69;
 %%
-(c4) GLó(j)ri(hg)a(g') in(e) ex(f')cél(g)sis(hi) De(hg)o.(g.) (::)
-Et(e') in(f) ter(g)ra(hih') pax(g) ho(ge)mí(f')ni(e)bus(d.) (,) bo(g')næ(g) vo(f')lun(h)tá(h.)tis.(g.) (::)
-Lau(j)dá(h')mus(j) te.(g.) (::)
-Be(g)ne(f')dí(e)ci(f')mus(g) te.(g.) (::)
-Ad(g)o(f')rá(e)mus(fg) te.(g.) (::)
-Glo(g)ri(f')fi(e)cá(f')mus(g) te.(g.) (::)
-Grá(g)ti(fe)as(d') á(e)gi(d')mus(e) ti(c.)bi(c.) (,) prop(g)ter(hi) ma(ji)gnam(h) gló(ij)ri(hg)am(fg~) tu(g.)am.(g.) (::)
-Dó(g)mi(fe)ne(d') De(e)us,(dec.) (,) Rex(fe) cæ(f)lés(h)tis,(g.) (;) De(g)us(hi) Pa(i)ter(ih) om(ji~)ní(hg)pot(fg)ens.(g.) (::)
-Dó(g)mi(hi)ne(i.) Fi(i')li(i) u(h')ni(j)gé(i')ni(h)te(g.) (,) Je(e')su(f) Chris(g.)te.(g.) (::)
-Dó(g)mi(fe)ne(d') De(e)us,(d.) A(e)gnus(de) De(c.)i,(c.) (,) Fí(f')li(e)us(f') Pa(h)tris.(g.) (::)
-Qui(g) tol(dg~)lis(g') pec(g)cá(h')ta(g) mun(gfh)di,(h.) (,) mi(h)se(hg)ré(fe)re(fgf) no(g.)bis.(g.) (::)
-Qui(g) tol(dg~)lis(g') pec(g)cá(h')ta(g) mun(gfh)di,(h.) (,) sú(hi/ji)sci(h)pe(h.) de(h)pre(h)ca(h')ti(h)ó(h)nem(fg~) nos(g.)tram.(g.) (::)
-Qui(gji) se(jk)des(k') ad(i) déx(k')te(j)ram(i') Pa(h)tris,(g.) (,) mi(g')se(h)ré(e')re(f) no(g.)bis.(g.) (::)
-Quón(gh)i(gf)am(g.) tu(hj) so(ji)lus(h) sanc(jk~)tus.(k.) (::)
-Tu(i) so(k')lus(j) Dó(ji)mi(hj)nus.(jg..) (::)
-Tu(g) so(hi)lus(i) Al(ih~)tís(j')si(h)mus,(ghg.) (,) Je(e')su(f) Chris(g.)te.(g.) (::)
-Cum(g') Sanc(h)to(g') Spí(h)ri(gf)tu,(f.) (,) in(hj~) gló(jji)ri(hg)a(g') De(g)i(h) Pa(efg)tris.(g.) (::)
-A(gefvED.g/hihh)men.(hg..) (::)
+(f3) GLó(fi)ri(hg)a(hi) in(hg) ex(f')cél(g)sis(h) De(g.)o.(f.) (::)
+Et(e') in(f) ter(g)ra(hg) pax(f) ho(fi)mí(i)ni(hg)bus(hi) (,) bo(hg)næ(f') vo(g)lun(h)tá(g.)tis.(f.) (::)
+Lau(fe~)dá(g)mus(hg) te.(f.) (::)
+Be(f)ne(fg)dí(g_f)ci(e')mus(f) te.(e.) (::)
+Ad(e')o(f)rá(g)mus(hg) te.(f.) (::)
+Glo(f')ri(g)fi(h)cá(i')mus(h) te.(ghG'Fggf.0) (::)
+Grá(e')ti(f)as(g) á(h')gi(g)mus(f') ti(g)bi(f.) (,) prop(e)ter(ef~) ma(f')gnam(f) gló(fe)ri(g)am(hg) tu(f.)am.(f.) (::)
+Dó(fi)mi(hg)ne(hi) De(hg)us,(f.) (,) Rex(g') cæ(h)lés(g.)tis,(f.) (,) De(e)us(fg) Pa(g')ter(g) om(fh)ní(hg)pot(ef)ens.(f.) (::)
+Dó(fi)mi(hg)ne(hi) Fi(hg)li(f.) (,) u(g')ni(h)gé(g')ni(f)te(e.) (,) Je(fe)su(ghg) Chris(f.)te.(f.) (::)
+Dó(fi)mi(hg)ne(hi) De(hg)us,(f.) (,) A(g')gnus(h) De(g.)i,(f.) (,) Fí(fe)li(g)us(hg) Pa(f.)tris.(f.) (::)
+Qui(g) tol(ef)lis(f) pec(fe)cá(g)ta(h') mun(gff)di,(e.) (,) mi(f)se(fe)ré(g)re(hg) no(f.)bis.(f.) (::)
+Qui(g) tol(ef)lis(f) pec(fe)cá(g)ta(h') mun(gff)di,(e.) (,) sú(g)sci(ef)pe(f') de(f)pre(f)ca(f')ti(e)ó(g)nem(hg) nos(f.)tram.(f.) (::)
+Qui(fi) se(hg)des(hi) ad(h) déx(hvGF')te(g)ram(h) Pa(g.)tris,(f.) (,) mi(f)se(fe)ré(g)re(hg) no(f.)bis.(f.) (::)
+Quón(fi)i(hg)am(hi) tu(hvGF') so(g)lus(h) sanc(g.)tus.(f.) (::)
+Tu(fe) so(g')lus(h) Dó(g')mi(f)nus.(e.) (::)
+Tu(f) so(fe)lus(g') Al(h)tís(g')si(f)mus,(e.) (,) Je(fe)su(ghg) Chris(f.)te.(f.) (::)
+Cum(g) Sanc(ef)to(fg) Spí(e')ri(f)tu,(e.) (,) in(g) gló(i')ri(i)a(ij) De(ivHG)i(g.) Pa(giivHFE'fw!gh)tris.(gf..) (::)
+A(eg/hf)men.(ef..) (::)
 
 name: ;
 office-part: Kyriale;
@@ -74,8 +73,9 @@ book: Graduale Romanum, 1961, p. 64* & The Liber Usualis, 1961, p. 68 & Graduale
 transcriber: Andrew Hinkley;
 commentary: XVII. s.;
 annotation: v;
-fontsize: 14;
-font: Crimson;
+%font: GaramondPremierPro;
+%width: 7.27;
+%height: 11.69;
 %%
 (c3) CRe(h)do(f) in(d) u(gxg)num(f) De(fvED)um,(d.) (::)
 Pa(gxfg)trem(f') om(h)ni(f')pot(d)én(e)tem,(d.) (;) fac(d)tó(f')rem(gxg) cæ(h')li(h) et(h') ter(i)ræ,(h.) (;) vi(h')si(h)bí(i')li(i)um(k) óm(jhi)ni(i)um,(h.) (;) et(h') in(f)vi(d')si(gxg)bí(fde)li(e)um.(d.) (::)
@@ -101,8 +101,9 @@ name: ;
 office-part: Toni Communes;
 book: Graduale Romanum, 1961, p. 130* & The Liber Usualis, 1961, p. 109;
 transcriber: Benjamin Bloomfield;
-fontsize: 14;
-font: Crimson;
+%font: GaramondPremierPro;
+%width: 7.27;
+%height: 11.69;
 %%
 (c3) PER(c) óm(e)ni(f)a(f) sǽ(g)cu(f)la(f) sæ(e)cu(f)ló(fe)rum.(e.) (::)
 <sp>R/</sp> A(e)men.(ef..) (::)
@@ -115,42 +116,46 @@ font: Crimson;
 
 name: ;
 office-part: Kyriale;
-mode: 4;
-book: Graduale Romanum, 1961, p. 37* & The Liber Usualis, 1961, p. 45 & Graduale Romanum, 1974, p. 747 & Chants of the Church, 1956, p. 29 & Gregorian Missal, 1990, p. 112;
+mode: 2;
+book: Graduale Romanum, 1961, p. 40* & The Liber Usualis, 1961, p. 47 & Graduale Romanum, 1974, p. 750 & Chants of the Church, 1956, p. 32 & Gregorian Missal, 1990, p. 115 & Liber cantualis, 1983, p. 51;
 transcriber: Andrew Hinkley;
-annotation: iv;
-fontsize: 14;
-font: Crimson;
+commentary: XI. s.;
+annotation: ii;
+%font: GaramondPremierPro;
+%width: 7.27;
+%height: 11.69;
 %%
-(c4) SAnc(eeg)tus,(e.) *(,) Sanc(fff)tus,(dc) (,) Sanc(dfd)tus(e.) (;) Dó(g')mi(f)nus(g') De(g)us(gf) Sá(g)ba(fe)oth.(e.) (:)
-Ple(g')ni(f) sunt(dc) cæ(d)li(f') et(d) ter(de)ra(e.) (,) gló(g')ri(f)a(g) tu(fe)a.(e.) (:)
-Ho(g)sán(gh~)na(h') in(g) ex(f)cél(gg)sis.(e.) (:)
-Be(g)ne(e')díc(f)tus(dc) qui(d) ve(dfd)nit(e.) (,) in(g) nó(g')mi(g)ne(f') Dó(g)mi(fe)ni.(e.) (:)
-Ho(g)sán(gh~)na(h') in(g) ex(f)cél(gg)sis.(e.) (::)
-
-name: ;
-office-part: Kyriale;
-mode: 4;
-book: Graduale Romanum, 1961, p. 38* & The Liber Usualis, 1961, p. 45 & Graduale Romanum, 1974, p. 747 & Chants of the Church, 1956, p. 29 & Gregorian Missal, 1990, p. 112;
-transcriber: Andrew Hinkley;
-commentary: XII. s.;
-annotation: iv;
-fontsize: 14;
-font: Crimson;
-%%
-(f3) A(g)gnus(fe) De(fg)i,(g.) *(,) qui(g) tol(i')lis(j) pec(ih)cá(i)ta(ih) mun(g.)di:(g.) (;) mi(g)se(gf)ré(h)re(fg) no(g.)bis.(g.) (::)
-A(i)gnus(i') De(j)i,(i.) *(,) qui(h) tol(i')lis(j) pec(ih)cá(i)ta(ih) mun(g.)di:(g.) (;) mi(hg)se(hi)ré(hhg)re(fe) no(fg)bis.(g.) (::)
-A(g)gnus(fe) De(fg)i,(g.) *(,) qui(g) tol(i')lis(j) pec(ih)cá(i)ta(ih) mun(g.)di:(g.) (;) do(g)na(gf) no(h)bis(fg) pa(g.)cem.(g.) (::)
+(f3) SAnc(fc/ef~)tus,(f.) *(,) Sanc(feggf~)tus,(f.) (,) Sanc(fg!hi)tus(iji) Dó(hg)mi(fg)nus(g.) (,) De(gf)us(fgh) Sá(gf)ba(ef)oth.(f.) (:)
+Ple(ji)ni(hvGF) sunt(fi) cæ(iji)li(hg) et(ef~) ter(fgff)ra(e.) (,) gló(ghi)ri(ih)a(ghg) tu(f.)a.(f.) (:)
+Ho(fj)sán(ij~)na(jvIH'GF.) in(e) ex(gfhhf)cél(ef~)sis.(f.) (:)
+Be(e)ne(ef)díc(fg)tus(f.) qui(ghi) ve(i_h)nit(g.) (,) in(fjji) nó(kxjkj')mi(i)ne(iji) Dó(hg)mi(fg)ni.(ghiG'Fgef.) (:)
+Ho(fj)sán(ij~)na(jvIH'GF.) in(e) ex(gfhhf)cél(ef~)sis.(f.) (::)
 
 name: ;
 office-part: Kyriale;
 mode: 1;
-book: Graduale Romanum, 1961, p. 35* & The Liber Usualis, 1961, p. 43 & Chants of the Church, 1956, p. 26;
+book: Graduale Romanum, 1961, p. 41* & The Liber Usualis, 1961, p. 48 & Graduale Romanum, 1974, p. 751 & Chants of the Church, 1956, p. 32 & Gregorian Missal, 1990, p. 116 & Liber cantualis, 1983, p. 51;
+transcriber: Andrew Hinkley;
+commentary: XIV. s.;
+annotation: i;
+%font: GaramondPremierPro;
+%width: 7.27;
+%height: 11.69;
+%%
+(c4) A(de/fd)gnus(dc) De(cd)i,(d.) *(,) qui(e) tol(gh)lis(gvFE) pec(efg)cá(gvFE)ta(dc) mun(de~)di:(e.) (;) mi(e)se(gh)ré(g_d)re(fvED) no(cd)bis.(d.) (::)
+A(de)gnus(gh) De(ixhi)i,(h.) *(,) qui(ghG'F) tol(ede)lis(e.) pec(f)cá(g')ta(d) mun(fvE~D~)di:(c.) (;) mi(e)se(gh)ré(gf)re(e[ll:1]d) no(cd)bis.(d.) (::)
+A(de)gnus(gvFE') De(g)i,(h.) *(,) qui(hg) tol(j')lis(k) pec(jvIH)cá(ghf')ta(e) mun(de~)di:(evDC.) (;) do(e)na(gh) no(fg)bis(fvED) pa(cd)cem.(d.) (::)
+
+name: ;
+office-part: Kyriale;
+mode: 1;
+book: Graduale Romanum, 1961, p. 41* & The Liber Usualis, 1961, p. 48 & Chants of the Church, 1956, p. 33;
 transcriber: Andrew Hinkley;
 annotation: i;
-fontsize: 14;
-font: Crimson;
+%font: GaramondPremierPro;
+%width: 7.27;
+%height: 11.69;
 %%
-(c4) I(df!ghG'F)te,(e[ll:1]d..fvDC'd//cd) mis(fg)sa(f) est.(e[ll:1]d..) (::)
+(c4) I(ixhi)te,(hg/hd..) (,) mis(ixfgh!ivHGfvED)sa(cd) est.(d.) (::)
 (Z-)
-~~<sp>R/</sp> D{e}(df!ghG'F)o(e[ll:1]d..fvDC'd//cd) grá(fg)ti(f)as.(e[ll:1]d..) (::)
+~~~~<sp>R/</sp> D{e}(ixhi)o(hg/hd..) (,) grá(ixfgh!ivHGfvED)ti(cd)as.(d.) (::)

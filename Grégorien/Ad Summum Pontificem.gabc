@@ -1,0 +1,40 @@
+name: AD SUMMUM PONTIFICEM;
+name: Tu es Petrus I;
+office-part: Antiphona;
+mode: 7;
+book: The Liber Usualis, 1961, p. 1515 & The Liber Usualis, 1961, p. 1578 & Cantus selecti, 1957, p. 230*;
+transcriber: Andrew Hinkley;
+%fontsize: 14;
+%font: Crimson;
+%width: 7.27;
+%height: 11.69;
+%spacing: vichi;
+%%
+(c3) TU(i_g) es(i_j) Pe(i.)trus,(i.) *(,)
+et(i) su(i')per(g) hanc(h_g) pe(e.)tram(e.) (;)
+æ(g)di(ghg)fi(f')cá(h)bo(g'_) (,)
+Ec(f)clé(e_f)si(g)am(f) me(e.)am.(e.) (::)
+
+name: Tu es Petrus II;
+mode: 6;
+book: Graduale Romanum, 1961, p. 412 & Graduale Romanum, 1961, p. 534 & The Liber Usualis, 1961, p. 1521 & Graduale Romanum, 1974, p. 577;
+transcriber: Andrew Hinkley;
+%fontsize: 14;
+%font: Crimson;
+%width: 4.5;
+%height: 11;
+%spacing: vichi;
+%%
+(c4) TU(f) es(df) Pe(fgff)trus,(cdc.) *(;)
+et(d) su(ffg)per(f) hanc(f) pe(f_g_f_)tram(f.) (;)
+ae(f)di(fg'h)fi(h_g)cá(g)bo(fgFD.1) (,)
+Ec(d)clé(ffg)si(f)am(fg/hg/h_g) me(fg!hvGF'g)am.(gf..) (::)
+
+name: Tu es pastor ovium;
+mode: 1;
+book: Liber antiphonarius, 1960, p. 598 & Liber antiphonarius, 1960, p. 750 & Liber antiphonarius, 1960, p. 798;
+transcriber:Andrew Hinkley;
+fontsize: 14;
+font: Crimson;
+%%
+(c4) TU(d) es(dc) pa(f)stor(g') ó(f)vi(gh)um,(h'_) *(,) Prin(hjj)ceps(i_h) A(g)po(fe)sto(fgf)ló(d.)rum:(d.) (;) ti(e')bi(f) trá(g')di(f)tae(fe) sunt(dc~) (,) cla(cffg)ves(f') re(f)gni(gh) cae(fe)ló(d.)rum.(d.) (::)

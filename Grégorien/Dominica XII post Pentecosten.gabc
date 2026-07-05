@@ -1,4 +1,4 @@
-name: ;
+name: Dominica XII post Pentecosten;
 office-part: Introitus;
 mode: 7;
 book: Graduale Romanum, 1961, p. 350 & The Liber Usualis, 1961, p. 1027;
@@ -6,8 +6,8 @@ transcriber: Andrew Hinkley;
 commentary: Ps 69: 2-3, 4;
 annotation: Intr.;
 annotation: vii;
-fontsize: 14;
-font: Crimson;
+%fontsize: 14;
+%font: Crimson;
 %%
 (c2) DE(figgf)us(f.) *(,) in(exge) ad(f)ju(g)tó(iij)ri(i)um(i) me(iji)um(ihi.) (,) in(exgv.egf)tén(f_g_f_)de:(f.) (:)
 Dó(f)mi(f)ne(hih.) (,) ad(g) ad(ghg)ju(f)ván(fff)dum(d) me(gi) fes(ihig)tí(f)na:(fgff) (:)

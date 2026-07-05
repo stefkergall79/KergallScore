@@ -1,4 +1,4 @@
-name: ;
+name: Dominica XI post Pentecosten;
 office-part: Introitus;
 mode: 5;
 book: Graduale Romanum, 1961, p. 347 & The Liber Usualis, 1961, p. 1024;
@@ -6,8 +6,11 @@ transcriber: Andrew Hinkley;
 commentary: Ps 67: 6-7, 36, 2;
 annotation: Intr.;
 annotation: v;
-fontsize: 14;
-font: Crimson;
+%fontsize: 14;
+%font: Crimson;
+%width: 7.27;
+%height: 11.69;
+%spacing: vichi;
 %%
 (c3) DE(hhi)us(h) *() in(h) lo(hihh)co(f_e) sanc(f!gwh)to(f_d) su(d_e_d_)o:(d.) (;) De(fd)us,(d) qui(d) in(f)ha(fef)bi(fef)tá(hf/hhhi)re(h) fa(hjI'H)cit(h_f) (,) u(f!h'i)ná(ij)ni(i)mes(h) in(hi) do(hihh)mo:(gf..) (:)
 ip(f)se(hh) da(h_i)bit(f) vir(hh)tú(hv.gihghf)tem(f.) (,) et(f) for(gxfg~)ti(f_e)tú(fgF'D)di(dfE'De[ll:1]d)nem(d.) (;) ple(gxde/gf/g_h)bi(hgge!fwg) su(d_e_d_)æ.(d.) (::)
