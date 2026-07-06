@@ -46,7 +46,7 @@ class HeaderTab(ctk.CTkFrame):
             ctk.CTkLabel(frame, text=self.fields[field]["name"], font=self.default_font
                          ).pack(side="left", padx=5, anchor="w")
             
-            if field in ("title", "composer", "poet"):
+            if field in ("title", "composer"):
                 frame.pack(pady=4, anchor="w")
             else:
                 self.available_fields.append(field)
@@ -170,13 +170,12 @@ class HeaderTab(ctk.CTkFrame):
         return filename
 
     def _get_categories(self) -> list[str]:
-        base_dir = Path(__file__).resolve().parent
+        base_dir = Path(__file__).resolve().parent.parent
         categories = [
             entry.name for entry in base_dir.iterdir()
             if entry.is_dir()
-            and not entry.name.startswith('.')
-            and not entry.name.startswith('__')
-            and entry.name not in ("Modèles", "Grégorien")
+            and entry.name[0].isupper()
+            and entry.name != "Grégorien"
         ]
         categories.sort(key=str.casefold)
         return categories or ["Autres"]
@@ -471,7 +470,7 @@ class LilypondCreator(ctk.CTk):
         category = self.header_tab.category_var.get().strip() or "Autres"
         
         folder_name = Path(filename).stem
-        base_dir = Path(__file__).resolve().parent
+        base_dir = Path(__file__).resolve().parent.parent
         target_folder = base_dir / category / folder_name
         
         try:
@@ -496,7 +495,7 @@ class LilypondCreator(ctk.CTk):
             for settings in self.music_tab.vars.values():
                 if "def" not in settings or settings["var"].get() != settings["def"]:
                     content += (
-                        f"\t\\{settings["ly"]} = {settings["var"].get()}" +
+                        f"\t\\{settings["ly"]} {settings["var"].get()}" +
                         (" \\major" if settings["ly"] == "key" else "") + "\n"
                     )
             content += "}\n\n"
