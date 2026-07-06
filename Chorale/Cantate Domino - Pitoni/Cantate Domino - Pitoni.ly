@@ -68,24 +68,6 @@ bass = \fixed c {
   
 }
 
-verseSoprano = \lyricmode {
-  Can -- tá -- te Dó -- mi -- no,
-  can -- tá -- te, can -- tá -- te,
-  can -- tá -- te Dó -- mi -- no,
-  cán -- ti -- cum nó -- vum_;
-  laus é -- jus
-  in ec -- clé -- si -- a san -- ctó -- rum,
-  in ec -- clé -- si -- a san -- ctó -- rum.
-  
-  Læ -- té -- tur Is -- ra -- ël in é -- o,
-  læ -- té -- tur, læ -- té -- tur in é -- o,
-  qui fé -- cit é -- um_:
-  et fi -- li -- æ Sí -- on, et fi -- li -- æ Sí -- on
-  e -- xúl -- tent, e -- xúl -- tent,
-  e -- xúl -- tent in re -- ge su -- o,
-  e -- xúl -- tent, e -- xúl -- tent in re -- ge su -- o,
-}
-
 verseAlto = \lyricmode {
   Can -- tá -- te Dó -- mi -- no,
   can -- tá -- te, can -- tá -- te,
@@ -104,6 +86,25 @@ verseAlto = \lyricmode {
   e -- xúl -- tent, e -- xúl -- tent in re -- ge su -- o,
 }
 
+verseExultent = \lyricmode {
+  e -- xúl -- tent, e -- xúl -- tent,
+}
+
+verseBass = \lyricmode {
+  \repeat unfold 6 \skip1
+  can -- tá -- te,
+  \repeat unfold 68 \skip1
+  \verseExultent
+}
+verseSoprano = \lyricmode {
+  \repeat unfold 77 \skip1
+  \verseExultent
+}
+
+
+\paper {
+  system-system-spacing.basic-distance = #14
+}
 \tocItemComposer "Cantáte Dómino" "Pitoni"
 \score {
   \header {
@@ -111,54 +112,34 @@ verseAlto = \lyricmode {
     composer = "Giuseppe Ottavio Pitoni (1657-1743)"
   }
   \new ChoirStaff <<
-    \new Staff \with {
+    \new Staff = "upStaff" \with {
       midiInstrument = "choir aahs"
-      instrumentName = "Soprano"
-      \consists "Ambitus_engraver"
-    } \new Voice = "soprano" \soprano
+      \consists Merge_rests_engraver
+    } <<
+      \new Voice = "soprano" { \voiceOne \soprano }
+      \new Voice = "alto" { \voiceTwo \alto }
+    >>
     \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
+      \override VerticalAxisGroup.staff-affinity = #DOWN
+      alignAboveContext = #"upStaff"
     } \lyricsto "soprano" \verseSoprano
-    
-    \new Staff \with {
-      midiInstrument = "choir aahs"
-      instrumentName = "Alto"
-      \consists "Ambitus_engraver"
-    } \new Voice = "alto" \alto
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "alto" \verseAlto
     
     \new Staff \with {
       midiInstrument = "choir aahs"
-      instrumentName = "Ténor"
-      \consists "Ambitus_engraver"
-    } {
-      \clef "treble_8"
-      \new Voice = "tenor" \tenor
-    }
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "tenor" \verseAlto
-    
-    \new Staff \with {
-      midiInstrument = "choir aahs"
-      instrumentName = "Basse"
-      \consists "Ambitus_engraver"
-    } {
+      \consists Merge_rests_engraver
+    } <<
       \clef bass
-      \new Voice = "bass" \bass
-    }
+      \new Voice = "tenor" { \voiceOne \tenor }
+      \new Voice = "bass" { \voiceTwo \bass }
+    >>
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "bass" \verseSoprano
+    } \lyricsto "bass" \verseBass
+    
   >>
   \layout {}
   \midi {\tempo 2.=50 }
-}
-\markup \column{
-  "Chantez au Seigneur un chant nouveau ;"
-  "Sa louange résonne dans l'assemblée des saints."
-  "Qu'Israël se réjouisse en celui qui l'a créé,"
-  "Que les filles de Sion exultent en leur roi."
 }
