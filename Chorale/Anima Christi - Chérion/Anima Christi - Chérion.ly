@@ -3,9 +3,9 @@
 
 global = {
 	\autoBeamOff
-	\key = f \major
-	\time = 2/2
-	\tempo 4= = 70
+	\key f \major
+	\time 2/2
+	\tempo 4=70
 }
 
 soprano = \fixed c' {
