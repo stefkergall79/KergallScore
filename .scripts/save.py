@@ -1,7 +1,7 @@
 from pathlib import Path
 import git
 
-REPO = git.Repo(Path(__file__).resolve().parent)
+REPO = git.Repo(Path(__file__).resolve().parent.parent)
 print("Récupération du travail des collaborateurs...", end="\n\n")
 REPO.remote(name="origin").pull()
 

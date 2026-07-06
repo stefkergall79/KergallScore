@@ -18,7 +18,7 @@
             "type": "shell",
             "command": "${command:python.interpreterPath}",
             "args": [
-                "${workspaceFolder}/save.py"
+                "${workspaceFolder}/.scripts/save.py"
             ],
             "group": "build"
         },
@@ -27,16 +27,15 @@
             "type": "shell",
             "command": "${command:python.interpreterPath}",
             "args": [
-                "${workspaceFolder}/new.py"
+                "${workspaceFolder}/.scripts/new.py"
             ],
             "group": "build"
         },
         {
             "label": "Install",
             "type": "shell",
-            "command": "${command:python.interpreterPath}",
+            "command": "${workspaceFolder}/.scripts/installer.sh",
             "args": [
-                "${workspaceFolder}/install.py",
                 "--code"
             ],
             "group": "build"
