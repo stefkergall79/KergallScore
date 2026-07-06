@@ -4,7 +4,7 @@
         {
             "label": "Lilypond",
             "type": "process",
-            "command": "/opt/lilypond-2.26.0/bin/lilypond",
+            "command": "${workspaceFolder}/lilypond-2.26.0/bin/lilypond",
             "args": [
                 "${file}"
             ],
