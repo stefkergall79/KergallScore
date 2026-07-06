@@ -1,7 +1,7 @@
 # CommandScores
 
 > 🌐 Une base de données\
-> ​✉️​​ Des commandes \
+> ​✉️​​ Des commandes\
 > 🎶 De la musique
 
 | Avant                                                                                       | Après                                                                                           |
