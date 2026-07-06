@@ -41,6 +41,7 @@ cd /tmp
 curl -L -O "https://gitlab.com/lilypond/lilypond/-/releases/v2.26.0/downloads/lilypond-2.26.0-linux-x86_64.tar.gz"
 sudo tar -xzf lilypond-2.26.0-linux-x86_64.tar.gz -C /opt/
 sudo cp "${HERE}/settings.ily" /opt/lilypond-2.26.0/share/lilypond/2.26.0/ly/
+echo "alias lilypond='/opt/lilypond-2.26.0/bin/lilypond'" >> ~/.bashrc
 
 # Git
 echo "Configuration de Git..."
