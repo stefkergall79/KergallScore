@@ -487,13 +487,13 @@ class LilypondCreator(ctk.CTk):
             
             content = (
                 "\\version \"2.26.0\"\n"
-                "\\include \"../../settings.ily\"\n"
+                "\\include \"settings.ily\"\n"
                 "\n"
                 "global = {\n"
                 "\t\\autoBeamOff\n"
             )
             for settings in self.music_tab.vars.values():
-                if "def" not in settings or settings["var"].get() != settings["def"]:
+                if ("def" not in settings or settings["var"].get() != settings["def"]) and settings["ly"].get() != "tempo 4=":
                     content += (
                         f"\t\\{settings["ly"]} {settings["var"].get()}" +
                         (" \\major" if settings["ly"] == "key" else "") + "\n"
@@ -565,7 +565,7 @@ class LilypondCreator(ctk.CTk):
                 content += "\t>>\n"
             content += (
                 "\t\\layout {\\context{\\Staff \\RemoveAllEmptyStaves }}\n"
-                "\t\\midi {}\n"
+                "\t\\midi {\\tempo 4=" + self.music_tab.vars["Tempo"]["var"].get() + "}\n"
                 "}\n"
             )
             self.filepath.write_text(content)
