@@ -1,16 +1,15 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
 
 global = {
 	\autoBeamOff
 	\key f \major
 	\time 2/2
-	\tempo 4=70
 }
 
 soprano = \fixed c' {
 	\global
-	
+	a2
 }
 
 alto = \fixed c' {
@@ -18,7 +17,7 @@ alto = \fixed c' {
 	
 }
 
-tenor = \fixed c' {
+tenor = \relative c' {
 	\global
 	
 }
@@ -28,7 +27,7 @@ bass = \fixed c {
 	
 }
 
-VerseOne = \strophemode 1 \lyricmode {
+VerseOne = \lyricmode {
 	
 }
 
@@ -62,5 +61,5 @@ ChoeurPart = \new ChoirStaff <<
 	}
 	\ChoeurPart
 	\layout {\context{\Staff \RemoveAllEmptyStaves }}
-	\midi {}
+	\midi { \tempo 4=70 }
 }
