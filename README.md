@@ -4,7 +4,7 @@
 
 | Titre                         | Avant                                                    | Après                                                    |
 | ----------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| [[Magnificat de Lourdes.pdf]] | ![Magnificat ancienne version](picts/Magnificat_old.png) | ![Magnificat ancienne version](picts/Magnificat_new.png) |
+| [Magnificat de Lourdes](Chorale/Magnificat%20de%20Lourdes/Magnificat%20de%20Lourdes.pdf) | ![Magnificat ancienne version](picts/Magnificat_old.png) | ![Magnificat ancienne version](picts/Magnificat_new.png) |
 |                               |                                                          |                                                          |
 
 - Vous voudriez relooker une vieille partition de musique multi-photocopiée, bricolée sur 4 pages ?
