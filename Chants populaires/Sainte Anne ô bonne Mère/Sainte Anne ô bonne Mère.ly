@@ -1,4 +1,4 @@
-\version "2.26.00"
+\version "2.26.0"
 \include "../../settings.ily"
 
 global = {
