@@ -23,6 +23,8 @@ code_list=(
 # apt
 sudo apt update
 sudo apt install -y "${apt_list[@]}"
+# lilypond désinstallé car téléchargé depuis le site officiel pour avoir la dernière version
+sudo apt remove lilypond -y && sudo apt autoremove -y
 echo
 
 # pip
