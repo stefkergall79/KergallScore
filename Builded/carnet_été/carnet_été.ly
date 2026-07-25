@@ -31,7 +31,7 @@
 \include "../../Chants populaires/Christus vincit/Christus vincit.ly" \pageBreak
 \include "../../Chorale/Adoramus te - Dubois/Adoramus te - Dubois.ly" \markup \vspace #3
 \include "../../Chants populaires/Sancte Pie Decime/Sancte Pie Decime.ly" \pageBreak
-\include "../../Chorale/Alta Trinita/Alta Trinita.ly"
+\include "../../Chorale/Alta Trinita/Alta Trinita.ly" \pageBreak
 \include "../../Chorale/Cantate Domino - Pitoni/Cantate Domino - Pitoni.ly" \pageBreak
 \include "../../Chorale/Jesu salvator - Menegali/Jesu salvator - Menegali.ly"
 \include "../../Chorale/Jesu Rex admirabilis - Palestrina/Jesu Rex admirabilis - Palestrina.ly" \pageBreak
