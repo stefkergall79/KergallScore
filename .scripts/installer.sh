@@ -6,6 +6,7 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 apt_list=(
     "timidity"
+    "frescobaldi"
     "python3-pip"
     "python3-tk"
 )

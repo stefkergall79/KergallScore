@@ -43,10 +43,8 @@
         {
             "label": "Frescobaldi",
             "type": "process",
-            "command": "flatpak",
+            "command": "frescobaldi",
             "args": [
-                "run",
-                "org.frescobaldi.Frescobaldi",
                 "${file}"
             ],
             "presentation": {

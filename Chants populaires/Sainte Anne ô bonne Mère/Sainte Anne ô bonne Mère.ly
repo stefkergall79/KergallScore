@@ -1,5 +1,5 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
 
 global = {
   \key g \major
@@ -95,7 +95,7 @@ verseTwo = \strophemode #2 ##t #26 \lyricmode {
 
 \score {
   \header {
-    title = "Sainte Anne, ô bonne Mère"
+    title = "SAINTE ANNE, Ô BONNE MÈRE"
     composer = "Mélodie bretonne"
   }
   \new ChoirStaff <<
