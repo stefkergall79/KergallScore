@@ -7,6 +7,7 @@ ctk.set_appearance_mode("System")
 NUMBERS = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
 VOICES  = {"S": "soprano", "A": "alto", "T": "tenor", "B": "bass", "H": "homme"}
 PIANOSTAFFES = ["right", "left", "pedal"]
+PIANOFRANCAISSTAFFES = ["Main droite", "Main gauche", "Pédalier"]
 RYTHM = ["𝅝", "𝅗𝅥", "𝅘𝅥", "𝅘𝅥𝅮", "𝅘𝅥𝅯"]
 
 class HeaderTab(ctk.CTkFrame):
@@ -96,6 +97,7 @@ class HeaderTab(ctk.CTkFrame):
         parts = self.app.parts_tab.parts
         if choice == "Piano":
             self.set_instrument_with_category(parts, "Clavier", "Flûte")
+            self.app.parts_tab.clavier_changed()
         elif choice in ("Chorale", "Chants populaires", "Noël"):
             self.set_instrument_with_category(parts, "Choeur")
             parts["Choeur"]["schema"].set("SA-TB")
@@ -164,7 +166,6 @@ class HeaderTab(ctk.CTkFrame):
         filename = self.filename_var.get().strip()
         if not filename:
             filename = "Sans titre.ly"
-
         elif "." not in filename:
             filename += ".ly"
         return filename
@@ -206,7 +207,8 @@ class PartsTab(ctk.CTkFrame):
                 "meme_paroles": ctk.BooleanVar(value=True)
             },
             "Clavier": {
-                "type": ctk.StringVar(value="Piano")
+                "type": ctk.StringVar(value="Piano"),
+                "staffs": [ctk.IntVar(value=1), ctk.IntVar(value=1), ctk.IntVar(value=1)]
             }
         }
 
@@ -242,9 +244,24 @@ class PartsTab(ctk.CTkFrame):
                 )
             
             elif part == "Clavier":
-                ctk.CTkOptionMenu(voice_frame, width=100, height=28, variable=self.parts[part]["type"],
-                                  values=("Piano", "Orgue")).pack(side="top", padx=15, pady=(2, 8), anchor="w")
-
+                ctk.CTkOptionMenu(
+                    voice_frame, width=100, height=28, variable=self.parts[part]["type"],
+                    values=("Piano", "Orgue"), command=self.clavier_changed
+                ).pack(side="top", padx=15, pady=(2, 8), anchor="w")
+                self.piano_staffes = []
+                for indice, staff in enumerate(PIANOFRANCAISSTAFFES):
+                    self.piano_staffes.append(ctk.CTkFrame(voice_frame, fg_color="transparent"))
+                    ctk.CTkEntry(
+                        self.piano_staffes[indice],
+                        textvariable=self.parts["Clavier"]["staffs"][indice]
+                    ).pack(side="left", padx=5)
+                    ctk.CTkLabel(
+                        self.piano_staffes[indice],
+                        text=staff, font=self.default_font
+                    ).pack(side="left")
+                    if indice < 2:
+                        self.piano_staffes[indice].pack(side="top", pady=5, anchor="w")
+            
             elif part == "Flûte":
                 ctk.CTkCheckBox(
                     voice_frame, text="Paroles", font=self.default_font,
@@ -260,6 +277,15 @@ class PartsTab(ctk.CTkFrame):
         else:
             switch.pack_forget()
 
+    def clavier_changed(self, *args):
+        organ_voices = self.piano_staffes[2]
+        ispacked = organ_voices.winfo_manager() == "pack"
+        if self.parts["Clavier"]["type"].get() == "Piano":
+            if ispacked:
+                organ_voices.pack_forget()
+        else:
+            if not ispacked:
+                organ_voices.pack(side="top", pady=5, anchor="w")
 
     def update_parts_ui(self):
         order = list(self.parts.keys())
@@ -282,13 +308,11 @@ class MusicTab(ctk.CTkFrame):
         
         self.vars = {
             "Armure": {
-                "def": "c",
                 "var": ctk.StringVar(value="c"),
                 "val": ["c", "cis", "d", "dis", "e", "f", "fis", "g", "gis", "a", "bes", "b"],
                 "ly": "key"
             },
             "Chiffre de mesure": {
-                "def": "4/4",
                 "var": ctk.StringVar(value="4/4"),
                 "val": ["4/4", "2/2", "2/4", "3/4", "6/8", "9/8", "12/8"],
                 "ly": "time"
@@ -299,9 +323,14 @@ class MusicTab(ctk.CTkFrame):
                 "val": ["0"] + [str(2**i) for i in range(5)] + [str(2**i)+"." for i in range(5)],
                 "ly": "partial"
             },
-            "Tempo": {
-                "var": ctk.StringVar(value="70"),
-                "ly":"tempo 4="
+            "Indication de tempo": {
+                "def": "",
+                "var": ctk.StringVar(value=""),
+                "val": ["Adagio", "Presto", "Allegro", "Lento", "Andantino"],
+                "ly":"tempo"
+            },
+            "Tempo du midi": {
+                "var": ctk.StringVar(value="70")
             }
         }
 
@@ -329,10 +358,13 @@ class MusicTab(ctk.CTkFrame):
 def Voice(voice, indice):
     return (
         (" " if indice is None else "\t\t") +
-        f"\\new Voice = \"{VOICES[voice]}\" {{" +
+        f'\\new Voice = "{VOICES[voice]}" '+ '{' +
         (f"\\voice{NUMBERS[indice]} " if indice is not None else "") +
-        f"\\{VOICES[voice]} }}\n"
+        f"\\{VOICES[voice]} " + "}\n"
     )
+
+def strophemode(nb):
+    return f"\\strophemode {nb+1} ##{"t" if nb%2 else "f"}" + " \\lyricmode {\n\t\n}\n\n"
 
 def lyricName(voice, nb, to_voice):
     return f"{VOICES[voice] if to_voice else ""}Verse{NUMBERS[nb]}"
@@ -354,19 +386,14 @@ def ChoirVars(schema: str, lyrics: int, same_lyrics: bool):
         )
         if not same_lyrics:
             for nb in range(lyrics):
-                st += (
-                    f"{lyricName(voice, nb, True)} = \\strophemode {nb+1} "
-                    "##" + ("f" if nb%2 else "t")+" \\lyricmode {\n\t\n}\n\n"
-                )
+                st += f"{lyricName(voice, nb, True)} = {strophemode(nb)}"
         st += "\n"
     if same_lyrics:
         for nb in range(lyrics):
-            st += (
-                f"{lyricName(voice, nb, False)} = \\strophemode {nb+1} \\lyricmode"
-                " {\n\t\n}\n"
-            )
+            st += f"{lyricName(voice, nb, False)} = {strophemode(nb)}"
     st += "\n"
     return st
+
 
 def ChoirStaff(schema: str, lyrics: int, same_lyrics: bool):
     staffes = schema.split("-")
@@ -390,6 +417,9 @@ def ChoirStaff(schema: str, lyrics: int, same_lyrics: bool):
                 st += f'"{staff}."\n'  
         if polyph:
             st += "\t\t\\consists Merge_rests_engraver\n"
+        else:
+            st += '\t\t\\consists "Ambitus_engraver"\n'
+        
         if "B" in staff or "H" in staff:
             st += "\t\t\\clef bass\n"
         elif staff == "T":
@@ -409,35 +439,120 @@ def ChoirStaff(schema: str, lyrics: int, same_lyrics: bool):
             for lyr in range(lyrics):
                 st += Lyrics(staff[0], lyr, not same_lyrics)
             st += "\n"
-    st += ">>\n"
+    st += ">>\n\n"
     return st
 
+def ChoirPack(part):
+    schema, lyrics, same_lyrics = part["schema"].get(), part["couplets"].get(), part["meme_paroles"].get()
+    return ChoirVars(schema, lyrics, same_lyrics)+ChoirStaff(schema, lyrics, same_lyrics)
 
-def PianoStaff(name, staffes):
+
+def pianoPartName(num, indice):
+    return PIANOSTAFFES[num]+(NUMBERS[indice] if indice != None else "")
+
+def PianoVars(staffes):
+    st = ""
+    for nb, staff in enumerate(staffes):
+        if staff != 0:
+            if staff == 1:
+                st += (
+                    pianoPartName(nb, None) + " = \\fixed c" +
+                    ("'" if nb > len(staffes)/2 else "") + " {\n"
+                    "\t\n}\n\n"
+                )
+            else:
+                for indice in range(staff):
+                    st += (
+                        pianoPartName(nb, indice) + " = \\fixed c" +
+                        ("'" if nb > len(staffes)/2 else "") + " {\n"
+                        "\t\n}\n\n"
+                    )
+    return st
+
+def PianoStaff(staffes):
     st = (
-        "\\new PianoStaff \\with {\n"
-        f'\tinstrumentName = "{name}"\n'
-        f'\tmidiInstrument = "{'acoustic grand' if name == "Piano" else 'church organ'}"\n'
+        "ClavierPart = \\new PianoStaff \\with {\n"
+        f'\tinstrumentName = "'+("Org" if len(staffes) == 3 else "Pian")+'."\n'
+        f'\tmidiInstrument = "{'acoustic grand' if len(staffes) == 2 else 'church organ'}"\n'
         "} <<\n"
     )
     for num, staff in enumerate(staffes):
-        st += (
-            '\\new Staff = "{PIANOSTAFFES[num]}" '
-            "{ \\clef bass " if num > len(staff)/2 else "{ "
-            )
-        if staff == 1:
+        if staff != 0:
             st += (
-                f"\\{PIANOSTAFFES[num]} "
-                "}\n"
-            )
-        else:
-            st += "<< "
-            for voice in range(staff):
-                st += (
-                    f"\\{PIANOSTAFFES[num]}{NUMBERS[voice]} "
-                    "\\\\ " if voice < staff-1 else ""
+                f'\t\\new Staff = "{PIANOSTAFFES[num]}" '+
+                ("{ \\clef bass " if num > staff/2 else "{ ")
                 )
-            st += ">>\n"
+            if staff == 1:
+                st += "\\"+pianoPartName(num, None)+" }\n"
+            else:
+                st += "<< "
+                for voice in range(staff):
+                    st += "\\" + pianoPartName(num, voice) + (" \\\\ " if voice < staff-1 else "")
+                st += ">> }\n"
+    return st + ">>\n\n"
+
+
+def PianoPack(staffes):
+    return PianoVars(staffes)+PianoStaff(staffes)
+
+
+def SoloVars(lyrics):
+    st = (
+        "soloVoice = \\fixed c' {\n"
+        "\t\\global\n"
+        "\t\\dynamicUp\n"
+        "\t\n"
+        "}\n\n"
+    )
+    for lyr in range(lyrics):
+        st += f"soloVerse{NUMBERS[lyr]} = {strophemode(lyr)}"
+    return st
+
+def SoloStaff(lyrics):
+    st = (
+        "SoloPart = \\new Staff \\with {\n"
+        '\tinstrumentName = "Solo"\n'
+        '\tshortInstrumentName = "Sl."\n'
+        '\tmidiInstrument = "choir aahs"\n'
+        '\t\\consists "Ambitus_engraver"\n'
+        "} \\soloVoice\n"
+    )
+    for lyr in range(lyrics):
+        st += f"\\addlyrics \\soloVerse{NUMBERS[lyr]}\n"
+    return st+"\n\n"
+
+def SoloPack(lyrics):
+    return SoloVars(lyrics) + SoloStaff(lyrics)
+
+
+def FluteVars(lyrics):
+    st = (
+        "flute = \\fixed c' {\n"
+        "\t\\global\n"
+        "\t\n"
+        "}\n\n"
+    )
+    if lyrics:
+        st += (
+            "fluteVerse = \\lyricmode {\n"
+            "\t\n}\n\n"
+        )
+    return st
+
+def FluteStaff(lyrics):
+    st = (
+        "FlûtePart = \\new Staff \\with {\n"
+        '\tinstrumentName = "Flûte"\n'
+        '\tshortInstrumentName = "Fl."\n'
+        '\tmidiInstrument = "flute"\n'
+        "} \\flute\n"
+    )
+    if lyrics:
+        st += "\\addlyrics \\fluteVerse\n"
+    return st+"\n\n"
+
+def FlutePack(lyrics):
+    return FluteVars(lyrics)+FluteStaff(lyrics)
 
 
 class LilypondCreator(ctk.CTk):
@@ -493,70 +608,43 @@ class LilypondCreator(ctk.CTk):
                 "\t\\autoBeamOff\n"
             )
             for settings in self.music_tab.vars.values():
-                if ("def" not in settings or settings["var"].get() != settings["def"]) and settings["ly"].get() != "tempo 4=":
+                if "ly" in settings and ("def" not in settings or settings["var"].get() != settings["def"]):
                     content += (
-                        f"\t\\{settings["ly"]} {settings["var"].get()}" +
+                        f"\t\\{settings["ly"]} {'"' if settings["ly"] == "tempo" else ""}"
+                        f"{settings["var"].get()}{'"' if settings["ly"] == "tempo" else ""}" +
                         (" \\major" if settings["ly"] == "key" else "") + "\n"
                     )
             content += "}\n\n"
-            voices_parts = self.parts_tab.parts
             
-            voice_settings = {
-                "Solo": {
-                    "nb": 1,
-                    "couplets": voices_parts["Solo"]["couplets"].get()
-                },
-                "Choeur": {
-                    "nb": len(voices_parts["Choeur"]["schema"].get().replace("-", "")),
-                    "couplets": voices_parts["Choeur"]["couplets"].get()
-                },
-                "Clavier": {
-                    "nb": 2 + (voices_parts["Clavier"]["type"].get() == "Orgue"),
-                    "couplets": 0
-                },
-                "Flûte": {
-                    "nb": 1,
-                    "couplets": voices_parts["Flûte"]["paroles"].get()
-                }
-            }
             voices_parts = {k: v for k, v in self.parts_tab.parts.items() if v["btn"].get()}
-            
             for part in voices_parts:
                 if part == "Choeur":
-                    content += ChoirVars(
-                        voices_parts[part]["schema"].get(),
-                        voice_settings["Choeur"]["couplets"],
-                        voices_parts[part]["meme_paroles"].get()
-                    ) + ChoirStaff(
-                        voices_parts[part]["schema"].get(),
-                        voice_settings["Choeur"]["couplets"],
-                        voices_parts[part]["meme_paroles"].get()
+                    content += ChoirPack(voices_parts[part])
+                elif part == "Clavier":
+                    content += PianoPack(
+                        [voice.get() for voice in voices_parts["Clavier"]["staffs"]][:2 + (voices_parts["Clavier"]["type"].get() == "Orgue")]
                     )
+                elif part == "Solo":
+                    content += SoloPack(voices_parts[part]["couplets"].get())
+                elif part == "Flûte":
+                    content += FlutePack(voices_parts[part]["paroles"].get())
             
             content += "\n"     
             if values.get("title"):
                 if values.get("composer"):
-                    content += (
-                        "\\tocItemComposer "
-                        f"\"{values.get('title', '')}\" "
-                        f"\"{values.get('composer', '')}\"\n"
-                        )
+                    content += f'\\tocItemComposer "{values["title"]}" "{values["composer"]}"\n'
                 else:
-                    content += (
-                        f"\\tocItem \\markup \"{values['title']}\"\n"
-                    )
+                    content += f'\\tocItem \\markup "{values["title"]}\n'
+            
             content += (
                 "\\score {\n"
                 "\t\\header {\n"
             )
             for key in values:
-                if key == "title":
-                    values[key] = values[key].upper()
-                content += f"\t\t{key} = \"{values[key]}\"\n"
-            
+                content += f'\t\t{key} = "{values[key].upper() if key == "title" else values[key]}"\n'
             content += "\t}\n"
 
-            if len(voices_parts) < 2:
+            if len(voices_parts) == 1:
                 content += f"\t\\{part}Part\n"
             else:
                 content += "\t<<\n"
@@ -565,7 +653,7 @@ class LilypondCreator(ctk.CTk):
                 content += "\t>>\n"
             content += (
                 "\t\\layout {\\context{\\Staff \\RemoveAllEmptyStaves }}\n"
-                "\t\\midi {\\tempo 4=" + self.music_tab.vars["Tempo"]["var"].get() + "}\n"
+                "\t\\midi {\\tempo 4=" + self.music_tab.vars["Tempo du midi"]["var"].get() + " }\n"
                 "}\n"
             )
             self.filepath.write_text(content)
@@ -574,7 +662,7 @@ class LilypondCreator(ctk.CTk):
         except OSError as error:
             self.error_window = ctk.CTkToplevel(self)
             self.error_window.title("Erreur de création")
-            self.error_window.geometry("500x150")
+            #self.error_window.geometry("500x150")
             self.error_window.resizable(False, False)
             
             ctk.CTkLabel(
@@ -588,7 +676,7 @@ class LilypondCreator(ctk.CTk):
                 font=self.default_font, command=self.relaunch
             ).pack(side="left")
             ctk.CTkButton(
-                btn_frame, text="Supprimer le fichier existant",
+                btn_frame, text="Ecraser le fichier existant",
                 font=self.default_font, command=self.ecrase
             ).pack(side="left", padx=5)
             ctk.CTkButton(
