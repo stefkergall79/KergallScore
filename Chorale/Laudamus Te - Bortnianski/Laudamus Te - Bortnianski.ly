@@ -11,6 +11,7 @@ global = {
 
 soprano = \fixed c' {
 	\global
+	e4 2. 4 |
 	
 }
 
