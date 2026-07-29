@@ -1,5 +1,6 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+#(set-global-staff-size 19.6)
 
 global = {
     \key c \major
