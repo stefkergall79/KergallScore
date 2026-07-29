@@ -8,44 +8,42 @@ global = {
 	\tempo "Adagio"
 }
 
-mbreak = {\break }
-
 soprano = \fixed c' {
 	\global
 	a2 4 4 |
 	2 2 |
 	g4 f g4. f8 |
 	1 |
-	d2 4(e) \mbreak|
+	d2 4(e) |
 	f2 2 |
 	2(g4.) 8 |
 	a1 |
 	2 2 |
-	d'2 c' \mbreak|
+	d'2 c' |
 	bes2 a4 f |
 	g4.(f8) 2 |
 	\bar "||"
 	a4 4 8. 16 4 |
 	g4 f g4. f8 |
-	f1 \mbreak |
+	f1  |
 	d2 4 e |
 	f2 4 4 |
 	2(g4.) 8 |
 	a1 |
 	2 4 4 |
-	d'2 c' \mbreak |
+	d'2 c'  |
 	bes2 a4(f |
 	g4.) f8 2 \bar "||" |
 	\partial 4 a4 |
 	4 4 4 4 |
 	g f g4. f8 |
-	f2 r4 d \mbreak |
+	f2 r4 d  |
 	4. 8 4 e4 |
 	f2 2 |
 	2(g) |
 	a1|
 	4 4 4 4 |
-	d'2 c' | \mbreak
+	d'2 c' | 
 	bes(a4 f |
 	g4.) f8 2 \bar "||"
 	d2(e) |
@@ -120,7 +118,7 @@ tenor = \relative c' {
 	e1 |
 	a2 4 4 bes2 c |
 	d c4(a |
-	4.) 8 <a c>2 |
+	c4.) 8 <a c>2 |
 	
 	a4 4 4 4 4 |
 	bes a a4. 8 |
@@ -151,13 +149,51 @@ bass = \fixed c {
 	d(bes,4.) 8 |
 	a,1 |
 	d2 c |
-	b, a, |
+	bes, a, |
 	bes, c4 d |
-	c4.(f8) 2
+	c4.(f8) 2 |
+	d4 4 8. 16 4 |
+	g4 d e4. d8 |
+	1 |
+	2 4 c |
+	f2 4 4 |
+	d2(bes,4.) 8 |
+	a,1 |
+	d2 4 c |
+	bes,2 a, |
+	bes, c4(d |
+	c4.) f8 2 |
+
+  d4 4 4 4 4 |
+  g d e4. d8 |
+  2 r4 d |
+  4. 8 4 c |
+  f2 2 |
+  d2(bes,) |
+  a,1 |
+  d4 4 4 c |
+  bes,2 a, |
+  bes,(c4 d |
+  c4.) f8 2 |
+  
+  d2(c) |
+  f4. 8 2 |
+  c4. 8 d4 g, |
+  a,2 d
 }
 
 VerseOne = \lyricmode {
-	
+  A -- ni -- ma Chri -- sti, san -- cti -- fi -- ca -- me.
+  Cor -- pus Chri -- sti, sal -- va me.
+  San -- guis Chri -- sti, i -- ne -- bri -- a me.
+  A -- qua la -- te -- ris Chri -- sti, la -- va me.
+  Pas -- si -- o Chris -- ti, con -- for -- ta me.
+  O bo -- ne Je -- su, ex -- au -- di me.
+  In ho -- ra mor -- tis me -- æ vo -- ca me.
+  Et iu -- be me ve -- ni -- re ad te,
+  ut cum Sanc -- tis tu -- is lau -- dem te.
+  In sæ -- cu -- la sæ -- cu -- lo -- rum.
+  A -- men.
 }
 
 ChoeurPart = \new ChoirStaff <<
