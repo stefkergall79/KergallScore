@@ -25,10 +25,10 @@ class HeaderTab(ctk.CTkFrame):
             "instrument":   "Instrument",
             "composer":     "Compositeur",
             "poet":         "Paroles",
-            "meter":        "Tempo",
+            "meter":        "Mètre",
             "arranger":     "Arrangeur",
             "copyright":    "Copyrights (en première page)",
-            "tagline":      "\"tagline\" (en dernière page)"
+            "tagline":      "Slogan (en dernière page)"
         }
         self.available_fields = []
         
