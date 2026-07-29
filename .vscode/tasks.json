@@ -16,7 +16,7 @@
         {
             "label": "Save",
             "type": "shell",
-            "command": "${command:python.interpreterPath}",
+            "command": "python3",
             "args": [
                 "${workspaceFolder}/.scripts/save.py"
             ],
@@ -25,7 +25,7 @@
         {
             "label": "New",
             "type": "shell",
-            "command": "${command:python.interpreterPath}",
+            "command": "python3",
             "args": [
                 "${workspaceFolder}/.scripts/new.py"
             ],
