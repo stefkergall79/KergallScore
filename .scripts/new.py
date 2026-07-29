@@ -687,7 +687,7 @@ class LilypondCreator(ctk.CTk):
 
 
     def happy_end(self):
-        subprocess.Popen(["flatpak", "run", "org.frescobaldi.Frescobaldi", str(self.filepath)])
+        subprocess.Popen(["frescobaldi", str(self.filepath)])
         self.destroy()
     
     def ecrase(self):
