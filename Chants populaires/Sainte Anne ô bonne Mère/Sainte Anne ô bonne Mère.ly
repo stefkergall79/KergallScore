@@ -8,6 +8,10 @@ global = {
   \autoBeamOff
 }
 
+\paper {
+  ragged-bottom = ##t
+}
+
 soprano = \fixed c' {
   \global
   \markChanson "Refrain"
@@ -93,6 +97,13 @@ verseTwo = \strophemode #2 ##t #26 \lyricmode {
   nous es -- pé -- rons en toi !
 }
 
+verseThree = \strophemode #3 ##f #26 \lyricmode {
+  Pro -- tè -- ge le Saint -- Pè -- re,
+  dont le cœur hum -- ble et grand
+  souf -- fre sur le Cal -- vai -- re
+  com -- me Jé -- sus mour -- rant.
+}
+
 \score {
   \header {
     title = "SAINTE ANNE, Ô BONNE MÈRE"
@@ -112,6 +123,9 @@ verseTwo = \strophemode #2 ##t #26 \lyricmode {
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "soprano" \verseTwo
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+    } \lyricsto "soprano" \verseThree
     \new Staff \with {
       midiInstrument = "choir aahs"
       \consists Merge_rests_engraver
@@ -125,13 +139,7 @@ verseTwo = \strophemode #2 ##t #26 \lyricmode {
   \midi { \tempo 4=100 }
 }
 
-\markup \couplets-markup #3 #3 {
-  \column {
-    "Protège le Saint-Père,"
-    "Dont le cœur humble et grand"
-    "Souffre sur le Calvaire"
-    "Comme Jésus mourrant."
-  }
+\markup \couplets-markup #4 #3 {
   \column {
     "Fais que la Sainte Église"
     "Répande en liberté"
