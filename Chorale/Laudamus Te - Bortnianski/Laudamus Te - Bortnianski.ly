@@ -67,7 +67,7 @@ ChoeurPart = \new ChoirStaff <<
 \score {
 	\header {
 		title = "LAUDAMUS TE"
-		subtitle = "Tibie Paion"
+		subtitle = "TIBIE PAION"
 		composer = "Dmitri Bortnianski (1751-1825)"
 	}
 	\ChoeurPart
