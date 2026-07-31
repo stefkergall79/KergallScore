@@ -7,7 +7,7 @@ global = {
   \partial 8
   \autoBeamOff
 }
-
+#(set-global-staff-size 19.2 )
 \paper {
   ragged-bottom = ##t
 }
@@ -99,7 +99,7 @@ verseTwo = \strophemode #2 ##t #26 \lyricmode {
 
 verseThree = \strophemode #3 ##f #26 \lyricmode {
   Pro -- tè -- ge le Saint -- Pè -- re,
-  dont le cœur hum -- ble et grand
+  dont le cœur hum -- ble_et grand
   souf -- fre sur le Cal -- vai -- re
   com -- me Jé -- sus mour -- rant.
 }
