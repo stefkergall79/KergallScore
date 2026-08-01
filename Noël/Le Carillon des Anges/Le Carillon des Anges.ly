@@ -146,7 +146,7 @@ trompette = \relative bes' {
    c8 [  c16  c16 ]  c8 [  c8 ]  f8 [  es8  d8  c8 ] | % 4
    g'8 [  f8  es8  d8 ]  c8 [  d8  es8  f8 ] | % 5
    d8 [  c8 ]  bes4  bes16 [  bes16  bes16  bes16 ]  bes4 ~ | % 6
-  bes1  | % 7
+  bes1  \bar "||" | % 7
   R1 | % 8
   R1 | % 9
 
