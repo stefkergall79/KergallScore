@@ -64,7 +64,12 @@
         {
             "label": "Synchroniser settings",
             "type": "shell",
-            "command": "cp ${workspaceFolder}/settings.ily ${workspaceFolder}/lilypond-2.26.0/share/lilypond/2.26.0/ly"
+            "command": "cp",
+            "args": [
+                "${workspaceFolder}/settings.ily",
+                "${workspaceFolder}/lilypond-2.26.0/share/lilypond/2.26.0/ly"
+            ],
+            "group": "build"
         }
     ]
 }

@@ -8,7 +8,6 @@
     "stef.kergall@gmail.com"
     "- Partitions sur commande"
   }
-  ragged-bottom = ##t
 }
 
 tocItemComposer =
