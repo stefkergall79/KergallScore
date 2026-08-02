@@ -60,6 +60,11 @@
                 "${fileDirname}/${fileBasenameNoExtension}.midi"
             ],
             "group": "build"
+        },
+        {
+            "label": "Synchroniser settings",
+            "type": "shell",
+            "command": "cp ${workspaceFolder}/settings.ily ${workspaceFolder}/lilypond-2.26.0/share/lilypond/2.26.0/ly"
         }
     ]
 }
