@@ -3,7 +3,6 @@
 
 global = {
 	\autoBeamOff
-	
 	\key c \major
 	\time 3/4
 	\partial 4
@@ -11,6 +10,8 @@ global = {
 
 soprano = \fixed c' {
 	\global
+	\mergeDifferentlyDottedOn
+	\mergeDifferentlyHeadedOn
 	\bar ".|:"
 	\repeat volta 2 {
 	  d4 b(c') b |

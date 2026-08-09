@@ -2,6 +2,7 @@
 \include "settings.ily"
 global = {
   \key e \major
+  \mergeDifferentlyDottedOn
   \time 4/4
   \autoBeamOff
 }
