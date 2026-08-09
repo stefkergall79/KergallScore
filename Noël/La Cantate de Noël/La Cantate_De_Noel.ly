@@ -662,10 +662,10 @@ bassLyrics = \lyricmode {
 }
 
 
-\tocItemComposer "Cantate de Noël" "Daquin"
+\tocItemComposer "La Cantate de Noël" "Daquin"
 \score {
   \header {
-    title = "CANTATE DE NOËL"
+    title = "LA CANTATE DE NOËL"
     composer = "Claude Daquin (1694-1772)"
     poet = \markup \column {
       "Paroles : Chanoine Gustave Gaillardon (1864–1925)"
