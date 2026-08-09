@@ -25,7 +25,7 @@ PartPOneVoiceOne = \relative b' {
    g2  g'4  g4 | % 9
 
  fis4  fis4  e4  e4 | % 10
-   d2  d4  e4 | % 11
+   d2  d4 ( e4 ) | % 11
    d4  c8 [  b8 ]  c4  d4 | % 12
    b4  b8 [  c8 ]  d4  d4 | % 13
    d4  b8 [  c8 ]  d4  d4 | % 14
@@ -124,7 +124,7 @@ sopranoLyrics = \lyricmode {
   le plus tou -- chant mys -- tè -- re.
   À la crèche ac -- cou -- rons tous,
   Jé -- sus est né pour nous,
-  l′au -- gus -- te En -- fant,
+  l′au -- gus -- te_En -- fant,
   si frêle et doux,
   sou -- rit par -- mi ses lar -- mes_;
   ô sub -- li -- mes char -- mes_!
@@ -144,7 +144,7 @@ sopranoLyrics = \lyricmode {
   
   %3
   Dé -- sor -- mais de no -- tre cœur,
-  re -- çois, au Dieu vain -- queur,
+  re -- çois, ô Dieu vain -- queur,
   et la fer -- veur
   que ton a -- mour ré -- cla -- me.
   dans no -- tre_â -- me_!
@@ -287,13 +287,13 @@ altoLyrics = \lyricmode {
   Mais que doux est le de -- voir,
   il veut sur -- tout qu'on l'ai -- me.
   Dé -- sor -- mais de no -- tre cœur,
-  re -- çois, au Dieu vain -- queur,
+  re -- çois, ô Dieu vain -- queur,
   le tend -- re_a -- mour et la fer -- veur
   que ton a -- mour ré -- cla -- me.
   dans no -- tre_â -- me_!
   
   Dé -- sor -- mais de no -- tre cœur,
-  re -- çois, au Dieu vain -- queur,
+  re -- çois, ô Dieu vain -- queur,
   le tend -- re_a -- mour et la fer -- veur
   que ton a -- mour ré -- cla -- me.
   dans no -- tre_â -- me_!
@@ -462,13 +462,13 @@ tenorLyrics = \lyricmode {
   Mais que doux est le de -- voir,
   il veut sur -- tout qu'on l'ai -- me.
   Dé -- sor -- mais de no -- tre cœur,
-  re -- çois, au Dieu vain -- queur,
+  re -- çois, ô Dieu vain -- queur,
   le tend -- re_a -- mour et la fer -- veur
   que ton a -- mour ré -- cla -- me.
   Rè -- gne dans no -- tre_â -- me_!
   
   Dé -- sor -- mais de no -- tre cœur,
-  re -- çois, au Dieu vain -- queur,
+  re -- çois, ô Dieu vain -- queur,
   le tend -- re_a -- mour
   que ton a -- mour ré -- cla -- me.
   Rè -- gne dans no -- tre_â -- me_!
@@ -564,10 +564,10 @@ PartPFourVoiceOne = \relative g {
 
    g2  g2 | % 80
    g2  g2 | % 81
-   g2  c,2 | % 82
+   g2  <c, c'>2 | % 82
    g'2  e4.  fis8 | % 83
    g4  c,4  d2 | % 84
-   g,2  g'4  g4 | % 85
+   <g, g'>2  g,4  g4 | % 85
    d4  e4  fis4  d4 | % 86
    g2  b2 | % 87
    a4  g4  d2 | % 88
@@ -634,12 +634,12 @@ bassLyrics = \lyricmode {
   Mais que doux est le de -- voir,
   il veut sur -- tout qu'on l'ai -- me.
   Dé -- sor -- mais de no -- tre cœur,
-  re -- çois, au Dieu vain -- queur,
+  re -- çois, ô Dieu vain -- queur,
   le tend -- re_a -- mour et la fer -- veur
   Rè -- gne dans no -- tre_â -- me_!
   
   Dé -- sor -- mais de no -- tre cœur,
-  re -- çois, au Dieu vain -- queur,
+  re -- çois, ô Dieu vain -- queur,
   le tend -- re_a -- mour et la fer -- veur
   Rè -- gne dans no -- tre_â -- me_!
   
