@@ -53,7 +53,7 @@ verseTwo = \strophemode #2 ##t \lyricmode {
   U -- ni tri -- no -- que Do -- mi -- no
   sit sem -- pi -- ter -- na glo -- ri -- a,
   qui vi -- tam si -- ne ter -- mi -- no
-  no -- bis do -- net in pa -- tri -- a. 
+  no -- bis do -- net in pa -- tri -- a.
 }
 
 \tocItemComposer "O salutaris Hostia" "Mozart"

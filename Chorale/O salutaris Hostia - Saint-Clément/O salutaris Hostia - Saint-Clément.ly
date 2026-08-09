@@ -11,22 +11,26 @@ global = {
 
 soprano = \fixed c' {
 	\global
-	d4 b(c') b |
-	d'(b) a |
-	g(a) e |
-	g(fis) e |
-	d2 4 | \break
-	g4(a) b |
-	a2 g4 |
-	fis2 d4 |
-	b4(c') b |
-	d'(b) a |
-	g(a) e | \break
-	g fis e |
-	d(e) fis |
-	g(b) a |
-	e(g) fis |
-	g2
+	\bar ".|:"
+	\repeat volta 2 {
+	  d4 b(c') b |
+	  d'(b) a |
+	  g(a) e |
+	  g(fis) e |
+	  d2 4 | 
+	  g4(a) b |
+	  a2 g4 |
+	  fis2 d4 |
+	  b4(c') b |
+	  d'(b) a |
+	  g(a) e | 
+	  g(fis) e |
+	  d(e) fis |
+	  g(b) a |
+	  e(g) fis |
+	  g2 s4
+	}
+	e2. d \bar "|."
 }
 
 alto = \fixed c' {
@@ -46,25 +50,68 @@ alto = \fixed c' {
 	d2 c4 |
 	b,(d) e |
 	2 d4 |
-	2
+	2 s4
+	
+	c2. b,
 }
 
-tenor = \fixed c' {
+tenor = \fixed c {
 	\global
+	d4 g2 4 |
+	a4(d') c' |
+	b4(c') a |
+	2 g4 |
+	a(g) a |
+	b2 g4 |
+	e2 a4 |
+	2 4 |
+	g2 4 |
+	a(d') c' |
+	b(c') a |
+	2 fis4 |
+	g2 a4 |
+	g2 c'4 |
+	2 4 |
+	b2 s4
 	
+	e2. d
 }
 
 bass = \fixed c {
 	\global
+	d4 g,2 g4 |
+	d2 4 |
+	e(a,) c |
+	d2 e4 |
+	fis(g) fis |
+	e2 4 |
+	a,2 4 |
+	d2 4 |
+	g,2 g4 |
+	d2 4 |
+	e(a,) c |
+	d2 c4 |
+	b,2 d4 |
+	e(b,) c |
+	a,2 d4 |
+	g,2 s4
 	
+	c2. g,
 }
 
 VerseOne = \strophemode 1 ##f \lyricmode {
-	
+	O sa -- lu -- ta -- ris Hos -- ti -- a,
+  quæ cæ -- li pan -- dis os -- ti -- um.
+  Bel -- la pre -- munt hos -- ti -- li -- a,
+  da ro -- bur, fer au -- xi -- li -- um.
+  A -- men.
 }
 
 VerseTwo = \strophemode 2 ##t \lyricmode {
-	
+	U -- ni tri -- no -- que Do -- mi -- no
+  sit sem -- pi -- ter -- na glo -- ri -- a,
+  qui vi -- tam si -- ne ter -- mi -- no
+  no -- bis do -- net in pa -- tri -- a.
 }
 
 
@@ -96,10 +143,10 @@ ChoeurPart = \new ChoirStaff <<
 \score {
 	\header {
 		title = "O SALUTARIS HOSTIA"
-		subtitle = "Saint-Clément"
+		subtitle = "dit \"de Saint-Clément\""
 		composer = "origine anglaise - XIXe"
 	}
 	\ChoeurPart
 	\layout {\context{\Staff \RemoveAllEmptyStaves }}
-	\midi {\tempo 4=70 }
+	\midi {\tempo 4=120 }
 }
