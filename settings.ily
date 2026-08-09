@@ -1,8 +1,5 @@
 \version "2.26.0"
 
-besnier = "Chanoine Joseph Besnier (1898-1954)"
-
-
 \paper{
   print-all-headers = ##t
   tagline = \markup {

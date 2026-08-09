@@ -107,7 +107,7 @@ verseTwo = \strophemode #2 ##t #1 \lyricmode {
 \score {
   \header {
     title = "ADORO TE DEVOTE"
-    composer = "1625"
+    composer = "Chanoine Joseph Besnier (1898-1954)"
   }
   \new ChoirStaff <<
       \new Staff \with {
