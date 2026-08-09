@@ -32,7 +32,7 @@ alto = \fixed c' {
   4 4 4 4 e1 dis2 r4 fis4~4 4 a4 gis fis2
   e a,4 8[b,] cis4 4 1
   a4. 8 4 4 gis a b b cis'(a gis) ais b
-  gis2 8 8 fis4 gis a2 gis8 8 a2 fis4 cis1
+  gis2 8 8 fis4 gis a2 gis8 8 a2 fis4 eis1
   d1 cis
 }
 
@@ -49,8 +49,8 @@ tenor = \fixed c {
 
 bass = \fixed c {
   \global
-  fis2 4 4 2 e a,2 4 e fis4 4 cis2
-  b, e4 4 2 4 4 gis2(fis4) cis e2 dis cis1
+  fis2 4 4 2 e a,2 a4 e fis4 4 cis2
+  b, e4 4 2 4 4 gis2(fis4) cis e2 d cis1
   fis4 4 cis fis e1 b,2 r4 fis4~4 b a e fis2
   cis d4 4 cis4 4 fis1
   R1*7 b,1 fis
