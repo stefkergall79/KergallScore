@@ -1,5 +1,6 @@
 __pycache__
 Builded/**/*.midi
+Commandes/**/*.midi
 .obsidian
 lilypond-2.26.0
 MuseScore-Studio-4.7.4.260706075-x86_64.AppImage

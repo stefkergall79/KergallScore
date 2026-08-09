@@ -176,7 +176,7 @@ class HeaderTab(ctk.CTkFrame):
             entry.name for entry in base_dir.iterdir()
             if entry.is_dir()
             and entry.name[0].isupper()
-            and entry.name != "Grégorien"
+            and entry.name not in ("Grégorien", "Commandes")
         ]
         categories.sort(key=str.casefold)
         return categories or ["Autres"]
