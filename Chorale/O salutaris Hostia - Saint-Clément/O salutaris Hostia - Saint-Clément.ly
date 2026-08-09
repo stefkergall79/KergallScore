@@ -3,6 +3,7 @@
 
 global = {
 	\autoBeamOff
+	
 	\key c \major
 	\time 3/4
 	\partial 4
@@ -10,12 +11,42 @@ global = {
 
 soprano = \fixed c' {
 	\global
-	
+	d4 b(c') b |
+	d'(b) a |
+	g(a) e |
+	g(fis) e |
+	d2 4 | \break
+	g4(a) b |
+	a2 g4 |
+	fis2 d4 |
+	b4(c') b |
+	d'(b) a |
+	g(a) e | \break
+	g fis e |
+	d(e) fis |
+	g(b) a |
+	e(g) fis |
+	g2
 }
 
 alto = \fixed c' {
 	\global
-	
+	d4 2 g4 |
+	fis2 4 |
+	e2 c4 |
+	2 4 |
+	4(b,) d |
+	e2 d4 |
+	cis2 4 |
+	d2 4 |
+	2 g4 |
+	fis2 4 |
+	e2 c4 |
+	c2 a,4 |
+	d2 c4 |
+	b,(d) e |
+	2 d4 |
+	2
 }
 
 tenor = \fixed c' {
