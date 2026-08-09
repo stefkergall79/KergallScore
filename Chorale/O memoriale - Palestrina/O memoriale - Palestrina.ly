@@ -58,9 +58,9 @@ bass = \fixed c {
 
 verseOne = \lyricmode {
   O me -- mo -- ri -- á -- le mór -- tis Dó -- mi -- ni,
-  Pá -- nis ví -- vus ví -- tam prǽs -- tans hó -- mi -- ni.
+  pá -- nis ví -- vus ví -- tam prǽs -- tans hó -- mi -- ni.
   Prǽs -- ta mé -- æ mén -- ti de te ví -- ve -- re
-  Te dúl -- ce sa -- pé -- re.
+  te dúl -- ce sa -- pé -- re.
   Pí -- e pel -- li -- cá -- ne Jé -- su Dó -- mi -- ne,
   me im -- mún -- dum mún -- da tú -- o sán -- gui -- ne.
   A -- men.
