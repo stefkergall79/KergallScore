@@ -118,19 +118,19 @@ PartPOneVoiceOne = \relative b' {
 }
 
 sopranoLyrics = \lyricmode {
-  Pour sau -- ver l′hu -- ma -- ni -- té,
+  Pour sau -- ver l'hu -- ma -- ni -- té,
   Jé -- sus vient sur la Ter -- re,
-  Il re -- vêt d'hu -- mi -- li -- té,
+  il re -- vêt d'hu -- mi -- li -- té,
   le plus tou -- chant mys -- tè -- re.
   À la crèche ac -- cou -- rons tous,
   Jé -- sus est né pour nous,
-  l′au -- gus -- te_En -- fant,
+  l'au -- gus -- te_En -- fant,
   si frêle et doux,
   sou -- rit par -- mi ses lar -- mes_;
   ô sub -- li -- mes char -- mes_!
   À la crèche ac -- cou -- rons tous,
   Jé -- sus est né pour nous,
-  l′au -- gus -- te_En -- fant,
+  l'au -- gus -- te_En -- fant,
   
   sou -- rit par -- mi ses lar -- mes_;
   ô sub -- li -- mes char -- mes_!
@@ -269,7 +269,7 @@ PartPTwoVoiceOne = \relative b' {
 altoLyrics = \lyricmode {
   À la crèche ac -- cou -- rons tous,
   Jé -- sus est né pour nous,
-  l′au -- gus -- te_En -- fant,
+  l'au -- gus -- te_En -- fant,
   
   sou -- rit par -- mi ses lar -- mes_;
   ô sub -- li -- mes char -- mes_!
@@ -288,13 +288,13 @@ altoLyrics = \lyricmode {
   il veut sur -- tout qu'on l'ai -- me.
   Dé -- sor -- mais de no -- tre cœur,
   re -- çois, ô Dieu vain -- queur,
-  le tend -- re_a -- mour et la fer -- veur
+  le tendre a -- mour et la fer -- veur
   que ton a -- mour ré -- cla -- me.
   dans no -- tre_â -- me_!
   
   Dé -- sor -- mais de no -- tre cœur,
   re -- çois, ô Dieu vain -- queur,
-  le tend -- re_a -- mour et la fer -- veur
+  le tendre a -- mour et la fer -- veur
   que ton a -- mour ré -- cla -- me.
   dans no -- tre_â -- me_!
   
@@ -408,7 +408,7 @@ PartPThreeVoiceOne = \relative d' {
    d8 [  e8 ] fis8 [ d8 ]  g4  cis,4 | % 94
    d2  fis4  e8 [  b8 ] | % 95
    c4  e2  d4 | % 96
-   d4 r4 r4  b8 [  c8 ] | % 97
+   d4 r2 b8 [  c8 ] | % 97
    d4  d4  d4  b8 [  c8 ] | % 98
    d4  d4  b8 [  c8 ]  d4 | % 99
 
@@ -463,13 +463,13 @@ tenorLyrics = \lyricmode {
   il veut sur -- tout qu'on l'ai -- me.
   Dé -- sor -- mais de no -- tre cœur,
   re -- çois, ô Dieu vain -- queur,
-  le tend -- re_a -- mour et la fer -- veur
+  le tendre a -- mour et la fer -- veur
   que ton a -- mour ré -- cla -- me.
   Rè -- gne dans no -- tre_â -- me_!
   
   Dé -- sor -- mais de no -- tre cœur,
   re -- çois, ô Dieu vain -- queur,
-  le tend -- re_a -- mour
+  le tendre a -- mour
   que ton a -- mour ré -- cla -- me.
   Rè -- gne dans no -- tre_â -- me_!
   
@@ -505,7 +505,7 @@ PartPFourVoiceOne = \relative g {
    b4  b4  c2 | % 26
    g2  e4.  fis8 | % 27
    g4  c,4  d2 | % 28
-   g2  g4  g4 | % 29
+   <g g,>2  g4  g4 | % 29
 
   fis4  e4  fis4  d4 | % 30
    g2  f4  f8  f8  | % 31
@@ -567,7 +567,7 @@ PartPFourVoiceOne = \relative g {
    g2  <c, c'>2 | % 82
    g'2  e4.  fis8 | % 83
    g4  c,4  d2 | % 84
-   <g, g'>2  g,4  g4 | % 85
+   <g, g'>2  g'4  g4 | % 85
    d4  e4  fis4  d4 | % 86
    g2  b2 | % 87
    a4  g4  d2 | % 88
@@ -580,7 +580,7 @@ PartPFourVoiceOne = \relative g {
    b'8 [  cis8 ] d8 [ b8 ]  g8 [  e8 ]  a4 | % 94
    d,4  d'8 [  c8 ]  b8 [  a8 ]  gis4 | % 95
    a4. ( gis8 ) a4 ( d,4 ) | % 96
-   g4 r4 r4  g8 [  a8 ] | % 97
+   g4 r2  g8 [  a8 ] | % 97
    b4  b4  b4  g8 [  a8 ] | % 98
    b4  b4  g8 [  a8 ]  b4 | % 99
 
@@ -598,7 +598,7 @@ PartPFourVoiceOne = \relative g {
    g8 [  a8 ]  b4  c2 | % 110
    g2  e4.  fis8 | % 111
    g4  c,4  d2 | % 112
-  g1 \bar "|."
+  <g g,>1 \bar "|."
 }
 
 bassLyrics = \lyricmode {
@@ -635,12 +635,12 @@ bassLyrics = \lyricmode {
   il veut sur -- tout qu'on l'ai -- me.
   Dé -- sor -- mais de no -- tre cœur,
   re -- çois, ô Dieu vain -- queur,
-  le tend -- re_a -- mour et la fer -- veur
+  le tendre a -- mour et la fer -- veur
   Rè -- gne dans no -- tre_â -- me_!
   
   Dé -- sor -- mais de no -- tre cœur,
   re -- çois, ô Dieu vain -- queur,
-  le tend -- re_a -- mour et la fer -- veur
+  le tendre a -- mour et la fer -- veur
   Rè -- gne dans no -- tre_â -- me_!
   
   %4
