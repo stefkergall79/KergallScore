@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key f \major
   \time 4/4
@@ -78,7 +80,7 @@ verseThree = \strophemode 3 ##f \lyricmode {
 \score {
   \header {
     title = "DANS UNE ÉTABLE OBSCURE"
-    composer = "Michael Praetorius (1571-1621)"
+    composer = \praetorius
   }
 
   \new ChoirStaff <<

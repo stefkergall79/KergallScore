@@ -1,5 +1,6 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
 
 global = {
 	\autoBeamOff
@@ -167,7 +168,7 @@ ChoeurPart = \new ChoirStaff <<
 	\header {
 		title = "LAUDAMUS TE"
 		subtitle = "TIBIE PAION"
-		composer = "Dmitri Bortnianski (1751-1825)"
+		composer = \bortnianski
 	}
 	\ChoeurPart
 	\layout {\context{\Staff \RemoveAllEmptyStaves }}

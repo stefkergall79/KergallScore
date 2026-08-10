@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key d \major
   \numericTimeSignature
@@ -117,7 +119,7 @@ verseFour = \strophemode #4 ##t \lyricmode {
   \header {
     title = "NOBLE ÉPOUX DE MARIE"
     composer = "Jean-Noël Laprise (né en 1945)"
-    poet = "Harmonisation : Stéphane Kergall (né en 2007)"
+    poet = \markup \line {"Harmonisation :" \kergall }
   }
   \new ChoirStaff <<
     \new Staff \with {

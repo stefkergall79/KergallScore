@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key c \major
   \time 4/4
@@ -67,7 +69,7 @@ verse = \lyricmode {
 \score {
   \header {
     title = "PANIS ANGELICUS"
-    composer = "Claudio Casciolini (1697-1760)"
+    composer = \casciolini
   }
   \new ChoirStaff <<
       \new Staff \with {

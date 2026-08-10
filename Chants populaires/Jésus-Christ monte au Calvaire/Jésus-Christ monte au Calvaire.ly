@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global={
   \key g \major
   \time 3/4
@@ -87,7 +89,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
 \score {
   \header {
     title = "JÉSUS-CHRIST MONTE AU CALVAIRE"
-    composer = "Giovanni Battista Pergolesi (1710-1736)"
+    composer = \pergolese
   }
   \new ChoirStaff <<
     \new Staff \with {

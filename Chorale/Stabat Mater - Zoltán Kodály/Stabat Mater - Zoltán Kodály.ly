@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
     \key es \major
     \time 2/2
@@ -64,7 +66,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
 \score {
   \header {
     title = "STABAT MATER"
-    composer = "Zoltán Kodály (1882-1967)"
+    composer = \kodaly
   }
   \new ChoirStaff <<
     \new Staff \with {

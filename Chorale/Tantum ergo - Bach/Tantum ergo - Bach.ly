@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key c \major
   \time 2/2
@@ -75,7 +77,7 @@ verseTwo = \strophemode #2 ##t \lyricmode {
 \score {
   \header {
     title = "TANTUM ERGO"
-    composer = "Johann Sebastian Bach (1685-1750)"
+    composer = \bach
   }
   \new ChoirStaff <<
       \new Staff \with {

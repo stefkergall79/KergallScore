@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key g \major
   \time 2/2
@@ -137,7 +139,7 @@ verseBassThree = \strophemode 3 ##f \lyricmode {
 \score {
   \header {
     title = "LES ANGES DANS NOS CAMPAGNES"
-    composer = "Harmonisation : François-Auguste Gevaert (1828-1908)"
+    composer = \markup \line {"Harmonisation :" \gevaert }
   }
   \new ChoirStaff <<
     \new Staff \with {

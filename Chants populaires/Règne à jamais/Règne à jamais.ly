@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key es \major
   \time 3/4
@@ -80,7 +82,7 @@ verseFive = \strophemode #5 ##f \lyricmode {
 \score {
   \header {
     title = "RÈGNE À JAMAIS"
-    composer = "Michael Prætorius (1571-1620)"
+    composer = \praetorius
   }
   \new ChoirStaff <<
       \new Staff \with {

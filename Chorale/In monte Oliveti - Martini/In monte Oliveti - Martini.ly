@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key bes \major
   \time 4/4
@@ -46,7 +48,7 @@ verse = \lyricmode {
 \score {
   \header {
     title = "IN MONTE OLIVETI"
-    composer = "Giambattista Martini (1706-1784)"
+    composer = \martini
   }
   \new ChoirStaff <<
       \new Staff \with {

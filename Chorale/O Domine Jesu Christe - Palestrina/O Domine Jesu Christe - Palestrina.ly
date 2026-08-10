@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 globalo = {
   \key c \major
   \time 4/4
@@ -57,7 +59,7 @@ verse = \lyricmode {
 \score {
   \header {
     title = "O DOMINE JESU CHRISTE"
-    composer = "Giovanni da Palestrina (1525-1594)"
+    composer = \palestrina
     }
   \new ChoirStaff <<
     \new Staff \with {

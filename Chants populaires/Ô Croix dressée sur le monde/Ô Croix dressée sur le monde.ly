@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key bes \major
   \numericTimeSignature
@@ -60,7 +62,7 @@ verseFour = \strophemode #4 ##t \lyricmode {
   \header {
     title = "O CROIX DRESSÉE SUR LE MONDE"
     composer = "Jean Servel"
-    poet = "Paroles : Saint Louis-Marie Grignon de Montfort"
+    poet = \markup \line {"Paroles :" \montfort }
   }
   \new Staff \with {
       midiInstrument = "choir aahs"

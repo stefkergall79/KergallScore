@@ -1,5 +1,6 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
 
 global = {
   \time 4/4
@@ -666,7 +667,7 @@ bassLyrics = \lyricmode {
 \score {
   \header {
     title = "LA CANTATE DE NOËL"
-    composer = "Claude Daquin (1694-1772)"
+    composer = \daquin
     poet = \markup \column {
       "Paroles : Chanoine Gustave Gaillardon (1864–1925)"
       \vspace #1

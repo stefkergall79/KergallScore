@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key f \major
   \numericTimeSignature
@@ -52,7 +54,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
 \score {
   \header {
     title = "VIVE JÉSUS, VIVE SA CROIX"
-    poet = "Paroles : Saint Louis-Marie Grignon de Montfort"
+    poet = \markup \line {"Paroles :" \montfort}
   }
   \new Staff \with {
     midiInstrument = "choir aahs"

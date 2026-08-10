@@ -1,5 +1,6 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "composers.ily"
+\include "settings.ily"
 
 #(set-global-staff-size 18.4)
 global = {
@@ -267,7 +268,7 @@ bassLyrics = \lyricmode {
 \score {
   \header {
     title = "O MAGNUM MYSTERIUM"
-    composer = "Tomás Luis de Victoria (1548-1611)"
+    composer = \victoria
   }
   \new ChoirStaff <<
     \new Staff \with {

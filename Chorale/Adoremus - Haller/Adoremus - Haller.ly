@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key d \major
   \time 4/4
@@ -82,7 +84,7 @@ versete = \lyricmode {
 \score {
   \header {
     title = "ADOREMUS"
-    composer = "Michael Georg Haller (1840-1915)"
+    composer = \haller
     poet = "Ps. 84"
   }
   \new ChoirStaff <<

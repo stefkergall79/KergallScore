@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 #(set-global-staff-size 17.6)
 
 global = {
@@ -587,7 +589,7 @@ pianoPart = \new PianoStaff \with {
 \score {
   \header {
     title = "PUERI CONCINITE"
-    composer = "Johann Ritter von Herbeck (1831-1877)"
+    composer = \herbeck
   }
   <<
     \sopranoVoicePart

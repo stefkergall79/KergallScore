@@ -1,5 +1,7 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key g \major
   \time 3/4
@@ -60,7 +62,7 @@ verseTwo = \strophemode #2 ##t \lyricmode {
 \score {
   \header {
     title = "O SALUTARIS HOSTIA"
-    composer = "Wolfgang Amadeus Mozart (1756-1791)"
+    composer = \mozart
   }
   \new ChoirStaff <<
       \new Staff \with {

@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key d \major
   \time 4/4
@@ -399,7 +401,7 @@ pianoPart = \new PianoStaff \with {
 \score {
   \header {
     title = "AVE VERUM"
-    composer = "Wolfgang Amadeus Mozart (1756-1791)"
+    composer = \mozart
   }
   <<
     \choirPart

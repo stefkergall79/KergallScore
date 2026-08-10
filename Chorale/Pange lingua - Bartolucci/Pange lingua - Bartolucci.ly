@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key as \major
   \numericTimeSignature
@@ -80,7 +82,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
 \score {
   \header {
     title = "PANGE LINGUA"
-    composer = "Dom Domenico Bartolucci (1917-2013)"
+    composer = \bartolucci
   }
   \new ChoirStaff <<
     \new Staff \with {

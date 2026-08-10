@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key c \major
   \time 3/4
@@ -85,7 +87,7 @@ verseFour = \strophemode 4 ##t \lyricmode {
 \score {
   \header {
     title = "DOUCE NUIT"
-    composer = "Franz Xaver Gruber (1787-1863)"
+    composer = \gruber
     poet = "Paroles : Abbé Joseph Mohr (1792-1848)"
   }
   \new ChoirStaff <<

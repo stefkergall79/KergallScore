@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key d \major
   \time 4/4
@@ -58,7 +60,7 @@ verseOne = \lyricmode {
   \header {
     title = "O SANCTISSIMA"
     poet = "Mélodie sicilienne"
-    composer = "Charles Gounod (1818-1893)"
+    composer = \gounod
   }
   \new ChoirStaff <<
       \new Staff \with {

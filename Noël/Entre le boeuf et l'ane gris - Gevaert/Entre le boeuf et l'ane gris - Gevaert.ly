@@ -1,5 +1,6 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
 
 global = {
   \key as \major
@@ -40,7 +41,7 @@ bass = \fixed c {
   R1 bes,2(c)f bes,(a,)bes, <f f,>\fermata
 }
 
-verseOneSoprano = \strophemode 1 \lyricmode {
+verseOneSoprano = \strophemode 1 ##f \lyricmode {
   En -- tre le bœuf et l’â -- ne gris,
   dors, dors, dors, le pe -- tit fils_;
   mille an -- ges di -- vins,
@@ -50,15 +51,15 @@ verseOneSoprano = \strophemode 1 \lyricmode {
   Dors_!
 }
 
-verseTwoSoprano = \strophemode 2 \lyricmode {
+verseTwoSoprano = \strophemode 2 ##t \lyricmode {
   En -- tre les pas -- tou -- reaux jo -- lis,
 }
 
-verseThreeSoprano = \strophemode 3 \lyricmode {
+verseThreeSoprano = \strophemode 3 ##f \lyricmode {
   En -- tre les ro -- ses et les lys,
 }
 
-verseFourSoprano = \strophemode 4 \lyricmode {
+verseFourSoprano = \strophemode 4 ##t \lyricmode {
   En -- tre les deux bras de Ma -- rie,
 }
 
@@ -79,8 +80,8 @@ verseBass = \lyricmode {
 \score {
   \header {
     title = "ENTRE LE BŒUF ET L'ÂNE GRIS"
-    arranger = "Harmonisation : François-Auguste Gevaert (1828-1908)"
-    composer = "Mélodie du XIIIe siècle"
+    composer = \markup \line {"Harmonisation :" \gevaert }
+    poet = "Mélodie du XIIIe siècle"
   }
   \new ChoirStaff <<
     \new Staff \with {

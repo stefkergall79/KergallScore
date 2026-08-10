@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key d \major
   \time 4/4
@@ -76,7 +78,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
 \score {
   \header {
     title = "O SANCTISSIMA"
-    composer = "Chanoine Gaston Roussel (1913-1985)"
+    composer = \roussel
   }
   \new ChoirStaff <<
       \new Staff \with {
@@ -99,8 +101,8 @@ verseThree = \strophemode #3 ##f \lyricmode {
       \new Staff \with {
         midiInstrument = "choir aahs"
         \consists Merge_rests_engraver
-      } <<
         \clef bass
+      } <<
         \new Voice = "tenor" { \voiceOne \tenor }
         \new Voice = "bass" { \voiceTwo \bass }
       >>

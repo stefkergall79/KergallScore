@@ -1,5 +1,6 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
 globalo = {
   \key f \major
   \time 4/4
@@ -51,7 +52,7 @@ verst = \lyricmode {
 \score {
   \header {
     title = "JESU, REX ADMIRABILIS"
-    composer = "Giovanni da Palestrina (1525-1594)"
+    composer = \palestrina
   }
   \new ChoirStaff <<
     \new Staff = "upStaff" \with {

@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key f \major
   \time 4/4
@@ -72,7 +74,7 @@ verseThree = \strophemode #6 ##f \lyricmode {
 \markup \column {
   \fill-line {\bold \fontsize #5 "AVE MARIS STELLA" }
   \vspace #0.2
-  \fill-line { \null "Mgr Louis-Lazare Perruchot (1852-1930)"}
+  \fill-line { \null \perruchot}
   \vspace #0.8
   \fill-line {
     \epsfile #X #70 #"../../Chorale/Ave Maris Stella - Perruchot/cache/Ave Maris Stella.png"

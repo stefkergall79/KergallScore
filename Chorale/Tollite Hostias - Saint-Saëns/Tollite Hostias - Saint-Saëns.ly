@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key g \major
   \time 4/4
@@ -120,7 +122,7 @@ verseBass = \lyricmode {
 \score {
   \header {
     title = "TOLLITE HOSTIAS"
-    composer = "Camille Saint-Saëns (1835-1921)"
+    composer = \stsaens
   }
   \new ChoirStaff <<
     

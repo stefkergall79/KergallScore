@@ -1,5 +1,6 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
 
 global = {
 	\autoBeamOff
@@ -221,7 +222,7 @@ ChoeurPart = \new ChoirStaff <<
 \score {
 	\header {
 		title = "ANIMA CHRISTI"
-		composer = "Auguste Chérion (1854-1904)"
+		composer = \cherion
 	}
 	\ChoeurPart
 	\layout {\context{\Staff \RemoveAllEmptyStaves }}

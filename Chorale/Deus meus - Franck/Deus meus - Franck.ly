@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key as \major
   \time 4/4
@@ -102,17 +104,26 @@ leftTwo = \fixed c {
 }
 
 choirPart = \new ChoirStaff <<
-  \new Staff \with { midiInstrument = "choir aahs"
+  \new Staff \with {
+    midiInstrument = "choir aahs"
+    \consists "Ambitus_engraver"
+    instrumentName = "S."
   } \new Voice = "soprano" \soprano
   \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
   } \lyricsto "soprano" \verse
 
-  \new Staff \with { midiInstrument = "choir aahs"
+  \new Staff \with {
+    midiInstrument = "choir aahs"
+    \consists "Ambitus_engraver"
+    instrumentName = "A."
   } \new Voice = "alto" \alto
   \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
   } \lyricsto "alto" \verse
 
-  \new Staff \with { midiInstrument = "choir aahs"
+  \new Staff \with {
+    midiInstrument = "choir aahs"
+    \consists "Ambitus_engraver"
+    instrumentName = "T."
   } {
     \clef "treble_8"
     \new Voice = "tenor" \tenor
@@ -120,7 +131,10 @@ choirPart = \new ChoirStaff <<
   \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
   } \lyricsto "tenor" \verset
 
-  \new Staff \with { midiInstrument = "choir aahs"
+  \new Staff \with {
+    midiInstrument = "choir aahs"
+    instrumentName = "B."
+    \consists "Ambitus_engraver"
   } {
     \clef bass
     \new Voice = "bass" \bass
@@ -130,7 +144,9 @@ choirPart = \new ChoirStaff <<
   } \lyricsto "bass" \verse
 >>
 
-pianoPart = \new PianoStaff  <<
+pianoPart = \new PianoStaff \with {
+    instrumentName = "Org."
+  }<<
   \new Staff = "right" \with {
     midiInstrument = "church organ"
     \consists Merge_rests_engraver
@@ -145,20 +161,13 @@ pianoPart = \new PianoStaff  <<
   \header {
     title = "DEUS MEUS"
     subtitle = \markup { \concat {IV \super{ème}} PAROLE}
-    composer = "César Franck (1822-1890)"
+    composer = \franck
     poet = "Les Sept Paroles du Christ en Croix"
   }
   <<
     \choirPart
     \pianoPart
   >>
-  \layout { }
+  \layout {\context{\Staff \RemoveAllEmptyStaves}}
   \midi {}
 }
-
-\generate-rehearsal-midi #`(
-  ("soprano" . ,verse)
-  ("alto"    . ,verse)
-  ("tenor"   . ,verset)
-  ("bass"    . ,verse)
-)

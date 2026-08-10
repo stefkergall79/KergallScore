@@ -1,5 +1,6 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
 
 global = {
     \key c \major
@@ -129,7 +130,7 @@ verse_bass = \lyricmode {
 \score {
     \header {
         title = "LOCUS ISTE"
-        composer = "Anton Bruckner (1824–1896)"
+        composer = \bruckner
     }
     \new ChoirStaff <<
         \new Staff \with {

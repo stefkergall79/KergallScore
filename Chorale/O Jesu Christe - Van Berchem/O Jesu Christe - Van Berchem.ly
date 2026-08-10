@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
     \key d \major
     \time 4/4
@@ -102,7 +104,7 @@ instrument = "acoustic grand"
 \score {
   \header {
     title = "O JESU CHRISTE"
-    composer = "Jakob Van Berchem (1505-1567)"
+    composer = \berchem
   }
   \new ChoirStaff <<
         \new Staff \with {
@@ -134,7 +136,6 @@ instrument = "acoustic grand"
     \midi { \tempo 4=70 }
 }
 
-
 \markup \column {
   "Ô Jésus-Christ, ayez pitié de moi,"
   "Quand la douleur m'épuise."
@@ -142,10 +143,3 @@ instrument = "acoustic grand"
   "J'ai crié vers Vous."
   "Ayez pitié de moi"
 }
-
-\generate-rehearsal-midi #70 #`(
-  ("soprano" . ,sopranoVerse)
-  ("alto"    . ,altoVerse)
-  ("tenor"   . ,tenorVerse)
-  ("bass"    . ,bassVerse)
-)

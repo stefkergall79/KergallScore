@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key d \major
   \time 4/4
@@ -186,7 +188,7 @@ orguePart = \new PianoStaff \with {
 \score {
   \header {
     title = "ANIMA CHRISTI"
-    composer = "Mgr Marco Frisina (né en 1954)"
+    composer = \frisina
   }
   <<
     \sopranoVoicePart

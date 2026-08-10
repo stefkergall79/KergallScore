@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key bes \major
   \time 3/4
@@ -109,7 +111,7 @@ verseSoprano = \lyricmode {
 \score {
   \header {
     title = "CANTATE DOMINO"
-    composer = "Giuseppe Ottavio Pitoni (1657-1743)"
+    composer = \pitoni
   }
   \new ChoirStaff <<
     \new Staff = "upStaff" \with {

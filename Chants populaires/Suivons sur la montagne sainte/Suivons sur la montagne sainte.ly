@@ -1,5 +1,6 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
 
 #(set-global-staff-size 18.2)
 
@@ -97,7 +98,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
 \score {  
   \header {
     title = "SUIVONS SUR LA MONTAGNE SAINTE"
-    composer = "Paroles : Saint Louis-Marie Grignon de Montfort"
+    composer = \markup \line {"Paroles :" \montfort}
   }
   \new ChoirStaff <<
     \new Staff \with {

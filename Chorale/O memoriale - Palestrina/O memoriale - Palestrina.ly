@@ -1,5 +1,7 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key e \major
   \mergeDifferentlyDottedOn
@@ -71,7 +73,7 @@ verseOne = \lyricmode {
 \score {
   \header {
     title = "O MEMORIALE"
-    composer = "Giovanni da Palestrina (1525-1594)"
+    composer = \palestrina
   }
   \new ChoirStaff <<
       \new Staff \with {
