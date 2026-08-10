@@ -9,12 +9,14 @@ global = {
 }
 
 soprano = \fixed c' {
-  \global
-  g4 4 4 fis2 d4 c'2 4 b2.
-  d'4 4 b d'(c') a g2 b8[a] a2.
-  g4 4 4 fis4.(e8)d4 c'2 4 b2.
-  d'4 4 b a(c') e g2 fis4 g2.\bar "||"
-  g2. g\bar"|."
+  \global \bar ".|:"
+  \repeat volta 2 {
+    g4 4 4 fis2 d4 c'2 4 b2.
+    d'4 4 b d'(c') a g2 b8[a] a2.
+    g4 4 4 fis4.(e8)d4 c'2 4 b2.
+    d'4 4 b a(c') e g2 fis4 g2.
+  }
+  g2. g \bar"|."
 }
 
 alto = \fixed c' {

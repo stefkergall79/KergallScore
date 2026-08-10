@@ -1,5 +1,7 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key c \major
   \time 9/8
@@ -67,8 +69,8 @@ verseFour = \strophemode 4 ##t \lyricmode {
   \header {
     title = "VOYEZ Ô NOTRE-DAME"
     composer = "Mélodie populaire de Guyenne"
-    arranger = "Harmonisation : Bernard Lallement (1936-2023)"
-    poet = "Paroles : Jacques Chailley (1910-1999)"
+    arranger = \markup{"Harmonisation :" \lallement}
+    poet = \markup{"Paroles :" \chailley}
   }
  \new ChoirStaff <<
       \new Staff \with {

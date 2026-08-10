@@ -1,5 +1,7 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key g \major
   \numericTimeSignature
@@ -73,7 +75,7 @@ verseFour = \strophemode #4 ##t \lyricmode {
 \score {
   \header {
     title = "VOUS ÊTES DANS MON ÂME"
-    composer = "Jeanne Barbey (née en 1977)"
+    composer = \barbey
   }
   \new ChoirStaff <<
     \new Staff \with {
