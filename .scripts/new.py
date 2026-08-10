@@ -2,7 +2,6 @@ from pathlib import Path
 import customtkinter as ctk
 import subprocess
 import math
-ctk.set_appearance_mode("System")
 
 NUMBERS = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
 VOICES  = {"S": "soprano", "A": "alto", "T": "tenor", "B": "bass", "H": "homme"}
@@ -314,7 +313,7 @@ class MusicTab(ctk.CTkFrame):
             },
             "Chiffre de mesure": {
                 "var": ctk.StringVar(value="4/4"),
-                "val": ["4/4", "2/2", "2/4", "3/4", "6/8", "9/8", "12/8"],
+                "val": ["4/4", "2/2", "2/4", "3/4", "3/2", "6/8", "9/8", "12/8"],
                 "ly": "time"
             },
             "Anacrouse": {
@@ -458,6 +457,7 @@ def PianoVars(staffes):
                 st += (
                     pianoPartName(nb, None) + " = \\fixed c" +
                     ("'" if nb > len(staffes)/2 else "") + " {\n"
+                    "\t\\global\n"
                     "\t\n}\n\n"
                 )
             else:
@@ -662,7 +662,6 @@ class LilypondCreator(ctk.CTk):
         except OSError as error:
             self.error_window = ctk.CTkToplevel(self)
             self.error_window.title("Erreur de création")
-            #self.error_window.geometry("500x150")
             self.error_window.resizable(False, False)
             
             ctk.CTkLabel(
