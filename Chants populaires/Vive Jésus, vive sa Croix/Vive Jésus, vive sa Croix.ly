@@ -54,7 +54,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
 \score {
   \header {
     title = "VIVE JÉSUS, VIVE SA CROIX"
-    poet = \markup \line {"Paroles :" \montfort}
+    poet = \markup{"Paroles :" \montfort}
   }
   \new Staff \with {
     midiInstrument = "choir aahs"

@@ -98,7 +98,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
 \score {  
   \header {
     title = "SUIVONS SUR LA MONTAGNE SAINTE"
-    composer = \markup \line {"Paroles :" \montfort}
+    composer = \markup {"Paroles :" \montfort}
   }
   \new ChoirStaff <<
     \new Staff \with {

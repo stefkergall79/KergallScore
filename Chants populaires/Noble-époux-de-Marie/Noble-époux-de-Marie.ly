@@ -118,8 +118,8 @@ verseFour = \strophemode #4 ##t \lyricmode {
 \score {
   \header {
     title = "NOBLE ÉPOUX DE MARIE"
-    composer = "Jean-Noël Laprise (né en 1945)"
-    poet = \markup \line {"Harmonisation :" \kergall }
+    composer = \laprise
+    poet = \markup {"Harmonisation :" \kergall }
   }
   \new ChoirStaff <<
     \new Staff \with {

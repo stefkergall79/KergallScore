@@ -1,5 +1,7 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
+
 global = {
   \once \omit Staff.TimeSignature
   \key bes \major
@@ -9,6 +11,7 @@ global = {
 soprano = \fixed c' {
   \global
   \cadenzaOn
+  \time 4/4
   \markChanson \markup \italic "Chantre"
   d'8 8 8 bes es' c' \bar"|" d' c' bes c' d'4 \bar"||"\break
   \markChanson \markup \italic "Tous"
@@ -16,9 +19,9 @@ soprano = \fixed c' {
   \markChanson \markup \italic "Chantre"
   bes8 8 8 d' c' g\bar"|" bes a g a bes4 \bar"||"\break
   \markChanson \markup \italic "Tous"
-  bes8 8 8 d' c' g\bar"|" bes a g a bes4 \bar"||"\break
+  bes8 8 8 d' c' g\bar"|" bes a g a bes4 \cadenzaOff \bar"||"\break
   
-  \break \markChanson "Refrain" \cadenzaOff \time 4/4
+  \markChanson \markup "Refrain"
   c'2 4 d' g2 4 a4 bes2 a g \bar "||"
 }
 
@@ -60,7 +63,7 @@ verseTwo = \strophemode #2 ##t \lyricmode {
 \score {
   \header {
     title = "Ô VIERGE MARIE"
-    composer = "Charles Bordes (1863-1909)"
+    composer = \bordes
   }
   \new ChoirStaff <<
       \new Staff \with {

@@ -1,5 +1,7 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key d \major
   \autoBeamOff
@@ -93,7 +95,7 @@ verseEight = \strophemode #8 ##t 23 \lyricmode {
 \score {
   \header {
     title = "LAUDA SION"
-    composer = "Paroles : Saint Thomas d'Aquin (~1225-1274)"
+    composer = \markup{"Paroles :" \stthomas}
   }
   \new ChoirStaff <<
       \new Staff \with {

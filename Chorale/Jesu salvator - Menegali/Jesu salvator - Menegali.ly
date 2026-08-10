@@ -1,15 +1,18 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key g \major
   \time 4/4
   \autoBeamOff
+  \tempo "Lento, con anima"
 }
 
 soprano = \fixed c' {
   \global
   \repeat segno 2 {
-  \tempo \markup "Lento, con anima" b2 2 r4 b4 4 4 4(a) b2 4 d' e'8. 16 4 a4. 8 b2
+  b2 2 r4 b4 4 4 4(a) b2 4 d' e'8. 16 4 a4. 8 b2
   c'4 8 8 cis'4 4 d'4. 8 2 4 8 8 dis'4 4 e'8. b16 4 c'4 4 fis( g fis2) e1}
   \fine
 }
@@ -41,7 +44,7 @@ verse = \lyricmode {
 \score {
   \header {
     title = "JESU, SALVATOR MUNDI"
-    composer = "Menegali (XVIIIe)"
+    composer = \menegali
   }
   \new ChoirStaff <<
     \new Staff \with {
