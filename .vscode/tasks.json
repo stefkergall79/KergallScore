@@ -62,11 +62,12 @@
             "group": "build"
         },
         {
-            "label": "Synchroniser settings",
+            "label": "Synchroniser .utils/",
             "type": "shell",
             "command": "cp",
             "args": [
-                "${workspaceFolder}/settings.ily",
+                "${workspaceFolder}/.utils/settings.ily",
+                "${workspaceFolder}/.utils/composers.ily",
                 "${workspaceFolder}/lilypond-2.26.0/share/lilypond/2.26.0/ly"
             ],
             "group": "build"
