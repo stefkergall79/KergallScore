@@ -14,4 +14,4 @@
 - Vous cherchez un éditeur à votre dernière composition ?
 - Vous aimeriez harmoniser une mélodie ?
 
-Je propose des solutions. [Envoyez-moi un mail](mailto:stef.kergall@gmail.com) si vous êtes intéressés.
+Je propose des solutions. [Envoyez-moi un mail](mailto:stef.kergall@gmail.com) pour profiter au plus vite de ces partitions.
