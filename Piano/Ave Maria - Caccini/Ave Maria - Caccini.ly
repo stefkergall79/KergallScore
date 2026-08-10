@@ -1,5 +1,6 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
 #(set-global-staff-size 19.6)
 
 global = {

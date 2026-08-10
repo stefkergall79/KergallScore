@@ -1,5 +1,6 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
 
 #(set-global-staff-size 14.2 )
 
@@ -163,9 +164,9 @@ pianoPart = \new PianoStaff \with {
 \score {
   \header {
     title = "AVE MARIA"
-    composer = "Charles Gounod (1818-1893)"
+    composer = \gounod
     poet = "D'après le prélude en Do majeur (BWV 846)"
-    meter = "de Jean-Sébastien Bach"
+    meter = \markup \line {"de" \bach}
   }
 <<
     \sopranoVoicePart

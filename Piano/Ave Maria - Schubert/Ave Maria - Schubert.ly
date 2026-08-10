@@ -1,5 +1,6 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
 #(set-global-staff-size 18.3)
 
 
@@ -194,7 +195,7 @@ pianoPart = \new PianoStaff \with {
 \score {
     \header {
         title = "AVE MARIA"
-        composer = "Franz Schubert (1797-1828)"
+        composer = \schubert
     }
     <<
         \sopranoVoicePart

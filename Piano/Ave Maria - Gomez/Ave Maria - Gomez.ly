@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 #(set-global-staff-size 18.7)
 
 global = {
@@ -156,7 +158,7 @@ pianoPart = \new PianoStaff \with {
 \score {
     \header {
         title = "AVE MARIA"
-        composer = "William Gomez (1939-2000)"
+        composer = \gomez
     }
 <<
         \sopranoVoicePart

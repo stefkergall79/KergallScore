@@ -1,5 +1,5 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
 
 global = { 
   \partial 4

@@ -1,5 +1,6 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
 
 global = {
   \key c \major
@@ -72,7 +73,7 @@ scoreAFluteIIIPart = \new Staff \with {
       "ou flûte et clavier*"
       \vspace #1
     }
-    composer = "Franz Xaver Gruber (1787-1863)"
+    composer = \gruber
     poet = "Paroles : Abbé Joseph Mohr (1792-1848)"
   }
   \new StaffGroup <<

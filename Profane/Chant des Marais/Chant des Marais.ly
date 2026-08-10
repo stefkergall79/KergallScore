@@ -1,5 +1,6 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
 
 global = {
 	\autoBeamOff
@@ -134,14 +135,13 @@ ChoeurPart = \new ChoirStaff <<
 	>>
 	\new Lyrics \with { \override VerticalAxisGroup.staff-affinity = #CENTER
 	} \lyricsto "bass" \verseBass
-
 >>
 
 \tocItemComposer "Chant des Marais" "César Geoffray"
 \score {
 	\header {
 		title = "CHANT DES MARAIS"
-		composer = "Harmonisation : César Geoffray (1901-1972)"
+		composer = \markup {"Harmonisation :" \geoffray}
 		poet = "1943"
 	}
 	\ChoeurPart
