@@ -2,7 +2,7 @@
 \include "settings.ily"
 \include "composers.ily"
 
-#(set-global-staff-size 17.6)
+#(set-global-staff-size 17.4)
 
 global = {
   \key a \major
@@ -317,6 +317,10 @@ choirPart = \new ChoirStaff <<
   \new Lyrics \with {
     \override VerticalAxisGroup.staff-affinity = #CENTER
   } \lyricsto "alto" \verseAlto
+  \new Lyrics \with {
+    \override VerticalAxisGroup.staff-affinity = #CENTER
+  } \lyricsto "soprano" \verseMore
+  
   \new Staff \with {
     midiInstrument = "choir aahs"
     \consists Merge_rests_engraver

@@ -1,6 +1,6 @@
 \version "2.26.0"
 \include "settings.ily"
-#(set-global-staff-size 18.3)
+#(set-global-staff-size 18.2)
 
 global = {
   \key d \major
@@ -65,7 +65,7 @@ tenor = \fixed c {
   4 4 4 4 4 4 2
   
   \set Staff.shortInstrumentName = "B."
-  fis1 1 r2 g2 d1 g4(fis)e fis g2(e)fis1
+  fis1 1 r2 g2 s1 g4(fis)e fis g2(e)fis1
 }
 
 bass = \fixed c {
@@ -74,7 +74,7 @@ bass = \fixed c {
   d2 4 4 4 4 2 2 4 4 a,4 4 2
   2 4 4 4 4 2 4 4 4 4 d4 4 2
 
-  b,1 fis, g, s a,2 4 4 1 <d d,>1
+  b,1 fis, g, d a,2 4 4 1 <d d,>1
 }
 bassI = \fixed c {
   R1*17
@@ -128,6 +128,10 @@ verseBassCouplet = \lyricmode {
   \override LyricText.font-shape = #'italic
   \override LyricText.font-series = #'bold
   \repeat unfold 8 { Dmm_! }
+  \repeat unfold 25 \skip1
+  \override LyricText.font-shape = #'upright
+  \override LyricText.font-series = #'normal
+  
 }
 verseBassRefrain = \lyricmode {
   A -- ve, A -- ve, A -- ve Ma -- rí -- a.
@@ -182,7 +186,7 @@ choirPart =  \new ChoirStaff <<
   >>
   \new Lyrics \with {
     \override VerticalAxisGroup.staff-affinity = #CENTER
-  } \lyricsto "tenor" { \verseBassCouplet \verseBassRefrain }
+  } \lyricsto "bass" { \verseBassCouplet \verseBassRefrain }
   
 >>
 

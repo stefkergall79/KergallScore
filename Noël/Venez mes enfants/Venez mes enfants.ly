@@ -1,5 +1,7 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key f \major
   \time 2/2
@@ -111,7 +113,7 @@ verseFour = \strophemode 4 ##t \lyricmode {
   \header {
     title = "VENEZ MES ENFANTS"
     composer = "Mélodie populaire"
-    arranger = "Harmonisation : César Geoffray (1901-1972)"
+    arranger = \markup{"Harmonisation :" \geoffray}
   }
   \new ChoirStaff <<
       \new Staff \with {

@@ -22,7 +22,7 @@ soprano = \fixed c' {
   4(gis) 2 |
   e4(gis2)b4 |
   4(a)4 4 |
-  d'1~4 cis' b a |
+  d'1(~4 cis') b a |
   2(gis4)4 a1 | R1*3
   
   a2. 4 |
@@ -37,12 +37,12 @@ soprano = \fixed c' {
   4(e)d(g) |
   2. 4 |
   4(fis)e a |
-  1~4 g a b |
+  1(~4 g) a b |
   fis2(e4.)fis8 |
   g2 2 |
-  d'1(~2 dis' |
+  d'1~2 dis' |
   e'4 b cis' d' |
-  cis' b8[a])d'4 g |
+  cis' b8[a]d'4 g |
   fis2(e4.)8 s1 |
   R1*3 \bar"|."
 }
@@ -74,12 +74,12 @@ alto = \relative c' {
   4(cis)b(e) |
   2. 4 |
   4(d)cis fis|
-  1~4 g fis e |
+  1(~4 g) fis e |
   d2(cis4.)8 |
   d2 r2 |
   r fis |
-  g(fis |
-  e1~4 d8[cis])d4 d |
+  g fis |
+  e1~4 d8[cis] d4 d |
   2(cis4.)8 |
   d1 R1*3
   
@@ -114,9 +114,9 @@ tenor = \relative c' {
   d2 4 4 a2. 4 |
   g2 r2 |
   r2 c |
-  d(c |
+  d c |
   b4 d cis b |
-  a2)4 g |
+  a2 4 g |
   a2(g4.)8 |
   fis1 R1*3
 }
@@ -154,18 +154,18 @@ bass = \relative c {
   a2 a, |
   b r |
   r a' |
-  bes(a |
+  bes a |
   gis1 |
-  g!2) fis4 b, |
+  g!2 fis4 b, |
   a2. 4 |
   d1 R1*3
 }
 
 verseSop = \lyricmode {
   \repeat unfold 25 \skip1
-  in cru -- _ -- ce
+  in cru -- ce
   \repeat unfold 36 \skip1
-  In mor -- tis
+  In mor __ _ _ _ _ _ _ _ tis
 }
 verse = \lyricmode {
   A -- ve, a -- ve ve -- rum Cor -- pus
@@ -175,8 +175,8 @@ verse = \lyricmode {
   Cu -- jus la -- tus per -- fo -- ra -- tum
   un -- da flu -- xit cum san -- gui -- ne_:
   Es -- to no -- bis præ -- gus -- ta -- tum
-  in mor -- _ -- tis e -- xa -- mi -- ne.
-  In mor -- tis e -- xa -- mi -- ne.
+  in mor -- tis e -- xa -- mi -- ne.
+  In mor __ _ _ _ _ tis e -- xa -- mi -- ne.
 }
 verseMen = \lyricmode {
   \repeat unfold 48 \skip1

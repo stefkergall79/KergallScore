@@ -4,7 +4,7 @@
 
 global = {
   \key c \major
-  \time 2/2
+  \time 4/4
   \autoBeamOff
   \partial 4
 }
@@ -12,11 +12,11 @@ global = {
 soprano = \fixed c' {
   \global \bar".|:"
   \repeat unfold 2 {
-    e4 a b c' b a(b8)[a]gis4 e~4
+    e4 a b c' b a(b8[a])gis4 e~4
     g g f e(a) a gis a2 r4
   }
   b c' d' e'4 8 8 4.(d'8)c'2 r4
-  e'4 d' c' b(a8)[b]c'4 b a2 r4 
+  e'4 d' c' b(a8[b]) c'4 b a2 r4 
   s\bar":|." a2 2\bar"|."
 }
 
@@ -34,18 +34,18 @@ alto = \fixed c' {
 tenor = \fixed c {
   \global
   \repeat unfold 2 {
-    a8[b]c'4 b a gis a(d'8)[c']b4 gis4~4
+    a8[b]c'4 b a gis a(d'8[c']) b4 gis4~4
     b c' g g(a) b8[c'] d'4 c'2 r4
   }
   gis4 a b c'4 8 8 4(b)c'2
-  r4 c'4 g a4 8[g](a4) 4 gis e2
+  r4 c'4 g a4 8([g]a4) 4 gis e2
   r4 s f2 e
 }
 
 bass = \fixed c {
   \global
   \repeat unfold 2 { 
-    a,4 a gis a e f8[e](d4) e e,~4
+    a,4 a gis a e f8([e]d4) e e,~4
     e a, b, c f8[e]d4 e a,2 r4
   }
   e4 a g8[f]e[d]c c f4(g) c2
