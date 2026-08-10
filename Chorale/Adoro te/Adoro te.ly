@@ -136,4 +136,3 @@ verseTwo = \strophemode #2 ##t #1 \lyricmode {
     \layout {\context{\Staff \RemoveAllEmptyStaves}}
     \midi {\tempo 4=100}
   }
-
