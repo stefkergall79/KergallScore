@@ -603,9 +603,12 @@ class LilypondCreator(ctk.CTk):
             content = (
                 "\\version \"2.26.0\"\n"
                 "\\include \"settings.ily\"\n"
+                "\\include \"composers.ily\"\n"
                 "\n"
                 "global = {\n"
                 "\t\\autoBeamOff\n"
+                "\t\\mergeDifferentlyHeadedOn\n"
+                "\t\\mergeDifferentlyDottedOn\n"
             )
             for settings in self.music_tab.vars.values():
                 if "ly" in settings and ("def" not in settings or settings["var"].get() != settings["def"]):
