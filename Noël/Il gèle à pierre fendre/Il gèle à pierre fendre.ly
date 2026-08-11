@@ -1,5 +1,7 @@
 \version "2.26.0"
 \include "settings.ily"
+#(set-global-staff-size 18.7 )
+
 global = {
   \key f \major
   \time 3/8
