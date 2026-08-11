@@ -1,12 +1,12 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
 
 global = {
   \key bes \major
   \time 4/4
-  \partial 2.
+  \partial 16
   \autoBeamOff
-  s8.
 }
 
 soprano = \fixed c' {
@@ -105,7 +105,7 @@ verseOne = \strophemode 1 ##f \lyricmode {
 \score {
   \header {
     title = "LA MARCHE DES ROIS"
-    composer = "Musique : Jean-Baptiste Lully"
+    composer = \lully
     poet = "Paroles : Joseph-François Domergue"
   }
   \new ChoirStaff <<
