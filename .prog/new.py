@@ -61,7 +61,7 @@ class HeaderTab(ctk.CTkFrame):
 
         ctk.CTkLabel(self, text="Catégorie").pack(side="top", pady=10, anchor="w")
         self.categories = self._get_categories()
-        self.category_var = ctk.StringVar(value=self.categories[0] if self.categories else "Autres")
+        self.category_var = ctk.StringVar(value=self.categories[0] if self.categories else "X_Autres")
         
         for cat in self.categories:
             ctk.CTkRadioButton(
@@ -175,10 +175,10 @@ class HeaderTab(ctk.CTkFrame):
             entry.name for entry in base_dir.iterdir()
             if entry.is_dir()
             and entry.name[0].isupper()
-            and entry.name not in ("Grégorien", "Commandes")
+            and entry.name != "Grégorien"
         ]
         categories.sort(key=str.casefold)
-        return categories or ["Autres"]
+        return categories or ["X_Autres"]
 
 
 class PartsTab(ctk.CTkFrame):
@@ -582,7 +582,7 @@ class LilypondCreator(ctk.CTk):
                 values[key] = value
 
         filename = self.header_tab.get_target_filename()
-        category = self.header_tab.category_var.get().strip() or "Autres"
+        category = self.header_tab.category_var.get().strip() or "X_Autres"
         
         folder_name = Path(filename).stem
         base_dir = Path(__file__).resolve().parent.parent

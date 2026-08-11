@@ -2,7 +2,8 @@
 set -e
 
 start=$(date +%s.%N)
-HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PROG_DIR="${ROOT_DIR}/.prog"
 
 apt_list=(
     "timidity"
@@ -40,12 +41,12 @@ if [[ "$1" == "--code" ]]; then
 fi
 
 # lilypond web
-cd ${HERE}
+cd "${PROG_DIR}"
 curl -L -O "https://gitlab.com/lilypond/lilypond/-/releases/v2.26.0/downloads/lilypond-2.26.0-linux-x86_64.tar.gz"
 tar -xzf lilypond-2.26.0-linux-x86_64.tar.gz -C .
 rm lilypond-2.26.0-linux-x86_64.tar.gz
-cp "${HERE}/settings.ily" lilypond-2.26.0/share/lilypond/2.26.0/ly/
-echo "alias lilypond='${HERE}/lilypond-2.26.0/bin/lilypond'" >> ~/.bashrc
+cp "${ROOT_DIR}/.utils/settings.ily" lilypond-2.26.0/share/lilypond/2.26.0/ly/
+echo "alias lilypond='${PROG_DIR}/lilypond-2.26.0/bin/lilypond'" >> ~/.bashrc
 
 #Musescore
 curl -L -O "https://cdn.jsdelivr.net/musescore/v4.7.4/MuseScore-Studio-4.7.4.260706075-x86_64.AppImage"

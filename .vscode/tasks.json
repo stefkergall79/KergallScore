@@ -4,7 +4,7 @@
         {
             "label": "Lilypond",
             "type": "process",
-            "command": "${workspaceFolder}/lilypond-2.26.0/bin/lilypond",
+            "command": "${workspaceFolder}/.prog/lilypond-2.26.0/bin/lilypond",
             "args": [
                 "${file}"
             ],
@@ -18,7 +18,7 @@
             "type": "shell",
             "command": "python3",
             "args": [
-                "${workspaceFolder}/.scripts/save.py"
+                "${workspaceFolder}/.prog/save.py"
             ],
             "group": "build"
         },
@@ -27,14 +27,14 @@
             "type": "shell",
             "command": "python3",
             "args": [
-                "${workspaceFolder}/.scripts/new.py"
+                "${workspaceFolder}/.prog/new.py"
             ],
             "group": "build"
         },
         {
             "label": "Install",
             "type": "shell",
-            "command": "${workspaceFolder}/.scripts/installer.sh",
+            "command": "${workspaceFolder}/.prog/installer.sh",
             "args": [
                 "--code"
             ],
@@ -68,7 +68,7 @@
             "args": [
                 "${workspaceFolder}/.utils/settings.ily",
                 "${workspaceFolder}/.utils/composers.ily",
-                "${workspaceFolder}/lilypond-2.26.0/share/lilypond/2.26.0/ly"
+                "${workspaceFolder}/.prog/lilypond-2.26.0/share/lilypond/2.26.0/ly/"
             ],
             "group": "build"
         }
