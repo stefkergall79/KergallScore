@@ -3,6 +3,7 @@ import customtkinter as ctk
 import subprocess
 import math
 
+PARTITIONS = Path(__file__).resolve().parent.parent
 NUMBERS = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
 VOICES  = {"S": "soprano", "A": "alto", "T": "tenor", "B": "bass", "H": "homme"}
 PIANOSTAFFES = ["right", "left", "pedal"]
@@ -40,7 +41,14 @@ class HeaderTab(ctk.CTkFrame):
                 "remove": ctk.CTkButton(frame, text="-", width=28, height=28, fg_color="#E57373", hover_color="#EF9A9A", command=lambda k=field: self.remove_field(k))
             }
 
-            self.fields[field]["entry"] = ctk.CTkEntry(frame, width=260, height=28, font=self.default_font, textvariable=self.fields[field]["var"])
+            if field == "composer":
+                self.fields[field]["entry"] = ctk.CTkComboBox(
+                    frame, width=260, height=28, font=self.default_font,
+                    variable=self.fields[field]["var"],
+                    values=list(self.get_composers().keys())
+                )
+            else:
+                self.fields[field]["entry"] = ctk.CTkEntry(frame, width=260, height=28, font=self.default_font, textvariable=self.fields[field]["var"])
             self.fields[field]["remove"].pack(side="left", padx=10)
             self.fields[field]["entry"].pack(side="left", padx=0)
             ctk.CTkLabel(frame, text=self.fields[field]["name"], font=self.default_font
@@ -80,8 +88,6 @@ class HeaderTab(ctk.CTkFrame):
         
         self.fields["title"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.fields["composer"]["var"].trace_add("write", self.on_title_or_composer_change)
-
-        self.pack(fill="both", expand=True)
 
 
     def set_instrument_with_category(self, parts, *choice):
@@ -170,9 +176,8 @@ class HeaderTab(ctk.CTkFrame):
         return filename
 
     def _get_categories(self) -> list[str]:
-        base_dir = Path(__file__).resolve().parent.parent
         categories = [
-            entry.name for entry in base_dir.iterdir()
+            entry.name for entry in PARTITIONS.iterdir()
             if entry.is_dir()
             and entry.name[0].isupper()
             and entry.name != "Grégorien"
@@ -180,7 +185,16 @@ class HeaderTab(ctk.CTkFrame):
         categories.sort(key=str.casefold)
         return categories or ["X_Autres"]
 
+    def get_composers(self):
+        file_composers = Path(PARTITIONS / ".utils" / "composers.ily")
+        content = file_composers.read_text()
+        content = content.removeprefix("\\version \"2.26.0\"\n\n")
+        content = [line.split(" = ") for line in content.splitlines()]
+        for i, val in enumerate(content):
+            content[i][0] = "\\"+content[i][0]
+        return dict(content)
 
+    
 class PartsTab(ctk.CTkFrame):
     def __init__(self, master, app):
         super().__init__(master)
@@ -267,7 +281,6 @@ class PartsTab(ctk.CTkFrame):
                     variable=self.parts[part]["paroles"]
                 ).pack(side="top", padx=15, pady=(2, 8), anchor="w")
 
-        self.pack(fill="both", expand=True)
 
     def schema_voices_changed(self, *args):
         switch = self.parts["Choeur"]["meme_paroles_switch"]
@@ -351,8 +364,6 @@ class MusicTab(ctk.CTkFrame):
                 frame, font=self.default_font, text=texte
             ).pack(side="left", padx=5)
             frame.pack(side="top", pady=5, anchor="w")
-
-        self.pack(fill="both", expand=True)
 
 def Voice(voice, indice):
     return (
@@ -569,6 +580,10 @@ class LilypondCreator(ctk.CTk):
         self.parts_tab = PartsTab(tabview.add("Parties"), self)
         self.music_tab = MusicTab(tabview.add("Réglages musicaux"), self)
 
+        self.header_tab.pack(fill="both", expand=True)
+        self.parts_tab.pack(fill="both", expand=True)
+        self.music_tab.pack(fill="both", expand=True)
+
         button_frame = ctk.CTkFrame(self)
         ctk.CTkButton(button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file).pack(side="left", padx=(0, 10))
         ctk.CTkButton(button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#ff0000", hover_color="#8f8f8f", command=self.destroy).pack(side="left")
@@ -585,8 +600,7 @@ class LilypondCreator(ctk.CTk):
         category = self.header_tab.category_var.get().strip() or "X_Autres"
         
         folder_name = Path(filename).stem
-        base_dir = Path(__file__).resolve().parent.parent
-        target_folder = base_dir / category / folder_name
+        target_folder = PARTITIONS / category / folder_name
         
         try:
             target_folder.mkdir(parents=True, exist_ok=True)
@@ -643,8 +657,11 @@ class LilypondCreator(ctk.CTk):
                 "\\score {\n"
                 "\t\\header {\n"
             )
-            for key in values:
-                content += f'\t\t{key} = "{values[key].upper() if key == "title" else values[key]}"\n'
+            for key, val in values.items():
+                if key == "composer" and val[0] == "\\":
+                    content += f'\t\t{key} = {val}\n'
+                else:
+                    content += f'\t\t{key} = "{val.upper() if key == "title" else val}"\n'
             content += "\t}\n"
 
             if len(voices_parts) == 1:
@@ -700,6 +717,4 @@ class LilypondCreator(ctk.CTk):
         self.error_window.destroy()
         self.create_lilypond_file()
 
-if __name__ == "__main__":
-    app = LilypondCreator()
-    app.mainloop()
+LilypondCreator().mainloop()
