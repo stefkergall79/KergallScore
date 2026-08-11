@@ -7,6 +7,7 @@ global = {
   \key g \major
   \mergeDifferentlyHeadedOn
   \mergeDifferentlyDottedOn
+  \autoBeamOff
 }
 
 PartPOneVoiceOne = \relative b' {
@@ -456,7 +457,7 @@ PartPThreeVoiceSix = \relative g, {
       \new Staff \with{
         \consists Merge_rests_engraver
         shortInstrumentName = \markup \center-column { "T." "B." }
-        instrumentName = \markup \center-column { "T." "b." }
+        instrumentName = \markup \center-column { "T." "B." }
         \clef bass
       } <<
         \new Voice = "PartPTwoVoiceOne" {
