@@ -1,5 +1,6 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
 
 global = {
   \time 4/4
@@ -431,7 +432,7 @@ PartPThreeVoiceSix = \relative g, {
 \score {
   \header {
     title = "IN THE BLEAK MID-WINTER"
-    composer = "Harold Darke"
+    composer = \darke
   }
   <<
     \new ChoirStaff \with {
