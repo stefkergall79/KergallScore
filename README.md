@@ -1,4 +1,4 @@
-# **KergallScore**
+# __KergallScore__
 
 > 🌐 Une base de données musicale\
 > ​✉️​​ Vos commandes\
@@ -11,9 +11,9 @@
 
 ___
 
-Vous voulez **relooker** une vieille partition de musique ?\
-Vous avez besoin d'un **dossier** complet pour votre chorale, ***avec une table des matières*** ?\
-Vous cherchez un **éditeur** à votre dernière composition ?\
-Vous aimeriez **harmoniser** une mélodie ?
+Vous voulez __relooker__ une vieille partition de musique ?\
+Vous avez besoin d'un __dossier__ complet pour votre chorale, __*avec une table des matières*__ ?\
+Vous cherchez un __éditeur__ à votre dernière composition ?\
+Vous aimeriez __harmoniser__ une mélodie ?
 
-**KergallScore** vous propose des solutions. [Envoyez un mail](mailto:stef.kergall@gmail.com) pour profiter au plus vite de ces partitions !
+__KergallScore__ vous propose des solutions. [Envoyez un mail](mailto:stef.kergall@gmail.com) pour profiter au plus vite de ces partitions !
