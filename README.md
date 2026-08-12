@@ -1,4 +1,4 @@
-# **KergallScore**
+# KergallScore
 
 > 🌐 Une base de données musicale<br>
 > ✉️ Vos commandes<br>
