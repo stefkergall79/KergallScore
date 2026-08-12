@@ -12,7 +12,6 @@
 | **Harmoniser** une mélodie trouvée par hasard ?                                                           |![Noble époux de Marie mélodique](Général/Noble-époux-de-Marie/cache/Noble%20époux%20de%20Marie-old.png)                                                                                                                                    |![Noble époux de Marie harmonisé](Général/Noble-époux-de-Marie/cache/Noble-époux-de-Marie.png)                                                                                       |
 | **Regrouper** sur une seule page de petites partitions qui prennent trop de place ?                       |![Jesu Salvator Mundi](y_Assemblages/Jesu%20Salvator%20-%20Jesu%20Rex%20admirabilis/cache/jesu%20salvator.jpg)![Jesu Rex admirabilis](y_Assemblages/Jesu%20Salvator%20-%20Jesu%20Rex%20admirabilis/cache/jesu%20rex%20palestrina.jpg) |![Assemblage des deux partitions sur une seule feuille](y_Assemblages/Jesu%20Salvator%20-%20Jesu%20Rex%20admirabilis/cache/Jesu%20Salvator%20-%20Jesu%20Rex%20admirabilis.png) |
 
----
 ## Ou encore...
 
 Vous avez besoin d'un **dossier** complet pour votre chorale, ***avec une table des matières*** ?\
