@@ -2,7 +2,6 @@
 \include "composers.ily"
 \include "settings.ily"
 
-
 global = {
   \time 3/4
   \key f \major
@@ -413,12 +412,15 @@ PartPThreeVoiceTwo = \relative d {
    d4 s4
 }
 
+\paper {
+  system-count = 11
+}
 
 \tocItem \markup "Gaudete"
 \score {
   \header {
-    title = GAUDETE
-    arranger = "Arrangement des King's Singers"
+    title = "GAUDETE"
+    arranger = \markup{"Arrangement par" \kingsingers}
   }
   <<
     \new Staff \with {

@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key g \major
   \time 4/4
@@ -84,7 +86,7 @@ verseFour = \strophemode 4 ##t \lyricmode {
 \score {
   \header {
     title = "ADESTE, FIDELES"
-    composer = "Attribué à John Francis Wade (1710-1786)"
+    composer = \markup{"Attribué à" \wade}
   }
 
   \new ChoirStaff <<

@@ -1,5 +1,6 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
 
 global = {
   \key g \major
@@ -183,7 +184,7 @@ verseTwo = \strophemode #2 ##t \lyricmode {
   \header {
     title = "À L'ÉTENDARD"
     composer = "Abbé Marcel Laurent"
-    poet = "Paroles : Chanoine Gustave Vié"
+    poet = \markup {"Paroles :" \vie}
   }
   \new ChoirStaff <<
     \new Staff \with {

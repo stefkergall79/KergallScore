@@ -88,7 +88,7 @@ verseFour = \strophemode 4 ##t \lyricmode {
   \header {
     title = "DOUCE NUIT"
     composer = \gruber
-    poet = "Paroles : Abbé Joseph Mohr (1792-1848)"
+    poet = \markup{"Paroles :" \mohr}
   }
   \new ChoirStaff <<
     \new Staff \with {

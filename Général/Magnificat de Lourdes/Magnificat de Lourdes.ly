@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key f \major
   \cadenzaOn
@@ -116,7 +118,7 @@ verseTwelve = \strophemode #12 ##t \lyricmode {
     title = "MAGNIFICAT"
     subtitle = \markup{\concat{VI \super \italic ème} ton royal}
     composer = "Ton dit “de Lourdes” "
-    poet = "Harmonisation : Mgr Joseph Besnier (1898-1984)"
+    poet = \markup{"Harmonisation :" \besnier}
   }
   \new ChoirStaff <<
     \new Staff \with {

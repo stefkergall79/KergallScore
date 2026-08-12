@@ -61,7 +61,7 @@ verseFour = \strophemode #4 ##t \lyricmode {
 \score {
   \header {
     title = "O CROIX DRESSÉE SUR LE MONDE"
-    composer = "Jean Servel"
+    composer = \servel
     poet = \markup \line {"Paroles :" \montfort }
   }
   \new Staff \with {

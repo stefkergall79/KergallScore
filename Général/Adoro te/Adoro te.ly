@@ -1,5 +1,7 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key es \major
   \time 4/4
@@ -107,7 +109,7 @@ verseTwo = \strophemode #2 ##t #1 \lyricmode {
 \score {
   \header {
     title = "ADORO TE DEVOTE"
-    composer = "Chanoine Joseph Besnier (1898-1954)"
+    composer = \besnier
   }
   \new ChoirStaff <<
       \new Staff \with {
