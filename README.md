@@ -1,7 +1,7 @@
 # **KergallScore**
 
-> 🌐 Une base de données musicale
-> ✉️ Vos commandes
+> 🌐 Une base de données musicale<br>
+> ✉️ Vos commandes<br>
 > 🎶 De la musique !
 
 | Avant | Après |
