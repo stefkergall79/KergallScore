@@ -11,7 +11,7 @@
 
 ___
 
-Vous voulez __relooker__ une vieille partition de musique ?\
+Vous voulez **relooker** une vieille partition de musique ?\
 Vous avez besoin d'un __dossier__ complet pour votre chorale, __*avec une table des matières*__ ?\
 Vous cherchez un __éditeur__ à votre dernière composition ?\
 Vous aimeriez __harmoniser__ une mélodie ?
