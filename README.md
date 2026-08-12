@@ -16,4 +16,4 @@ Vous avez besoin d'un **dossier** complet pour votre chorale, ***avec une table 
 Vous cherchez un **éditeur** à votre dernière composition ?<br>
 Vous aimeriez **harmoniser** une mélodie ?
 
-**KergallScore** vous propose des solutions. [Envoyez un mail](mailto:stef.kergall@gmail.com) pour profiter au plus vite de ces partitions !
+**KergallScore** propose des solutions. [Envoyez un mail](mailto:stef.kergall@gmail.com) pour profiter au plus vite de ces partitions !
