@@ -30,9 +30,9 @@ PartPOneVoiceOne = \relative a {
   R2. | % 27
  R2*8
   \break \markChanson "Verset 4 solo"  d8 [
-  d8  d8  e8 ]  f8 ( [  e8 ) ]  d4 | % 36
-   bes8 [  bes8  a8  bes8 ]  g4  g4 | % 37
-   g8 [  g8  bes!8  a8 ]  bes8 ( [  c8 ) ]  d4 | % 38
+  d8  d8  e8 ]  f8 ( [  e8 ) ]  d4 | 
+   bes8 [  bes8  a8  bes8 ]  g4  g4 | 
+   g8 [  g8  bes!8  a8 ]  bes8 ( [  c8 ) ]  d4 | 
    f8 [  f8  e8  f8 ]  d4  d4
   \break \markChanson "Refrain 4" R2. | % 40
   R2*8
@@ -42,9 +42,9 @@ PartPOneVoiceOne = \relative a {
    f8 [  f8  e8  f8 ]  d4  d4 | % 50
    d8 [  d8  f8  e8 ]  f8 [  g8 ]  a4 | % 51
    c8 [  c8  b8  c8 ]  a4  a4
-   \markChanson "Refrain 5" R2. | % 53
+   \break \markChanson "Refrain 5" R2. | % 53
   R2*8
-  \clef treble
+  \break \clef treble
   d'4  d4  c4 | % 62
   d8 [  e8 ]  f4 | % 63
    f8  e4  d8 | % 64
@@ -413,7 +413,7 @@ PartPThreeVoiceTwo = \relative d {
 }
 
 \paper {
-  system-count = 11
+  system-count = 12
 }
 
 \tocItem \markup "Gaudete"
