@@ -3,7 +3,7 @@ y_Assemblages/**/*.midi
 z_Commandes/**/*.midi
 .obsidian
 .prog/lilypond-2.26.0
-.prog/MuseScore-Studio-4.7.4.260706075-x86_64.AppImage
+*.AppImage
 *-mscz.pdf
 *.mscz
 *.mxl

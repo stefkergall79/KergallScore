@@ -48,9 +48,14 @@ rm lilypond-2.26.0-linux-x86_64.tar.gz
 cp "${ROOT_DIR}/.utils/settings.ily" lilypond-2.26.0/share/lilypond/2.26.0/ly/
 echo "alias lilypond='${PROG_DIR}/lilypond-2.26.0/bin/lilypond'" >> ~/.bashrc
 
-#Musescore
+# Musescore
 curl -L -O "https://cdn.jsdelivr.net/musescore/v4.7.4/MuseScore-Studio-4.7.4.260706075-x86_64.AppImage"
 chmod +x MuseScore-Studio-4.7.4.260706075-x86_64.AppImage
+echo
+
+# Obsidian
+curl -L -O "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.13.7/Obsidian-1.13.7.AppImage"
+chmod +x Obsidian-1.13.7.AppImage
 echo
 
 # Git
