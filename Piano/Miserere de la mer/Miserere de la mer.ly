@@ -1,13 +1,6 @@
 \version "2.26.0"
-
-\header {
-  title = "MISERERE DE LA MER"
-  tagline = ##f
-}
-
-\paper {
-  #(set-paper-size "a4")
-}
+\include "settings.ily"
+\include "composers.ily"
 
 global = {
   \key f \major
@@ -55,16 +48,18 @@ Cal -- mez pour moi l'ou -- ra -- gan.
 }
 
 \score {
-  \new PianoStaff  <<
-    \new Staff = "right" \with {
-      midiInstrument = "acoustic grand"
-    } \right \addlyrics \verse
-    \new Staff = "left" \with {
-      midiInstrument = "acoustic grand"
-    } { \clef bass \left }
+  \header {
+    title = "MISERERE DE LA MER"
+  }
+  \new PianoStaff \with {
+    midiInstrument = "acoustic grand"
+  } <<
+    \new Staff \right
+    \addlyrics \verse
+    \new Staff \with {
+      \clef bass
+    } \left
   >>
   \layout { }
-  \midi {
-    \tempo 4=80
-  }
+  \midi {\tempo 4 = 80 }
 }

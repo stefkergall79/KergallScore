@@ -1,5 +1,7 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
+
 global = {
   \key d \major
   \time 6/8
@@ -108,7 +110,7 @@ verseThreeTenor = \strophemode 3 ##f \lyricmode {
   \header {
     title = "LE CHRIST EST NÉ CE SOIR"
     poet = "Mélodie : Noël de Basse-Bretagne"
-    composer = "Harmonisation : Bernard Lallement (1936-2023)"
+    composer = \markup{"Harmonisation :" \lallement}
   }
   \new ChoirStaff <<
     \new Staff \with {

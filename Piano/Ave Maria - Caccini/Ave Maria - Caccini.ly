@@ -44,7 +44,7 @@ verse = \lyricmode {
   \repeat unfold 2 { A -- ve Ma -- ri -- a. }
   A \repeat unfold 9 { _ } -- ve Ma -- ri -- a.
   \repeat unfold 63 \skip 1
-  A \repeat unfold 9 { _ } -- ve Ma -- ri -- a.
+  A -- \repeat unfold 9 { _ } -- ve Ma -- ri -- a.
 }
 
 right = \fixed c' {
@@ -199,8 +199,8 @@ pianoPart = \new PianoStaff \with {
 \score {
     \header {
         title = "AVE MARIA"
-        composer = "Vladimir Vavilov (1925-1973)"
-        arranger = "Attribué à Giulio Caccini (1551-1618)"
+        composer = \vavilov
+        arranger = \markup {"Attribué à" \caccini}
     }
     <<
         \sopranoVoicePart

@@ -1,5 +1,6 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
 
 global = {
 	\key f \major
@@ -157,12 +158,12 @@ ClavierPart = \new PianoStaff \with {
 >>
 
 
-\tocItemComposer "Sarabande" "Haëndel"
+\tocItemComposer "Sarabande" "Häendel"
 \score {
 	\header {
 		title = "SARABANDE"
 		subsubtitle = "extrait de la suite n°1"
-		composer = "Georg Friederich Haëndel"
+		composer = \haendel
 	}
 	\ClavierPart
 	\layout {\context{\Staff \RemoveAllEmptyStaves }}

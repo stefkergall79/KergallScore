@@ -1,5 +1,6 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
 
 global = {
   \key d \major
@@ -214,7 +215,7 @@ scoreAHarpsichordPart = \new PianoStaff \with {
 \score {
   \header {
     title = "Canon in D"
-    composer = "Johann Pachelbel"
+    composer = \pachelbel
     subtitle = "Trois violons et clavier"
   }
   <<

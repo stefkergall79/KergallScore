@@ -1,10 +1,5 @@
 \version "2.26.0"
-
-\header {
-  title = "Esaü"
-  tagline = ##f
-}
-
+\include "settings.ily"
 global = {
   \key g \major
   \numericTimeSignature
@@ -62,16 +57,16 @@ verse = \lyricmode {
 }
 
 \score {
+  \header {
+    title = "ESAÜ"
+  }
   \new PianoStaff \with {
-  instrumentName = ""
-} <<
-  \new Staff = "right" \with {
     midiInstrument = "acoustic grand"
-  } \right \addlyrics { \verse }
-  \new Staff = "left" \with {
-    midiInstrument = "acoustic grand"
-  } { \clef bass \left }
->>
-\layout { }
+  } <<
+    \new Staff \right
+    \addlyrics { \verse }
+    \new Staff \with {\clef bass } \left
+  >>
+  \layout { }
   \midi { \tempo 4=170 }
 }

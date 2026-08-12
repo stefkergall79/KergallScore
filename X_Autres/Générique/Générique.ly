@@ -1,6 +1,7 @@
 \version "2.26.0"
 \include "articulate.ly"
-\include "../../settings.ily"
+\include "settings.ily"
+\include "composers.ily"
 
 global = {
   \key d \major
@@ -283,6 +284,10 @@ fullMusic = \transpose c e {
 }
 
 \score {
+  \header {
+    title = "GÉNÉRIQUE"
+    composer = \kergall
+  }
   \fullMusic
   \layout {\context{\Staff \RemoveAllEmptyStaves} }
   \midi { \tempo 4=170 }

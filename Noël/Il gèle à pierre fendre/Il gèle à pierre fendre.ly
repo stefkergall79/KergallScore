@@ -1,5 +1,7 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
+
 #(set-global-staff-size 18.7 )
 
 global = {
@@ -147,9 +149,9 @@ choirPart = \new ChoirStaff <<
 \score {
   \header {
     title = "IL GÈLE À PIERRE FENDRE"
-    arranger = "Harmonisation : Jehan Revert (1920-2015)"
+    arranger = \markup {"Harmonisation : " \jrevert}
     composer = "Mélodie : Noël de Saintonge"
-    poet = "Paroles : R. Coutelle"
+    poet = \markup {"Paroles :" \coutelle}
   }
   <<
     \soloPart

@@ -1,5 +1,6 @@
 \version "2.26.0"
 \include "settings.ily"
+\include "composers.ily"
 
 global = {
   \time 4/4
@@ -7,11 +8,12 @@ global = {
   \autoBeamOff
 }
 
-#(set-global-staff-size 19.4 )
+#(set-global-staff-size 19.2 )
 
 soprano = \relative bes' {
   \global
   R1*7 \break
+  \markChanson "Couplets"
   bes4  bes4  c8  bes8  a8  g8 | % 8
   f2.  f4 | % 9
 
@@ -21,6 +23,7 @@ soprano = \relative bes' {
   f2.  f4 | % 13
   g4  bes4  bes4  a4 | % 14
   bes2  bes2  \bar "||" \break
+  \markChanson "Refrain"
   \repeat volta 2 {
     f'4.  es8  d8 [  es8  f8  d8 ] | % 16
     es4.  d8  c8 [  d8  es8  c8 ] | % 17
@@ -125,7 +128,7 @@ LyricsTwo = \strophemode 2 ##t \lyricmode {
 LyricsThree = \strophemode 3 ##f \lyricmode {
   Il est pauvre et si pe -- tit
   dans les bras de sa mè -- re_:
-  C'est le si -- gne que choi -- sit
+  c'est le si -- gne que choi -- sit
   le Sei -- gneur de la ter -- re_!
 }
 
@@ -147,27 +150,14 @@ trompette = \relative bes' {
    g'8 [  f8  es8  d8 ]  c8 [  d8  es8  f8 ] | % 5
    d8 [  c8 ]  bes4  bes16 [  bes16  bes16  bes16 ]  bes4 ~ | % 6
   bes1  \bar "||" | % 7
-  R1 | % 8
-  R1 | % 9
-
-  \barNumberCheck #10
-  R1 | % 10
-  R1 | % 11
-   R1 | % 12
-  R1 | % 13
-  R1 | % 14
-  R1 | % 15
-   \repeat volta 2 {
-    R1 | % 16
-    R1 | % 17
+  R1*10
      f'4.  es8  d8 [  es8  f8  d8 ] | % 18
      es4.  d8  c8 [  d8  es8  c8 ]  | % 19
 
-    \barNumberCheck #20
-     d4.  c8  bes8 [  c8  d8  bes8 ] | % 20
+    d4.  c8  bes8 [  c8  d8  bes8 ] | % 20
      c4  bes4  a4  d8 [  c8 ] | % 21
      bes4  es8 [  d8 ]  c4  f8 [  es8 ] | % 22
-     d8 [  d16  d16 ]  d8 [  d8 ]  d2 }
+     d8 [  d16  d16 ]  d8 [  d8 ]  d2
 }
 
 \tocItem \markup "Le Carillon des Anges"
@@ -175,7 +165,7 @@ trompette = \relative bes' {
   \header {
     title = "LE CARILLON DES ANGES"
     poet = "Paroles : Marie-Antoinette Noury"
-    composer = "Charles Wood (1866-926)"
+    composer = \wood
     
   }
   <<

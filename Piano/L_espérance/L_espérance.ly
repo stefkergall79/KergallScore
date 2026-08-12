@@ -1,14 +1,6 @@
-\version "2.24.3"
-
-\header {
-  title = "L'ESPÉRANCE"
-  % Supprimer le pied de page par défaut
-  tagline = ##f
-}
-
-\paper {
-  #(set-paper-size "a4")
-}
+\version "2.26.0"
+\include "settings.ily"
+\include "composers.ily"
 
 global = {
   \key f \major
@@ -63,18 +55,18 @@ a tou -- jours sa fran -- ge d'or.''
 }
 
 \score {
+  \header {
+    title = "L'ESPÉRANCE"
+  }
   \new PianoStaff \with {
-    instrumentName = ""
-  } <<
-    \new Staff = "right" \with {
       midiInstrument = "acoustic grand"
-    } \right \addlyrics { \verse }
-    \new Staff = "left" \with {
-      midiInstrument = "acoustic grand"
-    } { \clef bass \left }
+    } <<
+    \new Staff \right
+    \addlyrics { \verse }
+    \new Staff \with {
+      \clef bass 
+    } \left
   >>
   \layout { }
-  \midi {
-    \tempo 4=80
-  }
+  \midi {\tempo 4 = 80 }
 }
