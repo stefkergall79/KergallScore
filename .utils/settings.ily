@@ -10,6 +10,13 @@
   }
 }
 
+\layout {
+  \context{
+    \Staff
+    \RemoveAllEmptyStaves
+  }
+}
+
 tocItemComposer =
 #(define-music-function (titre compositeur) (markup? markup?)
    #{

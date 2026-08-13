@@ -502,7 +502,7 @@ PartPThreeVoiceSix = \relative g, {
       >>
     >>
   >>
-  \layout {\context{\Staff \RemoveAllEmptyStaves}}
+  \layout {}
   \midi { \tempo 4 = 80 }
 }
 
