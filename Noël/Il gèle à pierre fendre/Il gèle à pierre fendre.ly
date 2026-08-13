@@ -150,7 +150,7 @@ choirPart = \new ChoirStaff <<
   \header {
     title = "IL GÈLE À PIERRE FENDRE"
     arranger = \markup {"Harmonisation : " \jrevert}
-    composer = "Mélodie : Noël de Saintonge"
+    composer = "Noël de Saintonge"
     poet = \markup {"Paroles :" \coutelle}
   }
   <<
