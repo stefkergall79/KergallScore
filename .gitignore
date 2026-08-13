@@ -2,7 +2,7 @@ __pycache__
 y_Assemblages/**/*.midi
 z_Commandes/**/*.midi
 .obsidian
-.prog/lilypond-2.26.0
+lilypond-2.26.0
 *.AppImage
 *-mscz.pdf
 *.mscz
