@@ -19,4 +19,4 @@ Vous aimeriez **regrouper** sur une seule feuille un chant que vous possédez su
 Vous avez besoin d'un **dossier** complet pour votre chorale, ***avec une table des matières*** ?\
 Vous cherchez un **éditeur** à votre dernière composition ?
 
-**KergallScore** propose des solutions. [Envoyez un mail](mailto:stef.kergall@gmail.com) pour profiter au plus vite de ces partitions !
+**KergallScore** propose des solutions. [Envoyez un mail](mailto:stef.kergall@gmail.com) pour profiter au plus vite de ces partitions
