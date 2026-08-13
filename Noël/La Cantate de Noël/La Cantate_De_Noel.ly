@@ -708,7 +708,7 @@ bassLyrics = \lyricmode {
     } \lyricsto "bass"  \bassLyrics
     
   >>
-  \layout {\context{\Staff \RemoveAllEmptyStaves }}
+  \layout {}
   \midi { \tempo 4 = 120 }
 }
 

@@ -207,7 +207,7 @@ trompette = \relative bes' {
       >>
     >>
   >>    
-  \layout {\context{\Staff \RemoveAllEmptyStaves }}
+  \layout {}
   \midi { \tempo 4 = 120 }
 }
 

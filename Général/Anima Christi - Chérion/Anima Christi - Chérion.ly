@@ -225,6 +225,6 @@ ChoeurPart = \new ChoirStaff <<
 		composer = \cherion
 	}
 	\ChoeurPart
-	\layout {\context{\Staff \RemoveAllEmptyStaves }}
+	\layout {}
 	\midi { \tempo 4=70 }
 }

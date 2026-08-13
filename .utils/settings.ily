@@ -12,8 +12,7 @@
 
 \layout {
   \context{
-    \Staff
-    \RemoveAllEmptyStaves
+    \Staff \RemoveAllEmptyStaves
   }
 }
 

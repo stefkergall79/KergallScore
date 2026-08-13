@@ -135,6 +135,6 @@ verseTwo = \strophemode #2 ##t #1 \lyricmode {
         \new Voice = "bass" { \voiceTwo \bass }
       >>
     >>
-    \layout {\context{\Staff \RemoveAllEmptyStaves}}
+    \layout {}
     \midi {\tempo 4=100}
   }

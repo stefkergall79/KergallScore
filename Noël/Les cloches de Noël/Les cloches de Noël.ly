@@ -200,6 +200,6 @@ choirPart =  \new ChoirStaff <<
     \sopranoVoicePart
     \choirPart
   >>
-  \layout {\context{\Staff \RemoveAllEmptyStaves}}
+  \layout {}
   \midi {\tempo 2=100 }
 }

@@ -1,6 +1,6 @@
 \version "2.26.0"
-\include "composers.ily"
 \include "settings.ily"
+\include "composers.ily"
 
 #(set-global-staff-size 18.4)
 global = {
@@ -291,8 +291,8 @@ bassLyrics = \lyricmode {
       midiInstrument = "choir aahs"
       instrumentName = "T."
       \consists "Ambitus_engraver"
+	  \clef "treble_8"
     } {
-      \clef "treble_8"
       \new Voice = "tenor" \transpose f e { \tenorMelody}
     }
     \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
@@ -301,9 +301,9 @@ bassLyrics = \lyricmode {
     \new Staff \with {
       midiInstrument = "choir aahs"
       instrumentName = "B."
+      \clef bass
       \consists "Ambitus_engraver"
     } {
-      \clef bass
       \new Voice = "bass" \transpose f e {\bassMelody}
     }
     \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER

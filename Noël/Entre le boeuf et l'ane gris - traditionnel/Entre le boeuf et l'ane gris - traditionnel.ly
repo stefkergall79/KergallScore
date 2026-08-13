@@ -102,7 +102,7 @@ verseFour = \strophemode 4 ##t \lyricmode {
         \new Voice = "bass" { \voiceTwo \bass }
       >>
     >>
-    \layout {\context{\Staff \RemoveAllEmptyStaves}}
+    \layout {}
     \midi {\tempo 4=70 }
   }
 

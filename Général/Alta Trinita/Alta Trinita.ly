@@ -73,7 +73,7 @@ verse = \lyricmode {
         \new Voice = "bass" { \voiceTwo \bass }
       >>
     >>
-    \layout {\context{\Staff \RemoveAllEmptyStaves}}
+    \layout {}
     \midi {\tempo 2=80}
 }
 \markup \column {

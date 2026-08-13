@@ -601,8 +601,7 @@ pianoPart = \new PianoStaff \with {
     \pianoPart
   >>
   \layout {\context{
-    \Staff \RemoveAllEmptyStaves
-    \omit DynamicText
+    \Staff \omit DynamicText
   }}
   \midi { \tempo 4=90 }
 }

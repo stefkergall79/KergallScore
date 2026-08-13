@@ -222,7 +222,7 @@ PartPThreeVoiceTwo = \relative g {
        >>
     >>
   >>
-  \layout {\context{\Staff \RemoveAllEmptyStaves}}
+  \layout {}
   \midi { \tempo 4 = 180 }
 }
 
