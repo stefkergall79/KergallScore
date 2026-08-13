@@ -1,5 +1,5 @@
 \version "2.26.0"
-\include "../../settings.ily"
+\include "settings.ily"
 #(ly:set-option 'backend 'cairo)
 #(set-global-staff-size 15)
 
