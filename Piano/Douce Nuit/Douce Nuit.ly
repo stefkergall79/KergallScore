@@ -83,7 +83,7 @@ scoreAFluteIIIPart = \new Staff \with {
     \scoreAFluteIIPart
     \scoreAFluteIIIPart
   >>
-  \layout { }
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi { \tempo 4=85 }
 }
 

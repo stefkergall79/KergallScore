@@ -195,6 +195,6 @@ orguePart = \new PianoStaff \with {
     \choirPart
     \orguePart
   >>
-  \layout {}
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi { \tempo 4=85 }
 }

@@ -172,6 +172,6 @@ pianoPart = \new PianoStaff \with {
     \sopranoVoicePart
     \pianoPart
   >>
-  \layout { }
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi { \tempo 4 = 80 }
 }

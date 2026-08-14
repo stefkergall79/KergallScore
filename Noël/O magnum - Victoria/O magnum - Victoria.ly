@@ -309,6 +309,6 @@ bassLyrics = \lyricmode {
     \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "bass" \bassLyrics
   >>
-  \layout {}
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {\tempo 4=95 }
 }

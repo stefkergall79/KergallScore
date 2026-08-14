@@ -96,7 +96,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
       \new Lyrics \lyricmode {
         \repeat unfold 12 \skip1 A1. -- men,2 A1 -- men.1 }
     >>
-    \layout { }
+    \layout {\context{\Staff \RemoveAllEmptyStaves }}
     \midi {\tempo 2=60 }
 }
 

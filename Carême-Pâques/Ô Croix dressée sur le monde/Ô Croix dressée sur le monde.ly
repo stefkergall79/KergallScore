@@ -71,6 +71,6 @@ verseFour = \strophemode #4 ##t \lyricmode {
   \addlyrics {\verseTwo}
   \addlyrics {\verseThree}
   \addlyrics {\verseFour}
-  \layout {}
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi { \tempo 4.=60 }
 }

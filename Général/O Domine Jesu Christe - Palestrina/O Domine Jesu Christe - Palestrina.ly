@@ -84,7 +84,7 @@ verse = \lyricmode {
       \new Voice = "bass" { \voiceTwo \basse }
     >>
   >>
-  \layout { }
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {\tempo 4=90}
 }
 

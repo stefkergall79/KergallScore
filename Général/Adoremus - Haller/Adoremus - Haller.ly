@@ -118,6 +118,6 @@ versete = \lyricmode {
     >>
     \new Lyrics\versete
   >>
-  \layout { }
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {\tempo 4=90 }
 }

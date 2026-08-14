@@ -60,6 +60,6 @@ Cal -- mez pour moi l'ou -- ra -- gan.
       \clef bass
     } \left
   >>
-  \layout { }
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {\tempo 4 = 80 }
 }

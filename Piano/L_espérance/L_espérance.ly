@@ -67,6 +67,6 @@ a tou -- jours sa fran -- ge d'or.''
       \clef bass 
     } \left
   >>
-  \layout { }
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {\tempo 4 = 80 }
 }

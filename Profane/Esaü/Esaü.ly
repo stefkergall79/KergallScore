@@ -67,6 +67,6 @@ verse = \lyricmode {
     \addlyrics { \verse }
     \new Staff \with {\clef bass } \left
   >>
-  \layout { }
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi { \tempo 4=170 }
 }

@@ -62,6 +62,6 @@ verse = \lyricmode {
       instrumentName = "H."
     } << \clef bass \new Voice = "tenor" \tenor >>
   >>
-  \layout { }
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi { \tempo 4=75}
 }

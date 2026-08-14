@@ -95,7 +95,7 @@ verseThree = \strophemode #5 ##f \lyricmode {
         \new Voice = "tenor" { \voiceOne \tenor }
         \new Voice = "bass" { \voiceTwo \bass }
   >> >>
-  \layout { }
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {\tempo 4=100}
 }
 

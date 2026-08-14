@@ -224,6 +224,6 @@ scoreAHarpsichordPart = \new PianoStaff \with {
     \scoreAViolinIIIPart
     \scoreAHarpsichordPart
   >>
-  \layout { }
+  \layout {}
   \midi { \tempo 4=60 }
 }

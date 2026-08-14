@@ -168,6 +168,6 @@ pianoPart = \new PianoStaff \with {
     \choirPart
     \pianoPart
   >>
-  \layout {}
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {}
 }

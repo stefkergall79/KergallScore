@@ -78,7 +78,7 @@ verse = \lyricmode {
         \override VerticalAxisGroup.staff-affinity = #CENTER
       } \lyricsto "alto" \verse
     >>
-    \layout { }
+    \layout {\context{\Staff \RemoveAllEmptyStaves }}
     \midi { \tempo 4=100 }
   }
 \markup \column {

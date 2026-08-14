@@ -157,6 +157,6 @@ choirPart = \new ChoirStaff <<
     \soloPart
     \choirPart
   >>
-  \layout {}
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {\tempo 8=80}
 }

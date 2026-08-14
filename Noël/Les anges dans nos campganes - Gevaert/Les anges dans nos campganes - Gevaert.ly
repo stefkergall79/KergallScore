@@ -209,6 +209,6 @@ verseBassThree = \strophemode 3 ##f \lyricmode {
     } \lyricsto "bass" \verseBassThree
     
   >>
-  \layout {}
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {\tempo 2=60 }
 }

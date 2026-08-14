@@ -165,6 +165,6 @@ verse_bass = \lyricmode {
             \override VerticalAxisGroup.staff-affinity = #CENTER
         } \lyricsto "bass" \verse_bass
     >>
-    \layout { }
+    \layout {\context{\Staff \RemoveAllEmptyStaves }}
     \midi { \tempo 4=85 }
 }

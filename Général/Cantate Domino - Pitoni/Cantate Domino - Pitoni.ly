@@ -142,6 +142,6 @@ verseSoprano = \lyricmode {
     } \lyricsto "bass" \verseBass
     
   >>
-  \layout {}
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {\tempo 2.=50 }
 }

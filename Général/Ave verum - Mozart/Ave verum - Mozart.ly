@@ -407,6 +407,6 @@ pianoPart = \new PianoStaff \with {
     \choirPart
     \pianoPart
   >>
-  \layout {}
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi { \tempo 4=80 }
 }

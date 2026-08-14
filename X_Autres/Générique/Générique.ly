@@ -289,6 +289,6 @@ fullMusic = \transpose c e {
     composer = \kergall
   }
   \fullMusic
-  \layout {\context{\Staff \RemoveAllEmptyStaves} }
+  \layout {\context{\Staff \RemoveAllEmptyStaves}}
   \midi { \tempo 4=170 }
 }

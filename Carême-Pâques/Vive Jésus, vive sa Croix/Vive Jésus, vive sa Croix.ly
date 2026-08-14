@@ -62,7 +62,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
   \addlyrics { \verseOne }
   \addlyrics { \verseTwo }
   \addlyrics { \verseThree }
-  \layout { }
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {\tempo 4.=70}
 }
   

@@ -132,7 +132,7 @@ instrument = "acoustic grand"
         } { \clef bass \new Voice = "bass" \bass }
         \addlyrics { \bassVerse }
     >>
-    \layout { }
+    \layout {\context{\Staff \RemoveAllEmptyStaves }}
     \midi { \tempo 4=70 }
 }
 

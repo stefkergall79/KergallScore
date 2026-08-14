@@ -77,7 +77,7 @@ verst = \lyricmode {
     \new Lyrics \with { \override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "tenor" \verst
   >>
-  \layout { }
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {\tempo 4=85 }
 }
 
