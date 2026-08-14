@@ -29,7 +29,7 @@ alto = \fixed c' {
 
 tenor = \fixed c {
   \global
-  s4 \skip1 * 8
+  s4 R1 * 8
   d'2 4 4 c'2 d' d'8[c'] b4 4 a b(a8)[g] fis4
   b4 4 a b c' b(a) b
   g d' c' b a d'(cis') d'4
@@ -38,7 +38,7 @@ tenor = \fixed c {
 
 bass = \fixed c {
   \global
-  s4 \skip1 * 8
+  s4 R1 * 8
   b4(g) fis g a2 g d4 dis e a, d2 4 r
   s1 * 3 r2 r4 g,4 a, b, c cis d(dis) e(a,) d2 2 <g g,>
 }
@@ -119,6 +119,6 @@ verseFour = \strophemode 4 ##t \lyricmode {
       \new Voice = "bass" { \voiceTwo \bass }
     >>
   >>
-  \layout {}
+  \layout {\context{\Staff \RemoveAllEmptyStaves}}
   \midi {\tempo 4=110 }
 }

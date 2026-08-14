@@ -66,8 +66,7 @@
             "type": "shell",
             "command": "cp",
             "args": [
-                "${workspaceFolder}/.utils/settings.ily",
-                "${workspaceFolder}/.utils/composers.ily",
+                "${workspaceFolder}/.utils/*",
                 "${workspaceFolder}/.prog/lilypond-2.26.0/share/lilypond/2.26.0/ly/"
             ],
             "group": "build"
