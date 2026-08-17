@@ -95,17 +95,29 @@ versete = \lyricmode {
       \new Voice = "soprano" { \voiceOne \soprano }
       \new Voice = "alto" { \voiceTwo \alto }
     >>
-    \new Lyrics \with {\override LyricText.self-alignment-X = #LEFT
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+      \override LyricText.self-alignment-X = #LEFT
     } \lyricsto "soprano" \verseRefrain
-    \new Lyrics \with {\override LyricText.self-alignment-X = #LEFT
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+      \override LyricText.self-alignment-X = #LEFT
     } \verseOne
-    \new Lyrics \with {\override LyricText.self-alignment-X = #LEFT
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+      \override LyricText.self-alignment-X = #LEFT
     } \lyricsto "soprano" \verseTwo
-    \new Lyrics \with {\override LyricText.self-alignment-X = #LEFT
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+      \override LyricText.self-alignment-X = #LEFT
     } \lyricsto "soprano" \verseThree
-    \new Lyrics \with {\override LyricText.self-alignment-X = #LEFT
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+      \override LyricText.self-alignment-X = #LEFT
     } \lyricsto "soprano" \verseFour
-    \new Lyrics \with {\override LyricText.self-alignment-X = #LEFT
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+      \override LyricText.self-alignment-X = #LEFT
     } \verseFive
     
     \new Staff \with {
