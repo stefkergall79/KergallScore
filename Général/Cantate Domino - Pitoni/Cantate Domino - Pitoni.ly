@@ -92,17 +92,18 @@ verseExultent = \lyricmode {
   e -- xúl -- tent, e -- xúl -- tent,
 }
 
-verseBass = \lyricmode {
+verseTenor = \lyricmode {
   \repeat unfold 6 \skip1
   can -- tá -- te,
-  \repeat unfold 68 \skip1
-  \verseExultent
 }
 verseSoprano = \lyricmode {
   \repeat unfold 77 \skip1
   \verseExultent
 }
-
+verseBass = \lyricmode {
+  \repeat unfold 77 \skip1
+  \verseExultent
+}
 
 \paper {
   system-system-spacing.basic-distance = #14
@@ -137,6 +138,9 @@ verseSoprano = \lyricmode {
       \new Voice = "tenor" { \voiceOne \tenor }
       \new Voice = "bass" { \voiceTwo \bass }
     >>
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+    } \lyricsto "tenor" \verseTenor
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "bass" \verseBass
