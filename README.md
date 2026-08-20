@@ -1,4 +1,4 @@
-![KergallScore-logo](KergallScore-resized.png)
+![KergallScore-logo](.logos/KergallScore-resized.png)
 # **KergallScore**
 
 > 🌐 Une base de données musicale<br>
