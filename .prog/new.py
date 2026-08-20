@@ -338,7 +338,7 @@ class MusicTab(ctk.CTkFrame):
             "Indication de tempo": {
                 "def": "",
                 "var": ctk.StringVar(value=""),
-                "val": ["Adagio", "Presto", "Allegro", "Lento", "Andantino", "Andante", "Adagio ma non troppo"],
+                "val": ["Lento", "Adagio", "Andante", "Maestoso", "Presto", "Allegro", "Andantino", "Adagio ma non troppo"],
                 "ly":"tempo"
             },
             "Tempo du midi": {
