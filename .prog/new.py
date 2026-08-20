@@ -388,10 +388,11 @@ def Lyrics(voice, nb, to_voice: bool):
 def ChoirVars(schema: str, lyrics: int, same_lyrics: bool):
     st = ""
     parts = schema.replace("-", "")
-    for num, voice in enumerate(parts):
-        ishigh = num < math.ceil(len(schema)/2)
+    for voice in parts:
         st += (
-            f"{VOICES[voice]} = \\fixed c{"'" if ishigh else ""}"
+            f"{VOICES[voice]} = \\"
+            f"{"relative" if voice == "T" else "fixed"}"
+            f" c{"" if voice in "BH" else "'"}"
             " {\n\t\\global\n\t\n}\n"
         )
         if not same_lyrics:
