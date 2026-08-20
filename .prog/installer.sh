@@ -45,7 +45,7 @@ cd "${PROG_DIR}"
 curl -L -O "https://gitlab.com/lilypond/lilypond/-/releases/v2.26.0/downloads/lilypond-2.26.0-linux-x86_64.tar.gz"
 tar -xzf lilypond-2.26.0-linux-x86_64.tar.gz -C .
 rm lilypond-2.26.0-linux-x86_64.tar.gz
-cp "${ROOT_DIR}/.utils/settings.ily" lilypond-2.26.0/share/lilypond/2.26.0/ly/
+cp "${ROOT_DIR}/.utils/"* lilypond-2.26.0/share/lilypond/2.26.0/ly/
 echo "alias lilypond='${PROG_DIR}/lilypond-2.26.0/bin/lilypond'" >> ~/.bashrc
 
 # Musescore
