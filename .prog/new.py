@@ -84,7 +84,7 @@ class HeaderTab(ctk.CTkFrame):
         entry_filename.pack(side="left", padx=0)
         entry_filename.bind("<KeyRelease>", self.on_filename_edit)
         filename_frame.pack(pady=4, padx=20, anchor="w")
-        ctk.CTkLabel(filename_frame, text="Nom du fichier :", font=self.default_font, width=100).pack(side="left", padx=(0, 10))
+        ctk.CTkLabel(filename_frame, text="Nom du fichier", font=self.default_font, width=100).pack(side="left", padx=(0, 10))
         
         self.fields["title"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.fields["composer"]["var"].trace_add("write", self.on_title_or_composer_change)
