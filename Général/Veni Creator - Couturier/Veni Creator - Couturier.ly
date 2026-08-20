@@ -110,11 +110,11 @@ PartPTwoVoiceOne = \relative d' {
    f4 (  g4 )  g4 | % 11
    f2. | % 12
    f4  f4  f4 | % 13
-   es4  f4  g4 | % 14
+   es4 ( f4 ) g4 | % 14
    g4. (  bes8 )  a4 | % 15
    g2. | % 16
    es4  es4  es4 | % 17
-   f4  e4  f4 | % 18
+   f4 ( e4 ) f4 | % 18
    f2  e4 | % 19
 
    c2. 
