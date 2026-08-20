@@ -22,10 +22,26 @@ melodyVerse = \lyricmode {
 }
 
 
-soprano = \fixed c' {
+soprano = \relative c'' {
 	\global
 	\autoBeamOff
 	R1*32
+	bes4.\ff c8 d2 |
+	c4. bes8 c2 |
+	bes2 d4 f |
+	g ( es ) c2 |
+	bes4. c8 d2 |
+	c4. bes8 c2 |\break
+  bes ( d4 ) f |
+  d c bes2 |
+  f' ( g8 [ f ] es4 |
+  f4. ) 8 g [ f ] es4 |
+  f2 ( es8 [ d ] c4 ) |\break
+  d8 [ c ] bes4 c2 |
+  bes4. c8 d2 |
+  c4. bes8 c2 |
+  bes-^ ( d4-^ ) f-^ |
+  d-^ c-^ bes2-^\fermata |\break
 }
 sopranoVerseOne = \lyricmode {
 	\melodyVerse
@@ -52,51 +68,82 @@ tenor = \relative c' {
   c4. bes8 c2 |
   bes ( d4 ) f |
   d c bes2 |\break
+  
+  d4.\ff es8 f2 |
+  c4. 8 2 |
+  f2 d~ |
+  4 g f es |
+  d4. es8 f2 |
+  c4. 8 2 |
+  d2. 4 |
+  f es d2 |
+  r4 8. 16 es4 c |
+  r d8. 16 bes4 c |
+  r d es f~ |
+  4 d es4 4 |
+  d4. es8 f2 |
+  es4. 8 2 |
+  d2-^ f4-^ 4-^ |
+  g-^ a,-^ bes2-^\fermata |
 }
 tenorVerseOne = \lyricmode {
 	\melodyVerse
 }
 
 
-bass = {
-  \relative c {
-	  \global
-	  \autoBeamOff
-	  bes4.\p c8 d2 |
-	  c4. bes8 c2 |
-	  bes2 d4 f |
-	  g ( es ) c2 |
-	  bes4. c8 d2 |\break
-	  c4. bes8 c2 |
-    bes ( d4 ) f |
-    d c bes2 |
-    f'\cresc ( g8 [ f ] es4 |
-    f4. ) 8 g [ f ] es4 |\break
-    f2 ( es8 [ d ] c4 ) |
-    d8\dim [ c ] bes4 c2 |
-    bes4.\p c8 d2 |
-    c4. bes8 c2 |
-    bes ( d4 ) f |
-    d c bes2 |\break
-  }
-  \relative c' {
-    r2 bes4. 8 |
-    f2 4. 8 |
-    g2 d |
-    es4 c f2 |
-    d4 r bes4. 8 |
-    4 ( g ) a4. 8 |
-    bes2 f4 4 |
-    g a bes2 |
-    r4 d'8. 16 es4 c |
-    r d8. 16  bes4 c |
-    r d8 ( [ bes ] g4 a |
-    bes4. ) 8 8 [ a ] g [ f ] |
-    r2 bes4. 8 |
-    f2 4. 8 |
-    g4 bes2 a4 |
-    g a bes2
-  }
+bass = \relative c {
+  \global
+  \autoBeamOff
+  bes4.\p c8 d2 |
+  c4. bes8 c2 |
+  bes2 d4 f |
+  g ( es ) c2 |
+  bes4. c8 d2 |\break
+  c4. bes8 c2 |
+  bes ( d4 ) f |
+  d c bes2 |
+  f'\cresc ( g8 [ f ] es4 |
+  f4. ) 8 g [ f ] es4 |\break
+  f2 ( es8 [ d ] c4 ) |
+  d8\dim [ c ] bes4 c2 |
+  bes4.\p c8 d2 |
+  c4. bes8 c2 |
+  bes ( d4 ) f |
+  d c bes2 |\break
+  
+  r2 bes'4.\mf 8 |
+  f2 4. 8 |
+  g2 d |
+  es4 c f2 |
+  d4 r bes'4. 8 |
+  4 ( g ) a4. 8 |
+  bes2 f4 4 |
+  g a bes2 |
+  r4 d8. 16 es4 c |
+  r d8. 16  bes4 c |
+  r d8 ( [ bes ] g4 a |
+  bes4. ) 8 8 [ a ] g [ f ] |
+  r2 bes4. 8 |
+  f2 4. 8 |
+  g4 bes2 a4 |
+  g a bes2 |
+  
+  bes4.\ff 8 2 |
+  f4. 8 2 |
+  g d |
+  es4 ( c' a f ) |
+  r2  bes4. 8 |
+  4 ( g ) a4. 8 |
+  bes2 f4 4 |
+  g a bes2 |
+  r4 8. 16 4 4 |
+  r4 8. 16 es,4 g |
+  r bes ( g a |
+  bes4. ) 8 8 [ a ] g [ f ] |
+  bes4. 8 2 |
+  f4. 8 2 |
+  g2-^ d4-^ d-^ |
+  es-^ f-^ bes,2-^\fermata |
 }
 bassVerseOne = \lyricmode {
   \melodyVerse
@@ -152,7 +199,16 @@ rightOne = \fixed c' {
 	
 	d1 es |
 	d2 <d f> |
-	
+	<bes, g> <a, f> |
+	<f d>1 <es c> |
+	<d bes,>2 <f~ a,> |
+	f1 <d f>2 <c es> |
+	<f d> es |
+	<d f> es8 d c4 |
+	d2 c |
+	d1 <es c> |
+	<bes, d>2. <f a,>4 |
+	<d g,> <a, c> bes,2
 }
 
 rightTwo = \fixed c {
@@ -170,7 +226,18 @@ rightTwo = \fixed c {
 	bes~<bes f> |
 	g4 a bes2 |
 	
-	
+	bes1 a4. g8 a2 |
+	bes1 |
+	c'4 es2. |
+	bes1 |
+	4 g a2 |
+	s d'4 f'~ |
+	<f' bes> <c' es'> <d' bes>2 |
+	bes1~2 4 (c' |
+	bes2 ) g4 a |
+	bes2~ 8 a g f |
+	bes1~2 a |
+	s1*2
 }
 
 leftOne = \fixed c {
@@ -185,6 +252,11 @@ leftOne = \fixed c {
 	<g g,>2 <d d,> |
 	es d |
 	
+	f1 1 s1*6
+	f2 g |
+	f g |
+	f1~1~1~1 <g g,>2 <d d,> |
+	es d |
 	
 }
 
@@ -200,7 +272,14 @@ leftTwo = \fixed c, {
 	bes1 f |
 	s1 es4 f bes2 |
 	
-	
+	bes1 f g2 d |
+	es4 c f2 |
+	bes1 f  |
+	g2 f |
+	g4 a bes2 |
+	1~1~1~2 f |
+	bes1 f |
+	s1 es4 f bes2 |
 }
 
 ClavierPart = \new PianoStaff \with {
