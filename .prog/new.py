@@ -477,6 +477,7 @@ def PianoVars(staffes):
                     st += (
                         pianoPartName(nb, indice) + " = \\fixed c" +
                         ("'" if nb > len(staffes)/2 else "") + " {\n"
+                        "\t\\global\n"
                         "\t\n}\n\n"
                     )
     return st
