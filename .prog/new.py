@@ -70,7 +70,7 @@ class HeaderTab(ctk.CTkFrame):
 
         ctk.CTkLabel(self.left_frame, text="Catégorie").pack(side="top", pady=10, anchor="w")
         self.categories = self._get_categories()
-        self.category_var = ctk.StringVar(value=self.categories[0] if self.categories else "X_Autres")
+        self.category_var = ctk.StringVar(value=self.categories[0] if self.categories else "13-Autres")
         
         for cat in self.categories:
             ctk.CTkRadioButton(
@@ -266,7 +266,7 @@ class HeaderTab(ctk.CTkFrame):
             and entry.name[:2] not in ("09", "08", "99")
         ]
         categories.sort(key=str.casefold)
-        return categories or ["X_Autres"]
+        return categories
 
     def get_composers(self):
         file_composers = Path(PARTITIONS / ".utils" / "composers.ily")
@@ -682,7 +682,7 @@ class LilypondCreator(ctk.CTk):
                 values[key] = value
 
         filename = self.header_tab.get_target_filename()
-        category = self.header_tab.category_var.get().strip() or "X_Autres"
+        category = self.header_tab.category_var.get().strip()
         
         folder_name = Path(filename).stem
         target_folder = PARTITIONS / category / folder_name
