@@ -1,7 +1,6 @@
 from pathlib import Path
 import customtkinter as ctk
 import subprocess
-import math
 
 PARTITIONS = Path(__file__).resolve().parent.parent
 NUMBERS = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
@@ -17,6 +16,11 @@ class HeaderTab(ctk.CTkFrame):
         self.default_font = app.default_font
         self.filename_modified = False
 
+        self.left_frame = ctk.CTkFrame(self)
+        self.left_frame.pack(side="left", fill="both", expand=True, anchor="n")
+
+        self.picker_fields = ("composer", "poet", "arranger")
+
         self.fields = {
             "dedication":   "Dédicace",
             "title":        "Titre",
@@ -27,13 +31,13 @@ class HeaderTab(ctk.CTkFrame):
             "poet":         "Paroles",
             "meter":        "Mètre",
             "arranger":     "Arrangeur",
-            "copyright":    "Copyrights (en première page)",
-            "tagline":      "Slogan (en dernière page)"
+            "copyright":    "Copyrights (1ère page)",
+            "tagline":      "Slogan (dernière page)"
         }
         self.available_fields = []
         
         for field in self.fields:
-            frame = ctk.CTkFrame(self, fg_color="transparent")
+            frame = ctk.CTkFrame(self.left_frame, fg_color="transparent")
             self.fields[field] = {
                 "name": self.fields[field],
                 "var": ctk.StringVar(),
@@ -41,14 +45,10 @@ class HeaderTab(ctk.CTkFrame):
                 "remove": ctk.CTkButton(frame, text="-", width=28, height=28, fg_color="#E57373", hover_color="#EF9A9A", command=lambda k=field: self.remove_field(k))
             }
 
-            if field == "composer":
-                self.fields[field]["entry"] = ctk.CTkComboBox(
-                    frame, width=260, height=28, font=self.default_font,
-                    variable=self.fields[field]["var"],
-                    values=list(self.get_composers().keys())
-                )
-            else:
-                self.fields[field]["entry"] = ctk.CTkEntry(frame, width=260, height=28, font=self.default_font, textvariable=self.fields[field]["var"])
+            self.fields[field]["entry"] = ctk.CTkEntry(frame, width=260, height=28, font=self.default_font, textvariable=self.fields[field]["var"])
+            if field in self.picker_fields:
+                self.fields[field]["entry"].bind("<FocusIn>", lambda _e, k=field: self._set_picker_target(k))
+
             self.fields[field]["remove"].pack(side="left", padx=10)
             self.fields[field]["entry"].pack(side="left", padx=0)
             ctk.CTkLabel(frame, text=self.fields[field]["name"], font=self.default_font
@@ -61,24 +61,24 @@ class HeaderTab(ctk.CTkFrame):
 
         self.add_field_var = ctk.StringVar()
         self.add_field_menu = ctk.CTkOptionMenu(
-            self, values=[self.fields[key]["name"] for key in self.available_fields], variable=self.add_field_var,
+            self.left_frame, values=[self.fields[key]["name"] for key in self.available_fields], variable=self.add_field_var,
             width=40, font=self.default_font,command=self.on_optional_field_selected
         )
         self.add_field_menu.set("+")
         self.add_field_menu.pack(padx=10, pady=10, anchor="w")
 
-        ctk.CTkLabel(self, text="Catégorie").pack(side="top", pady=10, anchor="w")
+        ctk.CTkLabel(self.left_frame, text="Catégorie").pack(side="top", pady=10, anchor="w")
         self.categories = self._get_categories()
         self.category_var = ctk.StringVar(value=self.categories[0] if self.categories else "X_Autres")
         
         for cat in self.categories:
             ctk.CTkRadioButton(
-                self, text=cat[3:], variable=self.category_var, value=cat,
+                self.left_frame, text=cat[3:], variable=self.category_var, value=cat,
                 font=self.default_font, command=self.on_category_change,
                 radiobutton_height=15, radiobutton_width=15
             ).pack(side="top", padx=5, pady=2, anchor="w")
         
-        filename_frame = ctk.CTkFrame(self, fg_color="transparent")
+        filename_frame = ctk.CTkFrame(self.left_frame, fg_color="transparent")
         self.filename_var = ctk.StringVar()
         entry_filename = ctk.CTkEntry(filename_frame, width=260, height=28, font=self.default_font, textvariable=self.filename_var)
         entry_filename.pack(side="left", padx=0)
@@ -89,6 +89,76 @@ class HeaderTab(ctk.CTkFrame):
         self.fields["title"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.fields["composer"]["var"].trace_add("write", self.on_title_or_composer_change)
 
+        self.build_composer_picker()
+
+    def build_composer_picker(self):
+        self.composers = self.get_composers()
+        self.composer_entries = sorted(
+            ((key, name, self._composer_surname(name)) for key, name in self.composers.items()),
+            key=lambda entry: entry[2]
+        )
+
+        self.picker_frame = ctk.CTkFrame(self)
+        self.picker_target = "composer"
+
+        self.picker_label = ctk.CTkLabel(self.picker_frame, text=self.fields[self.picker_target]["name"], font=self.default_font)
+        self.picker_label.pack(side="top", padx = 5, pady=5, anchor="w")
+
+        letters_frame = ctk.CTkFrame(self.picker_frame, fg_color="transparent")
+        letters_frame.pack(side="top", anchor="w")
+
+        columns = 6
+        letters_with_composers = {entry[2][:1].upper() for entry in self.composer_entries}
+        for i, letter in enumerate("ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
+            has_composers = letter in letters_with_composers
+            ctk.CTkButton(
+                letters_frame, text=letter, width=30, height=28, font=self.default_font,
+                state="normal" if has_composers else "disabled",
+                fg_color=None if has_composers else "#4a4a4a",
+                text_color_disabled="#8a8a8a",
+                command=lambda l=letter: self.show_composers_for_letter(l)
+            ).grid(row=i // columns, column=i % columns, padx=(5, 0), pady=2)
+
+        self.composer_results = ctk.CTkFrame(self.picker_frame, width=260, fg_color="transparent")
+        self.composer_results.pack(side="top", fill="x", pady=(10, 0))
+
+        self.show_composer_picker()
+
+    def show_composer_picker(self):
+        if not self.picker_frame.winfo_ismapped():
+            self.picker_frame.pack(side="left", fill="both", expand=True, padx=(20, 0), anchor="n")
+
+    def hide_composer_picker(self):
+        self.picker_frame.pack_forget()
+
+    def _set_picker_target(self, key):
+        self.picker_target = key
+        self.picker_label.configure(text=self.fields[key]["name"])
+
+    def _active_picker_fields(self):
+        return [key for key in self.picker_fields if self.fields[key]["frame"].winfo_manager() == "pack"]
+
+    def show_composers_for_letter(self, letter):
+        for widget in self.composer_results.winfo_children():
+            widget.destroy()
+
+        matches = [(key, name) for key, name, surname in self.composer_entries if surname[:1].upper() == letter]
+
+        if not matches:
+            ctk.CTkLabel(self.composer_results, text="Aucun compositeur", font=self.default_font).pack(anchor="w", pady=2)
+            return
+
+        for key, name in matches:
+            ctk.CTkButton(
+                self.composer_results, text=name.strip('"'), font=self.default_font, anchor="w",
+                width=220, height=28,
+                command=lambda k=key: self.fields[self.picker_target]["var"].set(k)
+            ).pack(anchor="w", pady=2)
+
+    def _composer_surname(self, name):
+        before_paren = name.strip('"').split("(")[0].strip()
+        words = before_paren.split()
+        return words[-1].lower() if words else before_paren.lower()
 
     def set_instrument_with_category(self, parts, *choice):
         for instrument in parts:
@@ -114,12 +184,14 @@ class HeaderTab(ctk.CTkFrame):
     def build_default_filename(self):
         title = self.fields["title"]["var"].get().strip()
         composer = self.fields["composer"]["var"].get().strip()
-        if title and composer:
-            return f"{title} - {composer}.ly"
+        if composer and composer[0] == "\\":
+            composer = composer[1:].title()
+            if title:
+                return f"{title} - {composer}"
         if title:
-            return f"{title}.ly"
+            return f"{title}"
         if composer:
-            return f"Sans titre - {composer}.ly"
+            return f"Sans titre - {composer}"
         return ""
 
     def on_title_or_composer_change(self, *_args):
@@ -155,6 +227,10 @@ class HeaderTab(ctk.CTkFrame):
         self.add_field_menu.configure(values=updated_values)
         self.add_field_var.set("+")
 
+        if selected_key in self.picker_fields:
+            self._set_picker_target(selected_key)
+            self.show_composer_picker()
+
     def remove_field(self, key: str):
         field_info = self.fields[key]
         field_info["frame"].pack_forget()
@@ -166,6 +242,13 @@ class HeaderTab(ctk.CTkFrame):
         updated_values = [self.fields[key]["name"] for key in self.available_fields]
         self.add_field_menu.configure(values=updated_values)
         self.add_field_var.set("+")
+
+        if key in self.picker_fields:
+            remaining = self._active_picker_fields()
+            if not remaining:
+                self.hide_composer_picker()
+            elif self.picker_target == key:
+                self._set_picker_target(remaining[0])
 
     def get_target_filename(self) -> str:
         filename = self.filename_var.get().strip()
@@ -571,7 +654,7 @@ class LilypondCreator(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.title("Assistant de création de partition Lilypond")
-        self.geometry("500x650")
+        self.geometry("700x600")
 
         self.default_font = ("Arial", 12)
         self.alert_same_path = True
@@ -659,7 +742,11 @@ class LilypondCreator(ctk.CTk):
                 "\t\\header {\n"
             )
             for key, val in values.items():
-                if key == "composer" and val != "" and val[0] == "\\":
+                if key in self.header_tab.picker_fields and val != "" and val[0] == "\\":
+                    if key == "poet":
+                        val = '\\markup {"Paroles :" ' + val + '}'
+                    elif key == "arranger":
+                        val = '\\markup {"Harmonisation :" ' + val + '}'
                     content += f'\t\t{key} = {val}\n'
                 else:
                     content += f'\t\t{key} = "{val.upper() if key == "title" else val}"\n'
