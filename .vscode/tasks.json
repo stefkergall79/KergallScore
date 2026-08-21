@@ -22,10 +22,7 @@
         {
             "label": "New",
             "type": "shell",
-            "command": "python3",
-            "args": [
-                "${workspaceFolder}/.prog/new.py"
-            ],
+            "command": "${workspaceFolder}/.prog/new.py",
             "group": "build"
         },
         {
