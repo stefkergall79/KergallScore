@@ -85,7 +85,7 @@ rightOne = \fixed c' {
   <e g>2 1 |
   <d bes>2 <g bes>1 |
   <f a>2. a4 <<{d'4 cis'}\\{g2}>> |
-  d'4 e' <<{f'2 e'}\\{a4 d' cis' bes}>> |
+  d'4 e' <<{f'2 e'}\\{a4 d' cis' a}>> |
   <f a d'>1 r2 |
   }
   }}}\bar ":|."
@@ -127,21 +127,21 @@ leftOne = \fixed c {
 	bes g a2 a, |
 	d1 d,2 |
 	
-	d4\2 cis d e f\3 g |
-	a g a e\2 cis a, |
-	f\2 e f g a\3 bes |
-	c' g e\4 g c e |
-	g\2 fis g a bes\3 c' |
-	d' a f\4 a d f\2 |
-	bes, f bes a g bes\2 |
-	a bes a g f\1 e |
-	d\1 a, f,\4 a, d, f, |
-	a,\2 e a\2 g\1 f e |
-	f\1 c a,\4 c f, a, |
-	c\2 bes, c d e\3 f |
-	g d\2 bes,\4 d g, bes, |
-	d e d c\1 bes, a, |
-	bes, g,\5 a g a a, |
+	d4-2 cis d e f-3 g |
+	a g a e-2 cis a, |
+	f-2 e f g a-3 bes |
+	c' g e-4 g c e |
+	g-2 fis g a bes-3 c' |
+	d' a f-4 a d f-2 |
+	bes, f bes a g bes-2 |
+	a bes a g f-1 e |
+	d-1 a, f,-4 a, d, f, |
+	a,-2 e a-2 g-1 f e |
+	f-1 c a,-4 c f, a, |
+	c-2 bes, c d e-3 f |
+	g d-2 bes,-4 d g, bes, |
+	d e d c-1 bes, a, |
+	bes, g,-5 a g a a, |
 	d' a f a d2
 }
 
