@@ -9,9 +9,9 @@
 
 |   | Avant | Après |
 | --- | --- | --- |
-| **Relooker** une vieille partition, photocopiée plusieurs fois, bricolée avec des scans sur LibreOffice ? | ![Venez mes enfants ancienne version](Noël/Venez%20mes%20enfants/cache/Venez_mes_enfants-old.png) | ![Venez mes enfants moderne](Noël/Venez%20mes%20enfants/cache/Venez%20mes%20enfants.png) |
-| **Ecouter** ce que donnerait un chant dont vous n'avez que le pdf ? | ![Image Et incarnatus est polyphonique](Général/Credo%20III/cache/et_incarnatus_est.jpg) | ![Lecture du fichier midi du Et incarnatus est](Général/Credo%20III/cache/et_incarnatus_est_musique.jpg) |
-| **Harmoniser** une mélodie trouvée par hasard ? | ![Noble époux de Marie mélodique](Général/Noble-époux-de-Marie/cache/Noble%20époux%20de%20Marie-old.png) | ![Noble époux de Marie harmonisé](Général/Noble-époux-de-Marie/cache/Noble-époux-de-Marie.png) |
+| **Relooker** une vieille partition, photocopiée plusieurs fois, bricolée avec des scans sur LibreOffice ? | ![Venez mes enfants ancienne version](04-Noël/Venez%20mes%20enfants/cache/Venez_mes_enfants-old.png) | ![Venez mes enfants moderne](04-Noël/Venez%20mes%20enfants/cache/Venez%20mes%20enfants.png) |
+| **Ecouter** ce que donnerait un chant dont vous n'avez que le pdf ? | ![Image Et incarnatus est polyphonique](01-Général/Credo%20III/cache/et_incarnatus_est.jpg) | ![Lecture du fichier midi du Et incarnatus est](01-Général/Credo%20III/cache/et_incarnatus_est_musique.jpg) |
+| **Harmoniser** une mélodie trouvée par hasard ? | ![Noble époux de Marie mélodique](01-Général/Noble-époux-de-Marie/cache/Noble%20époux%20de%20Marie-old.png) | ![Noble époux de Marie harmonisé](01-Général/Noble-époux-de-Marie/cache/Noble-époux-de-Marie.png) |
 
 ## Ou encore...
 
