@@ -1,6 +1,6 @@
 __pycache__
-y_Assemblages/**/*.midi
-z_Commandes/**/*.midi
+08-Assemblages/**/*.midi
+99-Commandes/**/*.midi
 .obsidian
 lilypond-2.26.0
 *.AppImage

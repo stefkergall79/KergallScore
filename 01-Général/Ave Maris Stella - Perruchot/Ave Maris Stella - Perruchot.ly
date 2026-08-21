@@ -77,7 +77,7 @@ verseThree = \strophemode #6 ##f \lyricmode {
   \fill-line { \null \perruchot}
   \vspace #0.8
   \fill-line {
-    \epsfile #X #70 #"../../Général/Ave Maris Stella - Perruchot/cache/Ave Maris Stella.png"
+    \epsfile #X #70 #"../../01-Général/Ave Maris Stella - Perruchot/cache/Ave Maris Stella.png"
   }
   \vspace #1
 }
