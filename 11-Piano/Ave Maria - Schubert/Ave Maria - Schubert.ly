@@ -149,10 +149,7 @@ octave =
   (parser location note)
   (ly:music?)
   #{
-    <<
-      \transpose c c, { $note }
-      $note
-    >>
+    \oct $note
     r8
   #})
 

@@ -15,6 +15,15 @@ rit = #(make-music 'CrescendoEvent
                    'span-type 'text
                    'span-text (markup #:italic "rit."))
 
+oct = #(define-music-function
+  (parser location note) (ly:music?)
+  #{
+    <<
+      \transpose c c, { $note }
+      $note
+    >>
+  #})
+
 tocItemComposer =
 #(define-music-function (titre compositeur) (markup? markup?)
    #{
