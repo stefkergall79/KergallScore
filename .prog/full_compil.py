@@ -1,18 +1,13 @@
+#!/usr/bin/env python3
 from pathlib import Path
 import subprocess
-HERE = Path(__file__).parent.resolve()
+HERE = Path(__file__).parent.parent.resolve()
 
-for cat in (
-    "Carême-Pâques",
-    "Général",
-    "Noël",
-    "Piano",
-    "Profane",
-    "X_Autres",
-    "y_Assemblages",
-    "z_Commandes"
-):
-    for score in Path(HERE / cat).iterdir():
+categs = list(Path(HERE).iterdir())
+print(str(categs))
+
+for cat in [c for c in categs if c.is_dir()]:
+    for score in [c for c in cat.iterdir() if c.is_dir()]:
         for file in score.iterdir():
             if file.suffix == ".ly":
                 print(file)
