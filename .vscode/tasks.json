@@ -16,9 +16,9 @@
         {
             "label": "Save",
             "type": "shell",
-            "command": "python3",
+            "command": "${workspaceFolder}/.prog/save.py",
             "args": [
-                "${workspaceFolder}/.prog/save.py"
+                
             ],
             "group": "build"
         },
