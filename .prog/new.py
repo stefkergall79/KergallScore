@@ -73,7 +73,7 @@ class HeaderTab(ctk.CTkFrame):
         
         for cat in self.categories:
             ctk.CTkRadioButton(
-                self, text=cat, variable=self.category_var, value=cat,
+                self, text=cat[3:], variable=self.category_var, value=cat,
                 font=self.default_font, command=self.on_category_change,
                 radiobutton_height=15, radiobutton_width=15
             ).pack(side="top", padx=5, pady=2, anchor="w")
@@ -178,9 +178,8 @@ class HeaderTab(ctk.CTkFrame):
     def _get_categories(self) -> list[str]:
         categories = [
             entry.name for entry in PARTITIONS.iterdir()
-            if entry.is_dir()
-            and entry.name[0].isupper()
-            and entry.name != "Grégorien"
+            if entry.name[:2].isdecimal()
+            and entry.name[:2] not in ("09", "08", "99")
         ]
         categories.sort(key=str.casefold)
         return categories or ["X_Autres"]
@@ -660,7 +659,7 @@ class LilypondCreator(ctk.CTk):
                 "\t\\header {\n"
             )
             for key, val in values.items():
-                if key == "composer" and val[0] == "\\":
+                if key == "composer" and val != "" and val[0] == "\\":
                     content += f'\t\t{key} = {val}\n'
                 else:
                     content += f'\t\t{key} = "{val.upper() if key == "title" else val}"\n'
