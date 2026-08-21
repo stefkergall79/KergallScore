@@ -10,6 +10,11 @@
   }
 }
 
+rit = #(make-music 'CrescendoEvent
+                   'span-direction START
+                   'span-type 'text
+                   'span-text (markup #:italic "rit."))
+
 tocItemComposer =
 #(define-music-function (titre compositeur) (markup? markup?)
    #{
