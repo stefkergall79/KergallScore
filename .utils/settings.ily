@@ -10,6 +10,14 @@
   }
 }
 
+rinf = #(make-dynamic-script 
+          (markup #:whiteout
+                  #:normal-text
+                  #:override '(font-encoding . latin1)
+                  #:override '(font-shape . italic)
+                  #:override '(font-series . medium)
+                  #:fontsize 1.5 "rinf."))
+
 rit = #(make-music 'CrescendoEvent
                    'span-direction START
                    'span-type 'text
