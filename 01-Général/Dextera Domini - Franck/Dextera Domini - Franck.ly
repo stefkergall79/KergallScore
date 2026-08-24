@@ -2,6 +2,12 @@
 \include "settings.ily"
 \include "composers.ily"
 
+italicMark = #(define-music-function
+  (text) (markup?)
+  #{
+    ^\markup \italic \fontsize #1 #text
+  #})
+
 global = {
 	\mergeDifferentlyHeadedOn
 	\mergeDifferentlyDottedOn
@@ -38,7 +44,15 @@ melodyAlleluiaPlusVerse = \lyricmode {
 	Déx -- te -- ra Dó -- mi -- ni
 	ex -- al -- tá -- vit me.
 }
-
+nonMoriar = \lyricmode {
+  Déx -- te -- ra Dó -- mi -- ni
+  ex -- al -- tá -- vit me.
+  Non mó -- ri -- ar sed ví -- vam,
+  et nar -- rá -- bo
+  ó -- pe -- ra Dó -- mi -- ni,
+  et nar -- rá -- bo
+  ó -- pe -- ra Dó -- mi -- ni.
+}
 soprano = \relative c'' {
 	\global
 	R1*32
@@ -60,16 +74,41 @@ soprano = \relative c'' {
   d-^ c-^ bes2-^\!\fermata |\break
   
   \tempo "Un peu plus lent"
-  \textMark \markup \italic "Solo ou petit choeur"
-  f'4.\p es8 d2 |
+  f'4.\p\italicMark "Solo ou petit choeur" es8 d2 |
   es4. d8 c2
   R1*2
   as4. ( ges8 ) f2 |
   ges4. f8 es2 |\break
   R1*6
+  
+  \key des \major
+  des'2\italicMark "dolce" es4. 8 |
+  f1~4\< ( es ) f ( ges ) |
+  f2\> es |
+  2\pp ( f4 ) c |
+  des4 4 es4. bes8 |\break
+  des4 ( c ) bes c |
+  des2 r |
+  es2\italicMark "Tutti"  ( f4 ) c |
+  des4 4 es4.\< bes8 |
+  des4\! ( c ) bes\> c <>\! \break
+  
+  des2 r\noBreak
+  R1\noBreak
+  r2 \italicMark "Solo" bes\<~ |\noBreak
+  2 ges'4.\! f8 |\break
+  es4 4 4. ( f8 ) |
+  des2 r |
+  r\italicMark"Tutti" bes\<~ |
+  2 (ges'4.\! ) f8 |\break
+  es2 4. f8 |
+  des4\f ( f ) as ges |
+  f2 \dimTextDim es4.\dim des8\! |
+  2 r | \break
 }
 sopranoVerseOne = \lyricmode {
 	\melodyVerse
+	\nonMoriar
 }
 
 
@@ -117,10 +156,35 @@ tenor = \relative c' {
   g4. f8 es2 |
   R1*6
   
+  \key des \major
+  des2\italicMark "dolce" bes4. 8 |
+  as2 ( des~ |
+  4\< c ) des ( es ) |
+  des2\> c |
+  as2.\pp 4 |
+  4 4 bes ges' |
+  es2 4 4 |
+  f2 des2\italicMark "Tutti"  ( ~ |
+  4 c ) des ( es ) |
+  as,4 ces bes\< ges' |
+  f\! ( es ) des\> es <>\!
+  f2 as, \italicMark "Solo" \< ~ |
+  2 des4.\! c8 |
+  2 (bes4 ) r
+  R1
+  r2 \italicMark "Tutti" as\p\< ~ |
+  2 des4.\! ( c8 ) |
+  2 ( bes ) ~ |
+  2 des4 ges |
+  4 ( es ) bes c |
+  des\f ( c ) ces bes |
+  as4 ( des ) \dimTextDim c4.\dim des8\! |
+  2 r |\break
 }
 tenorVerseOne = \lyricmode {
 	\melodyVerse
 	\melodyAlleluiaPlusVerse
+	\nonMoriar
 }
 
 
@@ -178,12 +242,42 @@ bass = \relative c {
   es-^ f-^ bes,2-^\!\fermata |
   
   f'4.\p 8 ges2 |
+  es4. 8 f2 |
+  R1*2
+  as2 bes |
+  ges4. 8 as2 |
+  R1*6
   
+  \key des \major
+  des,2\italicMark "dolce" ges4. 8 |
+  des2. ( c4 ) |
+  bes2\< ( as4 ges ) |
+  as2\> 2 |
+  ges'2.\pp 4 |
+  f4 4 ges4. 8 |
+  as2 4 4 |
+  des,2 r |
+  ges2..\italicMark "Tutti" 8 |
+  f4 4 ges4.\< 8 |
+  as2\! 4\> 4 <>\! |
+  des,2 r |
+  r\italicMark "Solo" f\< ~ |
+  2 bes4.\! as8 |
+  4 ( ges ) bes ( des ) |
+  c ( bes as ges ) |
+  f r \italicMark"Tutti" f2\< ~ |
+  2 bes4.\! ( as8 ) |
+  4 ges bes des |
+  c ( bes ) as ges |
+  f2\f 4 ges |
+  as2 \dimTextDim 4.\dim des,8\! |
+  2 r |\break
 }
 bassVerseOne = \lyricmode {
   \melodyVerse
   \melodyAlleluiaPlusVerse
   \melodyAlleluiaPlusVerse
+  \nonMoriar
 }
 
 
@@ -217,6 +311,9 @@ ChoeurPart = \new ChoirStaff <<
 	\new Lyrics \with { \override VerticalAxisGroup.staff-affinity = #CENTER
 	} \lyricsto "bass" \bassVerseOne
 >>
+
+goDown = \change Staff = "left"
+goUp = \change Staff = "right"
 
 rightOne = \fixed c' {
   \globalO
@@ -262,6 +359,40 @@ rightOne = \fixed c' {
 	<es c'>4. <es bes>8 <es c'>2 |
 	<d bes>2\rit <f d'>4-^ <f f'>-^ |
 	<g d'>-^ <a c'>-^ bes2-^\!\fermata
+	
+	R1*2
+	<des f>1~ |
+	f2 <es g> |
+	<des f as>4 r r2
+	R1
+	as1~ |
+	2 bes |
+	<es c'>4. <des bes>8 <c as>2 |
+	<f des'>4. <es c'>8 <bes des>2 |
+	es'2.. ( c'8 |
+	as ges es c \goDown as,8 ges, es, as,, )
+	\bar "||" \goUp \key des \major \break 
+	
+	\oneVoice	R1
+	r8 des'8 ( as f \goDown des as, des, f, ) \goUp |
+	<des f>4 r r2
+	r8 f' ( des' as bes as ges es |
+	c bes, as, ) r r2
+	R1*2
+	r8 f' ( es' des' as f es des ) |
+	r as' ( ges' es' des' c' bes as ) |
+	r as' ( f' des' ) r bes' ( ges' es' ) |
+	\voiceOne r8 as'8 bes' as' ges' es' c' as |
+	
+	\oneVoice des'8 r r4 as2 ~ |
+	2 \voiceOne des'4. c'8 |
+	2 bes ~ |
+	2 ges'4. f'8 |
+	es'2.. f'8 |
+	\crescTextCresc
+	des'2\cresc 4.\! c'8 |
+	2 bes ~
+	2 ges'4 f' |
 }
 
 rightTwo = {
@@ -302,6 +433,22 @@ rightTwo = {
 	  \repeat unfold 3 { r4 \repeat unfold 3 { s8 r8 } | }
 	  \repeat unfold 2 { s8 r r4 } |
 	  s1*4
+	  R1*2
+	  s1 des |
+	  s4 r r2 |
+	  R1
+	  <des f>1~1 |
+	  ges as |
+	  <as ges>2~8 r r4 |
+	  s1*11
+	  des4 c bes c
+	  s2*3 f,2~ |
+	  2 bes4. as8 |
+	  4 ( ges bes des |
+	  c bes as^~ <as ges>^~ ) |
+	  <f as>2 f2~ |
+	  2 bes4. as8 |
+	  4 ( ges bes des )
 	}
 }
 
@@ -337,6 +484,44 @@ leftOne = \fixed c {
 	4 g a2 |
 	<g bes> <d bes>4 4 |
 	\oct es'4 <f es'> <bes d'>2\!\fermata |
+	
+	s1*6
+	as1~1~1~1~2~8 r8 r4 |
+	s1
+	\key des \major
+	\oneVoice des4 r4 r2
+	R1 bes4 r r2 |
+	r2 r8 as,8 ( c es |
+	ges4. ) r8 r2
+	R1*2
+	r2 des'2~ \voiceOne
+	4 c' des' es' |
+	as ces' bes ges' |
+	f' es' des' es' |
+	\tupletSpan 2
+	\tuplet 6/4 {
+	<as f'>8 as des' f' es' des' r as des' f' es' des'
+	}
+	<<{
+	  \voiceOne \tuplet 6/4 {
+	  r8 as des' f' es' des'
+	  r a des' f' es' des' |
+	  \repeat unfold 2 { r bes des' f' es' des' } |
+	  \repeat unfold 2 { r ges bes des' c' bes } |
+	  \repeat unfold 2 { r ges c' es' des' c' } |
+	  r as des' f' es' des' r a des' f' es' des' |
+	  \repeat unfold 2 { r bes des' f' es' des' } |
+	  \repeat unfold 2 { r ges bes des' c' bes } |
+	}}\\{
+	  \voiceTwo \tupletSpan 2
+	  \tuplet 6/4 {
+	  s8 as4. s a s4
+	  s8 bes4. s bes s4 |
+	  s1.*2
+	  s8 as4. s a s bes s bes s4
+	  s1*2
+	}}>>
+	  
 }
 
 leftTwo = \fixed c, {
@@ -377,6 +562,24 @@ leftTwo = \fixed c, {
 	bes1 \oct f'1 |
 	g2 d4-^ 4-^ |
 	es-^ f-^ bes2-^ |
+	
+	\oneVoice R1*2
+	bes2 ( des'4\< f' |
+	des'\> c' bes2\! ) |
+	as4 r r2
+	R1
+	\voiceTwo des'2 f'4 as' |
+	f' es' des'2 |
+	as4 r r2 |
+	s2*3 s8 r8 r4 |
+	s1*9
+	\oct {ges'1 |
+	f'2 ges' |
+	as'1}
+	des1
+	\voiceThree
+	des1 1 es |
+	as des1 1 es |
 }
 
 ClavierPart = \new PianoStaff \with {
