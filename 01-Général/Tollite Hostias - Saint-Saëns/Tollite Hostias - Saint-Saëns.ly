@@ -22,7 +22,7 @@ soprano = \fixed c' {
     d'4 c'8[b]a4 4
   }
   \alternative {
-    {g2. r4}
+    {g2. r4\break}
     {g2. r4}
   }
   r4 g4 g fis e e'4 4 d' c'4 4 4 b a1~4
@@ -113,9 +113,15 @@ verseTenor = \lyricmode {
 verseBass = \lyricmode {
   \repeat unfold 33 \skip1
   quó -- ni -- am vé -- nit. Al -- le -- lú -- ia.
-  \repeat unfold 40 \skip1
+  \repeat unfold 17 \skip1
+  Al -- le -- lú -- ia.
+  \repeat unfold 19 \skip1
   quó -- ni -- am vé -- nit. Al -- le -- lú -- ia.
   
+}
+
+\paper {
+  page-count = 1
 }
 
 \tocItemComposer "Tollite Hostias" "Saint-Saëns"
