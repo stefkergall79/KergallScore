@@ -6,6 +6,7 @@
             "type": "process",
             "command": "${workspaceFolder}/.prog/lilypond-2.26.0/bin/lilypond",
             "args": [
+                "--include=${workspaceFolder}/.prog/lilygabc/lilygabc.ily",
                 "${file}"
             ],
             "options": {
