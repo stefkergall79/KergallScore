@@ -448,6 +448,23 @@ class MusicTab(ctk.CTkFrame):
             ).pack(side="left", padx=5)
             frame.pack(side="top", pady=5, anchor="w")
 
+#variables génériques
+def genericVar (identifiant, fonction, contenu=""):
+    return identifiant + " = " + fonction + " {\n" + contenu + "\t\n}\n\n"
+
+def musicVar (identifiant, fixed, high, globalVar):
+    return genericVar(
+        identifiant,
+        ("\\fixed" if fixed else "\\relative") + " c" + ("'" if high else ""),
+        "\t\\"+globalVar+"\n"
+    )
+
+def lyricVar (identifiant, nb=None):
+    return genericVar(
+        identifiant,
+        ("\\strophemode " + str(nb) + (" ##f" if nb%2 else " ##t") if nb else "") + " \\lyricmode"
+    )
+
 def Voice(voice, indice):
     return (
         (" " if indice is None else "\t\t") +
@@ -455,9 +472,6 @@ def Voice(voice, indice):
         (f"\\voice{NUMBERS[indice]} " if indice is not None else "") +
         f"\\{VOICES[voice]} " + "}\n"
     )
-
-def strophemode(nb):
-    return f"\\strophemode {nb+1} ##{"t" if nb%2 else "f"}" + " \\lyricmode {\n\t\n}\n\n"
 
 def lyricName(voice, nb, to_voice):
     return f"{VOICES[voice] if to_voice else ""}Verse{NUMBERS[nb]}"
@@ -472,22 +486,16 @@ def ChoirVars(schema: str, lyrics: int, same_lyrics: bool):
     st = ""
     parts = schema.replace("-", "")
     for voice in parts:
-        st += (
-            f"{VOICES[voice]} = \\"
-            f"{"relative" if voice == "T" else "fixed"}"
-            f" c{"" if voice in "BH" else "'"}"
-            " {\n\t\\global\n\t\n}\n"
-        )
+        st += musicVar(VOICES[voice], voice in "AB", voice in "SA", "global")
         if not same_lyrics:
             for nb in range(lyrics):
-                st += f"{lyricName(voice, nb, True)} = {strophemode(nb)}"
+                st += lyricVar(lyricName(voice, nb, True), nb+1 if lyrics > 1 else None)
         st += "\n"
     if same_lyrics:
         for nb in range(lyrics):
-            st += f"{lyricName(voice, nb, False)} = {strophemode(nb)}"
+            st += lyricVar(lyricName(voice, nb, False), nb+1 if lyrics > 1 else None)
     st += "\n"
     return st
-
 
 def ChoirStaff(schema: str, lyrics: int, same_lyrics: bool):
     staffes = schema.split("-")
@@ -549,19 +557,18 @@ def PianoVars(staffes):
     for nb, staff in enumerate(staffes):
         if staff != 0:
             if staff == 1:
-                st += (
-                    pianoPartName(nb, None) + " = \\fixed c" +
-                    ("'" if nb > len(staffes)/2 else "") + " {\n"
-                    "\t\\global\n"
-                    "\t\n}\n\n"
-                )
+                st += musicVar(
+                    pianoPartName(nb, None),
+                    False,
+                    nb == 0,
+                    "global")
             else:
                 for indice in range(staff):
-                    st += (
-                        pianoPartName(nb, indice) + " = \\fixed c" +
-                        ("'" if nb > len(staffes)/2 else "") + " {\n"
-                        "\t\\global\n"
-                        "\t\n}\n\n"
+                    st += musicVar(
+                        pianoPartName(nb, indice),
+                        False,
+                        nb == 0,
+                        "global"
                     )
     return st
 
@@ -593,15 +600,17 @@ def PianoPack(staffes):
 
 
 def SoloVars(lyrics):
-    st = (
-        "soloVoice = \\fixed c' {\n"
-        "\t\\global\n"
-        "\t\\dynamicUp\n"
-        "\t\n"
-        "}\n\n"
+    st = musicVar(
+        "soloVoice",
+        True,
+        True,
+        "global"
     )
     for lyr in range(lyrics):
-        st += f"soloVerse{NUMBERS[lyr]} = {strophemode(lyr)}"
+        st += lyricVar(
+            f"soloVerse{NUMBERS[lyr]}",
+            lyr
+        )
     return st
 
 def SoloStaff(lyrics):
@@ -622,17 +631,14 @@ def SoloPack(lyrics):
 
 
 def FluteVars(lyrics):
-    st = (
-        "flute = \\fixed c' {\n"
-        "\t\\global\n"
-        "\t\n"
-        "}\n\n"
+    st = musicVar(
+        "flute",
+        True,
+        True,
+        "global"
     )
     if lyrics:
-        st += (
-            "fluteVerse = \\lyricmode {\n"
-            "\t\n}\n\n"
-        )
+        st += lyricVar("fluteVerse")
     return st
 
 def FluteStaff(lyrics):
