@@ -2,7 +2,7 @@
 \include "settings.ily"
 \include "composers.ily"
 
-#(set-global-staff-size 17.4)
+#(set-global-staff-size 17.5)
 
 global = {
   \key a \major
