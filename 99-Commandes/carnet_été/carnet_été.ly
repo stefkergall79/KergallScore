@@ -49,9 +49,9 @@
 \include "../../03-Saint-Sacrement/O salutaris - Mozart/O salutaris - Mozart.ly"
 
 \tocItem \markup {\bold "Sainte-Vierge" \vspace #1 }
-\include "../../01-Général/O Sanctissima - Sicilien/O Sanctissima - Sicilien.ly"
-\include "../../01-Général/O Gloriosa Virginum 3 voix/O Gloriosa Virginum 3 voix.ly"
-\include "../../01-Général/O Sanctissima - Roussel/O Sanctissima - Roussel.ly" \pageBreak
-\include "../../01-Général/Ave Maris Stella - Perruchot/Ave Maris Stella - Perruchot.ly" \pageBreak
-\include "../../01-Général/Je mets ma confiance/Je mets ma confiance.ly"
-\include "../../01-Général/O Vierge Marie/O Vierge Marie.ly" \pageBreak
+\include "../../05-Sainte-Vierge/O Sanctissima - Sicilien/O Sanctissima - Sicilien.ly"
+\include "../../05-Sainte-Vierge/O Gloriosa Virginum 3 voix/O Gloriosa Virginum 3 voix.ly"
+\include "../../05-Sainte-Vierge/O Sanctissima - Roussel/O Sanctissima - Roussel.ly" \pageBreak
+\include "../../05-Sainte-Vierge/Ave Maris Stella - Perruchot/Ave Maris Stella - Perruchot.ly" \pageBreak
+\include "../../05-Sainte-Vierge/Je mets ma confiance/Je mets ma confiance.ly"
+\include "../../05-Sainte-Vierge/O Vierge Marie/O Vierge Marie.ly" \pageBreak
