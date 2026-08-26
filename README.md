@@ -23,7 +23,7 @@
 | --- | --- |
 | <img src="01-Général/Noble-époux-de-Marie/cache/Noble%20époux%20de%20Marie-old.png" width="1000px"/> | <img src="01-Général/Noble-époux-de-Marie/cache/Noble-époux-de-Marie.png" width="1000px"/> |
 
-> **Et même tout ça à la fois...**
+### **Et même tout ça à la fois...**
 
 ## Ou encore...
 
