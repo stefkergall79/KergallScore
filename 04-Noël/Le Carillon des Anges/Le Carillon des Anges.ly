@@ -114,13 +114,13 @@ LyricsOne = \strophemode 1 ##f \lyricmode {
   le ca -- ril -- lon des an -- ges,
   en cet -- te nuit de No -- ël,
   chante à Dieu sa lou -- an -- ge_:
-  Glo __ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ri -- a
+  Glo __ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ri -- a_!
   Ho -- san -- na in ex -- cel -- sis_!
 }
 
 LyricsTwo = \strophemode 2 ##t \lyricmode {
   Ber -- gers, quit -- tez vos trou -- peaux,
-  cou -- rez vite à l'é -- ta -- ble_!
+  cour -- rez vite à l'é -- ta -- ble_!
   Of -- frez vos plus beaux a -- gneaux
   à l'En -- fant tout ai -- ma -- ble_!
 }
