@@ -17,11 +17,21 @@ rinf = #(make-dynamic-script
                   #:override '(font-shape . italic)
                   #:override '(font-series . medium)
                   #:fontsize 1.5 "rinf."))
+%{
+\relative c' {
+  a4\rinf a b2 |
+}
+%}
 
 rit = #(make-music 'CrescendoEvent
                    'span-direction START
                    'span-type 'text
                    'span-text (markup #:italic "rit."))
+%{
+\relative c' {
+  a4 a\rit a b\! |
+}
+%}
 
 oct = #(define-music-function
   (parser location note) (ly:music?)
@@ -31,6 +41,12 @@ oct = #(define-music-function
       $note
     >>
   #})
+%{
+\relative c' {
+  \oct a4 b2. |
+  \oct {c4. r8 bes2|}
+}
+%}
 
 tocItemComposer =
 #(define-music-function (titre compositeur) (markup? markup?)
@@ -41,12 +57,23 @@ tocItemComposer =
        #compositeur
      }
    #})
+%{
+\tocItemComposer "Ave Maria" "Gounod"
+\score {
+  ...
+%}
 
 markChanson =
 #(define-music-function (marque) (markup?)
    #{
      \sectionLabel \markup \bold #marque
    #})
+%{
+\relative c' {
+  \markChanson "Refrain"
+  a4
+}
+%}
 
 strophemode =
 #(define-music-function (num italic debut paroles) (integer? boolean? (integer? 0) ly:music?)
@@ -73,6 +100,14 @@ strophemode =
       }
     #}
 )))
+%{
+verseOne = \strophemode 1 ##f \lyricmode {
+  "(Paroles de la strophe 1, stanza déjà gravée)"
+}
+verseTwo = \strophemode 2 ##t 36 \lyricmode {
+  "(Paroles de la strophe 2, en italique, avec 36 silences de début)"
+}
+%}
 
 #(define-markup-command (couplets-markup layout props start-num num-cols lines) 
   (integer? integer? markup-list?)
@@ -127,3 +162,17 @@ strophemode =
      (interpret-markup layout props
        (make-fill-line-markup balanced-columns)))
    ))
+%{
+\markup \couplets-markup 3 2 {
+  \column {
+    "Couplet 3:"
+    "Paroles du couplet 1"
+    "première colonne"
+  }
+  \column {
+    "Couplet 4:"
+    "Paroles en italique"
+    "du couplet 2, deuxième colonne"
+  }
+}
+%}
