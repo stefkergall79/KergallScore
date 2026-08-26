@@ -80,7 +80,7 @@ PartPOneVoiceOne = \relative b' {
    d4  b4  c8 [  d8  e8  c8 ] | % 82
    b2 r2 | % 83
    g4  g4  c2 | % 84
-  b2 \bar "||" \break
+  b2 \bar "||" \pageBreak
   
   \markChanson "IV. QUATUOR"
   \solo b4  b4 | % 85
