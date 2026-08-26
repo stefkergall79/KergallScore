@@ -16,7 +16,7 @@
 
 | Avant | Après |
 | --- | --- |
-| <img src="01-Général/Credo III/cache/et_incarnatus_est.jpg" width="1000px"/> | <img src="01-Général/Credo III/cache/et_incarnatus_est_musique.jpg" width="1000px"/> |
+| <img src="01-Général/Credo III/cache/et_incarnatus_est.jpg" width="1000px"/> | Et incarnatus est.midi <img src="01-Général/Credo III/cache/et_incarnatus_est_musique.jpg" width="1000px"/> |
 
 - **Harmoniser** une mélodie trouvée par hasard ?
 
