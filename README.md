@@ -1,5 +1,5 @@
 [english](.doc/README_en.md)
-# <img src=".logos/KergallScore-nobackground.png" style="vertical-align: middle;" width="40px"><span style="vertical-align: middle;"><b>ergallScore</b></span>
+# <a href="mailto:stef.kergall@gmail.com"><img src=".logos/KergallScore-nobackground.png" style="vertical-align: middle;" width="40px"><span style="vertical-align: middle;"><b>ergallScore</b></span></a>
 
 > 🌐 Une base de données musicale<br>
 > ✉️ Vos commandes<br>
@@ -26,10 +26,13 @@
 
 ### **Et même tout ça à la fois...**
 
-## Ou encore...
+- **Ou encore...**
 
 Vous aimeriez **regrouper** sur une seule feuille un chant que vous possédez sur 6 pages ?\
 Vous avez besoin d'un **dossier** complet pour votre chorale, ***avec une table des matières*** ?\
 Vous cherchez un **éditeur** à votre dernière composition ?
 
-**KergallScore** propose des solutions. [Envoyez un mail](mailto:stef.kergall@gmail.com) pour profiter au plus vite de ces partitions !
+### **KergallScore** propose des solutions. [Envoyez un mail](mailto:stef.kergall@gmail.com) pour profiter au plus vite de ces partitions !
+
+## Récupérer une KergallScore
+Vous pouvez récupérer, modifier à volonté toutes ces partitions. 
