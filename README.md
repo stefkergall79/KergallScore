@@ -1,3 +1,4 @@
+[en](.doc/README_en.md)
 # <img src=".logos/KergallScore-nobackground.png" style="vertical-align: middle;" width="40px"><span style="vertical-align: middle;"><b>ergallScore</b></span>
 
 > 🌐 Une base de données musicale<br>
