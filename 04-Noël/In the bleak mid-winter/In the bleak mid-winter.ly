@@ -12,8 +12,7 @@ global = {
 
 PartPOneVoiceOne = \relative b' {
   \oneVoice
-  \markChanson "Strophe 1" R1*2
-   b4. ^\mp  a8  d4  b4 | % 3
+   R1*2 b4. ^\mp  a8  d4  b4 | % 3
    g2  fis2 | % 4
    e4.  fis8  g4  e4 | % 5
   d1 | % 6
@@ -32,7 +31,7 @@ PartPOneVoiceOne = \relative b' {
    d2. )  b4 | % 18
    g2. \bar "||"\break
   
-  \voiceOne  \markChanson "Strophe 2"
+  \voiceOne
   b4| % 20
    b4.  a8  d4  b4 | % 21
    g2  fis2 | % 22
@@ -55,7 +54,7 @@ PartPOneVoiceOne = \relative b' {
   g1 <>\!
   
   R1*19 \bar "||" \break
-  \voiceOne  \markChanson "Strophe 4" b2^\mp  d4  b4 | % 57
+  \voiceOne  b2^\mp  d4  b4 | % 57
    g2  fis2 | % 58
    e2  g4  e4 | % 59
 
@@ -133,7 +132,7 @@ PartPOneVoiceTwo = \relative g' {
    c4 (  d4 )  c2 | % 66
    e4  d4  c4  c4 | % 67
    c2  a2 | % 68
-   d4 (  e8 ) [  fis8 ]  g4  f4 | % 69
+   d4 (  e8 )  fis8  g4  f4 | % 69
 
    e4 (  g4 )  g2 | % 70
    g4 (  fis4  g4 )  a4 | % 71
@@ -167,7 +166,7 @@ PartPTwoVoiceOne = \relative b {
    d2. ) c4 | % 36
   b1
   \oneVoice \bar "||" \break
-  \markChanson "Strophe 3" R1 
+  R1 
   r2 r4 r8  b8 ^\mp | % 39
 
    b4.  a8  d4  b4 | % 40
@@ -307,7 +306,7 @@ PartPThreeVoiceOne = \relative d' {
    <c f c'>4  <d f d'>4  <g, c e>2 | % 49
 
   \voiceOne  e'4  d4 \oneVoice  c4  <c e>4 | % 50
-  \voiceOne  c'2  b4  <fis a>4 | % 51
+  \voiceOne  c'2  b4 <fis a>4 | % 51
    d'4. _\<  c8 \oneVoice  <d, g b>4  <f g d'>4 <>\! | % 52
    <e g'>4  <g e'>4 \voiceOne  d'4  c4 | % 53
   \oneVoice  <d, b'>4  <c a'>4  <d b'>4  <e c'>4 | % 54
@@ -333,7 +332,7 @@ PartPThreeVoiceTwo = \relative b {
    a'4  g2 s4 | % 14
    <d g>4  <d fis>4 s1  g2 s4*11
   s4*73
-  s1*3 | % 40
+  s1*2 | % 40
    b,4  c4 s2 | % 41
    e4.  fis8  g4 s4 | % 42
    g4  d4  e4  fis4 | % 43
@@ -348,11 +347,8 @@ PartPThreeVoiceTwo = \relative b {
 
 PartPThreeVoiceThree = \relative a' {
   \global
-  s4*75
-  s4*73
-  s1*13 | % 50
-   a4  g2 s4*21
-  s1*21
+  s1*49
+  \voiceTwo a4  g2
 }
 
 PartPThreeVoiceFive = \relative b {
@@ -447,9 +443,9 @@ PartPThreeVoiceSix = \relative g, {
         \new Voice = "PartPOneVoiceOne" {
           \voiceOne \PartPOneVoiceOne
         }
-        \new Lyrics \lyricsto "PartPOneVoiceOne" {
-          \PartPOneVoiceOneLyricsOne
-        }
+        \new Lyrics \with {
+          \override VerticalAxisGroup.staff-affinity = #CENTER
+        } \lyricsto "PartPOneVoiceOne" \PartPOneVoiceOneLyricsOne
         \new Voice = "PartPOneVoiceTwo" {
           \voiceTwo \PartPOneVoiceTwo
         }
@@ -463,9 +459,9 @@ PartPThreeVoiceSix = \relative g, {
         \new Voice = "PartPTwoVoiceOne" {
           \voiceOne \PartPTwoVoiceOne
         }
-        \new Lyrics \lyricsto "PartPTwoVoiceOne" {
-          \PartPTwoVoiceOneLyricsOne
-        }
+        \new Lyrics \with {
+          \override VerticalAxisGroup.staff-affinity = #CENTER
+        } \lyricsto "PartPTwoVoiceOne" \PartPTwoVoiceOneLyricsOne
         \new Voice = "PartPTwoVoiceTwo" {
           \voiceTwo \PartPTwoVoiceTwo
         }
