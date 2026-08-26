@@ -6,17 +6,17 @@
 > 🎶 De la musique !
 
 ## Vous voulez... 
-**Relooker** une vieille partition, photocopiée plusieurs fois, bricolée avec des scans sur LibreOffice ? 
+- **Relooker** une vieille partition, photocopiée plusieurs fois, bricolée avec des scans sur LibreOffice ? 
 | Avant | Après |
 | --- | --- |
 | <img src="04-Noël/Venez%20mes%20enfants/cache/Venez_mes_enfants-old.png" width="1000px"/> | <img src="04-Noël/Venez%20mes%20enfants/cache/Venez%20mes%20enfants.png" width="1000px"/> |
 
-**Ecouter** ce que donnerait un chant dont vous n'avez que le pdf ?
+- **Ecouter** ce que donnerait un chant dont vous n'avez que le pdf ?
 | Avant | Après |
 | --- | --- |
 | <img src="01-Général/Credo III/cache/et_incarnatus_est.jpg" width="1000px"/> | <img src="01-Général/Credo III/cache/et_incarnatus_est_musique.jpg" width="1000px"/> |
 
-**Harmoniser** une mélodie trouvée par hasard ?
+- **Harmoniser** une mélodie trouvée par hasard ?
 | Avant | Après |
 | --- | --- |
 | <img src="01-Général/Noble-époux-de-Marie/cache/Noble%20époux%20de%20Marie-old.png" width="1000px"/> | <img src="01-Général/Noble-époux-de-Marie/cache/Noble-époux-de-Marie.png" width="1000px"/> |
