@@ -5,7 +5,9 @@
 > ✉️ Vos commandes<br>
 > 🎶 De la musique !
 
-## Vous voulez... 
+## Profiter des services de KergallScore
+Vous voulez...
+
 - **Relooker** une vieille partition, photocopiée plusieurs fois, bricolée avec des scans sur LibreOffice ?
 
 | Avant | Après |
@@ -24,15 +26,32 @@
 | --- | --- |
 | <img src="01-Général/Noble-époux-de-Marie/cache/Noble%20époux%20de%20Marie-old.png" width="1000px"/> | <img src="01-Général/Noble-époux-de-Marie/cache/Noble-époux-de-Marie.png" width="1000px"/> |
 
-### **Et même tout ça à la fois...**
-
 - **Ou encore...**
 
 Vous aimeriez **regrouper** sur une seule feuille un chant que vous possédez sur 6 pages ?\
 Vous avez besoin d'un **dossier** complet pour votre chorale, ***avec une table des matières*** ?\
-Vous cherchez un **éditeur** à votre dernière composition ?
+Vous cherchez un **éditeur** à votre dernière composition ?\
+**Et même tout ça à la fois...**
 
-### **KergallScore** propose des solutions. [Envoyez un mail](mailto:stef.kergall@gmail.com) pour profiter au plus vite de ces partitions !
+**KergallScore** propose des solutions. [Envoyez un mail](mailto:stef.kergall@gmail.com) pour profiter au plus vite de ces partitions !
 
-## Récupérer une KergallScore
-Vous pouvez récupérer, modifier à volonté toutes ces partitions. 
+
+## Récupérer les fichiers sources
+
+Vous pouvez récupérer et modifier à volonté tous les fichies sources. Pour une compilation telle quelle sans erreur, tous les fichiers du répertoire [.utils/](.utils/) doivent être copiés dans le dossier d'inclusion par défaut de lilypond.
+
+- Si vous utilisez le paquet système de `lilypond` (vieille version 2.24.4) :
+```bash
+ks@pc-ks:~/KergallScore
+$ cp .utils/* /usr/share/lilypond/2.24.4/ly/
+```
+- Si vous voulez utilisez la dernière version 26.0 téléchargée via [l'installateur](.prog/installer.sh) :
+```bash
+ks@pc-ks:~/KergallScore
+$ cp .utils/* .prog/lilypond-2.26.0/share/lilypond/2.26.0/ly/
+```
+
+> Que contient [.utils/](.utils/) ?
+>> - [settings.ily](.utils/settings.ily) : des fonctions et des variables prédéfinies, ainsi que la [signature de KergallScore](mailto:stef.kergall@gmail.com)
+>> 
+>> - [composers.ily](.utils/composers.ily) : la liste de tous les compositeurs, paroliers et harmonisateurs dont KergallScore a reproduit une partition, avec leur nom complet et leurs dates de vie.
