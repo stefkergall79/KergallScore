@@ -6,12 +6,20 @@
 > 🎶 De la musique !
 
 ## Vous voulez... 
+**Relooker** une vieille partition, photocopiée plusieurs fois, bricolée avec des scans sur LibreOffice ? 
+| Avant | Après |
+| --- | --- |
+| <img src="04-Noël/Venez%20mes%20enfants/cache/Venez_mes_enfants-old.png" width="1000px"/> | <img src="04-Noël/Venez%20mes%20enfants/cache/Venez%20mes%20enfants.png" width="1000px"/> |
 
-|   | Avant | Après |
-| --- | --- | --- |
-| **Relooker** une vieille partition, photocopiée plusieurs fois, bricolée avec des scans sur LibreOffice ? | ![](04-Noël/Venez%20mes%20enfants/cache/Venez_mes_enfants-old.png) | ![](04-Noël/Venez%20mes%20enfants/cache/Venez%20mes%20enfants.png) |
-| **Ecouter** ce que donnerait un chant dont vous n'avez que le pdf ? | <img src="01-Général/Credo III/cache/et_incarnatus_est.jpg" alt="Et incarnatus est polyphonique" width="500px"/> | <img src="01-Général/Credo III/cache/et_incarnatus_est_musique.jpg" alt="Lecture du Et incarnatus est" width="500px"/> |
-| **Harmoniser** une mélodie trouvée par hasard ? | ![](01-Général/Noble-époux-de-Marie/cache/Noble%20époux%20de%20Marie-old.png) | ![](01-Général/Noble-époux-de-Marie/cache/Noble-époux-de-Marie.png) |
+**Ecouter** ce que donnerait un chant dont vous n'avez que le pdf ?
+| Avant | Après |
+| --- | --- |
+| <img src="01-Général/Credo III/cache/et_incarnatus_est.jpg" width="1000px"/> | <img src="01-Général/Credo III/cache/et_incarnatus_est_musique.jpg" width="1000px"/> |
+
+**Harmoniser** une mélodie trouvée par hasard ?
+| Avant | Après |
+| --- | --- |
+| <img src="01-Général/Noble-époux-de-Marie/cache/Noble%20époux%20de%20Marie-old.png" width="1000px"/> | <img src="01-Général/Noble-époux-de-Marie/cache/Noble-époux-de-Marie.png" width="1000px"/> |
 
 > **Et même tout ça à la fois...**
 
