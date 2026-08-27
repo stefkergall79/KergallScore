@@ -5,9 +5,9 @@
 > ✉️ Une commande\
 > 🎶 De la musique !
 
-## Ce que KergallScore peut pour vous
+## Nos produits
 
-- Vous avez une **vieille partition** photocopiée six fois, montée à coups de scans sur LibreOffice ?
+- Vous voulez relooker une **vieille partition** photocopiée six fois, montée à coups de scans sur LibreOffice ?
 
 | Avant | Après |
 | --- | --- |
@@ -34,7 +34,7 @@ Un **éditeur** pour votre toute dernière composition ?\
 
 KergallScore vous propose des solutions. [Nous attendons vos commandes](mailto:stef.kergall@gmail.com) du lundi au samedi !
 
-## Récupérer nos fichiers sources
+## Pour les spécialistes
 
 Tous nos fichiers sources sont libres : téléchargez-les, modifiez-les, mettez-les en charpie.
 

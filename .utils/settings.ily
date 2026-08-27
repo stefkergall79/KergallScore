@@ -19,7 +19,7 @@ rinf = #(make-dynamic-script
                   #:fontsize 1.5 "rinf."))
 %{
 \relative c' {
-  a4\rinf a b2 |
+  a4\rinf
 }
 %}
 
@@ -29,7 +29,7 @@ rit = #(make-music 'CrescendoEvent
                    'span-text (markup #:italic "rit."))
 %{
 \relative c' {
-  a4 a\rit a b\! |
+  a4\rit b\!
 }
 %}
 
