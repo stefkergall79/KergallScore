@@ -53,6 +53,17 @@ nonMoriar = \lyricmode {
   et nar -- rá -- bo
   ó -- pe -- ra Dó -- mi -- ni.
 }
+quatreAleluia = \lyricmode {
+  Al -- le -- lú -- ia,
+  al -- le -- lú -- ia,
+  al -- le -- lú -- ia,
+  al -- le -- lú -- ia,
+}
+alleluiaPuisDextera = \lyricmode {
+  al -- le -- lú -- ia.
+  Déx -- te -- ra Dó -- mi -- ni
+	fé -- cit vir -- tú -- tem,
+}
 soprano = \relative c'' {
 	\global
 	R1*32
@@ -159,10 +170,49 @@ soprano = \relative c'' {
   2\fff c4. 8 |
   d1 ( ~ |
   4 c ) d (es ) |\break
+  d2 c |
+  2 ( d4 ) a |
+  bes4 4 c4. g8 |
+  bes4 ( a ) g a |
+  bes1\dim |\break
+  c2\pp ( d4 ) a |
+  bes4 4 c4. g8 |
+  bes4 ( a ) g a |
+  bes2 r |
+  r\italicMark"Solo" d\< ~ |\break
+  2 g4.\! ( f8 ) |
+  4 es g, bes |
+  a ( g ) f r |
+  r2\italicMark"Tutti" d'\<~ |\break
+  2 g4.\! ( f8 ) |
+  4 es g bes, |
+  a g f2~ |
+  4 d'\ff ( f ) es |\break
+  d2 c4. bes8 |
+  1\dim~1~4 g\p a bes |
+  d2 ( c4. ) bes8 |\break
+  1~1~4\< g' f\> es |
+  d1\! ( ~ |
+  2 c4. ) bes8 2 r \break
+  R1
+  f1\pp ~ |
+  4 4 2 |
+  2 r
+  R1\break
+  1~1~4 4 2 |
+  2 4.\ppp 8 |
+  1^\espressivo 2 r \bar "|."
 }
 sopranoVerseOne = \lyricmode {
 	\melodyVerse
 	\nonMoriar
+	Non mó -- ri -- ar sed ví -- vam,
+  ó -- pe -- ra Dó -- mi -- ni,
+  ó -- pe -- ra Dó -- mi -- ni.
+  \quatreAleluia
+  \alleluiaPuisDextera
+  al -- le -- lú -- ia,
+  al -- le -- lú -- ia.
 }
 
 
@@ -228,7 +278,7 @@ tenor = \relative c' {
   R1
   r2 \italicMark "Tutti" as\p\< ~ |
   2 des4.\! ( c8 ) |
-  2 ( bes ) ~ |
+  2 bes ~ |
   2 des4 ges |
   4 ( es ) bes c |
   des\f ( c ) ces bes |
@@ -238,7 +288,7 @@ tenor = \relative c' {
   des2\italicMark"Solo" ( f8 [ es ] des4 |
   es4. ) 8 f [es ] des4 |
   es2 ( des8 [ c ] bes4 |
-  c8 [ bes ] as4 ) bes2 |
+  c8 [ bes ] ) as4 bes2 |
   as4 c ( des es ) |
   f des2 es8. 16 |
   f4 des2 c8 bes |
@@ -268,8 +318,8 @@ tenor = \relative c' {
   d4. c8 bes2 ( ~ |
   \dimHairpin
   2\< a |
-  g\> a ) <>\! |
-  bes4. c8 d2 |
+  g\> a ) |
+  bes4.\! c8 d2 |
   c4. bes8 c2 |
   bes d4 f |
   g ( es ) c2 |
@@ -288,11 +338,55 @@ tenor = \relative c' {
   2\fff g'4. 8 |
   f2 bes, ( ~ |
   4 a ) bes ( c ) |
+  bes2 a |
+  2. f'4 |
+  4 4 g es |
+  c2 4 4 |
+  d2\dim bes\sf ( ~ |
+  4\pp a ) bes ( c ) |
+  f, as g es' |
+  d ( c ) bes c |
+  d2 f\italicMark"Solo"\<~ |
+  2 bes,4.\! ( a8 ) |
+  2 g
+  R1
+  r2\italicMark"Tutti" f'\<~ |
+  2 bes,4.\! ( a8 ) |
+  2 g ~ |
+  2 bes4 es |
+  2 c4 a |
+  f'2 as4\ff g |
+  f2 es4. d8 |
+  2\dim ( f ) |
+  es d |
+  c1\p |
+  bes2 ( a4. ) bes8 |
+  2 ( as ) |
+  g4 ( a! ) bes2 |
+  1\espressivo |
+  a2 bes |
+  g a4. bes8 |
+  2 r
+  R1
+  f1\pp~ |
+  4 4 2 |
+  d'2 r
+  R1
+  f,1 ~ |
+  1 ~ 4 4 2 |
+  d'2 4.\ppp 8 |
+  1\espressivo 2 r |
 }
 tenorVerseOne = \lyricmode {
 	\melodyVerse
 	\melodyAlleluiaPlusVerse
 	\nonMoriar
+	Non mó -- ri -- ar,
+  et nar -- rá -- bo
+  ó -- pe -- ra Dó -- mi -- ni,
+  ó -- pe -- ra Dó -- mi -- ni.
+  \quatreAleluia
+  \alleluiaPuisDextera
 }
 
 
@@ -385,10 +479,10 @@ bass = \relative c {
   as4. ) 8 bes [ as ] ges4 |
   as2 ( ges8 [ f ] es4 |
   f8 [ es ] ) des4 es2 |
-  des4 bes'2\italicMark"Tutti" ( c8. ) 16 |
+  des4 bes'2\ff\italicMark"Tutti" ( c8. ) 16 |
   des4 bes2 c8. 16 |
   des4 bes2 ges8. 16 |
-  f4 ( bes,8 [ des ] f2 ) |
+  f4 ( bes,8 [ des ] ) f2 |
   2 ( ges8 [ f ] es4 |
   es4. ) 8 ges [ f ] es4 |
   f2. bes,8 [ des ] |
@@ -432,12 +526,58 @@ bass = \relative c {
   bes'2\fff es,4. 8 |
   bes'2. ( a4 ) |
   g2 ( f4 es ) |
+  f2 2 |
+  es2. 4 |
+  d d es4. 8 |
+  f2 4 4 |
+  bes,1\dim |
+  es2.\pp 4 |
+  d4 4 es4. 8 |
+  f2 4 4 |
+  bes,2 r
+  R1
+  r2\italicMark"Solo" g'\< ( ~ |
+  2 es'4. ) d8\! |
+  c2 4. d8 |
+  bes2 r |
+  r\italicMark"Tutti" g\< ( ~ |
+  2 es'4. ) d8\! |
+  c2 4. d8 |
+  bes2 b4\ff c |
+  f,2 a4. bes8 |
+  2\dim ( as ) |
+  g f |
+  es1\p |
+  f2.. bes,8 |
+  2 ( f' ) |
+  es d |
+  g1\espressivo |
+  fis2 g |
+  es f4. bes,8 |
+  2 r
+  R1
+  f'2\pp ( es8 [ d ] c4 |
+  d8 [ c ] ) bes4 c2 |
+  bes r
+  R1
+  f'2 ( es8 [ d ] c4 |
+  f2 es8 [ d ] c4 |
+  d8 [ c ] ) bes4 c2 |
+  bes bes'4.\ppp 8 |
+  1\espressivo 2 r |
 }
 bassVerseOne = \lyricmode {
   \melodyVerse
   \melodyAlleluiaPlusVerse
   \melodyAlleluiaPlusVerse
   \nonMoriar
+  Non mó -- ri -- ar sed ví -- vam,
+  et nar -- rá -- bo
+  ó -- pe -- ra Dó -- mi -- ni,
+  ó -- pe -- ra Dó -- mi -- ni.
+  \quatreAleluia
+  \repeat unfold 2 { al -- le -- lú -- ia, }
+  \alleluiaPuisDextera
 }
 
 
@@ -534,7 +674,7 @@ rightOne = \fixed c' {
 	\bar "||" \goUp \key des \major \break 
 	
 	\oneVoice	R1
-	r8 des'8 ( as f \goDown des as, des, f, ) \goUp |
+	r8 des'8\pp ( as f \goDown des as, des, f, ) \goUp |
 	<des f>4 r r2
 	r8 f' ( des' as bes as ges es |
 	c bes, as, ) r r2
@@ -577,16 +717,41 @@ rightOne = \fixed c' {
 	es1 d~1~1 |
 	\oneVoice <a, f>4.\pp <bes, g>8 <c a>2 |
 	\voiceOne bes4. c'8 d'2
-	es'4 d' c' f' |
-	es' d' c' f' |
-	es' d' c' bes~ |
+	\crescHairpin \dimHairpin
+	es'4\< d' c' f' |
+	es'\> d' c' f' |
+	es'\pp d' c' bes~ |
 	4 a g f |
 	4 g8 a bes2 ~ |
 	4 c'8 g bes a g a |
 	s1*2
 	bes2 d'4 f' |
 	d' c' bes2 |
-	s1*7
+	s1*12
+	c'2 d'4. a8 |
+	bes2 c'4. g8 |
+	bes4 a g a |
+	s1*3
+	r8 f' g' f' es' c' a f |
+	s2*3 bes4. a8 |
+  2 g~ |
+  2 es'4. d'8 |
+  es'2.. d'8 |
+  bes2 4. a8 |
+  2 g ~ |
+  2 es'4 d' |
+  c'2.. d'8 |
+  bes4 d' f' es' |
+  d'2 c'4. bes8 |
+  1\dim~1~4\p g a bes |
+  d'2 c'4. bes8 |
+  1~1~4 g' f' es' |
+  d'1~2 c'4. bes8 |
+  4\italicMark"Récit (anches)" r g8 f es4 |
+  f2 g8 f es4 |
+  s1*2 |
+  <d f>2\italicMark"Récit" g8 f es4 |
+  <d f>2 g8 f es4 | 
 }
 
 rightTwo = {
@@ -627,13 +792,14 @@ rightTwo = {
 	  \repeat unfold 3 { r4 \repeat unfold 3 { s8 r8 } | }
 	  \repeat unfold 2 { s8 r r4 } |
 	  s1*4
+	  <>_\italicMark"Ôter les hanches du récit"
 	  R1*2
 	  s1 des |
 	  s4 r r2 |
 	  R1
 	  <des f>1~1 |
-	  ges as |
-	  <as ges>2~8 r r4 |
+	  ges as\< |
+	  <as ges>2\sfz ~8\> r r4\! |
 	  s1*11
 	  des4 c bes c
 	  s2*3 f,2~ |
@@ -668,9 +834,10 @@ rightTwo = {
 	  <g es' g> r <f c' f> <as c d> |
 	  <g c es> <es g c> <d g c> <d g b> |
 	  <es g c>8 g es d c es d f |
-	  \repeat unfold 2 { es g es d c es d f | }
+	  es g es d c es d\dim f\! |
+	  es g es d c es d f | 
 	  es g es d c es d f |
-	  es g es d c2 ~ |
+	  es\p g es d c2 ~ |
 	  8 b d es f2~ |
 	  8 es g es c4. es8~ |
 	  8 d f d b4. c8 |
@@ -698,6 +865,45 @@ rightTwo = {
 	  r8 d ( f bes g es c ) r |
 	  r d( f bes d, c bes ) r |
 	  r bes c a' d, bes' es, c' |
+	  r d, f bes a f c a |
+	  \voiceTwo <a f>1 |
+	  f2 es |
+	  1 |
+	  \set Timing.beatStructure = 1,3,4
+	  \oneVoice <d bes'>8 d'\dim c bes f d c bes |
+	  r\pp f'' es c bes a g f |
+	  r f' d bes r g' es c |
+	  \voiceTwo bes4 a g a |
+	  \oneVoice bes8 r r4 f2~ |
+	  2 \voiceTwo d~ |
+	  2 g4. f8 |
+	  4 es g bes |
+	  a g f es |
+	  <d f>2 d~ |
+	  2 g4. f8 |
+	  4 ( es g bes |
+	  a4 g f2 ~ |
+	  2 ) as4 g |
+	  f2 es4. d8 |
+	  2 f |
+	  es d |
+	  c1 |
+	  f2 es4. d8 |
+	  2 bes |
+	  c d~ |
+	  2 g |
+	  a g |
+	  2 es4. d8 |
+	  <d f>2 c |
+	  d c |
+	  \oneVoice <d f> r |
+	  r\italicMark"Gd. Orgue" <a es' f> |
+	  \voiceTwo bes1~1~ |
+	  \oneVoice <bes d f>2 r
+	  R1
+	  r2 <a es' f> |
+	  <bes d f> r |
+	  R1*2
 	}
 }
 
@@ -813,7 +1019,7 @@ leftOne = \fixed c {
 	
 	\key bes \major f1~1~ |
 	1~1 |
-	<<{bes4. c'8 r2 | c'4. bes8 c'2}\new Voice{\voiceThree f1~1}>> |
+	bes4. c'8 r2 | c'4. bes8 c'2 |
 	<f bes>2. bes4 |
 	4 g f2 |
 	bes4. 8 2~ |
@@ -826,17 +1032,67 @@ leftOne = \fixed c {
 	4 d'8 bes ~ 8 a g f |
 	bes4. 8 2 ~ |
 	4 g a2 |
+	<g bes>-^ <d bes>4-^ 4-^ |
+	<es es'>-^ <f es'>-^ <bes d'>2-^ |
+	<f bes> <es bes c'> |
+	<f bes d'>1~ |
+	<bes d'>4 <a c'> <bes d'> <c' es'> |
+	<bes d'>2 <a c'> |
+	r8 es f a es' a f es |
+	r d f bes r es g c' |
+	r f c' f' c' f' c' f~ |
+	<f bes> r r4 bes2~ |
+	4 a bes c' |
+	f as g es' |
+	d' c' bes c' |
+	\tuplet 6/4 {s8 f bes d' c' bes r f bes d' c' bes |
+	r f bes d' c' bes r fis bes d' c' bes |
+	r g bes d' c' bes r g bes d' c' bes |
+	r es g bes a g r es g bes a g |
+	r es a c' bes a r es a c' bes a |
+	<<{r f bes d' c' bes r fis bes d' c' bes |
+	   r g bes d' c' bes r g bes d' c' bes |
+	}\new Voice {\voiceTwo
+	  s8 f4. s fis s g s g s4 |}>>
+	r8 es g bes a g r es g bes a g |
+	r es a c' bes a r es a c' bes a |
+	r f bes d' c' bes r f b c' d' es' |
+	}
+	\undo \omit TupletBracket \set Timing.beatBase = #1/4 \set Timing.beatStructure = 1,1,1,1
+	\tuplet 3/2 {r f bes} d' r \tuplet 3/2 {r es f} a r |
+	\omit TupletBracket \set Timing.beatBase = #1/12 \set Timing.beatStructure = 6,6
+	\tuplet 6/4 {
+	r8 f bes d' bes f r as bes as' bes as |
+	r g bes g' bes g r f bes f' bes f |
+	}
+	<g es>1 |
+	<<{bes2 a4. bes8}\new Voice{\voiceThree f1}>> |
+	\tuplet 6/4 {bes8 f bes d' bes f r f as bes as f|
+	r es g bes g es r d f bes f d |}
+	<g bes>1 |
+	<fis a>2 <g bes> |
+	<es bes> <f a>4. bes8 |
+	f2 es4 g |
+	f2 es4 g |
+	s2*3 f2 |
+	2 es4 g |
+	f2 es4 g |
+	\oneVoice <bes, f>2 r
+	R1
+	r2 <f, c f> |
+	<bes, f> r
+	R1*2
 }
 
 leftTwo = \fixed c, {
 	\globalO
 	bes1 f |
-	g2 d |
+	\oneVoice g2 d |
 	es f |
 	bes1 f |
 	g2 f |
 	g4 a bes2 |
-	bes1~1~1~2 f |
+	\voiceTwo bes1~1~1~2 f |
 	bes1 f |
 	s1 es4 f bes2 |
 	
@@ -866,7 +1122,6 @@ leftTwo = \fixed c, {
 	bes1 \oct f'1 |
 	g2 d4-^ 4-^ |
 	es-^ f-^ bes2-^ |
-	
 	\oneVoice R1*2
 	bes2 ( des'4\< f' |
 	des'\> c' bes2\! ) |
@@ -916,9 +1171,8 @@ leftTwo = \fixed c, {
 	
 	es'2. d'8 c' |
 	bes2. a8 g  |
-	f1 2 f' ~ |
-	2 bes |
-	es'1 |
+	f1 | 2 
+	<<\new Voice{\voiceFour f'2 ^~ | f'1 ^~ | 1}{s2 | r2 bes | es'1}>> |
 	d' |
 	c'2 f |
 	<bes f'>1 |
@@ -930,6 +1184,35 @@ leftTwo = \fixed c, {
 	r4 bes'8 r g' r a' r |
 	bes' r r4 f'8 r r4 |}
 	bes1 \oct f' |
+	g2 d4-^ 4-^ |
+	es-^ f-^ bes2-^ |
+	<bes d'> es |
+	bes2. a4 |
+	\oct {g'2 f'4 es' |
+	f'1} |
+	es |
+	d2 es |
+	f1 |
+	bes8 r r4 r2 |
+	\oct {es'1 |
+	d'2 es' |
+	f'1 } |
+	<<\new Voice{\voiceThree \tuplet 6/4 {<f' d''>8 s4}s2.}{bes1}>> |
+	bes1 |
+	1 c f \voiceThree bes |
+	1 \voiceTwo c f2. es4 d2. es4 |
+	f1 bes1 1 es |
+	f2.. bes8 |
+	2 f |
+	es d |
+	g1 |
+	fis2 g |
+	es f4. bes8 |
+	\oct {bes'1 ~ |
+	1 ~ } |
+	\oneVoice <bes f' bes'>2 r |
+	r \voiceTwo <f c'> |
+	bes1~1 |
 }
 
 ClavierPart = \new PianoStaff \with {
