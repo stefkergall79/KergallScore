@@ -5,7 +5,7 @@
 > ✉️ Une commande\
 > 🎶 De la musique !
 
-## Nos produits
+# Nos produits
 
 - Vous voulez relooker une **vieille partition** photocopiée six fois, montée à coups de scans sur LibreOffice ?
 
@@ -34,7 +34,7 @@ Un **éditeur** pour votre toute dernière composition ?\
 
 KergallScore vous propose des solutions. [Nous attendons vos commandes](mailto:stef.kergall@gmail.com) du lundi au samedi !
 
-## Pour les spécialistes
+# Pour les spécialistes
 
 Tous nos fichiers sources sont libres : téléchargez-les, modifiez-les, mettez-les en charpie.
 

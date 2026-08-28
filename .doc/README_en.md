@@ -5,7 +5,7 @@
 > ✉️ One request\
 > 🎶 Music!
 
-## Our products
+# Our products
 
 - Do you have an **old score** photocopied six times over, patched up with LibreOffice scans?
 
@@ -34,7 +34,7 @@ A **publisher** for your very latest composition?\
 
 KergallScore has solutions for you. [We're waiting for you](mailto:stef.kergall@gmail.com) Monday to Saturday.
 
-## Specialists'place
+# Specialists'place
 
 All our source files are free: download them, modify them, tear them apart.
 
