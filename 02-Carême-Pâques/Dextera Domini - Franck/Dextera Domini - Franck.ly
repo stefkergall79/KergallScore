@@ -1282,3 +1282,8 @@ ClavierPart = \new PianoStaff \with {
 	\layout {\context{\Staff \RemoveEmptyStaves }}
 	\midi {\tempo 4=95 }
 }
+
+\markup \column {
+  "La droite du Seigneur a déployé sa puissance, la droite du Seigneur m’a exalté."
+  "Je ne mourrai plus, mais je vivrai, et je raconterai les œuvres du Seigneur."
+}
