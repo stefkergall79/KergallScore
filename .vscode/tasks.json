@@ -28,10 +28,7 @@
         {
             "label": "Install",
             "type": "shell",
-            "command": "${workspaceFolder}/.prog/installer.sh",
-            "args": [
-                "--code"
-            ],
+            "command": "${workspaceFolder}/.prog/installer.py",
             "group": "build"
         },
         {
