@@ -85,7 +85,7 @@ class HeaderTab(ctk.CTkFrame):
         entry_filename.pack(side="left", padx=0)
         entry_filename.bind("<KeyRelease>", self.on_filename_edit)
         filename_frame.pack(pady=4, padx=20, anchor="w")
-        ctk.CTkLabel(filename_frame, text="Nom du fichier", font=self.default_font, width=100).pack(side="left", padx=(0, 10))
+        ctk.CTkLabel(filename_frame, text="Nom du dossier", font=self.default_font, width=100).pack(side="left", padx=(0, 10))
         
         self.fields["title"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.fields["composer"]["var"].trace_add("write", self.on_title_or_composer_change)
@@ -101,9 +101,6 @@ class HeaderTab(ctk.CTkFrame):
 
         self.picker_frame = ctk.CTkFrame(self)
         self.picker_target = "composer"
-
-        self.picker_label = ctk.CTkLabel(self.picker_frame, text=self.fields[self.picker_target]["name"], font=self.default_font)
-        self.picker_label.pack(side="top", padx = 5, pady=5, anchor="w")
 
         letters_frame = ctk.CTkFrame(self.picker_frame, fg_color="transparent")
         letters_frame.pack(side="top", anchor="w")
@@ -132,7 +129,7 @@ class HeaderTab(ctk.CTkFrame):
         ctk.CTkButton(
             self.picker_frame, text="Nouveau nom", font=self.default_font,
             command=self.open_new_composer_popup
-        ).pack(side="top", pady=(10, 5), anchor="w")
+        ).pack(side="top", pady=5, anchor="w")
 
         self.show_composer_picker()
 
@@ -142,8 +139,7 @@ class HeaderTab(ctk.CTkFrame):
 
     def _set_picker_target(self, key):
         self.picker_target = key
-        self.picker_label.configure(text=self.fields[key]["name"])
-
+    
     def _active_picker_fields(self):
         return [key for key in self.picker_fields if self.fields[key]["frame"].winfo_manager() == "pack"]
 
@@ -164,7 +160,7 @@ class HeaderTab(ctk.CTkFrame):
                 command=lambda k=key: self.fields[self.picker_target]["var"].set(k)
             ).pack(anchor="w", pady=2)
 
-    def _composer_surname(self, name):
+    def _composer_surname(self, name: str):
         before_paren = name.strip('"').split("(")[0].strip()
         words = before_paren.split()
         return words[-1].lower() if words else before_paren.lower()
@@ -212,8 +208,7 @@ class HeaderTab(ctk.CTkFrame):
 
         # synchronise .utils/ avec l'installation lilypond (task "Synchroniser .utils/")
         lilypond_ly_dir = PARTITIONS / ".prog" / "lilypond-2.26.0" / "share" / "lilypond" / "2.26.0" / "ly"
-        for util_file in (PARTITIONS / ".utils").iterdir():
-            subprocess.run(["cp", str(util_file), str(lilypond_ly_dir)], check=True)
+        subprocess.run(["cp", str(PARTITIONS / ".utils")+"/*", str(lilypond_ly_dir)], check=True)
 
         self.refresh_composers()
         popup.destroy()
@@ -280,7 +275,9 @@ class HeaderTab(ctk.CTkFrame):
 
         if selected_key in self.picker_fields:
             self._set_picker_target(selected_key)
-            self.show_composer_picker()
+
+        self.fields[selected_key]["entry"].focus_set()
+        self.show_composer_picker()
 
     def remove_field(self, key: str):
         field_info = self.fields[key]
@@ -304,20 +301,16 @@ class HeaderTab(ctk.CTkFrame):
     def get_target_filename(self) -> str:
         filename = self.filename_var.get().strip()
         if not filename:
-            filename = "Sans titre.ly"
-        elif "." not in filename:
-            filename += ".ly"
-        return filename
+            return "Sans titre.ly"
+        return filename + ".ly"
 
     def _get_categories(self) -> list[str]:
-        categories = [
+        return [
             entry.name for entry in PARTITIONS.iterdir()
             if entry.name[:2].isdecimal()
             and entry.name[:2] not in ("09", "08", "99")
-        ]
-        categories.sort(key=str.casefold)
-        return categories
-
+        ].sort(key=str.casefold)
+    
     def get_composers(self):
         file_composers = Path(PARTITIONS / ".utils" / "composers.ily")
         content = file_composers.read_text()
@@ -728,7 +721,7 @@ class LilypondCreator(ctk.CTk):
 
         button_frame = ctk.CTkFrame(self)
         ctk.CTkButton(button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file).pack(side="left", padx=(0, 10))
-        ctk.CTkButton(button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#ff0000", hover_color="#8f8f8f", command=self.destroy).pack(side="left")
+        ctk.CTkButton(button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#8a8a8a", hover_color="#8f8f8f", command=self.destroy).pack(side="left")
         button_frame.pack(pady=15)
         self.mainloop()
     
@@ -794,7 +787,7 @@ class LilypondCreator(ctk.CTk):
                 if values.get("composer"):
                     content += f'\\tocItemComposer "{values["title"]}" "{values["composer"]}"\n'
                 else:
-                    content += f'\\tocItem \\markup "{values["title"]}\n'
+                    content += f'\\tocItem \\markup "{values["title"]}"\n'
             
             content += (
                 "\\score {\n"
