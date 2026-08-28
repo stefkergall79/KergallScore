@@ -5,8 +5,6 @@
 > ✉️ Une commande\
 > 🎶 De la musique !
 
-# Musiciens
-
 - Vous voulez relooker une **vieille partition** photocopiée six fois, montée à coups de scans sur LibreOffice ?
 
 | Avant | Après |
@@ -36,24 +34,4 @@ KergallScore vous propose des solutions. [Nous attendons vos commandes](mailto:s
 
 # Développeurs
 
-Tous nos fichiers sources sont libres : téléchargez-les, modifiez-les, mettez-les en charpie.
-
-Les partitions sont écrites en [lilypond](https://lilypond.org). Pour une compilation sans erreur dès le premier essai, copiez tous les fichiers du répertoire [.utils/](.utils/) dans le dossier d'inclusion par défaut de lilypond.
-
-- Si vous utilisez le paquet système de `lilypond` (vieille version 2.24.4) :
-```bash
-ks@pc-ks:~/KergallScore
-$ cp .utils/* /usr/share/lilypond/2.24.4/ly/
-```
-- Si vous utilisez la dernière version 2.26.0 téléchargée sur [le site web](https://lilypond.org/download.fr.html) :
-```bash
-ks@pc-ks:~/KergallScore
-$ cp .utils/* .prog/lilypond-2.26.0/share/lilypond/2.26.0/ly/
-```
-- Si vous êtes sous MacOS : vous êtes riche, un abonnement [Claude](https://claude.ai) vous expliquera mieux que n'importe quel tutoriel le processus.
-- Si vous êtes sous Windows : pauvre de vous, passez vite sous [Linux](https://linuxmint.com/edition.php?id=326).
-
-> Que contient ce fameux [.utils/](.utils/) ?
->> - [settings.ily](.utils/settings.ily) : des fonctions et des variables prédéfinies, ainsi que la [signature de KergallScore](mailto:stef.kergall@gmail.com) que vous avez intérêt à enlever !
->> 
->> - [composers.ily](.utils/composers.ily) : la liste de tous les compositeurs, paroliers et harmonisateurs dont KergallScore a reproduit une partition, avec leur nom complet et leurs dates.
+Vive [lilypond](https://lilypond.org) ! Plus d'informations [par ici](.doc/DEVELOPERS.md)
