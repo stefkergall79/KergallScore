@@ -1,23 +1,23 @@
-# KergallScore Edition
+# KergallScore Édition
 
-All our source files are free: download them, modify them, tear them apart.
+Tous nos fichiers sources sont libres : téléchargez-les, modifiez-les, décortiquez-les.
 
-Our partitions are written in [lilypond](https://lilypond.org/index.html). For an error-free compilation right out of the box, copy every file from the [.utils/](../.utils/) directory into lilypond's default include folder.
+Nos partitions sont écrites en [lilypond](https://lilypond.org/index.html). Pour une compilation sans erreur dès le départ, copiez tous les fichiers du dossier [.utils/](../.utils/) dans le dossier d'inclusion par défaut de lilypond.
 
-- If you use the system package of `lilypond` (old version 2.24.4):
+- Si vous utilisez le paquet système de `lilypond` (ancienne version 2.24.4) :
 ```bash
 ks@pc-ks:~/KergallScore
 $ cp .utils/* /usr/share/lilypond/2.24.4/ly/
 ```
-- If you use the latest version 2.26.0 downloaded from [the website](https://lilypond.org/download.html):
+- Si vous utilisez la dernière version 2.26.0 téléchargée depuis [le site officiel](https://lilypond.org/download.html) :
 ```bash
 ks@pc-ks:~/KergallScore
 $ cp .utils/* .prog/lilypond-2.26.0/share/lilypond/2.26.0/ly/
 ```
-- If you're on MacOS: you're loaded, a [Claude](https://claude.ai) subscription will explain the process better than any tutorial.
-- If you're on Windows: our condolences, hurry up and switch to [Linux](https://linuxmint.com/edition.php?id=326).
+- Si vous êtes sur MacOS : vous avez de la chance, un abonnement [Claude](https://claude.ai) vous expliquera la procédure mieux qu'aucun tutoriel.
+- Si vous êtes sous Windows : toutes nos condoléances, passez vite sur [Linux](https://linuxmint.com/edition.php?id=326).
 
-> What does [.utils/](../.utils/) contain?
->> - [settings.ily](../.utils/settings.ily): predefined functions and variables, as well as [KergallScore's signature](mailto:stef.kergall@gmail.com), which you'd be wise to remove!
+> Que contient [.utils/](../.utils/) ?
+>> - [settings.ily](../.utils/settings.ily) : fonctions et variables prédéfinies, ainsi que [la signature de KergallScore](mailto:stef.kergall@gmail.com), qu'il serait sage de retirer !
 >> 
->> - [composers.ily](../.utils/composers.ily): the list of all composers, lyricists and harmonizers whose score KergallScore has reproduced, with their full name and dates.
+>> - [composers.ily](../.utils/composers.ily) : la liste de tous les compositeurs, paroliers et harmonisateurs dont KergallScore a reproduit une partition, avec leur nom complet et leurs dates.
