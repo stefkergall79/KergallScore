@@ -5,8 +5,6 @@
 > ✉️ One request\
 > 🎶 Music!
 
-# Musicians
-
 - Do you have an **old score** photocopied six times over, patched up with LibreOffice scans?
 
 | Before | After |
