@@ -75,7 +75,7 @@ class HeaderTab(ctk.CTkFrame):
         for cat in self.categories:
             ctk.CTkRadioButton(
                 self.left_frame, text=cat[3:], variable=self.category_var, value=cat,
-                font=self.default_font, command=self.on_category_change,
+                font=self.default_font,
                 radiobutton_height=15, radiobutton_width=15
             ).pack(side="top", padx=5, pady=2, anchor="w")
         
@@ -110,27 +110,35 @@ class HeaderTab(ctk.CTkFrame):
 
         columns = 6
         letters_with_composers = {entry[2][:1].upper() for entry in self.composer_entries}
+        self.letter_buttons = {}
+        self.default_letter_fg_color = None
         for i, letter in enumerate("ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
             has_composers = letter in letters_with_composers
-            ctk.CTkButton(
+            btn = ctk.CTkButton(
                 letters_frame, text=letter, width=30, height=28, font=self.default_font,
                 state="normal" if has_composers else "disabled",
                 fg_color=None if has_composers else "#4a4a4a",
                 text_color_disabled="#8a8a8a",
                 command=lambda l=letter: self.show_composers_for_letter(l)
-            ).grid(row=i // columns, column=i % columns, padx=(5, 0), pady=2)
+            )
+            btn.grid(row=i // columns, column=i % columns, padx=(5, 0), pady=2)
+            self.letter_buttons[letter] = btn
+            if has_composers and self.default_letter_fg_color is None:
+                self.default_letter_fg_color = btn.cget("fg_color")
 
         self.composer_results = ctk.CTkFrame(self.picker_frame, width=260, fg_color="transparent")
         self.composer_results.pack(side="top", fill="x", pady=(10, 0))
+
+        ctk.CTkButton(
+            self.picker_frame, text="Nouveau nom", font=self.default_font,
+            command=self.open_new_composer_popup
+        ).pack(side="top", pady=(10, 5), anchor="w")
 
         self.show_composer_picker()
 
     def show_composer_picker(self):
         if not self.picker_frame.winfo_ismapped():
             self.picker_frame.pack(side="left", fill="both", expand=True, padx=(20, 0), anchor="n")
-
-    def hide_composer_picker(self):
-        self.picker_frame.pack_forget()
 
     def _set_picker_target(self, key):
         self.picker_target = key
@@ -161,26 +169,68 @@ class HeaderTab(ctk.CTkFrame):
         words = before_paren.split()
         return words[-1].lower() if words else before_paren.lower()
 
-    def set_instrument_with_category(self, parts, *choice):
-        for instrument in parts:
-            if instrument in choice:
-                parts[instrument]["btn"].select()
-            else:
-                parts[instrument]["btn"].deselect()
+    def open_new_composer_popup(self):
+        popup = ctk.CTkToplevel(self)
+        popup.title("Nouveau nom")
+        popup.resizable(False, False)
+        popup.wait_visibility()
+        popup.grab_set()
 
-    def on_category_change(self):
-        choice=self.category_var.get()
-        parts = self.app.parts_tab.parts
-        if choice == "Piano":
-            self.set_instrument_with_category(parts, "Clavier", "Flûte")
-            self.app.parts_tab.clavier_changed()
-        elif choice in ("Chorale", "Chants populaires", "Noël"):
-            self.set_instrument_with_category(parts, "Choeur")
-            parts["Choeur"]["schema"].set("SA-TB")
-            parts["Choeur"]["meme_paroles"].set(True)
-        if choice in ("Chants populaires", "Chorale"):
-            self.app.parts_tab.schema_voices_changed()
-        self.app.parts_tab.update_parts_ui()
+        identifiant_var = ctk.StringVar()
+        nom_var = ctk.StringVar()
+
+        identifiant_frame = ctk.CTkFrame(popup, fg_color="transparent")
+        ctk.CTkLabel(identifiant_frame, text="Identifiant", font=self.default_font, width=100).pack(side="left", padx=(10, 5), pady=10)
+        ctk.CTkEntry(identifiant_frame, width=220, height=28, font=self.default_font, textvariable=identifiant_var).pack(side="left", padx=(0, 10), pady=10)
+        identifiant_frame.pack(anchor="w")
+
+        nom_frame = ctk.CTkFrame(popup, fg_color="transparent")
+        ctk.CTkLabel(nom_frame, text="Nom et date", font=self.default_font, width=100).pack(side="left", padx=(10, 5), pady=10)
+        ctk.CTkEntry(nom_frame, width=220, height=28, font=self.default_font, textvariable=nom_var).pack(side="left", padx=(0, 10), pady=10)
+        nom_frame.pack(anchor="w")
+
+        button_frame = ctk.CTkFrame(popup, fg_color="transparent")
+        ctk.CTkButton(
+            button_frame, text="Enregistrer", font=self.default_font,
+            command=lambda: self.save_new_composer(identifiant_var.get().strip(), nom_var.get().strip(), popup)
+        ).pack(side="left", padx=(10, 5), pady=10)
+        ctk.CTkButton(
+            button_frame, text="Annuler", font=self.default_font, fg_color="#8a8a8a", hover_color="#6a6a6a",
+            command=popup.destroy
+        ).pack(side="left", padx=(0, 10), pady=10)
+        button_frame.pack(anchor="e")
+
+    def save_new_composer(self, identifiant: str, nom: str, popup):
+        if not identifiant or not nom:
+            return
+
+        file_composers = PARTITIONS / ".utils" / "composers.ily"
+        content = file_composers.read_text()
+        if content and not content.endswith("\n"):
+            content += "\n"
+        file_composers.write_text(content + f'{identifiant} = "{nom}"\n')
+
+        # synchronise .utils/ avec l'installation lilypond (task "Synchroniser .utils/")
+        lilypond_ly_dir = PARTITIONS / ".prog" / "lilypond-2.26.0" / "share" / "lilypond" / "2.26.0" / "ly"
+        for util_file in (PARTITIONS / ".utils").iterdir():
+            subprocess.run(["cp", str(util_file), str(lilypond_ly_dir)], check=True)
+
+        self.refresh_composers()
+        popup.destroy()
+
+    def refresh_composers(self):
+        self.composers = self.get_composers()
+        self.composer_entries = sorted(
+            ((key, name, self._composer_surname(name)) for key, name in self.composers.items()),
+            key=lambda entry: entry[2]
+        )
+        letters_with_composers = {entry[2][:1].upper() for entry in self.composer_entries}
+        for letter, btn in self.letter_buttons.items():
+            has_composers = letter in letters_with_composers
+            btn.configure(
+                state="normal" if has_composers else "disabled",
+                fg_color=self.default_letter_fg_color if has_composers else "#4a4a4a"
+            )
 
     def build_default_filename(self):
         title = self.fields["title"]["var"].get().strip()
@@ -247,7 +297,7 @@ class HeaderTab(ctk.CTkFrame):
         if key in self.picker_fields:
             remaining = self._active_picker_fields()
             if not remaining:
-                self.hide_composer_picker()
+                self.picker_frame.pack_forget()
             elif self.picker_target == key:
                 self._set_picker_target(remaining[0])
 
@@ -680,7 +730,8 @@ class LilypondCreator(ctk.CTk):
         ctk.CTkButton(button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file).pack(side="left", padx=(0, 10))
         ctk.CTkButton(button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#ff0000", hover_color="#8f8f8f", command=self.destroy).pack(side="left")
         button_frame.pack(pady=15)
-
+        self.mainloop()
+    
     def create_lilypond_file(self):
         values = {}
         for key, field in self.header_tab.fields.items():
@@ -813,4 +864,4 @@ class LilypondCreator(ctk.CTk):
         self.error_window.destroy()
         self.create_lilypond_file()
 
-LilypondCreator().mainloop()
+LilypondCreator()
