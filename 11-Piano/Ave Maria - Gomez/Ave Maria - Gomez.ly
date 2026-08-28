@@ -8,14 +8,13 @@ global = {
     \key d \major
     \time 4/4
     \tupletSpan 4
-    \omit DynamicText
 }
 
 sopranoVoice = \fixed c' {
     \global
     \dynamicUp
     R1*2
-    d4\fffff 4 r8 d e fis a4 2 r4
+    d4 4 r8 d e fis a4 2 r4
     b4 4~\tuplet 3/2 {8 8 8 8 a g} a4 2 r8
     fis8 \tuplet 3/2 {g8 8 8} 4~\tuplet 3/2 {8 8 8} g16 a a e fis4 4 r4
     b8 cis' \tuplet 3/2 {d'8 8 8 8 4~8 b b b cis' d'} cis'2. r4
@@ -55,7 +54,7 @@ right = \fixed c' {
     \global
     r2 r4 <d' fis' a'>4 4 <a d' fis'> <fis a d'> <fis a>
     \tuplet 3/2 {
-        fis8\ppp a, d fis d a, r a, d fis d a,
+        fis8 a, d fis d a, r a, d fis d a,
         cis cis fis a fis cis r cis fis a fis cis
         b, d g b g d r cis e a e cis
         d a, d fis d a, r a, d fis d a,
@@ -68,7 +67,7 @@ right = \fixed c' {
 
     \repeat volta 2 {
         \tuplet 3/2 {
-            fis8\ppp a, d fis d a, r a, d fis d a,
+            fis8 a, d fis d a, r a, d fis d a,
             cis cis fis a fis cis r cis fis a fis cis
             b, d g b g d r cis e a e cis
             d a, d fis d a, r a, d fis d a,
@@ -114,7 +113,7 @@ right = \fixed c' {
 left = \fixed c {
     \global
     \tuplet 3/2 {\repeat unfold 4 { d8 a d' fis' d' a}}
-    d2\ppp 2 fis,2 2 g, a, <d d,> <d d,> e, a, <d d,> d g,2 2 a,2 2
+    d2 2 fis,2 2 g, a, <d d,> <d d,> e, a, <d d,> d g,2 2 a,2 2
 
     \repeat volta 2 {
         <d d,>2 2 <fis, fis>2 2 <g g,> <a a,> <d d,>2 2 <e e,> <a, a,,> <d d,>2
@@ -145,8 +144,10 @@ sopranoVoicePart = \new Staff \with {
 
 pianoPart = \new PianoStaff \with {
     instrumentName = "Orgue"
-} <<
-    \set PianoStaff.connectArpeggios = ##t
+    midiMinimumVolume = #0.2
+    midiMaximumVolume = #0.4
+    connectArpeggios = ##t
+  } <<
     \new Staff = "right" \with {
         midiInstrument = "church organ"
     } \right
@@ -164,7 +165,7 @@ pianoPart = \new PianoStaff \with {
         \sopranoVoicePart
         \pianoPart
     >>
-    \layout {\context{\Staff \RemoveAllEmptyStaves }}
+    \layout {}
     \midi {
         \tempo 4=70
     }

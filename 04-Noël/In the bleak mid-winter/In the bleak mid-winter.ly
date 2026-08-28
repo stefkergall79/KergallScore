@@ -471,6 +471,8 @@ PartPThreeVoiceSix = \relative g, {
       instrumentName = "Org."
       shortInstrumentName = "Org."
       midiInstrument = "church organ"
+      midiMinimumVolume = #0.1
+      midiMaximumVolume = #0.3
     } <<
       \new Staff \with{
         \consists Merge_rests_engraver

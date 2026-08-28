@@ -145,7 +145,9 @@ choirPart = \new ChoirStaff <<
 >>
 
 pianoPart = \new PianoStaff \with {
-    instrumentName = "Org."
+  instrumentName = "Org."
+  midiMinimumVolume = #0.1
+  midiMaximumVolume = #0.3
   }<<
   \new Staff = "right" \with {
     midiInstrument = "church organ"

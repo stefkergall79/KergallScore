@@ -35,13 +35,13 @@ soprano = \fixed c' {
   a4 b8. b16 c'4 d'8. d'16
   e'2~8 r16 e e8. e16
   a4 g fis8. fis16 e8. e16
-  d2 d8 r \autoBeamOn \tuplet 3/2 {d b, d}
+  d2 d8 r \tuplet 3/2 {d b, d}
   g2~8 r \tuplet 3/2 {g d g}
   b2~8 r \tuplet 3/2 {e c e}
-  a2~8 r \tuplet 3/2 {a e a} \autoBeamOff
+  a2~8 r \tuplet 3/2 {a e a}
   c'2~8 r16 c' c'8. c'16
   c'2~8 r c'8. c'16
-  e'2 c'8 r \autoBeamOn \tuplet 3/2 {c' b a}
+  e'2 c'8 r \tuplet 3/2 {c' b a}
   d'1 g2.. \bar "|."
 }
 
@@ -70,13 +70,13 @@ alto = \fixed c' {
   e4 d8. d16 e4 a8. a16
   gis2~8 r16 e e8. e16
   cis4 e d8. d16 cis8. cis16
-  a,2 a,8 r \autoBeamOn \tuplet 3/2 {d b, d}
+  a,2 a,8 r \tuplet 3/2 {d b, d}
   d2~8 r \tuplet 3/2 {g d g}
   g2~8 r \tuplet 3/2 {e c e}
-  e2~8 r \tuplet 3/2 {a e a} \autoBeamOff
+  e2~8 r \tuplet 3/2 {a e a}
   a2~8 r16 e e8. e16
   f2~8 r f8. f16
-  e2 e8 r \autoBeamOn \tuplet 3/2 {e e e}
+  e2 e8 r \tuplet 3/2 {e e e}
   g2( fis2) d2..
 
 }
@@ -106,13 +106,13 @@ tenor = \fixed c {
   e4 gis8. gis16 a4 a8. a16
   b2~8 r16 e e8. e16
   e4 a a8. a16 a8. a16
-  fis2 fis8 r \autoBeamOn \tuplet 3/2 {d b, d}
+  fis2 fis8 r \tuplet 3/2 {d b, d}
   b2~8 r \tuplet 3/2 {g d g}
   d'2~8 r \tuplet 3/2 {e c e}
-  c'2~8 r \tuplet 3/2 {a e a} \autoBeamOff
+  c'2~8 r \tuplet 3/2 {a e a}
   e'2~8 r16 a a8. a16
   a2( f8) r a8. a16
-  gis2 a8 r \autoBeamOn \tuplet 3/2 {a a a}
+  gis2 a8 r \tuplet 3/2 {a a a}
   b2( a2) b2..
 
 }
@@ -142,13 +142,13 @@ bass = \fixed c {
   e2~8 r16 e e8. e16
   a,4 cis d8. d16 a,8. a,16
   d2( d8) r4.
-  r4 \autoBeamOn \tuplet 3/2 {d8 b, d}
+  r4 \tuplet 3/2 {d8 b, d}
   g,2~8 r \tuplet 3/2 {g, b, d}
   g2~8 r \tuplet 3/2 {e c e}
   a,2~8 r \tuplet 3/2 {a, c e} a
-  \autoBeamOff r16 a a8. a16
+  r16 a a8. a16
   f2~8 r f8. f16
-  e2 a,8 r \autoBeamOn \tuplet 3/2 {a, b, c}
+  e2 a,8 r \tuplet 3/2 {a, b, c}
   d1 g,2..
 }
 
@@ -178,6 +178,12 @@ verseTwo = \strophemode #2 ##t \lyricmode {
   ai -- mons- les donc comme au -- tre -- fois,
   et de nou -- veau con -- sa -- crons l'al -- li -- an -- ce
   de notre é -- pée a -- vec la Croix_!
+}
+
+verseBass = \lyricmode {
+  \repeat unfold 101 \skip1
+  Fils de ces preux, chan -- tons com -- me_eux,
+  fils de ces preux, chan -- tons com -- me_eux,
 }
 
 \score {
@@ -210,7 +216,33 @@ verseTwo = \strophemode #2 ##t \lyricmode {
       \new Voice = "tenor" { \voiceOne \tenor }
       \new Voice = "bass" { \voiceTwo \bass }
     >>
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #UP
+    } \lyricsto "bass" \verseBass
   >>
   \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi { \tempo 4=100 }
+}
+
+\markup \couplets-markup #3 #2 {
+  \column{
+    "Quels noms fameux tu nous rappelles,"
+    "Drapeau sacré, toujours vainqueur !"
+    "Patay, Beaugency, les Tourelles,"
+    "Et Reims où tu fus à l'honneur !"
+    "À ton aspect, que la France reprenne"
+    "Sa vieille foi et sa vieille ardeur,"
+    "En t'acclamant que ton peuple devienne,"
+    "Plus généreux, plus rédempteur !"
+  }
+  \column{
+    "Planant au-dessus de nos têtes,"
+    "Les grands français de tous les temps"
+    "Réclament leur part de nos fêtes"
+    "En s'unissant à leurs enfants !"
+    "Les anciens francs, les preux du Moyen Âge,"
+    "Et les braves des temps nouveaux"
+    "À Jehanne d'Arc rendent le même hommage,"
+    "Et lui présentent leurs drapeaux !"
+  }
 }

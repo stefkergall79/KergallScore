@@ -185,13 +185,15 @@ PartPFourVoiceOne = \relative bes {
    f2.
 }
 
-
+\tocItemComposer "Veni Creator" "Couturier"
 \score {
   \header {
     title = "VENI CREATOR"
     composer = \couturier
   }
-  \new ChoirStaff <<
+  \new ChoirStaff \with {
+    midiInstrument = "choir aahs"
+  } <<
     \new Staff <<
       \new Voice = "PartPOneVoiceOne" {
         \voiceOne \PartPOneVoiceOne

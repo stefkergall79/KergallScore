@@ -2,7 +2,7 @@
 \include "settings.ily"
 \include "composers.ily"
 
-#(set-global-staff-size 14.2 )
+#(set-global-staff-size 14.7 )
 
 global = {
   \key c \major
@@ -152,13 +152,12 @@ sopranoVoicePart = \new Staff \with {
 
 pianoPart = \new PianoStaff \with {
   instrumentName = "Orgue"
+  midiMinimumVolume = #0.2
+  midiMaximumVolume = #0.4
+  midiInstrument = "church organ"
 } <<
-  \new Staff = "right" \with {
-    midiInstrument = "church organ"
-  } {\right}
-  \new Staff = "left" \with {
-    midiInstrument = "church organ"
-  } {\clef bass \left}
+  \new Staff = "right" \right
+  \new Staff = "left" {\clef bass \left}
 >>
 
 \score {
@@ -166,7 +165,7 @@ pianoPart = \new PianoStaff \with {
     title = "AVE MARIA"
     composer = \gounod
     poet = "D'après le prélude en Do majeur (BWV 846)"
-    meter = \markup \line {"de" \bach}
+    meter = \markup{de \bach}
   }
 <<
     \sopranoVoicePart

@@ -577,6 +577,7 @@ def PianoStaff(staffes):
         "ClavierPart = \\new PianoStaff \\with {\n"
         f'\tinstrumentName = "'+("Org" if len(staffes) == 3 else "Pian")+'."\n'
         f'\tmidiInstrument = "{'acoustic grand' if len(staffes) == 2 else 'church organ'}"\n'
+        "\tmidiMinimumVolume = #0.1\n\tmidiMaximumVolume = #0.3\n" if len(staffes) == 3 else ""
         "} <<\n"
     )
     for num, staff in enumerate(staffes):

@@ -180,13 +180,13 @@ left = \fixed c {
 }
 
 sopranoVoicePart = \new Staff \with {
-    instrumentName = "Soprano"
+    instrumentName = "Sop."
     midiInstrument = "flute"
 } { \sopranoVoice }
 \addlyrics { \verse }
 
 pianoPart = \new PianoStaff \with {
-    instrumentName = "Orgue"
+    instrumentName = "Org."
 } <<
     \new Staff = "right" \with {
         midiInstrument = "church organ"
@@ -206,6 +206,6 @@ pianoPart = \new PianoStaff \with {
         \sopranoVoicePart
         \pianoPart
     >>
-    \layout { \context { \Staff \RemoveEmptyStaves \RemoveAllEmptyStaves }}
+    \layout { \context { \Staff \RemoveEmptyStaves }}
     \midi { \tempo 4 = 85 }
 }

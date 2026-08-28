@@ -2,6 +2,8 @@
 \include "settings.ily"
 \include "composers.ily"
 
+#(set-global-staff-size 17 )
+
 italicMark = #(define-music-function
   (text) (markup?)
   #{
@@ -25,44 +27,45 @@ globalO = {
 	\time 4/4
 	\dynamicNeutral
 }
-
-melodyVerse = \lyricmode {
-	Déx -- te -- ra Dó -- mi -- ni
+alleluiaDebut = \lyricmode {
+  Al -- le -- lú -- ia,
+}
+alleluia = \lyricmode {
+  al -- le -- lú -- ia, 
+}
+alleluiaFin = \lyricmode {
+  al -- le -- lú -- ia.
+}
+alleluiaGroup = #(define-music-function (nb) (integer?)
+  #{
+    \alleluiaDebut
+    \repeat unfold #nb \alleluia
+    \alleluiaFin
+  #})
+dexteraOne = \lyricmode {
+  Déx -- te -- ra Dó -- mi -- ni
 	fé -- cit vir -- tú -- tem,
-	déx -- te -- ra Dó -- mi -- ni
+}
+dexteraTwo = \lyricmode {
+  Déx -- te -- ra Dó -- mi -- ni
 	ex -- al -- tá -- vit me.
-	Al -- le -- lú -- ia, al -- le -- lú -- ia.
-	Déx -- te -- ra Dó -- mi -- ni
-	ex -- al -- tá -- vit me.
+}
+melodyVerse = \lyricmode {
+	\dexteraOne \dexteraTwo
+	\alleluiaDebut \alleluiaFin
+	\dexteraTwo
 }
 melodyAlleluiaPlusVerse = \lyricmode {
-  Déx -- te -- ra Dó -- mi -- ni
-	fé -- cit vir -- tú -- tem,
-	déx -- te -- ra Dó -- mi -- ni
-	ex -- al -- tá -- vit me.
-	Al -- le -- lú -- ia, al -- le -- lú -- ia, al -- le -- lú -- ia.
-	Déx -- te -- ra Dó -- mi -- ni
-	ex -- al -- tá -- vit me.
+  \dexteraOne \dexteraTwo
+  \alleluiaGroup 1
+	\dexteraTwo
 }
 nonMoriar = \lyricmode {
-  Déx -- te -- ra Dó -- mi -- ni
-  ex -- al -- tá -- vit me.
   Non mó -- ri -- ar sed ví -- vam,
   et nar -- rá -- bo
   ó -- pe -- ra Dó -- mi -- ni,
   et nar -- rá -- bo
   ó -- pe -- ra Dó -- mi -- ni.
-}
-quatreAleluia = \lyricmode {
-  Al -- le -- lú -- ia,
-  al -- le -- lú -- ia,
-  al -- le -- lú -- ia,
-  al -- le -- lú -- ia,
-}
-alleluiaPuisDextera = \lyricmode {
-  al -- le -- lú -- ia.
-  Déx -- te -- ra Dó -- mi -- ni
-	fé -- cit vir -- tú -- tem,
 }
 soprano = \relative c'' {
 	\global
@@ -72,12 +75,12 @@ soprano = \relative c'' {
 	bes2 d4 f |
 	g ( es ) c2 |
 	bes4. c8 d2 |
-	c4. bes8 c2 |\break
+	c4. bes8 c2 |
   bes ( d4 ) f |
   d c bes2 |
   f' ( g8 [ f ] es4 |
   f4. ) 8 g [ f ] es4 |
-  f2 ( es8 [ d ] c4 ) |\break
+  f2 ( es8 [ d ] c4 ) |
   d8 [ c ] bes4 c2 |
   bes4. c8 d2 |
   c4. bes8 c2 |
@@ -85,8 +88,8 @@ soprano = \relative c'' {
   d-^ c-^ bes2-^\!\fermata |\break
   
   \tempo "Un peu plus lent"
-  f'4.\p\italicMark "Solo ou petit choeur" es8 d2 |
-  es4. d8 c2
+  f'4.\p\italicMark "Solo ou petit choeur" es8 des2 |
+  es4. des8 c2
   R1*2
   as4. ( ges8 ) f2 |
   ges4. f8 es2 |\break
@@ -97,122 +100,132 @@ soprano = \relative c'' {
   f1~4\< ( es ) f ( ges ) |
   f2\> es |
   2\pp ( f4 ) c |
-  des4 4 es4. bes8 |\break
+  des4 4 es4. bes8 |
   des4 ( c ) bes c |
   des2 r\italicMark "Tutti" |
   es2  ( f4 ) c |
   des4 4 es4.\< bes8 |
-  des4\! ( c ) bes\> c <>\! \break
+  des4\! ( c ) bes\> c <>\! 
   
   des2 r\noBreak
   R1\noBreak
   r2 \italicMark "Solo" bes\<~ |\noBreak
-  2 ges'4.\! f8 |\break
+  2 ges'4.\! f8 |
   es4 4 4. ( f8 ) |
   des2 r |
-  r\italicMark"Tutti" bes\<~ |
-  2 (ges'4.\! ) f8 |\break
+  r\italicMark"Tutti" bes\< ( ~ |
+  2 ges'4.\! ) f8 |
   es2 4. f8 |
   des4\f ( f ) as ges |
   f2 \dimTextDim es4.\dim des8\! |
-  2 r \break
+  2 r 
   R1*3
   as2\italicMark "Solo" ( bes8 [ as ] ges4 |
-  as4. ) 8 bes [ as ] ges4 |\break
+  as4. ) 8 bes [ as ] ges4 |
   as2 ( ges8 [ f ] es4 |
   f8 [ es ] des4 ) es2 |
   des4 as'2 bes8. 16 |
   c4 as2 bes8. 16 |
-  c4 as2 f'8. 16 |\break
+  c4 as2 f'8. 16 |
   es4 ( as,4. f8 [ g as ] ) |
   4 f'8 es des2 ~ |
   4 f8 es des2 ~ |
   4 f8 [es ] des2 ~ |
-  4 es8 [ f ] ges4 4 |\break
+  4 es8 [ f ] ges4 4 |
   f2\ff\italicMark"Tutti" ( ges8 [ f ] es4 |
   f4. ) 8 ges [ f ] es4 |
   f2 ( es8 [ des ] c4 |
   des8 [ c ] ) bes4 c2 |
-  des4 r r2 |\break
+  des4 r r2 |
   R1*3
   f2\ff ( as8 [ g ] f4 |
-  g4. ) 8 as [ g ] f4 |\break
+  g4. ) 8 as [ g ] f4 |
   g2 ( f8 [ es ] d4 |
-  es8 [ d ] c4 ) d2 |
+  es8 [ d ] ) c4 d2 |
   es4 r r2
   R1
-  g,2\p ( as8 [ g ] f4 |\break
+  g,2\p ( as8 [ g ] f4 |
   g4. ) 8 as ( [g ] f4 ) |
   g2 r
   R1*7 \bar "||"
  
  \key bes \major f4.\pp g8 a2 |
-  bes4. c8 des2 |\break
+  bes4. c8 d2 |
   es4\< ( d ) c f |
   \dimHairpin
   es\> ( d ) c ( f ) |
   es\pp ( d ) c bes |
   4 ( a ) g f |
   4 ( g8 [ a ] ) bes2 ~ |
-  4 c8 [ g ] bes [ a ] g [ a ] |\break
+  4 c8 [ g ] bes [ a ] g [ a ] |
   bes4. c8 d2 |
   c4. bes8 c2 |
   bes ( d4 ) f |
   d c bes2 |
-  f' ( g8 [ f ] es4 |\break
+  f' ( g8 [ f ] es4 |
   f4. ) 8 g [ f ] es4 |
   f2\cresc ( es8 [ d ] c4 ) |
   d8 [ c ] bes4 c2 |
   bes4.\f c8 d2 |
-  c4. bes8 c2 |\break
+  c4. bes8 c2 |
   bes2 ( d4-^ ) f-^ |
   d-^ c-^ bes2-^ |
   2\fff c4. 8 |
   d1 ( ~ |
-  4 c ) d (es ) |\break
+  4 c ) d (es ) |
   d2 c |
   2 ( d4 ) a |
   bes4 4 c4. g8 |
   bes4 ( a ) g a |
-  bes1\dim |\break
+  bes1\dim |
   c2\pp ( d4 ) a |
   bes4 4 c4. g8 |
   bes4 ( a ) g a |
   bes2 r |
-  r\italicMark"Solo" d\< ~ |\break
+  r\italicMark"Solo" d\< ~ |
   2 g4.\! ( f8 ) |
   4 es g, bes |
   a ( g ) f r |
-  r2\italicMark"Tutti" d'\<~ |\break
+  r2\italicMark"Tutti" d'\<~ |
   2 g4.\! ( f8 ) |
   4 es g bes, |
-  a g f2~ |
-  4 d'\ff ( f ) es |\break
+  a ( g ) f2~ |
+  4 d'\ff ( f ) es |
   d2 c4. bes8 |
   1\dim~1~4 g\p a bes |
-  d2 ( c4. ) bes8 |\break
+  d2 ( c4. ) bes8 |
   1~1~4\< g' f\> es |
   d1\! ( ~ |
-  2 c4. ) bes8 2 r \break
+  2 c4. ) bes8 2 r 
   R1
-  f1\pp ~ |
+  f1\pp\italicMark"poco a poco rall." ~ |
   4 4 2 |
   2 r
-  R1\break
+  R1
   1~1~4 4 2 |
   2 4.\ppp 8 |
   1^\espressivo 2 r \bar "|."
 }
 sopranoVerseOne = \lyricmode {
 	\melodyVerse
+	\dexteraTwo
 	\nonMoriar
 	Non mó -- ri -- ar sed ví -- vam,
   ó -- pe -- ra Dó -- mi -- ni,
   ó -- pe -- ra Dó -- mi -- ni.
-  \quatreAleluia
-  \alleluiaPuisDextera
-  al -- le -- lú -- ia,
-  al -- le -- lú -- ia.
+  \alleluiaGroup 3
+  \dexteraOne
+  \alleluiaDebut \alleluiaFin
+  \alleluiaGroup 1
+  \dexteraOne \dexteraOne \dexteraTwo
+  \alleluiaDebut \alleluiaFin
+  \dexteraTwo
+  \nonMoriar
+  \repeat unfold 3 { et nar -- rá -- bo, }
+  et nar -- rá -- bo
+  \repeat unfold 2 {ó -- pe -- ra Dó -- mi -- ni, }
+  ó -- pe -- ra Dó -- mi -- ni.
+  \alleluiaGroup 1
 }
 
 
@@ -224,12 +237,12 @@ tenor = \relative c' {
 	bes2 d4 f |
 	g ( es ) c2 |
 	bes4. c8 d2 |
-	c4. bes8 c2 |\break
+	c4. bes8 c2 |
   bes ( d4 ) f |
   d c bes2 |
   f'\rinf\cresc ( g8 [ f ] es4 |
   f4. ) 8 g [ f ] es4 |
-  f2 ( es8 [ d ] c4 ) |\break
+  f2 ( es8 [ d ] c4 ) |
   d8\dim [ c ] bes4 c2 |
   bes4.\mf c8 d2 |
   c4. bes8 c2 |
@@ -256,8 +269,8 @@ tenor = \relative c' {
   des4.\p c8 bes2 |
   c4. bes8 a2
   R1*2
-  f'4. ( es8 ) d2 |
-  g4. f8 es2 |
+  f'4. ( es8 ) des2 |
+  es4. des8 c2 |
   R1*6
   
   \key des \major
@@ -312,7 +325,7 @@ tenor = \relative c' {
   8 ) g es' [ d ] c4 r
   R1*5
   g4.\pp a8 bes2 |
-  a4. g8 a2 |
+  a4. g8 a2 |\break
   
   \key bes \major a4. bes8 c2 |
   d4. c8 bes2 ( ~ |
@@ -336,7 +349,7 @@ tenor = \relative c' {
   d2 ( f4-^ ) 4-^ |
   g-^ a,-^ bes2-^ |
   2\fff g'4. 8 |
-  f2 bes, ( ~ |
+  f2 ( bes, ~ |
   4 a ) bes ( c ) |
   bes2 a |
   2. f'4 |
@@ -380,13 +393,24 @@ tenor = \relative c' {
 tenorVerseOne = \lyricmode {
 	\melodyVerse
 	\melodyAlleluiaPlusVerse
+	\dexteraTwo
 	\nonMoriar
 	Non mó -- ri -- ar,
   et nar -- rá -- bo
   ó -- pe -- ra Dó -- mi -- ni,
   ó -- pe -- ra Dó -- mi -- ni.
-  \quatreAleluia
-  \alleluiaPuisDextera
+  \alleluiaGroup 3
+  \dexteraOne
+  \alleluiaGroup 3
+  \repeat unfold 2 { Déx -- te -- ra Dó -- mi -- ni, }
+  \dexteraOne \dexteraTwo
+  \alleluiaGroup 1
+  \dexteraTwo
+  \nonMoriar
+  et nar -- rá -- bo, et nar -- rá -- bo
+  \repeat unfold 3 { ó -- pe -- ra Dó -- mi -- ni, }
+  ó -- pe -- ra, ó -- pe -- ra Dó -- mi -- ni.
+  \alleluiaGroup 1
 }
 
 
@@ -396,12 +420,12 @@ bass = \relative c {
   c4. bes8 c2 |
   bes2 d4 f |
   g ( es ) c2 |
-  bes4. c8 d2 |\break
+  bes4. c8 d2 |
   c4. bes8 c2 |
   bes ( d4 ) f |
   d c bes2 |
   f'\cresc ( g8 [ f ] es4 |
-  f4. ) 8 g [ f ] es4 |\break
+  f4. ) 8 g [ f ] es4 |
   f2 ( es8 [ d ] c4 ) |
   d8\dim [ c ] bes4 c2 |
   bes4.\p c8 d2 |
@@ -484,7 +508,7 @@ bass = \relative c {
   des4 bes2 ges8. 16 |
   f4 ( bes,8 [ des ] ) f2 |
   2 ( ges8 [ f ] es4 |
-  es4. ) 8 ges [ f ] es4 |
+  f4. ) 8 ges [ f ] es4 |
   f2. bes,8 [ des ] |
   f2. ( bes,8 [ des ] ) |
   f4 es8 d c2 ~ |
@@ -495,10 +519,10 @@ bass = \relative c {
   g4. ) 8 as ( [ g ] f4 ) |
   g2 r
   R1
-  c,4.\p d8 es2 |
+  c,4.\p d8 es2 |\break
   d4. c8 d2 |
   c2 es4 g |
-  as ( f ) d2 |\break
+  as ( f ) d2 |
   
   c4.\pp d8 es2 |
   d4. c8 d2~ |
@@ -570,14 +594,26 @@ bassVerseOne = \lyricmode {
   \melodyVerse
   \melodyAlleluiaPlusVerse
   \melodyAlleluiaPlusVerse
+  \dexteraTwo
   \nonMoriar
   Non mó -- ri -- ar sed ví -- vam,
   et nar -- rá -- bo
   ó -- pe -- ra Dó -- mi -- ni,
   ó -- pe -- ra Dó -- mi -- ni.
-  \quatreAleluia
-  \repeat unfold 2 { al -- le -- lú -- ia, }
-  \alleluiaPuisDextera
+  \alleluiaGroup 5
+  \dexteraOne
+  \alleluiaFin
+  \dexteraOne
+  Déx -- te -- ra Dó -- mi -- ni
+	ex -- al -- tá -- vit me,
+	ex -- al -- tá -- vit me.
+	\dexteraTwo
+	\alleluiaGroup 1
+	\dexteraTwo
+	\nonMoriar
+	\repeat unfold 4 {ó -- pe -- ra Dó -- mi -- ni, }
+	ó -- pe -- ra, ó -- pe -- ra Dó -- mi -- ni.
+	\alleluiaGroup 1
 }
 
 
@@ -671,7 +707,7 @@ rightOne = \fixed c' {
 	<f des'>4. <es c'>8 <bes des>2 |
 	es'2.. ( c'8 |
 	as ges es c \goDown as,8 ges, es, as,, )
-	\bar "||" \goUp \key des \major \break 
+	\bar "||" \goUp \key des \major  
 	
 	\oneVoice	R1
 	r8 des'8\pp ( as f \goDown des as, des, f, ) \goUp |
@@ -860,7 +896,7 @@ rightTwo = {
 	  <bes d> r r4 <f c'>8 r r4 |
 	  <d bes'>4. <es c'>8 <f d'>2 |
 	  <es c'>4. <es bes'>8 <es c'>2 |
-	  <d bes'>2 <f des'>4-^ <f f'>-^ |
+	  <d bes'>2 <f d'>4-^ <f f'>-^ |
 	  <g d'>-^ <a c>-^ bes2-^ |
 	  r8 d ( f bes g es c ) r |
 	  r d( f bes d, c bes ) r |
@@ -1219,6 +1255,8 @@ ClavierPart = \new PianoStaff \with {
 	instrumentName = "Orgue"
 	shortInstrumentName = "Org."
 	midiInstrument = "church organ"
+	midiMinimumVolume = #0.1
+  midiMaximumVolume = #0.3
 } <<
 	\new Staff = "right" \with {
 	  \consists Merge_rests_engraver
@@ -1229,8 +1267,7 @@ ClavierPart = \new PianoStaff \with {
 	} { << \leftOne \\ \leftTwo>> }
 >>
 
-
-\tocItemComposer "Dextera Domini" "\franck"
+\tocItemComposer "Dextera Domini" "Franck"
 \score {
 	\header {
 		dedication = "à monsieur l'abbé Hancelin, curé de Sainte-Clothilde"
