@@ -2,7 +2,6 @@
 \include "settings.ily"
 
 \paper {
-  print-page-number = ##f
   tocTitleMarkup = \markup \column {
     \fontsize #5 \bold \fill-line {INDEX}
     \vspace #2 

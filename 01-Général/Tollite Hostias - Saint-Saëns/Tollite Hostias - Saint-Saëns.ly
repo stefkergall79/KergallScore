@@ -105,10 +105,6 @@ verseBass = \lyricmode {
   al -- le -- lú -- ia,
 }
 
-\paper {
-  page-count = 1
-}
-
 \tocItemComposer "Tollite Hostias" "Saint-Saëns"
 \score {
   \header {
