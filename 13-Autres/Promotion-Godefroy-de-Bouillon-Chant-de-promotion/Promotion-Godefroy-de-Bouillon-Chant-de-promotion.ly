@@ -7,7 +7,7 @@
 }
 
 #(set-default-paper-size "a4")
-#(set-global-staff-size 18.2)
+%#(set-global-staff-size 18.2)
 
 global = {
   \key f \major
