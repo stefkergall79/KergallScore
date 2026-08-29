@@ -65,8 +65,8 @@ print()
 
 # code
 new_flatpak_code = not is_flatpak_installed("com.visualstudio.code")
-new_code_extensions = [ext for ext in CODE_LIST if not is_code_extension_installed(ext)]
 run("sudo", "flatpak", "install", "flathub", "com.visualstudio.code", "-y")
+new_code_extensions = [ext for ext in CODE_LIST if not is_code_extension_installed(ext)]
 for ext in CODE_LIST:
     run("code", "--install-extension", ext)
 print()
