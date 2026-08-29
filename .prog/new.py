@@ -1,27 +1,49 @@
 #!/usr/bin/env python3
-from pathlib import Path
-import customtkinter as ctk
+"""Assistant graphique de création de nouvelles partitions Lilypond pour KergallScore.
+
+Génère un fichier .ly pré-rempli (en-têtes, voix/instruments, réglages musicaux) à partir
+des choix faits dans une interface customtkinter, puis ouvre le résultat dans Frescobaldi.
+"""
+import shutil
 import subprocess
+from pathlib import Path
+
+import customtkinter as ctk
+
+# ------------------------------------------------------------------------
+# Constantes
+# ------------------------------------------------------------------------
 
 PARTITIONS = Path(__file__).resolve().parent.parent
+UTILS_DIR = PARTITIONS / ".utils"
+COMPOSERS_FILE = UTILS_DIR / "composers.ily"
+LILYPOND_LY_DIR = PARTITIONS / ".prog" / "lilypond-2.26.0" / "share" / "lilypond" / "2.26.0" / "ly"
+
 NUMBERS = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
-VOICES  = {"S": "soprano", "A": "alto", "T": "tenor", "B": "bass", "H": "homme"}
-PIANOSTAFFES = ["right", "left", "pedal"]
-PIANOFRANCAISSTAFFES = ["Main droite", "Main gauche", "Pédalier"]
-RYTHM = ["𝅝", "𝅗𝅥", "𝅘𝅥", "𝅘𝅥𝅮", "𝅘𝅥𝅯"]
+VOICES = {"S": "soprano", "A": "alto", "T": "tenor", "B": "bass", "H": "homme"}
+PIANO_STAFFS = ["right", "left", "pedal"]
+PIANO_STAFFS_FR = ["Main droite", "Main gauche", "Pédalier"]
+
+# Catégories numérotées à ne pas proposer dans le sélecteur (grégorien, assemblages, commandes).
+EXCLUDED_CATEGORY_PREFIXES = ("08", "09", "99")
+
 
 class HeaderTab(ctk.CTkFrame):
+    """Onglet « Titres et en-têtes » : champs du \\header, catégorie et sélecteur de compositeur."""
+
     def __init__(self, master, app):
         super().__init__(master)
-        self.app = app
         self.default_font = app.default_font
         self.filename_modified = False
 
         self.left_frame = ctk.CTkFrame(self)
         self.left_frame.pack(side="left", fill="both", expand=True, anchor="n")
 
+        # Champs pouvant contenir un nom choisi via le sélecteur de compositeur.
         self.picker_fields = ("composer", "poet", "arranger")
 
+        # "title" et "composer" sont toujours affichés ; les autres sont ajoutés à la demande
+        # via le menu "+" et retirés avec leur bouton "-".
         self.fields = {
             "dedication":   "Dédicace",
             "title":        "Titre",
@@ -92,7 +114,12 @@ class HeaderTab(ctk.CTkFrame):
 
         self.build_composer_picker()
 
+    # ------------------------------------------------------------------
+    # Sélecteur de compositeur (recherche par initiale du nom de famille)
+    # ------------------------------------------------------------------
+
     def build_composer_picker(self):
+        """Construit le panneau de sélection (lettres A-Z + résultats + bouton "Nouveau nom")."""
         self.composers = self.get_composers()
         self.composer_entries = sorted(
             ((key, name, self._composer_surname(name)) for key, name in self.composers.items()),
@@ -134,16 +161,20 @@ class HeaderTab(ctk.CTkFrame):
         self.show_composer_picker()
 
     def show_composer_picker(self):
+        """Affiche le panneau de sélection s'il n'est pas déjà visible."""
         if not self.picker_frame.winfo_ismapped():
             self.picker_frame.pack(side="left", fill="both", expand=True, padx=(20, 0), anchor="n")
 
     def _set_picker_target(self, key):
+        """Définit quel champ (compositeur/parolier/arrangeur) reçoit le prochain choix."""
         self.picker_target = key
     
     def _active_picker_fields(self):
+        """Champs du sélecteur actuellement affichés."""
         return [key for key in self.picker_fields if self.fields[key]["frame"].winfo_manager() == "pack"]
 
     def show_composers_for_letter(self, letter):
+        """Liste les compositeurs dont le nom de famille commence par ``letter``."""
         for widget in self.composer_results.winfo_children():
             widget.destroy()
 
@@ -160,12 +191,14 @@ class HeaderTab(ctk.CTkFrame):
                 command=lambda k=key: self.fields[self.picker_target]["var"].set(k)
             ).pack(anchor="w", pady=2)
 
-    def _composer_surname(self, name: str):
+    def _composer_surname(self, name: str) -> str:
+        """Nom de famille (dernier mot avant les dates entre parenthèses), en minuscules."""
         before_paren = name.strip('"').split("(")[0].strip()
         words = before_paren.split()
         return words[-1].lower() if words else before_paren.lower()
 
     def open_new_composer_popup(self):
+        """Popup de saisie d'un nouveau compositeur/parolier/arrangeur."""
         popup = ctk.CTkToplevel(self)
         popup.title("Nouveau nom")
         popup.resizable(False, False)
@@ -197,23 +230,25 @@ class HeaderTab(ctk.CTkFrame):
         button_frame.pack(anchor="e")
 
     def save_new_composer(self, identifiant: str, nom: str, popup):
+        """Ajoute le nom dans composers.ily, synchronise Lilypond, et rafraîchit le sélecteur."""
         if not identifiant or not nom:
             return
 
-        file_composers = PARTITIONS / ".utils" / "composers.ily"
-        content = file_composers.read_text()
+        content = COMPOSERS_FILE.read_text()
         if content and not content.endswith("\n"):
             content += "\n"
-        file_composers.write_text(content + f'{identifiant} = "{nom}"\n')
+        COMPOSERS_FILE.write_text(content + f'{identifiant} = "{nom}"\n')
 
-        # synchronise .utils/ avec l'installation lilypond (task "Synchroniser .utils/")
-        lilypond_ly_dir = PARTITIONS / ".prog" / "lilypond-2.26.0" / "share" / "lilypond" / "2.26.0" / "ly"
-        subprocess.run(["cp", str(PARTITIONS / ".utils")+"/*", str(lilypond_ly_dir)], check=True)
+        # Recopie .utils/ vers l'installation lilypond locale (cf. tâche "Synchroniser .utils/").
+        for utils_file in UTILS_DIR.iterdir():
+            if utils_file.is_file():
+                shutil.copy(utils_file, LILYPOND_LY_DIR)
 
         self.refresh_composers()
         popup.destroy()
 
     def refresh_composers(self):
+        """Recharge composers.ily et met à jour l'état (actif/inactif) des lettres A-Z."""
         self.composers = self.get_composers()
         self.composer_entries = sorted(
             ((key, name, self._composer_surname(name)) for key, name in self.composers.items()),
@@ -226,6 +261,10 @@ class HeaderTab(ctk.CTkFrame):
                 state="normal" if has_composers else "disabled",
                 fg_color=self.default_letter_fg_color if has_composers else "#4a4a4a"
             )
+
+    # ------------------------------------------------------------------
+    # Nom de fichier suggéré et gestion des champs optionnels
+    # ------------------------------------------------------------------
 
     def build_default_filename(self):
         title = self.fields["title"]["var"].get().strip()
@@ -249,6 +288,7 @@ class HeaderTab(ctk.CTkFrame):
         self.filename_modified = True
 
     def on_optional_field_selected(self, selected_label: str):
+        """Affiche le champ optionnel choisi dans le menu "+", à sa place habituelle."""
         selected_key = next(
             (key for key, info in self.fields.items() if info["name"] == selected_label),
             None,
@@ -280,6 +320,7 @@ class HeaderTab(ctk.CTkFrame):
         self.show_composer_picker()
 
     def remove_field(self, key: str):
+        """Cache un champ optionnel et le remet dans le menu "+"."""
         field_info = self.fields[key]
         field_info["frame"].pack_forget()
         field_info["var"].set("")
@@ -299,32 +340,39 @@ class HeaderTab(ctk.CTkFrame):
                 self._set_picker_target(remaining[0])
 
     def get_target_filename(self) -> str:
+        """Nom de fichier final (``.ly`` ajouté), ou "Sans titre.ly" si vide."""
         filename = self.filename_var.get().strip()
         if not filename:
             return "Sans titre.ly"
         return filename + ".ly"
 
     def _get_categories(self) -> list[str]:
-        return [
+        """Noms des dossiers numérotés à proposer comme catégorie (hors grégorien/assemblages/commandes)."""
+        categories = [
             entry.name for entry in PARTITIONS.iterdir()
             if entry.name[:2].isdecimal()
-            and entry.name[:2] not in ("09", "08", "99")
-        ].sort(key=str.casefold)
+            and entry.name[:2] not in EXCLUDED_CATEGORY_PREFIXES
+        ]
+        categories.sort(key=str.casefold)
+        return categories
     
     def get_composers(self):
-        file_composers = Path(PARTITIONS / ".utils" / "composers.ily")
-        content = file_composers.read_text()
-        content = content.removeprefix("\\version \"2.26.0\"\n\n")
-        content = [line.split(" = ") for line in content.splitlines()]
-        for i, val in enumerate(content):
-            content[i][0] = "\\"+content[i][0]
-        return dict(content)
+        """Associe chaque identifiant Lilypond (ex: ``\\bach``) au nom affiché du compositeur."""
+        content = COMPOSERS_FILE.read_text().removeprefix('\\version "2.26.0"\n\n')
+        composers = {}
+        for line in content.splitlines():
+            if not line.strip():
+                continue
+            identifiant, nom = line.split(" = ", 1)
+            composers["\\" + identifiant] = nom
+        return composers
 
     
 class PartsTab(ctk.CTkFrame):
+    """Onglet « Parties » : choix des voix/instruments et de leurs réglages (couplets, schéma...)."""
+
     def __init__(self, master, app):
         super().__init__(master)
-        self.app = app
         self.default_font = app.default_font
 
         left_frame = ctk.CTkFrame(self)
@@ -388,7 +436,7 @@ class PartsTab(ctk.CTkFrame):
                     values=("Piano", "Orgue"), command=self.clavier_changed
                 ).pack(side="top", padx=15, pady=(2, 8), anchor="w")
                 self.piano_staffes = []
-                for indice, staff in enumerate(PIANOFRANCAISSTAFFES):
+                for indice, staff in enumerate(PIANO_STAFFS_FR):
                     self.piano_staffes.append(ctk.CTkFrame(voice_frame, fg_color="transparent"))
                     ctk.CTkEntry(
                         self.piano_staffes[indice],
@@ -407,15 +455,16 @@ class PartsTab(ctk.CTkFrame):
                     variable=self.parts[part]["paroles"]
                 ).pack(side="top", padx=15, pady=(2, 8), anchor="w")
 
-
-    def schema_voices_changed(self, *args):
+    def schema_voices_changed(self, *_args):
+        """Affiche le bouton "même paroles" seulement si le chœur a plus de 2 groupes de portées."""
         switch = self.parts["Choeur"]["meme_paroles_switch"]
         if self.parts["Choeur"]["schema"].get().count("-") > 1:
             switch.pack(side="top", padx=15, pady=(2, 8), anchor="w")
         else:
             switch.pack_forget()
 
-    def clavier_changed(self, *args):
+    def clavier_changed(self, *_args):
+        """Affiche la ligne "Pédalier" seulement pour l'orgue."""
         organ_voices = self.piano_staffes[2]
         ispacked = organ_voices.winfo_manager() == "pack"
         if self.parts["Clavier"]["type"].get() == "Piano":
@@ -426,6 +475,7 @@ class PartsTab(ctk.CTkFrame):
                 organ_voices.pack(side="top", pady=5, anchor="w")
 
     def update_parts_ui(self):
+        """Affiche/cache le panneau de réglages de chaque partie selon sa case à cocher."""
         order = list(self.parts.keys())
         for i, part in enumerate(order):
             frame = self.parts[part]["frame"]
@@ -439,9 +489,10 @@ class PartsTab(ctk.CTkFrame):
                 frame.pack_forget()
 
 class MusicTab(ctk.CTkFrame):
+    """Onglet « Réglages musicaux » : armure, mesure, anacrouse, tempo (texte + MIDI)."""
+
     def __init__(self, master, app):
         super().__init__(master)
-        self.app = app
         self.default_font = app.default_font
         
         self.vars = {
@@ -491,174 +542,221 @@ class MusicTab(ctk.CTkFrame):
             ).pack(side="left", padx=5)
             frame.pack(side="top", pady=5, anchor="w")
 
-#variables génériques
-def genericVar (identifiant, fonction, contenu=""):
-    return identifiant + " = " + fonction + " {\n" + contenu + "\t\n}\n\n"
 
-def musicVar (identifiant, fixed, high, globalVar):
-    return genericVar(
-        identifiant,
-        ("\\fixed" if fixed else "\\relative") + " c" + ("'" if high else ""),
-        "\t\\"+globalVar+"\n"
-    )
+# ==============================================================================
+# Génération du code Lilypond (fonctions pures, sans dépendance à l'interface)
+# ==============================================================================
 
-def lyricVar (identifiant, nb=None):
-    return genericVar(
-        identifiant,
-        ("\\strophemode " + str(nb) + (" ##f" if nb%2 else " ##t") if nb else "") + " \\lyricmode"
-    )
+def generic_var(identifier: str, expression: str, content: str = "") -> str:
+    """Bloc Lilypond générique : ``identifiant = expression { contenu }``."""
+    return f"{identifier} = {expression} {{\n{content}\t\n}}\n\n"
 
-def Voice(voice, indice):
+
+def music_var(identifier: str, fixed: bool, high: bool, global_var: str) -> str:
+    """Déclare une variable musicale (voix ou main d'instrument) basée sur ``global_var``."""
+    mode = "\\fixed" if fixed else "\\relative"
+    octave = "'" if high else ""
+    return generic_var(identifier, f"{mode} c{octave}", f"\t\\{global_var}\n")
+
+
+def lyric_var(identifier: str, verse_number: int | None = None) -> str:
+    """Déclare une variable de paroles (``\\lyricmode``), numérotée si ``verse_number`` est fourni."""
+    prefix = ""
+    if verse_number:
+        alternate_side = " ##f" if verse_number % 2 else " ##t"
+        prefix = f"\\strophemode {verse_number}{alternate_side} "
+    return generic_var(identifier, f"{prefix}\\lyricmode")
+
+
+# ---- Chœur ---------------------------------------------------------------
+
+def voice_name(index: int, schema: str) -> str:
+    """Nom de variable pour la voix à la position ``index`` du ``schema`` (ex: ``"SATB"``).
+
+    Si plusieurs voix partagent la même lettre (ex: deux sopranes), un suffixe
+    ``One``/``Two``/... est ajouté pour les distinguer.
+    """
+    voice = schema[index]
+    if schema.count(voice) > 1:
+        occurrence = schema[:index + 1].count(voice)
+        return VOICES[voice] + NUMBERS[occurrence - 1]
+    return VOICES[voice]
+
+def lyric_name(voice: str, verse_index: int, prefix_with_voice: bool) -> str:
+    """Nom de variable pour un couplet de paroles (ex: ``sopranoVerseOne``)."""
+    return (VOICES[voice] if prefix_with_voice else "") + "Verse" + NUMBERS[verse_index]
+
+def voice_block(score_index: int, schema: str, staff_voice_index: int | None) -> str:
+    """Ligne ``\\new Voice`` référençant la variable musicale correspondante.
+
+    ``staff_voice_index`` est le rang de la voix dans sa portée (0, 1, ...) quand
+    plusieurs voix partagent une même portée (ex: 2 voix d'hommes), sinon ``None``.
+    """
+    name = voice_name(score_index, schema)
     return (
-        (" " if indice is None else "\t\t") +
-        f'\\new Voice = "{VOICES[voice]}" '+ '{' +
-        (f"\\voice{NUMBERS[indice]} " if indice is not None else "") +
-        f"\\{VOICES[voice]} " + "}\n"
+        (" " if staff_voice_index is None else "\t\t") +
+        '\\new Voice = "' + name + '" {' +
+        (f"\\voice{NUMBERS[staff_voice_index]} " if staff_voice_index is not None else "") +
+        "\\" + name + " }\n"
     )
 
-def lyricName(voice, nb, to_voice):
-    return f"{VOICES[voice] if to_voice else ""}Verse{NUMBERS[nb]}"
-
-def Lyrics(voice, nb, to_voice: bool):
+def lyrics_block(voice: str, verse_index: int, prefix_with_voice: bool) -> str:
+    """Bloc ``\\new Lyrics`` rattachant un couplet à sa voix."""
     return (
         "\t\\new Lyrics \\with { \\override VerticalAxisGroup.staff-affinity = #CENTER\n\t}"
-        f' \\lyricsto "{VOICES[voice]}" \\{lyricName(voice, nb, to_voice)}\n'
+        f' \\lyricsto "{VOICES[voice]}" \\{lyric_name(voice, verse_index, prefix_with_voice)}\n'
     )
 
-def ChoirVars(schema: str, lyrics: int, same_lyrics: bool):
-    st = ""
-    parts = schema.replace("-", "")
-    for voice in parts:
-        st += musicVar(VOICES[voice], voice in "AB", voice in "SA", "global")
-        if not same_lyrics:
-            for nb in range(lyrics):
-                st += lyricVar(lyricName(voice, nb, True), nb+1 if lyrics > 1 else None)
-        st += "\n"
-    if same_lyrics:
-        for nb in range(lyrics):
-            st += lyricVar(lyricName(voice, nb, False), nb+1 if lyrics > 1 else None)
-    st += "\n"
-    return st
+def choir_vars(schema: str, verse_count: int, shared_lyrics: bool) -> str:
+    """Déclare les variables musicales et les couplets de paroles du chœur."""
+    voices = schema.replace("-", "")
+    text = ""
+    for index, voice in enumerate(voices):
+        text += music_var(voice_name(index, voices), voice in "AB", voice in "SA", "global")
+        if not shared_lyrics:
+            for verse_index in range(verse_count):
+                verse_number = verse_index + 1 if verse_count > 1 else None
+                text += lyric_var(lyric_name(voice, verse_index, True), verse_number)
+        text += "\n"
+    if shared_lyrics:
+        for verse_index in range(verse_count):
+            verse_number = verse_index + 1 if verse_count > 1 else None
+            text += lyric_var(lyric_name("", verse_index, False), verse_number)
+    text += "\n"
+    return text
 
-def ChoirStaff(schema: str, lyrics: int, same_lyrics: bool):
-    staffes = schema.split("-")
-    st = "ChoeurPart = \\new ChoirStaff <<\n"
-    
-    for nb, staff in enumerate(staffes):
-        polyph = len(staff) > 1
-        
-        st += (
-            "\t\\new Staff \\with {\n"
-            "\t\tmidiInstrument = \"choir aahs\"\n"
-        )
-        if any(len(stf) != 2 for stf in staffes):
-            st += "\t\tinstrumentName = "
-            if polyph:
-                st += "\\markup \\center-column { "
-                for voice in staff:
-                    st += f"\"{voice}.\" "
-                st += "}\n"
-            else:
-                st += f'"{staff}."\n'  
-        if polyph:
-            st += "\t\t\\consists Merge_rests_engraver\n"
-        else:
-            st += '\t\t\\consists "Ambitus_engraver"\n'
-        
-        if "B" in staff or "H" in staff:
-            st += "\t\t\\clef bass\n"
-        elif staff == "T":
-            st += "\t\t\\clef \"treble_8\"\n"
-
-        st += "\t} "
-
-        if polyph:
-            st += "<<\n"
-            for indice, voice in enumerate(staff):
-                st += Voice(voice, indice)
-            st += "\t>>\n"
-        else:
-            st += Voice(staff, None)
-        
-        if (len(staffes) > 2 and same_lyrics) or nb == 0:
-            for lyr in range(lyrics):
-                st += Lyrics(staff[0], lyr, not same_lyrics)
-            st += "\n"
-    st += ">>\n\n"
-    return st
-
-def ChoirPack(part):
-    schema, lyrics, same_lyrics = part["schema"].get(), part["couplets"].get(), part["meme_paroles"].get()
-    return ChoirVars(schema, lyrics, same_lyrics)+ChoirStaff(schema, lyrics, same_lyrics)
-
-
-def pianoPartName(num, indice):
-    return PIANOSTAFFES[num]+(NUMBERS[indice] if indice != None else "")
-
-def PianoVars(staffes):
-    st = ""
-    for nb, staff in enumerate(staffes):
-        if staff != 0:
-            if staff == 1:
-                st += musicVar(
-                    pianoPartName(nb, None),
-                    False,
-                    nb == 0,
-                    "global")
-            else:
-                for indice in range(staff):
-                    st += musicVar(
-                        pianoPartName(nb, indice),
-                        False,
-                        nb == 0,
-                        "global"
-                    )
-    return st
-
-def PianoStaff(staffes):
-    st = (
-        "ClavierPart = \\new PianoStaff \\with {\n"
-        f'\tinstrumentName = "'+("Org" if len(staffes) == 3 else "Pian")+'."\n'
-        f'\tmidiInstrument = "{'acoustic grand' if len(staffes) == 2 else 'church organ'}"\n'
-        "\tmidiMinimumVolume = #0.1\n\tmidiMaximumVolume = #0.3\n" if len(staffes) == 3 else ""
+def choir_staff(schema: str, verse_count: int, shared_lyrics: bool) -> str:
+    """Bloc ``ChoeurPart`` : une portée par groupe de voix du ``schema`` (ex: ``"SA-TB"``)."""
+    staff_groups = schema.split("-")
+    voices = schema.replace("-", "")
+    show_instrument_names = any(len(group) != 2 for group in staff_groups)
+    text = (
+        "ChoeurPart = \\new ChoirStaff \\with {\n"
+        '\tmidiInstrument = "choir aahs"\n'
         "} <<\n"
     )
-    for num, staff in enumerate(staffes):
-        if staff != 0:
-            st += (
-                f'\t\\new Staff = "{PIANOSTAFFES[num]}" '+
-                ("{ \\clef bass " if num > staff/2 else "{ ")
-                )
-            if staff == 1:
-                st += "\\"+pianoPartName(num, None)+" }\n"
+    
+    for group_index, staff_letters in enumerate(staff_groups):
+        is_polyphonic = len(staff_letters) > 1
+        first_voice_index = sum(len(group) for group in staff_groups[:group_index])
+        
+        text += "\t\\new Staff \\with {\n"
+        if show_instrument_names:
+            if is_polyphonic:
+                names = " ".join(f'"{letter}."' for letter in staff_letters)
+                text += f"\t\tinstrumentName = \\markup \\center-column {{ {names} }}\n"
             else:
-                st += "<< "
-                for voice in range(staff):
-                    st += "\\" + pianoPartName(num, voice) + (" \\\\ " if voice < staff-1 else "")
-                st += ">> }\n"
-    return st + ">>\n\n"
+                text += f'\t\tinstrumentName = "{staff_letters}."\n'
+        text += (
+            "\t\t\\consists Merge_rests_engraver\n" if is_polyphonic
+            else '\t\t\\consists "Ambitus_engraver"\n'
+        )
+        
+        if "B" in staff_letters or "H" in staff_letters:
+            text += "\t\t\\clef bass\n"
+        elif staff_letters == "T":
+            text += "\t\t\\clef \"treble_8\"\n"
+
+        text += "\t} "
+
+        if is_polyphonic:
+            text += "<<\n"
+            for voice_offset in range(len(staff_letters)):
+                text += voice_block(first_voice_index + voice_offset, voices, voice_offset)
+            text += "\t>>\n"
+        else:
+            text += voice_block(first_voice_index, voices, None)
+        
+        if (len(staff_groups) > 2 and shared_lyrics) or group_index == 0:
+            for verse_index in range(verse_count):
+                text += lyrics_block(staff_letters[0], verse_index, not shared_lyrics)
+            text += "\n"
+    text += ">>\n\n"
+    return text
+
+def choir_pack(part_config: dict) -> str:
+    """Assemble variables + portées pour la partie « Choeur » à partir de sa configuration UI."""
+    schema = part_config["schema"].get()
+    verse_count = part_config["couplets"].get()
+    shared_lyrics = part_config["meme_paroles"].get()
+    return choir_vars(schema, verse_count, shared_lyrics) + choir_staff(schema, verse_count, shared_lyrics)
 
 
-def PianoPack(staffes):
-    return PianoVars(staffes)+PianoStaff(staffes)
+# ---- Clavier (piano ou orgue) ---------------------------------------------
+
+def piano_part_name(staff_index: int, voice_index: int | None) -> str:
+    """Nom de variable pour une main de clavier, numérotée si plusieurs voix s'y superposent."""
+    return PIANO_STAFFS[staff_index] + (NUMBERS[voice_index] if voice_index is not None else "")
+
+def piano_vars(staffs: list[int]) -> str:
+    """Déclare les variables musicales de chaque main (et voix superposées) du clavier."""
+    text = ""
+    for staff_index, voice_count in enumerate(staffs):
+        if voice_count != 0:
+            if voice_count == 1:
+                text += music_var(
+                    piano_part_name(staff_index, None),
+                    False, staff_index == 0, "global")
+            else:
+                for voice_index in range(voice_count):
+                    text += music_var(
+                        piano_part_name(staff_index, voice_index),
+                        False, staff_index == 0, "global")
+    return text
+
+def piano_staff(staffs: list[int]) -> str:
+    """Bloc ``ClavierPart`` : un ``PianoStaff`` à 2 portées (piano) ou 3 (orgue + pédalier)."""
+    is_organ = len(staffs) == 3
+    text = (
+        "ClavierPart = \\new PianoStaff \\with {\n"
+        f'\tinstrumentName = "{"Org" if is_organ else "Pian"}."\n'
+        f'\tmidiInstrument = "{"church organ" if is_organ else "acoustic grand"}"\n'
+    )
+    if is_organ:
+        text += "\tmidiMinimumVolume = #0.1\n\tmidiMaximumVolume = #0.3\n"
+    text += "} <<\n"
+
+    for staff_index, voice_count in enumerate(staffs):
+        if voice_count != 0:
+            text += (
+                f'\t\\new Staff = "{PIANO_STAFFS[staff_index]}" '+
+                ("{ \\clef bass " if staff_index > 0 else "{ ")
+                )
+            if voice_count == 1:
+                text += "\\"+piano_part_name(staff_index, None)+" }\n"
+            else:
+                text += "<< "
+                for voice_index in range(voice_count):
+                    text += "\\" + piano_part_name(staff_index, voice_index) + (" \\\\ " if voice_index < voice_count-1 else "")
+                text += ">> }\n"
+    return text + ">>\n\n"
 
 
-def SoloVars(lyrics):
-    st = musicVar(
+def piano_pack(staffs: list[int]) -> str:
+    """Assemble variables + portées du clavier (piano ou orgue)."""
+    return piano_vars(staffs)+piano_staff(staffs)
+
+
+# ---- Solo ------------------------------------------------------------------
+
+def solo_vars(verse_count: int) -> str:
+    """Déclare la voix soliste et ses couplets de paroles numérotés."""
+    text = music_var(
         "soloVoice",
         True,
         True,
         "global"
     )
-    for lyr in range(lyrics):
-        st += lyricVar(
-            f"soloVerse{NUMBERS[lyr]}",
-            lyr
+    for verse_index in range(verse_count):
+        text += lyric_var(
+            f"soloVerse{NUMBERS[verse_index]}",
+            verse_index
         )
-    return st
+    return text
 
-def SoloStaff(lyrics):
-    st = (
+def solo_staff(verse_count: int) -> str:
+    """Bloc ``SoloPart`` : une portée de soliste avec ses couplets en ``\\addlyrics``."""
+    text = (
         "SoloPart = \\new Staff \\with {\n"
         '\tinstrumentName = "Solo"\n'
         '\tshortInstrumentName = "Sl."\n'
@@ -666,42 +764,75 @@ def SoloStaff(lyrics):
         '\t\\consists "Ambitus_engraver"\n'
         "} \\soloVoice\n"
     )
-    for lyr in range(lyrics):
-        st += f"\\addlyrics \\soloVerse{NUMBERS[lyr]}\n"
-    return st+"\n\n"
+    for verse_index in range(verse_count):
+        text += f"\\addlyrics \\soloVerse{NUMBERS[verse_index]}\n"
+    return text+"\n\n"
 
-def SoloPack(lyrics):
-    return SoloVars(lyrics) + SoloStaff(lyrics)
+def solo_pack(verse_count: int) -> str:
+    """Assemble variables + portée du solo."""
+    return solo_vars(verse_count) + solo_staff(verse_count)
 
 
-def FluteVars(lyrics):
-    st = musicVar(
+# ---- Flûte -------------------------------------------------------------------
+
+def flute_vars(has_lyrics: bool) -> str:
+    """Déclare la voix de flûte et, si besoin, sa seule ligne de paroles."""
+    text = music_var(
         "flute",
         True,
         True,
         "global"
     )
-    if lyrics:
-        st += lyricVar("fluteVerse")
-    return st
+    if has_lyrics:
+        text += lyric_var("fluteVerse")
+    return text
 
-def FluteStaff(lyrics):
-    st = (
+def flute_staff(has_lyrics: bool) -> str:
+    """Bloc ``FlûtePart`` : une portée de flûte, avec paroles optionnelles."""
+    text = (
         "FlûtePart = \\new Staff \\with {\n"
         '\tinstrumentName = "Flûte"\n'
         '\tshortInstrumentName = "Fl."\n'
         '\tmidiInstrument = "flute"\n'
         "} \\flute\n"
     )
-    if lyrics:
-        st += "\\addlyrics \\fluteVerse\n"
-    return st+"\n\n"
+    if has_lyrics:
+        text += "\\addlyrics \\fluteVerse\n"
+    return text+"\n\n"
 
-def FlutePack(lyrics):
-    return FluteVars(lyrics)+FluteStaff(lyrics)
+def flute_pack(has_lyrics: bool) -> str:
+    """Assemble variable + portée de la flûte."""
+    return flute_vars(has_lyrics)+flute_staff(has_lyrics)
+
+
+def _build_clavier_block(config: dict) -> str:
+    """Bloc du clavier : ne garde que les mains utiles (2 pour piano, 3 pour orgue)."""
+    voice_counts = [staff_var.get() for staff_var in config["staffs"]]
+    staff_count = 2 + (config["type"].get() == "Orgue")
+    return piano_pack(voice_counts[:staff_count])
+
+
+# Fonction de génération à appeler pour chaque partie activée dans l'onglet "Parties".
+PART_BLOCK_BUILDERS = {
+    "Flûte": lambda config: flute_pack(config["paroles"].get()),
+    "Solo": lambda config: solo_pack(config["couplets"].get()),
+    "Choeur": choir_pack,
+    "Clavier": _build_clavier_block,
+}
+
+
+def _build_instruments_reference(active_parts: dict) -> str:
+    """Référence les ``...Part`` déclarés : seul, ou combinés dans un ``<< >>``."""
+    if len(active_parts) == 1:
+        (name,) = active_parts
+        return f"\t\\{name}Part\n"
+    lines = "".join(f"\t\t\\{name}Part\n" for name in active_parts)
+    return f"\t<<\n{lines}\t>>\n"
 
 
 class LilypondCreator(ctk.CTk):
+    """Fenêtre principale : assemble les 3 onglets et génère le fichier .ly final."""
+
     def __init__(self):
         super().__init__()
         self.title("Assistant de création de partition Lilypond")
@@ -724,126 +855,150 @@ class LilypondCreator(ctk.CTk):
         ctk.CTkButton(button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#8a8a8a", hover_color="#8f8f8f", command=self.destroy).pack(side="left")
         button_frame.pack(pady=15)
         self.mainloop()
-    
-    def create_lilypond_file(self):
-        values = {}
-        for key, field in self.header_tab.fields.items():
-            if field["frame"].winfo_manager() == "pack":
-                value = field["var"].get().strip()
-                values[key] = value
 
+    # ------------------------------------------------------------------
+    # Génération du fichier .ly
+    # ------------------------------------------------------------------
+
+    def create_lilypond_file(self):
+        """Assemble le contenu Lilypond et l'écrit dans le fichier choisi par l'utilisateur."""
+        header_values = self._collect_header_values()
         filename = self.header_tab.get_target_filename()
         category = self.header_tab.category_var.get().strip()
-        
-        folder_name = Path(filename).stem
-        target_folder = PARTITIONS / category / folder_name
-        
+        target_folder = PARTITIONS / category / Path(filename).stem
+
         try:
             target_folder.mkdir(parents=True, exist_ok=True)
-            self.filepath = target_folder / filename
-            if self.filepath.exists() and self.alert_same_path:
-                if filename == "Sans titre.ly":
-                    new_name, i = "Sans titre ({})", 1
-                    while Path(new_name.format(i)).exists():
-                        i += 1
-                    self.filepath = target_folder / new_name.format(i)
-                else:
-                    raise OSError(f"Le fichier '{filename}' existe déjà dans la catégorie '{category}'. Veuillez modifier le nom du fichier.")
-            
-            content = (
-                "\\version \"2.26.0\"\n"
-                "\\include \"settings.ily\"\n"
-                "\\include \"composers.ily\"\n"
-                "\n"
-                "global = {\n"
-                "\t\\autoBeamOff\n"
-                "\t\\mergeDifferentlyHeadedOn\n"
-                "\t\\mergeDifferentlyDottedOn\n"
-            )
-            for settings in self.music_tab.vars.values():
-                if "ly" in settings and ("def" not in settings or settings["var"].get() != settings["def"]):
-                    content += (
-                        f"\t\\{settings["ly"]} {'"' if settings["ly"] == "tempo" else ""}"
-                        f"{settings["var"].get()}{'"' if settings["ly"] == "tempo" else ""}" +
-                        (" \\major" if settings["ly"] == "key" else "") + "\n"
-                    )
-            content += "}\n\n"
-            
-            voices_parts = {k: v for k, v in self.parts_tab.parts.items() if v["btn"].get()}
-            for part in voices_parts:
-                if part == "Choeur":
-                    content += ChoirPack(voices_parts[part])
-                elif part == "Clavier":
-                    content += PianoPack(
-                        [voice.get() for voice in voices_parts["Clavier"]["staffs"]][:2 + (voices_parts["Clavier"]["type"].get() == "Orgue")]
-                    )
-                elif part == "Solo":
-                    content += SoloPack(voices_parts[part]["couplets"].get())
-                elif part == "Flûte":
-                    content += FlutePack(voices_parts[part]["paroles"].get())
-            
-            content += "\n"     
-            if values.get("title"):
-                if values.get("composer"):
-                    content += f'\\tocItemComposer "{values["title"]}" "{values["composer"]}"\n'
-                else:
-                    content += f'\\tocItem \\markup "{values["title"]}"\n'
-            
-            content += (
-                "\\score {\n"
-                "\t\\header {\n"
-            )
-            for key, val in values.items():
-                if key in self.header_tab.picker_fields and val != "" and val[0] == "\\":
-                    if key == "poet":
-                        val = '\\markup {"Paroles :" ' + val + '}'
-                    elif key == "arranger":
-                        val = '\\markup {"Harmonisation :" ' + val + '}'
-                    content += f'\t\t{key} = {val}\n'
-                else:
-                    content += f'\t\t{key} = "{val.upper() if key == "title" else val}"\n'
-            content += "\t}\n"
+            self.filepath = self._resolve_target_path(target_folder, filename)
 
-            if len(voices_parts) == 1:
-                content += f"\t\\{part}Part\n"
-            else:
-                content += "\t<<\n"
-                for part in voices_parts:
-                    content += f"\t\t\\{part}Part\n"
-                content += "\t>>\n"
-            content += (
-                "\t\\layout {\\context{\\Staff \\RemoveAllEmptyStaves }}\n"
-                "\t\\midi {\\tempo 4=" + self.music_tab.vars["Tempo du midi"]["var"].get() + " }\n"
-                "}\n"
+            active_parts = {
+                name: config for name, config in self.parts_tab.parts.items() if config["btn"].get()
+            }
+            content = (
+                self._build_global_block()
+                + self._build_parts_block(active_parts)
+                + self._build_toc_line(header_values)
+                + self._build_score_block(header_values, active_parts)
             )
             self.filepath.write_text(content)
             self.happy_end()
 
         except OSError as error:
-            self.error_window = ctk.CTkToplevel(self)
-            self.error_window.title("Erreur de création")
-            self.error_window.resizable(False, False)
-            
-            ctk.CTkLabel(
-                self.error_window, text=f"Une erreur est survenue :\n{str(error)}", 
-                text_color="#D32F2F", wraplength=360, justify="center", font=self.default_font
-            ).pack(expand=True, fill="both", pady=20, padx=20)
-            
-            btn_frame = ctk.CTkFrame(self.error_window)
-            ctk.CTkButton(
-                btn_frame, text="Rééssayer",
-                font=self.default_font, command=self.relaunch
-            ).pack(side="left")
-            ctk.CTkButton(
-                btn_frame, text="Ecraser le fichier existant",
-                font=self.default_font, command=self.ecrase
-            ).pack(side="left", padx=5)
-            ctk.CTkButton(
-                btn_frame, text="Travailler sur le fichier existant",
-                font=self.default_font, command=self.happy_end
-            ).pack(side="left", padx=5)
-            btn_frame.pack(pady=10)
+            self._show_error_dialog(error)
 
+    def _collect_header_values(self) -> dict[str, str]:
+        """Valeurs des champs d'en-tête actuellement affichés."""
+        return {
+            key: field["var"].get().strip()
+            for key, field in self.header_tab.fields.items()
+            if field["frame"].winfo_manager() == "pack"
+        }
+
+    def _resolve_target_path(self, target_folder: Path, filename: str) -> Path:
+        """Chemin final du fichier .ly, en évitant d'écraser un fichier existant."""
+        filepath = target_folder / filename
+        if not (filepath.exists() and self.alert_same_path):
+            return filepath
+        if filename != "Sans titre.ly":
+            category = self.header_tab.category_var.get().strip()
+            raise OSError(f"Le fichier '{filename}' existe déjà dans la catégorie '{category}'. Veuillez modifier le nom du fichier.")
+        counter = 1
+        while (target_folder / f"Sans titre ({counter}).ly").exists():
+            counter += 1
+        return target_folder / f"Sans titre ({counter}).ly"
+
+    def _build_global_block(self) -> str:
+        """Bloc ``global`` : réglages communs (armure, mesure, anacrouse, tempo textuel)."""
+        content = (
+            "\\version \"2.26.0\"\n"
+            "\\include \"settings.ily\"\n"
+            "\\include \"composers.ily\"\n"
+            "\n"
+            "global = {\n"
+            "\t\\autoBeamOff\n"
+            "\t\\mergeDifferentlyHeadedOn\n"
+            "\t\\mergeDifferentlyDottedOn\n"
+        )
+        for setting in self.music_tab.vars.values():
+            if "ly" in setting and ("def" not in setting or setting["var"].get() != setting["def"]):
+                ly_keyword = setting["ly"]
+                value = setting["var"].get()
+                quote = '"' if ly_keyword == "tempo" else ""
+                suffix = " \\major" if ly_keyword == "key" else ""
+                content += f"\t\\{ly_keyword} {quote}{value}{quote}{suffix}\n"
+        return content + "}\n\n"
+
+    def _build_parts_block(self, active_parts: dict) -> str:
+        """Concatène les blocs Lilypond (variables + portées) de chaque partie activée."""
+        return "".join(PART_BLOCK_BUILDERS[name](config) for name, config in active_parts.items())
+
+    def _build_toc_line(self, header_values: dict) -> str:
+        """Ligne de table des matières (``\\tocItem...``), si un titre est renseigné."""
+        title = header_values.get("title")
+        if not title:
+            return ""
+        composer = header_values.get("composer")
+        if composer:
+            return f'\\tocItemComposer "{title}" "{composer}"\n'
+        return f'\\tocItem \\markup "{title}"\n'
+
+    def _build_header_fields(self, header_values: dict) -> str:
+        """Lignes du bloc ``\\header`` : citations (compositeur/parolier/arrangeur) ou texte brut."""
+        content = ""
+        for key, val in header_values.items():
+            if key in self.header_tab.picker_fields and val.startswith("\\"):
+                if key == "poet":
+                    val = '\\markup {"Paroles :" ' + val + '}'
+                elif key == "arranger":
+                    val = '\\markup {"Harmonisation :" ' + val + '}'
+                content += f'\t\t{key} = {val}\n'
+            else:
+                content += f'\t\t{key} = "{val.upper() if key == "title" else val}"\n'
+        return content
+
+    def _build_score_block(self, header_values: dict, active_parts: dict) -> str:
+        """Bloc ``\\score`` complet : en-tête, portées, mise en page et MIDI."""
+        midi_tempo = self.music_tab.vars["Tempo du midi"]["var"].get()
+        return (
+            "\\score {\n"
+            "\t\\header {\n"
+            + self._build_header_fields(header_values)
+            + "\t}\n"
+            + _build_instruments_reference(active_parts)
+            + "\t\\layout {\\context{\\Staff \\RemoveAllEmptyStaves }}\n"
+            + "\t\\midi {\\tempo 4=" + midi_tempo + " }\n"
+            + "}\n"
+        )
+
+    def _show_error_dialog(self, error: OSError):
+        """Popup d'erreur avec choix : réessayer, écraser, ou continuer sur le fichier existant."""
+        self.error_window = ctk.CTkToplevel(self)
+        self.error_window.title("Erreur de création")
+        self.error_window.resizable(False, False)
+        
+        ctk.CTkLabel(
+            self.error_window, text=f"Une erreur est survenue :\n{str(error)}", 
+            text_color="#D32F2F", wraplength=360, justify="center", font=self.default_font
+        ).pack(expand=True, fill="both", pady=20, padx=20)
+        
+        btn_frame = ctk.CTkFrame(self.error_window)
+        ctk.CTkButton(
+            btn_frame, text="Rééssayer",
+            font=self.default_font, command=self.relaunch
+        ).pack(side="left")
+        ctk.CTkButton(
+            btn_frame, text="Ecraser le fichier existant",
+            font=self.default_font, command=self.ecrase
+        ).pack(side="left", padx=5)
+        ctk.CTkButton(
+            btn_frame, text="Travailler sur le fichier existant",
+            font=self.default_font, command=self.happy_end
+        ).pack(side="left", padx=5)
+        btn_frame.pack(pady=10)
+
+    # ------------------------------------------------------------------
+    # Actions de fin (ouverture Frescobaldi, ré-essai, écrasement)
+    # ------------------------------------------------------------------
 
     def happy_end(self):
         subprocess.Popen(["frescobaldi", str(self.filepath)])
