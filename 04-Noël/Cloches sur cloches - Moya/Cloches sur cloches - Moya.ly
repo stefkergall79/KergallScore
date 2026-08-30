@@ -9,11 +9,58 @@ global = {
 	\key f \major
 	\time 2/4
 	\tempo "Allegro"
+	\dynamicUp
 }
 
 soprano = \relative c' {
 	\global
 	R2
+	f4\mf 8 8 |
+	4 e8 f |
+	g4. ( e8 ) |
+	c2 |
+	g'4 8 a |\break
+	bes4 a8 g |
+	a4. ( g8 ) |
+	f4 r |
+	4 8 8 |
+	4 e8 f |
+	g4. ( e8 ) |\break
+	c2 |
+	g'4 8 a |
+	bes4 a8 g |
+	a4. ( g8 ) |
+	f4 r8 a |\break
+	c4 r8 8 |
+	d c bes d |
+	c4 r8 c |
+	d c d e |
+	f [ c ] a d |\break
+	c bes a g |
+	f4 r |
+	a4.\pp bes8 |
+	a [ g ] f4 |
+	c'4.-_ d8 |
+	c [ bes ] a4\breathe |\break
+	c4.-_ 8 |
+	b4.-_ g8 |
+	c4.-_ bes!8 |
+	a [ g ] f [ g ]\breathe |
+	a4.-_ bes8 |
+	a [ g ] f4 |
+	c'4.-_ d8 |\break
+	c8 [ bes ] a4 |
+	c4.-_ 8 |
+	b4.-_ g8 |
+	c4.-_ bes8 |
+	a [ g ] f [a ] |
+	c4 r8 c |\break
+	d c bes d |
+	c4 r8 c |
+	d c d e |
+	f [ c ] a d |
+	c bes a g |
+	a2\fermata \bar"|."
 }
 
 
@@ -36,7 +83,20 @@ bass = \fixed c {
 
 
 VerseOne = \strophemode 1 ##f \lyricmode {
-	
+	Clo -- ches sur clo -- ches joy -- eu -- ses,
+  tin -- tent légères, so -- no -- res,
+  Em -- pres -- se- toi à la crèche,
+  où un en -- fant vient de naître.
+  Bé -- lèm, ô clo -- ches de Bé -- lèm,
+  Qu'agi -- tent les ar -- chan -- ges
+  Quel -- le nou -- vel -- le m'ap -- por -- tez_?
+  Que s'as -- sem -- blent gens et bêtes, 
+  Pour for -- mer un grand cor -- tè -- ge
+  Qu'à l'éta -- ble, on lui por -- te lait caillé
+  Du vin, du be -- ur -- re.
+  Bé -- lèm, ô clo -- ches de Bé -- lèm,
+  Qu'agi -- tent les ar -- chan -- ges
+  Quel -- le nou -- vel -- le m'ap -- por -- tez_?
 }
 
 VerseTwo = \strophemode 2 ##t \lyricmode {
@@ -108,7 +168,7 @@ ChoeurPart = \new ChoirStaff <<
 		title = "CLOCHES SUR CLOCHES"
 		subtitle = "Noël populaire d'Andalousie"
 		poet = \markup {"Paroles :" \geoffray}
-		arranger = \markup {"Harmonisation :" \moya}
+		composer = \markup {"Harmonisation :" \moya}
 	}
 	\ChoeurPart
 	\layout {\context{\Staff \RemoveAllEmptyStaves }}
