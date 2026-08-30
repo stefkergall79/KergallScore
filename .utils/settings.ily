@@ -10,6 +10,8 @@
   }
 }
 
+bf = \markup \italic "B.F."
+
 rinf = #(make-dynamic-script 
           (markup #:whiteout
                   #:normal-text
