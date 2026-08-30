@@ -1,8 +1,4 @@
 \version "2.26.0"
-\include "settings.ily"
-\include "composers.ily"
-
-#(set-global-staff-size 17 )
 
 italicMark = #(define-music-function
   (text) (markup?)
@@ -67,7 +63,7 @@ nonMoriar = \lyricmode {
   et nar -- rá -- bo
   ó -- pe -- ra Dó -- mi -- ni.
 }
-soprano = \relative c'' {
+sopranoDebut = \relative c'' {
 	\global
 	R1*32
 	bes4.\ff c8 d2 |
@@ -87,8 +83,11 @@ soprano = \relative c'' {
   \once \hide Slur bes\rit-^_( d4-^ ) f-^ |
   d-^ c-^ bes2-^\!\fermata |\break
   
-  \tempo "Un peu plus lent"
-  f'4.\p\italicMark "Solo ou petit choeur" es8 des2 |
+}
+
+sopranoSuite = \relative c''{
+    \tempo "Un peu plus lent"
+  f4.\p\italicMark "Solo ou petit choeur" es8 des2 |
   es4. des8 c2
   R1*2
   as4. ( ges8 ) f2 |
@@ -229,7 +228,7 @@ sopranoVerseOne = \lyricmode {
 }
 
 
-tenor = \relative c' {
+tenorDebut = \relative c' {
 	\global
 	R1*16
 	bes4.\mf c8 d2 |
@@ -250,11 +249,11 @@ tenor = \relative c' {
   d c bes2 |\break
   
   d4.\ff es8 f2 |
-  c4. 8 2 |
-  f2 d~ |
-  4 g f es |
+  es4. 8 2 |
+  d2 bes~ |
+  4 g' f es |
   d4. es8 f2 |
-  c4. 8 2 |
+  es4. 8 2 |
   d2. 4 |
   f es d2 |
   r4 8. 16 es4 c |
@@ -266,7 +265,9 @@ tenor = \relative c' {
   \once \hide Slur d2\rit-^ _( f4-^ ) 4-^ |
   g-^ a,-^ bes2-^\!\fermata |
   
-  des4.\p c8 bes2 |
+}
+tenorSuite = \relative c' {
+    des4.\p c8 bes2 |
   c4. bes8 a2
   R1*2
   f'4. ( es8 ) des2 |
@@ -414,7 +415,7 @@ tenorVerseOne = \lyricmode {
 }
 
 
-bass = \relative c {
+bassDebut = \relative c {
   \global
   bes4.\p c8 d2 |
   c4. bes8 c2 |
@@ -467,7 +468,9 @@ bass = \relative c {
   \once \hide Slur g2\rit-^ _( d4-^ ) d-^ |
   es-^ f-^ bes,2-^\!\fermata |
   
-  f'4.\p 8 ges2 |
+}
+bassSuite = \relative c {
+    f4.\p 8 ges2 |
   es4. 8 f2 |
   R1*2
   as2 bes |
@@ -617,41 +620,10 @@ bassVerseOne = \lyricmode {
 }
 
 
-ChoeurPart = \new ChoirStaff <<
-	\new Staff \with {
-		midiInstrument = "choir aahs"
-		instrumentName = "Sopranes"
-		shortInstrumentName = "S."
-		\consists "Ambitus_engraver"
-	}  \new Voice = "soprano" {\soprano }
-	\new Lyrics \with { \override VerticalAxisGroup.staff-affinity = #CENTER
-	} \lyricsto "soprano" \sopranoVerseOne
-
-	\new Staff \with {
-		midiInstrument = "choir aahs"
-		instrumentName = \markup \column {"Altos et""Ténors"}
-		shortInstrumentName = \markup \column {"A.""T."}
-		\consists "Ambitus_engraver"
-		\clef "treble_8"
-	}  \new Voice = "tenor" {\tenor }
-	\new Lyrics \with { \override VerticalAxisGroup.staff-affinity = #CENTER
-	} \lyricsto "tenor" \tenorVerseOne
-
-	\new Staff \with {
-		midiInstrument = "choir aahs"
-		instrumentName = "Basses"
-		shortInstrumentName = "B."
-		\consists "Ambitus_engraver"
-		\clef bass
-	}  \new Voice = "bass" {\bass }
-	\new Lyrics \with { \override VerticalAxisGroup.staff-affinity = #CENTER
-	} \lyricsto "bass" \bassVerseOne
->>
-
 goDown = \change Staff = "left"
 goUp = \change Staff = "right"
 
-rightOne = \fixed c' {
+rightOneDebut = \fixed c' {
   \globalO
 	d1 es |
 	d2 <d f> |
@@ -696,7 +668,9 @@ rightOne = \fixed c' {
 	<d bes>2\rit <f d'>4-^ <f f'>-^ |
 	<g d'>-^ <a c'>-^ bes2-^\!\fermata
 	
-	R1*2
+}
+rightOneSuite = \fixed c' {
+    R1*2
 	<des f>1~ |
 	f2 <es g> |
 	<des f as>4 r r2
@@ -790,7 +764,7 @@ rightOne = \fixed c' {
   <d f>2 g8 f es4 | 
 }
 
-rightTwo = {
+rightTwoDebut = {
   \globalO
   \fixed c {
 	  bes1\p |
@@ -828,6 +802,9 @@ rightTwo = {
 	  \repeat unfold 3 { r4 \repeat unfold 3 { s8 r8 } | }
 	  \repeat unfold 2 { s8 r r4 } |
 	  s1*4
+	}
+}
+rightTwoSuite = \relative c' {
 	  <>_\italicMark"Ôter les hanches du récit"
 	  R1*2
 	  s1 des |
@@ -940,10 +917,9 @@ rightTwo = {
 	  r2 <a es' f> |
 	  <bes d f> r |
 	  R1*2
-	}
 }
 
-leftOne = \fixed c {
+leftOneDebut = \fixed c {
 	\globalO
 	f1~1
 	s1*6
@@ -976,7 +952,9 @@ leftOne = \fixed c {
 	<g bes> <d bes>4 4 |
 	\oct es'4 <f es'> <bes d'>2\!\fermata |
 	
-	s1*6
+}
+leftOneSuite = \fixed c{
+    s1*6
 	as1~1~1~1~2~8 r8 r4 |
 	s1
 	\key des \major
@@ -1120,7 +1098,7 @@ leftOne = \fixed c {
 	R1*2
 }
 
-leftTwo = \fixed c, {
+leftTwoDebut = \fixed c, {
 	\globalO
 	bes1 f |
 	\oneVoice g2 d |
@@ -1158,7 +1136,10 @@ leftTwo = \fixed c, {
 	bes1 \oct f'1 |
 	g2 d4-^ 4-^ |
 	es-^ f-^ bes2-^ |
-	\oneVoice R1*2
+	
+}
+leftTwoSuite = \fixed c, {
+    \oneVoice R1*2
 	bes2 ( des'4\< f' |
 	des'\> c' bes2\! ) |
 	as4 r r2
@@ -1249,41 +1230,4 @@ leftTwo = \fixed c, {
 	\oneVoice <bes f' bes'>2 r |
 	r \voiceTwo <f c'> |
 	bes1~1 |
-}
-
-ClavierPart = \new PianoStaff \with {
-	instrumentName = "Orgue"
-	shortInstrumentName = "Org."
-	midiInstrument = "church organ"
-	midiMinimumVolume = #0.1
-  midiMaximumVolume = #0.3
-} <<
-	\new Staff = "right" \with {
-	  \consists Merge_rests_engraver
-	} { << \rightOne \\ \rightTwo>> }
-	\new Staff = "left" \with {
-	  \clef bass
-	  \consists Merge_rests_engraver
-	} { << \leftOne \\ \leftTwo>> }
->>
-
-\tocItemComposer "Dextera Domini" "Franck"
-\score {
-	\header {
-		dedication = "à monsieur l'abbé Hancelin, curé de Sainte-Clothilde"
-		title = "DEXTERA DOMINI"
-		subtitle = "Offertoire pour la messe du jour de Pâques"
-		composer = \franck
-	}
-	<<
-		\ChoeurPart
-		\ClavierPart
-	>>
-	\layout {\context{\Staff \RemoveEmptyStaves }}
-	\midi {\tempo 4=95 }
-}
-
-\markup \column {
-  "La droite du Seigneur a déployé sa puissance, la droite du Seigneur m’a exalté."
-  "Je ne mourrai plus, mais je vivrai, et je raconterai les œuvres du Seigneur."
 }
