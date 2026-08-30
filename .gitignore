@@ -9,3 +9,4 @@ lilygabc
 *.mscz
 *.mxl
 uninstaller.py
+lilypond-tmp-*.pdf
