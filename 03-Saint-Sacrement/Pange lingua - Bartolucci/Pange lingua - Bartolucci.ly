@@ -12,13 +12,13 @@ global = {
 
 soprano = \fixed c' {
   \global
-  f4\p g as2 2 bes4 as bes2 \partial 1 c'1
-  bes4 as g f as2 g4( f4) 1.\breathe
-  4\mf g as2 2 bes4 as bes2 \partial 1 c'1
-  4 bes as g bes2\> as4( g) g1.\!\breathe
-  as4\< bes c'2 2 d'4 c' d'2 es'1\!
-  des'4\p c' bes as c'2 bes4( as) as1
-  bes4\pp as g f as2 g4( f) f\breve \bar "||"
+  f4\p ( g as2 2 bes4 as bes2 \partial 1 c'1 )
+  bes4 ( as g f as2 g4 f4 1. ) \breathe
+  4\mf ( g as2 2 bes4 as bes2 \partial 1 c'1 )
+  4 ( bes as g bes2\> as4 g g1.\!  ) \breathe
+  as4\<  ( bes c'2 2 d'4 c' d'2 es'1\! )
+  des'4\p ( c' bes as c'2 bes4 as as1 )
+  bes4\pp ( as g f as2 g4 f f\breve ) \bar "||"
   g1( f) f\breve\bar "|."
 }
 
@@ -84,28 +84,25 @@ verseThree = \strophemode #3 ##f \lyricmode {
     title = "PANGE LINGUA"
     composer = \bartolucci
   }
-  \new ChoirStaff <<
-    \new Staff \with {
-      midiInstrument = "choir aahs"
-      instrumentName = \markup \center-column { "S." "A." }
-    } <<
+  \new ChoirStaff \with {
+    midiInstrument = "choir aahs"
+  } <<
+    \new Staff <<
       \new Voice = "soprano" { \voiceOne \soprano }
       \new Voice = "alto" { \voiceTwo \alto }
     >>
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "soprano" \verseOne
+    } \lyricsto "alto" \verseOne
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "soprano" \verseTwo
+    } \lyricsto "alto" \verseTwo
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "soprano" \verseThree
+    } \lyricsto "alto" \verseThree
     \new Staff \with {
-      midiInstrument = "choir aahs"
-      instrumentName = \markup \center-column { "T." "B." }
-    } <<
       \clef bass
+    } <<
       \new Voice = "tenor" { \voiceOne \tenor }
       \new Voice = "bass" { \voiceTwo \bass }
     >>
@@ -117,6 +114,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
 
 \markup \couplets-markup #4 #3 {
   \column {
+    "Verbum caro, panem verum,"
     "Verbo carnem éfficit ;"
     "Fitque sanguis Christi merum,"
     "Et, si sensus déficit,"
@@ -124,6 +122,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
     "Sola fides súfficit."
   }
   \column {
+    "Tantum ergo sacraméntum,"
     "Venerémur cérnui,"
     "Et antíquum documéntum"
     "Novo cedat rítui ;"
@@ -131,6 +130,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
     "Sénsuum deféctui."
   }
   \column {
+    "Genitóri, genitóque,"
     "Laus et jubilátio,"
     "Salus, honor, virtus quoque"
     "Sit et benedíctio ;"
