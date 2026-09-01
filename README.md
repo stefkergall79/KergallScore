@@ -30,3 +30,6 @@ KergallScore vous propose des solutions. [Nous attendons vos commandes](mailto:s
 # Développeurs
 
 Plus d'informations [par ici](.doc/DEVELOPERS.md).
+
+# Législation
+Nous produisons des partitions à partir de sources variées et indépendantes. Si une de nos partitions se trouvait ne pas être libre de droit, [prévenez-nous immédiatement](mailto:stef.kergall@gmail.com) pour que nous puissions protéger le travail de nos collègues musiciens.
