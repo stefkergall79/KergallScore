@@ -1,5 +1,5 @@
 [[english]](.doc/README_en.md)
-# <a href="mailto:stef.kergall@gmail.com"><img src=".logos/KergallScore-nobackground.png" style="vertical-align: middle;" width="40px"><span style="vertical-align: middle;"><b>ergallScore</b></span></a>
+# <a href="mailto:stef.kergall@gmail.com"><img src=".doc/logos/KergallScore-nobackground.png" style="vertical-align: middle;" width="40px"><span style="vertical-align: middle;"><b>ergallScore</b></span></a>
 
 # Fonctionalités
 
@@ -7,19 +7,19 @@
 
 | Avant | Après |
 | --- | --- |
-| <img src="04-Noël/Venez%20mes%20enfants/cache/Venez_mes_enfants-old.png" width="1000px"/> | <img src="04-Noël/Venez%20mes%20enfants/cache/Venez%20mes%20enfants.png" width="1000px"/> |
+| <img src=".doc/pict/Venez_mes_enfants-old.png" width="1000px"/> | <img src=".doc/pict/Venez%20mes%20enfants.png" width="1000px"/> |
 
 - **Entendre** à quoi ressemble un chant dont vous n'avez que le pdf
 
 | Avant | Après |
 | --- | --- |
-| <img src="01-Général/Credo III/cache/et_incarnatus_est.jpg" width="1000px"/> | Et incarnatus est.midi <img src="01-Général/Credo III/cache/et_incarnatus_est_musique.jpg" width="800px"/> |
+| <img src=".doc/pict/et_incarnatus_est.jpg" width="1000px"/> | Et incarnatus est.midi <img src=".doc/pict/et_incarnatus_est_musique.jpg" width="800px"/> |
 
 - **Harmoniser** une mélodie trouvée par hasard
 
 | Avant | Après |
 | --- | --- |
-| <img src="01-Général/Noble-époux-de-Marie/cache/Noble%20époux%20de%20Marie-old.png" width="1000px"/> | <img src="01-Général/Noble-époux-de-Marie/cache/Noble-époux-de-Marie.png" width="1000px"/> |
+| <img src=".doc/pict/Noble%20époux%20de%20Marie-old.png" width="1000px"/> | <img src=".doc/pict/Noble-époux-de-Marie.png" width="1000px"/> |
 
 - **Réduire** le nombre de pages d'une partition, ou mettre sur la même feuille deux pièces différentes [(comme ici)](08-Assemblages/Jesu%20Salvator%20-%20Jesu%20Rex%20admirabilis/Jesu%20Salvator%20-%20Jesu%20Rex%20admirabilis.pdf)
 
