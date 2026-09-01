@@ -1,4 +1,4 @@
-[english](.doc/README_en.md)
+[[english]](.doc/README_en.md)
 # <a href="mailto:stef.kergall@gmail.com"><img src=".logos/KergallScore-nobackground.png" style="vertical-align: middle;" width="40px"><span style="vertical-align: middle;"><b>ergallScore</b></span></a>
 
 # Fonctionalités
