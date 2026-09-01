@@ -74,7 +74,7 @@ verse = \lyricmode {
     >>
   >>
   \layout {\context{\Staff \RemoveAllEmptyStaves }}
-  \midi { \tempo 4=100 }
+  \midi { \tempo 4=140 }
 }
 
 \markup \column {
