@@ -3,7 +3,6 @@ __pycache__
 99-Commandes/**/*.midi
 .obsidian
 lilypond-2.26.0
-lilygabc
 *.AppImage
 *-mscz.pdf
 *.mscz
