@@ -65,13 +65,13 @@ soprano = \relative e' {
 }
 
 sopranoLyrics = \lyricmode {
-  Can -- tá -- _ -- _ -- _ -- _ te Dó -- mi -- no -- _
-  can -- tá -- _ -- _ -- _ -- te Dó -- mi -- no,
+  Can -- tá -- _ _ _ _ te Dó -- mi -- no, _
+  can -- tá -- _ _ _ te Dó -- mi -- no,
   can -- tá -- te Dó -- mi -- no,
-  cán -- ti -- cum nó -- _ -- _ -- _ -- _ -- _ -- vum,
-  can -- tá -- _ -- te,
-  can -- tá -- _ -- te Dó -- mi -- no
-  ó -- mnis tér -- _ -- _ -- ra.
+  cán -- ti -- cum nó -- _ _ _ _ _ vum,
+  can -- tá -- _ te,
+  can -- tá -- _ te Dó -- mi -- no
+  ó -- mnis tér -- _ _ ra.
   
   Can -- tá -- te Dó -- mi -- no,
   et be -- ne -- dí -- ci -- te
@@ -128,15 +128,15 @@ alto = \relative e' {
 }}
 
 altoLyrics = \lyricmode {
-  Can -- tá -- _ -- te Dó -- mi -- no,
+  Can -- tá -- _ te Dó -- mi -- no,
   can -- tá -- te Dó -- mi -- no,
-  can -- tá -- _ -- _ -- _ -- te Dó -- mi -- no,
-  can -- tá -- _ -- te Dó -- mi -- no,
+  can -- tá -- _ _ _ te Dó -- mi -- no,
+  can -- tá -- _ te Dó -- mi -- no,
   cán -- ti -- cum, cán -- ti -- cum
-  nó -- _ -- _ -- vum,
-  can -- tá -- _ -- te,
-  can -- tá -- _ -- te Dó -- mi -- no
-  ó -- mnis tér -- _ -- _ -- ra.
+  nó -- _ _ vum,
+  can -- tá -- _ te,
+  can -- tá -- _ te Dó -- mi -- no
+  ó -- mnis tér -- _ _ ra.
   
   Can -- tá -- te Dó -- mi -- no,
   et be -- ne -- dí -- ci -- te
@@ -144,10 +144,10 @@ altoLyrics = \lyricmode {
   
   An -- nún -- ti -- á -- te de dí -- e,
   an -- nún -- ti -- á -- te
-  de dí -- e in dí -- _ -- em,
+  de dí -- e in dí -- _ em,
   sa -- lu -- tá -- re é -- jus,
   sa -- lu -- tá -- re é -- jus,
-  sa -- lu -- tá -- re é -- _ -- _ -- jus.
+  sa -- lu -- tá -- re é -- _ _ jus.
 }
 
 tenor = \relative e {
@@ -194,14 +194,14 @@ tenor = \relative e {
 }
 
 tenorLyrics = \lyricmode {
-  Can -- tá -- _ -- _ -- _ -- te Dó -- mi -- no,
+  Can -- tá -- _ _ _ te Dó -- mi -- no,
   cán -- ti -- cum nó -- vum,
   can -- tá -- te Dó -- mi -- no,
-  can -- tá -- _ -- _ -- te Dó -- mi -- no
+  can -- tá -- _ _ te Dó -- mi -- no
   cán -- ti -- cum
-  nó -- _ -- _ -- _ -- vum,
-  can -- tá -- _ -- te Dó -- mi -- no
-  ó -- _ -- _ -- mnis tér -- _ -- ra.
+  nó -- _ _ _ vum,
+  can -- tá -- _ te Dó -- mi -- no
+  ó -- _ _ mnis tér -- _ ra.
   
   Can -- tá -- te Dó -- mi -- no,
   et be -- ne -- dí -- ci -- te
@@ -209,9 +209,9 @@ tenorLyrics = \lyricmode {
   
   An -- nún -- ti -- á -- te de dí -- e,
   an -- nún -- ti -- á -- te
-  de dí -- e in dí -- _ -- _ -- _ -- em,
+  de dí -- e in dí -- _ _ _ em,
   sa -- lu -- tá -- re é -- jus,
-  sa -- lu -- tá -- re é -- _ -- _ -- jus,
+  sa -- lu -- tá -- re é -- _ _ jus,
   sa -- lu -- tá -- re é -- jus.
 }
 
@@ -258,12 +258,12 @@ bass = \relative b, {
    b2  e1
 }
 bassLyrics = \lyricmode {
-  Can -- tá -- _ -- te Dó -- mi -- no,
+  Can -- tá -- _ te Dó -- mi -- no,
   can -- tá -- te,
-  can -- tá -- te Dó -- _ -- _ -- _ -- mi -- no
-  cán -- ti -- cum nó -- _ -- _ -- _ -- vum,
-  can -- tá -- _ -- te Dó -- mi -- no
-  ó -- _ -- mnis tér -- _ -- ra.
+  can -- tá -- te Dó -- _ _ _ mi -- no
+  cán -- ti -- cum nó -- _ _ _ vum,
+  can -- tá -- _ te Dó -- mi -- no
+  ó -- _ mnis tér -- _ ra.
   
   Can -- tá -- te Dó -- mi -- no,
   et be -- ne -- dí -- ci -- te
