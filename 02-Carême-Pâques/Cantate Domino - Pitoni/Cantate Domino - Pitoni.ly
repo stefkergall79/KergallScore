@@ -42,7 +42,7 @@ alto = \fixed c' {
 
 tenor = \fixed c {
   \global
-  bes4 4 a bes4. 8 4 4.(a8[bes c'] d'2.)4.(c'8[d' es'] f'4) d'
+  bes4 4 a bes4. 8 4 4. ( a8[bes c'] ) d'2. ~ 4.(c'8[d' es'] f'4) d'
   c' d'4 4 c' d'2 c'4 bes4. 8 4 c'4. 8 bes4 a4 4
   4 bes4 4 c'8 8 d'4. 8 4 es'4 c'2 d'4
   4 4 c'2 4 bes2 4 a2. b2.
@@ -57,7 +57,7 @@ tenor = \fixed c {
 
 bass = \fixed c {
   \global
-  g4 4 d g4. 8 4 4.(f8[g a] bes2.)2. 2
+  g4 4 d g4. 8 4 4. ( f8[g a] ) bes2. ~ 2. 2
   f4 bes4 4 f bes2 f4 g4. 8 4
   c'4. 8 g4 d d d g g f8 8 bes4. a8 g4 es f2 bes,4
   bes4 4 f2 4 g2 4 d2. g
@@ -92,10 +92,6 @@ verseExultent = \lyricmode {
   e -- xúl -- tent, e -- xúl -- tent,
 }
 
-verseTenor = \lyricmode {
-  \repeat unfold 6 \skip1
-  can -- tá -- te,
-}
 verseSoprano = \lyricmode {
   \repeat unfold 77 \skip1
   \verseExultent
@@ -140,11 +136,7 @@ verseBass = \lyricmode {
     >>
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "tenor" \verseTenor
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "bass" \verseBass
-    
   >>
   \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {\tempo 2.=50 }

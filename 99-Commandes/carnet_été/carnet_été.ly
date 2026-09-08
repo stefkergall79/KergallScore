@@ -31,7 +31,7 @@
 \include "../../01-Général/Adoramus te - Dubois/Adoramus te - Dubois.ly" \markup \vspace #3
 \include "../../01-Général/Sancte Pie Decime/Sancte Pie Decime.ly" \pageBreak
 \include "../../01-Général/Alta Trinita/Alta Trinita.ly" \pageBreak
-\include "../../01-Général/Cantate Domino - Pitoni/Cantate Domino - Pitoni.ly" \pageBreak
+\include "../../02-Carême-Pâques/Cantate Domino - Pitoni/Cantate Domino - Pitoni.ly" \pageBreak
 \include "../../01-Général/Jesu salvator - Menegali/Jesu salvator - Menegali.ly"
 \include "../../01-Général/Jesu Rex admirabilis - Palestrina/Jesu Rex admirabilis - Palestrina.ly" \pageBreak
 \include "../../01-Général/Tollite Hostias - Saint-Saëns/Tollite Hostias - Saint-Saëns.ly" \pageBreak
