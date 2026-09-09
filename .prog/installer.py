@@ -81,7 +81,6 @@ if input("Supprimer définitivement '" + str(ROOT_DIR) + "' ? (o/N) ").strip().l
 (PROG_DIR / "uninstaller.py").write_text(UNINSTALLER_TEMPLATE.format(
     apt_packages=new_apt_packages,
     pip_packages=new_pip_packages,
-    new_flatpak_code=new_flatpak_code,
 ))
 
 # lilypond web
