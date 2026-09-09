@@ -1,4 +1,3 @@
-[français](../README.md)
 # <a href="mailto:stef.kergall@gmail.com"><img src="logos/KergallScore-nobackground.png" style="vertical-align: middle;" width="40px"><span style="vertical-align: middle;"><b>ergallScore</b></span></a>
 
 ## Features
@@ -33,3 +32,6 @@ More information [over here](DEVELOPERS.md).
 
 ## Legal notice
 We produce scores from a variety of independent sources. If one of them turned out not to be free of rights, [let us know immediately](mailto:stef.kergall@gmail.com) so we can protect the work of our fellow musicians.
+
+
+[français](../README.md)
