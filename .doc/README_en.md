@@ -34,4 +34,4 @@ More information [over here](DEVELOPERS.md).
 We produce scores from a variety of independent sources. If one of them turned out not to be free of rights, [let us know immediately](mailto:stef.kergall@gmail.com) so we can protect the work of our fellow musicians.
 
 
-[français](../README.md)
+[[français]](../README.md)
