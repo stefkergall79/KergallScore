@@ -1,4 +1,3 @@
-[[english]](.doc/README_en.md)
 # <a href="mailto:stef.kergall@gmail.com"><img src=".doc/logos/KergallScore-nobackground.png" style="vertical-align: middle;" width="40px"><span style="vertical-align: middle;"><b>ergallScore</b></span></a>
 
 ## Fonctionalités
@@ -33,3 +32,6 @@ Plus d'informations [par ici](.doc/DEVELOPERS.md).
 
 ## Mentions légales
 Nous produisons des partitions à partir de sources variées et indépendantes. Si l'une d'elles se trouvait ne pas être libre de droit, [prévenez-nous immédiatement](mailto:stef.kergall@gmail.com) pour que nous puissions protéger le travail de nos collègues musiciens.
+
+
+[[english]](.doc/README_en.md)
