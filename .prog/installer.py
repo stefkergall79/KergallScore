@@ -38,16 +38,6 @@ def is_pip_installed(package: str) -> bool:
     return subprocess.run(["python3", "-m", "pip", "show", package], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
 
 
-def is_flatpak_installed(app_id: str) -> bool:
-    result = subprocess.run(["flatpak", "list", "--app", "--columns=application"], capture_output=True, text=True)
-    return app_id in result.stdout.splitlines()
-
-
-def is_code_extension_installed(extension: str) -> bool:
-    result = subprocess.run(["code", "--list-extensions"], capture_output=True, text=True)
-    return extension in result.stdout.splitlines()
-
-
 # apt
 new_apt_packages = [pkg for pkg in APT_LIST if not is_apt_installed(pkg)]
 run("sudo", "apt", "update")
@@ -62,11 +52,6 @@ new_pip_packages = [pkg for pkg in PIP_LIST if not is_pip_installed(pkg)]
 run("python3", "-m", "pip", "install", *PIP_LIST, "--break-system-packages")
 print()
 
-# code
-new_flatpak_code = not is_flatpak_installed("com.visualstudio.code")
-run("sudo", "flatpak", "install", "flathub", "com.visualstudio.code", "-y")
-print()
-
 # uninstaller : ne retire que ce que cet installeur a réellement ajouté
 UNINSTALLER_TEMPLATE = '''#!/usr/bin/env python3
 import shutil
@@ -77,8 +62,6 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 
 APT_PACKAGES = {apt_packages}
 PIP_PACKAGES = {pip_packages}
-NEW_FLATPAK_CODE = {new_flatpak_code}
-
 
 def run(*args):
     subprocess.run(args, check=True)
@@ -90,9 +73,6 @@ if APT_PACKAGES:
 
 if PIP_PACKAGES:
     run("python3", "-m", "pip", "uninstall", "-y", *PIP_PACKAGES, "--break-system-packages")
-
-if NEW_FLATPAK_CODE:
-    run("sudo", "flatpak", "uninstall", "-y", "com.visualstudio.code")
 
 if input("Supprimer définitivement '" + str(ROOT_DIR) + "' ? (o/N) ").strip().lower() == "o":
     shutil.rmtree(ROOT_DIR)
@@ -122,8 +102,6 @@ if lilypond_alias not in bashrc_path.read_text():
 download(MUSESCORE_URL, PROG_DIR / "MuseScore-Studio-4.7.4.260706075-x86_64.AppImage")
 download(OBSIDIAN_URL, PROG_DIR / "Obsidian-1.13.7.AppImage")
 print()
-
-# Rendre exécutable en ligne de commande les programmes
 for appimage in PROG_DIR.glob("*.AppImage"):
     appimage.chmod(appimage.stat().st_mode | 0o111)
 
