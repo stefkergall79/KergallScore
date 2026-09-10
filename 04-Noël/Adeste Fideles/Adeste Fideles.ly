@@ -22,8 +22,8 @@ soprano = \fixed c' {
 alto = \fixed c' {
   \global
   s4 \skip1 s2. r4 \skip1 * 5 s2. r4
-  b2 a4 g e(fis) g2 d8[c] b,4 e8[d] cis4 d4.(cis8) d4 r
-  s1 r2 r4 g4 4 fis g a g2 d4
+  b2 a4 g e(fis) g2 d8[c] b,4 e8[d] cis4 d4.(cis8) d4 s
+  s1 s2. g4 4 fis g a g2 d4
   g8[f] e4 d c e d(c) b,(e) g2(fis4.) g8 2
 }
 
@@ -39,8 +39,8 @@ tenor = \fixed c {
 bass = \fixed c {
   \global
   s4 R1 * 8
-  b4(g) fis g a2 g d4 dis e a, d2 4 r
-  s1 * 3 r2 r4 g,4 a, b, c cis d(dis) e(a,) d2 2 <g g,>
+  b4(g) fis g a2 g d4 dis e a, d2 4 s
+  s1 * 3 s2. g,4 a, b, c cis d(dis) e(a,) d2 2 <g g,>
 }
 
 verseOne = \strophemode 1 ##f \lyricmode {
@@ -89,9 +89,10 @@ verseFour = \strophemode 4 ##t \lyricmode {
     composer = \markup{"Attribué à" \wade}
   }
 
-  \new ChoirStaff <<
+  \new ChoirStaff \with {
+    midiInstrument = "choir aahs"
+  } <<
     \new Staff \with {
-      midiInstrument = "choir aahs"
       \consists Merge_rests_engraver
     } <<
       \new Voice = "soprano" { \voiceOne \soprano }
@@ -111,10 +112,9 @@ verseFour = \strophemode 4 ##t \lyricmode {
     } \lyricsto "soprano" \verseFour
     
     \new Staff \with {
-      midiInstrument = "choir aahs"
+      \clef bass
       \consists Merge_rests_engraver
     } <<
-      \clef bass
       \new Voice = "tenor" { \voiceOne \tenor }
       \new Voice = "bass" { \voiceTwo \bass }
     >>

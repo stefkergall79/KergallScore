@@ -2,8 +2,6 @@
 \include "settings.ily"
 \include "composers.ily"
 
-#(set-global-staff-size 17.5)
-
 global = {
   \key a \major
   \time 4/4

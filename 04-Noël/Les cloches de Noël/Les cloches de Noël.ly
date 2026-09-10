@@ -194,7 +194,7 @@ choirPart =  \new ChoirStaff <<
 \score {
   \header {
     title = "AVE MARIA"
-    subtitle = "Noël autrichien"
+    composer = "Noël autrichien"
   }
   <<
     \sopranoVoicePart

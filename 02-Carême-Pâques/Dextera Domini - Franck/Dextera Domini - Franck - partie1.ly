@@ -72,5 +72,4 @@ ClavierPartDebut = \new PianoStaff \with {
 
 %{\markup \column {
   "La droite du Seigneur a déployé sa puissance, la droite du Seigneur m’a exalté."
-  "Je ne mourrai plus, mais je vivrai, et je raconterai les œuvres du Seigneur."
 %}

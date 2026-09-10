@@ -97,11 +97,11 @@ bass = \fixed c {
 	4 4 |
 	b, e8 8  a4 4 |
 	c'(b8[a]) g4 a |
-	b e8[g] a4 c |
+	b e8 g a4 c |
 	d d g g |
-	b, c8[8] a4 4 |
+	b, c8 8 a4 4 |
 	c'(b8[a]) g4 a |
-	b e8[g] a4 c |
+	b e8 g a4 c |
 	d2
 }
 

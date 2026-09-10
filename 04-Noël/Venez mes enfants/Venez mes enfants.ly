@@ -112,8 +112,8 @@ verseFour = \strophemode 4 ##t \lyricmode {
 \score {
   \header {
     title = "VENEZ MES ENFANTS"
-    composer = "Mélodie populaire"
-    arranger = \markup{"Harmonisation :" \geoffray}
+    poet = "Mélodie populaire"
+    composer = \markup{"Harmonisation :" \geoffray}
   }
   \new ChoirStaff <<
       \new Staff \with {
@@ -145,6 +145,6 @@ verseFour = \strophemode 4 ##t \lyricmode {
         \new Voice = "bass" { \voiceTwo \bass }
       >>
     >>
-    \layout {\context{\Staff \RemoveAllEmptyStaves }}
+    \layout {}
     \midi {}
   }

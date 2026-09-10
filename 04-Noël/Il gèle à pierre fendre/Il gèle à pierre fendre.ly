@@ -95,12 +95,13 @@ verseOne = \strophemode 1 ##f 19 \lyricmode {
 
 verseTwo = \lyricmode {
   \override LyricText.font-shape = #'italic
-  B.F. \repeat unfold 6 \skip1
-  \repeat unfold 2 {B.F. \repeat unfold 5 \skip1 }
+  \bf \repeat unfold 6 \skip1
+  \bf \repeat unfold 8 \skip1
+  \bf \skip1 \skip1
   \set stanza = \markup \italic 2.
   Il n’y a pas de pla -- ce,
   ils ont frap -- pé par -- tout.
-  B.F.
+  \bf
 }
 
 verseThree = \strophemode 3 ##f 19 \lyricmode {
@@ -112,9 +113,9 @@ soloPart = << \new Staff \with {
   shortInstrumentName = "Sl."
     midiInstrument = "choir aahs"
   } \new Voice = "sopranoVoice" \solo
-  \new Lyrics \lyricsto "sopranoVoice" \verseOneSolo
-  \new Lyrics \lyricsto "sopranoVoice" \verseTwoSolo
-  \new Lyrics \lyricsto "sopranoVoice" \verseThreeSolo
+  \addlyrics \verseOneSolo
+  \addlyrics \verseTwoSolo
+  \addlyrics \verseThreeSolo
 >>
 
 choirPart = \new ChoirStaff <<

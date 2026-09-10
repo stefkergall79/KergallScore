@@ -111,26 +111,28 @@ instrument = "acoustic grand"
             midiInstrument = \instrument
             instrumentName = "S."
             \consists "Ambitus_engraver"
-        } { \new Voice = "soprano" \soprano }
-        \addlyrics { \sopranoVerse }
+        } \new Voice = "soprano" \soprano
+        \addlyrics \sopranoVerse
         \new Staff \with {
             midiInstrument = \instrument
             instrumentName = "A."
             \consists "Ambitus_engraver"
-        } { \new Voice = "alto" \alto }
-        \addlyrics { \altoVerse }
+        } \new Voice = "alto" \alto
+        \addlyrics \altoVerse
         \new Staff \with {
             midiInstrument = \instrument
             instrumentName = "T."
             \consists "Ambitus_engraver"
-        } { \clef "treble_8" \new Voice = "tenor" \tenor }
-        \addlyrics { \tenorVerse }
+            \clef "treble_8"
+        } \new Voice = "tenor" \tenor
+        \addlyrics \tenorVerse
         \new Staff \with {
             midiInstrument = \instrument
             instrumentName = "B."
             \consists "Ambitus_engraver"
-        } { \clef bass \new Voice = "bass" \bass }
-        \addlyrics { \bassVerse }
+            \clef bass
+        } \new Voice = "bass" \bass
+        \addlyrics \bassVerse
     >>
     \layout {\context{\Staff \RemoveAllEmptyStaves }}
     \midi { \tempo 4=70 }

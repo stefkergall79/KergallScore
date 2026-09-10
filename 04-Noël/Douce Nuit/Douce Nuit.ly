@@ -3,7 +3,6 @@
 \include "composers.ily"
 
 global = {
-  \key c \major
   \time 3/4
   \autoBeamOff
 }

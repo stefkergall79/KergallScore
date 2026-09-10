@@ -2,15 +2,16 @@
 \include "settings.ily"
 \include "composers.ily"
 
-#(set-global-staff-size 19.6 )
-
+\paper {
+  systems-per-page = 3
+  page-count = 2
+}
 global = {
 	\autoBeamOff
 	\mergeDifferentlyHeadedOn
 	\mergeDifferentlyDottedOn
 	\key d \major
 	\time 4/4
-	\tempo 4=120
 }
 
 soprano = \relative e' {
@@ -34,10 +35,9 @@ soprano = \relative e' {
   r4  b4  b8 [  a8  b8  g8 ]  % 15
    a4  fis4  g4  e4  % 16
    fis4  fis4  fis4  g4 ~  % 17
-   g8 [  fis8 ]  e2  dis4 \bar "||" \break
+   g8 [  fis8 ]  e2  dis4 \bar "||"% \break
   
-  \tempo 2 = 120
-   e1 r2 
+  e1 r2 
 
    b'2  b2  b2  % 20
    a1  g2  % 21
@@ -45,9 +45,8 @@ soprano = \relative e' {
    b2  b2  b2  % 23
    a2.  a4  a2  % 24
    g2  g4  g4
-   fis2 \break
+   fis2% \break
    \time 4/4   \bar ".|:"
-   \tempo 4=60
    fis2 r2
   r4  b4  % 27
    ais8 b8 g4  fis2  % 28
@@ -278,7 +277,7 @@ bassLyrics = \lyricmode {
   sa -- lu -- tá -- re é -- jus.
 }
 
-\tocItemComposer "Cantate Domino" "\croce"
+\tocItemComposer "Cantate Domino" "Croce"
 \score {
 	\header {
 		title = "CANTATE DOMINO"
@@ -322,5 +321,5 @@ bassLyrics = \lyricmode {
     } \lyricsto "bass" \bassLyrics
 	>>
 	\layout {\context{\Staff \RemoveAllEmptyStaves }}
-	\midi {}
+	\midi {\tempo 2=60 }
 }

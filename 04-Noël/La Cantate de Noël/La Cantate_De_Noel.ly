@@ -264,7 +264,7 @@ PartPTwoVoiceOne = \relative b' {
    b4  b4  g2 | % 110
    g2  g4.  d8 | % 111
    g4  g4  fis2 | % 112
-  d1 \bar "|."
+  d1
 }
 
 altoLyrics = \lyricmode {
@@ -427,7 +427,7 @@ PartPThreeVoiceOne = \relative d' {
   b8 [  c8 ]  d4  c2 | % 110
    b2  b4.  d8 | % 111
    d4  e4  c2 | % 112
-  b1 \bar "|."
+  b1
 }
 
 tenorLyrics = \lyricmode {
@@ -599,7 +599,7 @@ PartPFourVoiceOne = \relative g {
    g8 [  a8 ]  b4  c2 | % 110
    g2  e4.  fis8 | % 111
    g4  c,4  d2 | % 112
-  <g g,>1 \bar "|."
+  <g g,>1
 }
 
 bassLyrics = \lyricmode {

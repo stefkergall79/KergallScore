@@ -61,8 +61,6 @@ verseOne = \strophemode #1 ##f \lyricmode {
 }
 
 verseTwo = \strophemode #2 ##t \lyricmode {
-  \override LyricText.font-shape = #'italic
-  \set stanza = \markup \italic"2."
   Chez Pi -- late, on le com -- pa -- re
   au der -- nier des scé -- lé -- rats.
   Que dis -_tu, peu -- ple bar -- ba -- re_?
@@ -74,7 +72,6 @@ verseTwo = \strophemode #2 ##t \lyricmode {
 }
 
 verseThree = \strophemode #3 ##f \lyricmode {
-  \set stanza = "3."
   Ô Jé -- sus, vos mains cal -- leu -- ses
   ont ma -- nié bien d’au -- tres bois.
   Vos é -- pau -- les la -- bo -- rieu -- ses
@@ -120,7 +117,7 @@ verseThree = \strophemode #3 ##f \lyricmode {
 }
 \pageBreak
 \markup \fill-line {
-  \hspace #-5
+  \hspace #-6
   \column {
     \line \italic { \bold "4."
       \column {

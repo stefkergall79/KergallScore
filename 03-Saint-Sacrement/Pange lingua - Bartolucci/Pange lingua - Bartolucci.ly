@@ -12,13 +12,13 @@ global = {
 
 soprano = \fixed c' {
   \global
-  f4\p ( g as2 2 bes4 as bes2 \partial 1 c'1 )
-  bes4 ( as g f as2 g4 f4 1. ) \breathe
-  4\mf ( g as2 2 bes4 as bes2 \partial 1 c'1 )
-  4 ( bes as g bes2\> as4 g g1.\!  ) \breathe
-  as4\<  ( bes c'2 2 d'4 c' d'2 es'1\! )
-  des'4\p ( c' bes as c'2 bes4 as as1 )
-  bes4\pp ( as g f as2 g4 f f\breve ) \bar "||"
+  f4\p ( g as2 2 bes4 as bes2 \partial 1 c'1 
+  bes4  as g f as2 g4 f4 1. ) \breathe
+  4\mf ( g as2 2 bes4 as bes2 \partial 1 c'1 
+  4  bes as g bes2\> as4 g g1.\!  ) \breathe
+  as4\<  ( bes c'2 2 d'4 c' d'2 es'1\! 
+  des'4\p c' bes as c'2 bes4 as as1 
+  bes4\pp as g f as2 g4 f f\breve ) \bar "||"
   g1( f) f\breve\bar "|."
 }
 

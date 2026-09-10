@@ -4,7 +4,6 @@
 
 global = {
   \key g \major
-  \numericTimeSignature
   \time 6/8
   \partial 8
   \autoBeamOff

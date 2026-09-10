@@ -2,7 +2,6 @@
 \include "settings.ily"
 \include "composers.ily"
 \include "cache/notes.ily"
-#(set-global-staff-size 17.5 )
 
 ChoeurPart = \new ChoirStaff <<
 	\new Staff \with {
@@ -70,7 +69,7 @@ ClavierPart = \new PianoStaff \with {
 	\midi {\tempo 4=95 }
 }
 
-%{\markup \column {
+\markup \column {
   "La droite du Seigneur a déployé sa puissance, la droite du Seigneur m’a exalté."
   "Je ne mourrai plus, mais je vivrai, et je raconterai les œuvres du Seigneur."
-%}
+}

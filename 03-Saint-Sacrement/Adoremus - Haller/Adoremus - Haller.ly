@@ -75,9 +75,9 @@ verseFive = \lyricmode {
 
 versete = \lyricmode {
   1*8
-  \markup \italic B.F.\breve
+  \bf\breve
   1*2
-  \markup \italic B.F.\breve
+  \bf\breve
 }
 
 \tocItemComposer "Adoremus" "Haller"
@@ -123,8 +123,8 @@ versete = \lyricmode {
     \new Staff \with {
       midiInstrument = "choir aahs"
       \consists Merge_rests_engraver
-    } <<
       \clef bass
+    } <<
       \new Voice = "tenor" { \voiceOne \tenor }
       \new Voice = "bass" { \voiceTwo \bass }
     >>

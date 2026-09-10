@@ -86,7 +86,7 @@ ChoeurPart = \new ChoirStaff \with {
 \paper {
   system-count = 1
 }
-
+#(set-global-staff-size 19 )
 \tocItem \markup "Rorate"
 \markup \column {
   \fill-line {\bold \fontsize #5 "RORATE" }

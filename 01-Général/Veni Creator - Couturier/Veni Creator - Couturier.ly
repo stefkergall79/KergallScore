@@ -201,18 +201,14 @@ PartPFourVoiceOne = \relative bes {
       \new Voice = "PartPTwoVoiceOne" {
         \voiceTwo \PartPTwoVoiceOne
       }
-      \new Lyrics \lyricsto "PartPOneVoiceOne" {
-        \PartPOneVoiceOneLyricsOne
-      }
-      \new Lyrics \lyricsto "PartPOneVoiceOne" {
-        \PartPOneVoiceOneLyricsTwo
-      }
-      \new Lyrics \lyricsto "PartPOneVoiceOne" {
-        \PartPOneVoiceOneLyricsThree
-      }
-      \new Lyrics \lyricsto "PartPOneVoiceOne" {
-        \PartPOneVoiceOneLyricsFour
-      }
+      \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
+      } \lyricsto "PartPOneVoiceOne" \PartPOneVoiceOneLyricsOne
+      \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
+      } \lyricsto "PartPOneVoiceOne" \PartPOneVoiceOneLyricsTwo
+      \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
+      } \lyricsto "PartPOneVoiceOne" \PartPOneVoiceOneLyricsThree
+      \new Lyrics \with {\override VerticalAxisGroup.staff-affinity = #CENTER
+      } \lyricsto "PartPOneVoiceOne" \PartPOneVoiceOneLyricsFour
     >>
         
   \new Staff \with {

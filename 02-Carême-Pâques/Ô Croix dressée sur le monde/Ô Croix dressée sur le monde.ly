@@ -62,7 +62,11 @@ verseFour = \strophemode #4 ##t \lyricmode {
   \header {
     title = "O CROIX DRESSÉE SUR LE MONDE"
     composer = \servel
-    poet = \markup \line {"Paroles :" \montfort }
+    poet = \markup \column {
+      "Paroles :"
+      \vspace #-0.3
+      \montfort
+    }
   }
   \new Staff \with {
       midiInstrument = "choir aahs"

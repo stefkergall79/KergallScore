@@ -4,7 +4,6 @@
 
 global = {
   \key as \major
-  \time 4/4
   \autoBeamOff
   \tempo "Andantino"
   \dynamicUp

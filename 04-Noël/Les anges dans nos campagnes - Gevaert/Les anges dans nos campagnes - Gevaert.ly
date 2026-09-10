@@ -141,9 +141,10 @@ verseBassThree = \strophemode 3 ##f \lyricmode {
     title = "LES ANGES DANS NOS CAMPAGNES"
     composer = \markup \line {"Harmonisation :" \gevaert }
   }
-  \new ChoirStaff <<
+  \new ChoirStaff \with {
+    midiInstrument = "choir aahs"
+  } <<
     \new Staff \with {
-      midiInstrument = "choir aahs"
       instrumentName = "S."
       \consists "Ambitus_engraver"
     } \new Voice = "soprano" \soprano
@@ -158,7 +159,6 @@ verseBassThree = \strophemode 3 ##f \lyricmode {
     } \lyricsto "soprano" \verseSopranoThree
     
     \new Staff \with {
-      midiInstrument = "choir aahs"
       instrumentName = "A."
       \consists "Ambitus_engraver"
     } \new Voice = "alto" \alto
@@ -173,13 +173,10 @@ verseBassThree = \strophemode 3 ##f \lyricmode {
     } \lyricsto "alto" \verseSopranoThree
     
     \new Staff \with {
-      midiInstrument = "choir aahs"
+      \clef "treble_8"
       instrumentName = "T."
       \consists "Ambitus_engraver"
-    } {
-      \clef "treble_8"
-      \new Voice = "tenor" \tenor
-    }
+    } \new Voice = "tenor" \tenor
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "tenor" \verseTenorOne
@@ -191,13 +188,10 @@ verseBassThree = \strophemode 3 ##f \lyricmode {
     } \lyricsto "tenor" \verseTenorThree
     
     \new Staff \with {
-      midiInstrument = "choir aahs"
+      \clef bass
       instrumentName = "B."
       \consists "Ambitus_engraver"
-    } {
-      \clef bass
-      \new Voice = "bass" \bass
-    }
+    } \new Voice = "bass" \bass
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "bass" \verseBassOne
@@ -207,8 +201,7 @@ verseBassThree = \strophemode 3 ##f \lyricmode {
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "bass" \verseBassThree
-    
   >>
-  \layout {\context{\Staff \RemoveAllEmptyStaves }}
+  \layout {}
   \midi {\tempo 2=60 }
 }

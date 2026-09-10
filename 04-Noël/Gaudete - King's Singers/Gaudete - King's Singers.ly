@@ -320,7 +320,6 @@ PartPThreeVoiceTwo = \relative d {
     } <<
       \new Staff \with {
         \consists Merge_rests_engraver
-        shortInstrumentName = \markup \center-column { "S." "A." }
         instrumentName = \markup \center-column { "S." "A." }
       } <<
         \new Voice = "PartPTwoVoiceOne" {
@@ -336,7 +335,6 @@ PartPThreeVoiceTwo = \relative d {
       
       \new Staff \with {
         \consists Merge_rests_engraver
-        shortInstrumentName = \markup \center-column { "T." "B." }
         instrumentName = \markup \center-column { "T." "B." }
         \clef bass
       } <<

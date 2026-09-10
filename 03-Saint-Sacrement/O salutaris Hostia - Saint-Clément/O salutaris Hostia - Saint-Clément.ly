@@ -3,7 +3,6 @@
 
 global = {
 	\autoBeamOff
-	\key c \major
 	\time 3/4
 	\partial 4
 }
@@ -105,6 +104,7 @@ VerseOne = \strophemode 1 ##f \lyricmode {
   quæ cæ -- li pan -- dis os -- ti -- um.
   Bel -- la pre -- munt hos -- ti -- li -- a,
   da ro -- bur, fer au -- xi -- li -- um.
+  \override LyricText.font-series = #'bold
   A -- men.
 }
 

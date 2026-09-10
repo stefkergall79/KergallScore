@@ -37,7 +37,7 @@ alto = \fixed c' {
 
 bass = \fixed c {
   \global
-  d4 e fis g2
+  \clef bass d4 e fis g2
   fis4 e d g2
   b,4 cis dis e2
   \once \omit Accidental d4 cis b, a,2
@@ -97,11 +97,10 @@ verseEight = \strophemode #8 ##t 23 \lyricmode {
     title = "LAUDA SION"
     composer = \markup{"Paroles :" \stthomas}
   }
-  \new ChoirStaff <<
-      \new Staff \with {
-        midiInstrument = "choir aahs"
-        \consists Merge_rests_engraver
-      } <<
+  \new ChoirStaff \with {
+    midiInstrument = "choir aahs"
+  } <<
+    \new Staff <<
         \new Voice = "soprano" { \voiceOne \soprano }
         \new Voice = "alto" { \voiceTwo \alto }
       >>
@@ -130,10 +129,7 @@ verseEight = \strophemode #8 ##t 23 \lyricmode {
         \override VerticalAxisGroup.staff-affinity = #CENTER
       } \lyricsto "soprano" \verseEight
       
-      \new Staff \with {
-        midiInstrument = "choir aahs"
-        \consists Merge_rests_engraver
-      } << \clef bass \bass >>
+      \new Staff \bass
   >>
   \layout {\context{\Staff \RemoveAllEmptyStaves}}
   \midi {\tempo 4=70}
