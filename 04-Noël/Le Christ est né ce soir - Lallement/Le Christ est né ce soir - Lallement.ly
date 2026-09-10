@@ -13,7 +13,8 @@ soprano = \fixed c' {
   \global
   fis8 4 b8 4 a8 b4. d' cis'4 b8 a4 b8 fis4. 8 r8
   8 4 b8 4 a8 b4. d' cis'4 b8 a4 b8 fis4. 4 r8
-  b4. a4 fis8 g4 a8 fis4 g8 fis4 e8 d4 e8 fis4.~8 r
+  b4. a4 fis8 g4 a8 fis4 g8 fis4 e8 d4 e8 \break
+  fis4.~8 r
   fis8 4 b8 4 a8 b4. d' cis'4 e'8 d'4 cis'8 b4.\fermata \bar "|."
 }
 
@@ -41,7 +42,12 @@ bass = \fixed c {
   fis, g,4 a,8 b,4. cis d e fis4 8 g4 a8 b4.
 }
 
-verseOne = \strophemode 1 ##f \lyricmode {
+verseSoprano = \lyricmode {
+  \repeat unfold 38 \skip1
+  il a de son ber -- ceau fait
+}
+
+verseAlto = \strophemode 1 ##f \lyricmode {
   Le Christ est né ce soir
   de la Vier -- ge Ma -- ri -- e,
   sous le ciel é -- toi -- lé,
@@ -51,60 +57,19 @@ verseOne = \strophemode 1 ##f \lyricmode {
   il a de son ber -- ceau
   fait son pre -- mier au -- tel.
 }
-verseOneTenor = \strophemode 1 ##f\lyricmode {
-  Le Christ est né ce soir
-  de la Vier -- ge Ma -- ri -- e,
-  sous le ciel é -- toi -- lé,
-  hors de l’hô -- tel -- le -- ri -- e,
-  et dé -- jà Ré -- demp -- teur
-  en des -- cen -- dant du Ciel,
+verseTenor = \lyricmode {
+  \repeat unfold 38 \skip1
   il a de son ber -- ceau,
-  il a fait son pre -- mier au -- tel.
+  il a fait
+}
+verseBass = \lyricmode {
+  \repeat unfold 38 \skip1
+  il a de son ber -- ceau fait
 }
 
-
-verseTwo = \strophemode 2 ##t \lyricmode {
-  Ce soir comme un é -- cho
-  du fond de Pa -- les -- ti -- ne,
-  de val -- lon en val -- lon,
-  de col -- line en col -- li -- ne,
-  les clo -- ches se sont dit
-  l’an -- gé -- li -- que No -- ël_;
-  aux hom -- mes paix sur terre
-  et gloire au Dieu du ciel_!
+\paper {
+  system-system-spacing.basic-distance = 20
 }
-verseTwoTenor = \strophemode 2 ##t \lyricmode {
-  Ce soir comme un é -- cho
-  du fond de Pa -- les -- ti -- ne,
-  de val -- lon en val -- lon,
-  de col -- line en col -- li -- ne,
-  les clo -- ches se sont dit
-  l’an -- gé -- li -- que No -- ël_;
-  aux hom -- mes paix sur terre et gloire,
-  et gloire au Dieu du ciel_!
-}
-
-verseThree = \strophemode 3 ##f\lyricmode {
-  A -- vec les pas -- tou -- reaux,
-  loin du mon -- de cou -- pa -- ble,
-  ah_! Ve -- nez à ge -- noux
-  au seuil de cette é -- ta -- ble.
-  Jé -- sus no -- tre Sau -- veur
-  at -- tend comme au -- tre -- fois
-  l’hom -- ma -- ge de nos cœurs_:
-  Il est le Roi des rois_!
-}
-verseThreeTenor = \strophemode 3 ##f \lyricmode {
-  A -- vec les pas -- tou -- reaux,
-  loin du mon -- de cou -- pa -- ble,
-  ah_! Ve -- nez à ge -- noux
-  au seuil de cette é -- ta -- ble.
-  Jé -- sus no -- tre Sau -- veur
-  at -- tend comme au -- tre -- fois
-  l’hom -- ma -- ge de nos cœurs_:
-  Il est, Il est le Roi des rois_!
-}
-
 \tocItem \markup "Le Christ est né ce soir"
 \score {
   \header {
@@ -112,66 +77,63 @@ verseThreeTenor = \strophemode 3 ##f \lyricmode {
     poet = "Mélodie : Noël de Basse-Bretagne"
     composer = \markup{"Harmonisation :" \lallement}
   }
-  \new ChoirStaff <<
-    \new Staff \with {
+  \new ChoirStaff \with {
       midiInstrument = "choir aahs"
-    } \new Voice = "soprano" \soprano
+    } <<
+    \new Staff = "femmes" \with {
+      \consists Merge_rests_engraver
+    } <<
+      \new Voice = "soprano" {\voiceOne \soprano}
+      \new Voice = "alto" {\voiceTwo \alto}
+    >>
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "soprano" \verseOne
+      alignAboveContext = "femmes"
+    } \lyricsto "soprano" \verseSoprano
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "soprano" \verseTwo
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "soprano" \verseThree
+    } \lyricsto "alto" \verseAlto
     
-    \new Staff \with {
-      midiInstrument = "choir aahs"
-    } \new Voice = "alto" \alto
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "alto" \verseOne
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "alto" \verseTwo
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "alto" \verseThree
-    
-    \new Staff \with {
-      midiInstrument = "choir aahs"
-    } {
-      \clef "treble_8"
-      \new Voice = "tenor" \tenor
-    }
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "tenor" \verseOneTenor
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "tenor" \verseTwoTenor
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "tenor" \verseThreeTenor
-    
-    \new Staff \with {
-      midiInstrument = "choir aahs"
-    } {
+    \new Staff = "hommes" \with {
       \clef bass
-      \new Voice = "bass" \bass
-    }
+      \consists Merge_rests_engraver
+    } <<
+      \new Voice = "tenor" {\voiceOne \tenor}
+      \new Voice = "bass" {\voiceTwo \bass}
+    >>
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "bass" \verseOne
+      alignAboveContext = "hommes"
+    } \lyricsto "tenor" \verseTenor
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "bass" \verseTwo
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "bass" \verseThree
-    
+    } \lyricsto "bass" \verseBass
   >>
   \layout { \context{\Staff \RemoveAllEmptyStaves}}
   \midi {\tempo 4=90 }
 }
+
+\markup \column {
+  \vspace #1
+  \couplets-markup #2 #2 {
+  \column {
+    "Ce soir comme un écho"
+    "Du fond de Palestine,"
+    "De vallon en vallon,"
+    "De colline en colline,"
+    "Les cloches se sont dit"
+    "L’angélique Noël ;"
+    "Aux hommes paix sur terre,"
+    \line {Et gloire\normal-text{ (et gloire) }au Dieu du Ciel !}
+  }
+  \column {
+    "Avec les pastoureaux,"
+    "Loin du monde coupable,"
+    "Ah ! Venez à genoux"
+    "Au seuil de cette étable."
+    "Jésus notre Sauveur"
+    "Attend comme autrefois"
+    "L’hommage de nos cœurs :"
+    \line {Il est \italic{(il est)} le Roi des rois !}
+  }
+}}
