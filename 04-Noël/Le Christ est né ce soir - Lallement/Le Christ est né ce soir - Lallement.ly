@@ -117,23 +117,15 @@ verseBass = \lyricmode {
   \vspace #1
   \couplets-markup #2 #2 {
   \column {
-    "Ce soir comme un écho"
-    "Du fond de Palestine,"
-    "De vallon en vallon,"
-    "De colline en colline,"
-    "Les cloches se sont dit"
-    "L’angélique Noël ;"
-    "Aux hommes paix sur terre,"
-    \line {Et gloire\normal-text{ (et gloire) }au Dieu du Ciel !}
+    "Ce soir comme un écho du fond de Palestine,"
+    "De vallon en vallon, de colline en colline,"
+    "Les cloches se sont dit l’angélique Noël ;"
+    \line {Aux hommes paix sur terre, et gloire\normal-text{ (et gloire) }au Dieu du Ciel !}
   }
   \column {
-    "Avec les pastoureaux,"
-    "Loin du monde coupable,"
-    "Ah ! Venez à genoux"
-    "Au seuil de cette étable."
-    "Jésus notre Sauveur"
-    "Attend comme autrefois"
-    "L’hommage de nos cœurs :"
-    \line {Il est \italic{(il est)} le Roi des rois !}
+    "Avec les pastoureaux, loin du monde coupable,"
+    "Ah ! Venez à genoux au seuil de cette étable."
+    "Jésus notre Sauveur attend comme autrefois"
+    \line {L’hommage de nos cœurs : Il est \italic{(il est)} le Roi des rois !}
   }
 }}
