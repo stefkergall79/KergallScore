@@ -9,7 +9,41 @@ global = {
   \partial 2
   \mergeDifferentlyDottedOn
 }
-#(ly:set-option 'backend 'cairo)
+
+gregorien = \fixed c' {
+  \autoBeamOff \cadenzaOn
+  d8 a [ b ] g a [ b ] d' c' [ b a g ] a4 \bar"|"
+  a8 8 d [ e ] g f [ e ] d4 \bar "|"
+  f8 e g a a d4  e8 [ f e d ] c4  \bar "|"
+  e8 g e f e d2 \bar "||" \break
+  \cadenzaOff
+}
+
+verseOne = \strophemode 1 ##f \lyricmode {
+  A -- ve má -- ris stél -- la, _
+  Dé -- i Má -- ter ál -- ma,
+  át -- que sém -- per Vír -- go, _ _
+  té -- lix cǽ -- li pór -- ta.
+}
+verseThree = \strophemode 3 ##t \lyricmode {
+  Sól -- ve vín -- cla ré -- is, _
+  ró -- fer lú -- men cǽ -- cis,
+  má -- la nós -- tra pél -- le, _ _
+  bó -- na cún -- cta pó -- sce.
+}
+verseFive = \strophemode 5 ##f \lyricmode {
+  Vír -- go sín -- gu -- la -- ris, _
+  ín -- ter óm -- nes mí -- tis,
+  nos cúl -- pis so -- lú -- tos, _ _
+  mí -- tes fac et cás -- tos.
+}
+verseSeven = \strophemode 7 ##t \lyricmode {
+  Sit laus Dé -- o Pá -- tri, _
+  Súm -- mo Chrís -- to dé -- cus,
+  Spi -- rí -- tu -- i Sánc -- to, _ _
+  trí -- bus hó -- nor ú -- nus.
+}
+
 
 soprano = \fixed c' {
   \global
@@ -47,23 +81,24 @@ bass = \fixed c {
   4(bes, g,2) d1
 }
 
-verseOne = \strophemode #2 ##f \lyricmode {
+verseTwo = \strophemode #2 ##f \lyricmode {
+  \set stanza = "2."
   Sú -- mens íl -- lud A -- ve
   Ga -- bri -- é -- lis ó -- re,
   fún -- da nos in pá -- ce,
   mú -- tans Hé -- væ nó -- men.
 }
 
-verseTwo = \strophemode #4 ##t \lyricmode {
+verseFour = \strophemode #4 ##t \lyricmode {
   Móns -- tra t(e)_és -- se má -- trem_:
   Sú -- mat per te pré -- ces,
   qui pro nó -- bis ná -- tus
   tú -- lit és -- se tú -- us.
-  \override LyricText.font-shape = #'upright
+  \override LyricText.font-series = #'bold
   A -- men.
 }
 
-verseThree = \strophemode #6 ##f \lyricmode {
+verseSix = \strophemode #6 ##f \lyricmode {
   Ví -- tam prǽs -- ta pú -- ram,
   i -- ter pá -- ra tú -- tum,
   ut vi -- dén -- tes Jé -- sum,
@@ -71,18 +106,19 @@ verseThree = \strophemode #6 ##f \lyricmode {
 }
 
 \tocItemComposer "Ave Maris Stella" "Perruchot"
-\markup \column {
-  \fill-line {\bold \fontsize #5 "AVE MARIS STELLA" }
-  \vspace #0.2
-  \fill-line { \null \perruchot}
-  \vspace #0.8
-  \fill-line {
-    \epsfile #X #70 #"../../05-Sainte-Vierge/Ave Maris Stella - Perruchot/cache/Ave Maris Stella.png"
-  }
-  \vspace #1
-}
 \score {
-  \new ChoirStaff <<
+  \header {
+    title = "AVE MARIS STELLA"
+    composer = \perruchot
+  }
+  {
+    \new Staff \gregorien
+    \addlyrics \verseOne
+    \addlyrics \verseThree
+    \addlyrics \verseFive
+    \addlyrics \verseSeven
+    
+    \new ChoirStaff <<
     \new Staff \with {
       midiInstrument = "choir aahs"
       \consists Merge_rests_engraver
@@ -92,13 +128,13 @@ verseThree = \strophemode #6 ##f \lyricmode {
     >>
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "soprano" \verseOne
-    \new Lyrics \with {
-      \override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "soprano" \verseTwo
     \new Lyrics \with {
       \override VerticalAxisGroup.staff-affinity = #CENTER
-    } \lyricsto "soprano" \verseThree
+    } \lyricsto "soprano" \verseFour
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+    } \lyricsto "soprano" \verseSix
     
     \new Staff \with {
       midiInstrument = "choir aahs"
@@ -109,6 +145,7 @@ verseThree = \strophemode #6 ##f \lyricmode {
       \new Voice = "bass" { \voiceTwo \bass }
     >>
   >>
+  }
   \layout {\context{\Staff \RemoveAllEmptyStaves}}
   \midi {\tempo 4=70}
 }
