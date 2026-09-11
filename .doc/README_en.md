@@ -12,7 +12,7 @@
 
 | Before | After |
 | --- | --- |
-| <img src="readme_medias/et_incarnatus_est_old.jpg" width="1000px"/> | <video src="readme_medias/Et incarnatus est.mp4" controls width="1000"></video> |
+| <img src="readme_medias/et_incarnatus_est_old.jpg" width="1000px"/> | <a href="https://www.youtube.com/watch?v=dzlRLgd_ito"><img src="readme_medias/Et incarnatus est.jpg" width="1000px"/></a> |
 
 - **Harmonize** a melody found by chance
 
