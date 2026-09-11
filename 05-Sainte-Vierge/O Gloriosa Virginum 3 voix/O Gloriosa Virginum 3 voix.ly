@@ -59,9 +59,10 @@ verseFour = \strophemode #4 ##t \lyricmode {
     title = "O GLORIOSA VIRGINUM"
     composer = "Anonyme"
   }
-  \new ChoirStaff <<
+  \new ChoirStaff \with {
+    midiInstrument = "choir aahs"
+  } <<
       \new Staff \with {
-        midiInstrument = "choir aahs"
         instrumentName = \markup \center-column { "S." "A." }
         \consists Merge_rests_engraver
       } <<
@@ -82,10 +83,9 @@ verseFour = \strophemode #4 ##t \lyricmode {
       } \lyricsto "soprano" \verseFour
       
       \new Staff \with {
-        midiInstrument = "choir aahs"
         instrumentName = "H."
-        \consists Merge_rests_engraver
-      } <<\clef bass \bass >>
+        \clef bass
+      } \bass
     >>
     \layout {\context{\Staff \RemoveAllEmptyStaves}}
     \midi {\tempo 4=70 }

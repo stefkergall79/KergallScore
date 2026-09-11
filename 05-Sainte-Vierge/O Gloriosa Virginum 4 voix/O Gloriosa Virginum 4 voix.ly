@@ -60,11 +60,11 @@ verseTwo = \strophemode #2 ##t \lyricmode {
     poet = "Paroles : Saint Venance Fortunat (~530-609)"
     composer = "Anonyme"
   }
-  \new ChoirStaff <<
+  \new ChoirStaff \with {
+    midiInstrument = "choir aahs"
+  } <<
     \new Staff \with {
-      midiInstrument = "choir aahs"
       \consists Merge_rests_engraver
-      instrumentName = \markup \center-column { "S." "A." }
     } <<
       \new Voice = "soprano" { \voiceOne \soprano }
       \new Voice = "alto" { \voiceTwo \alto }
@@ -76,11 +76,9 @@ verseTwo = \strophemode #2 ##t \lyricmode {
       \override VerticalAxisGroup.staff-affinity = #CENTER
     } \lyricsto "soprano" \verseTwo
     \new Staff \with {
-      midiInstrument = "choir aahs"
       \consists Merge_rests_engraver
-      instrumentName = \markup \center-column { "T." "B." }
-    } <<
       \clef bass
+    } <<
       \new Voice = "tenor" { \voiceOne \tenor }
       \new Voice = "bass" { \voiceTwo \bass }
     >>
