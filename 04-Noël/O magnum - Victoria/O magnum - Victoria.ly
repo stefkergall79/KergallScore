@@ -4,13 +4,8 @@
 
 %#(set-global-staff-size 18.4)
 global = {
-  \time 4/4
   \autoBeamOff
   \key as \major
-}
-
-\paper {
-  systems-per-page = 3
 }
 
 sopranoMelody =  \relative c'' {
