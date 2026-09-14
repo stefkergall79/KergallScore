@@ -243,25 +243,37 @@ bassLyricsOne = \lyricmode {
   } <<
     \new Staff \with {
       instrumentName = "S."
+      \consists "Ambitus_engraver"
     } \new Voice = "soprano" \soprano
-    \new Lyrics \lyricsto "soprano" \sopranoLyricsOne
+    \new Lyrics \with {
+	    \override VerticalAxisGroup.staff-affinity = #CENTER
+    } \lyricsto "soprano" \sopranoLyricsOne
     
     \new Staff \with {
       instrumentName = "A."
+      \consists "Ambitus_engraver"
     } \new Voice = "alto" \alto
-    \new Lyrics \lyricsto "alto" \altoLyricsOne
+    \new Lyrics \with {
+	    \override VerticalAxisGroup.staff-affinity = #CENTER
+    } \lyricsto "alto" \altoLyricsOne
     
     \new Staff \with {
       instrumentName = "T."
+      \consists "Ambitus_engraver"
       \clef "treble_8"
     } \new Voice = "tenor" \tenor
-    \new Lyrics \lyricsto "tenor" \tenorLyricsOne
+    \new Lyrics \with {
+	    \override VerticalAxisGroup.staff-affinity = #CENTER
+    } \lyricsto "tenor" \tenorLyricsOne
 
     \new Staff \with {
       instrumentName = "B."
+      \consists "Ambitus_engraver"
       \clef bass
     } \new Voice = "bass"\bass
-    \new Lyrics \lyricsto "bass" \bassLyricsOne
+    \new Lyrics \with {
+	    \override VerticalAxisGroup.staff-affinity = #CENTER
+    } \lyricsto "bass" \bassLyricsOne
   >>
   \layout {\context{\Staff \RemoveAllEmptyStaves }}
   \midi {\tempo 4=90 }
