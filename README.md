@@ -14,15 +14,15 @@
 | --- | --- |
 | <img src=".doc/readme_medias/et_incarnatus_est_old.jpg" width="1000px"/> | <a href="https://www.youtube.com/watch?v=dzlRLgd_ito"><img src=".doc/readme_medias/Et incarnatus est.jpg" width="1000px"/></a> |
 
+- **Réduire** le nombre de pages d'une partition, ou mettre sur la même feuille deux pièces différentes [(comme ici)](08-Assemblages/Jesu%20Salvator%20-%20Jesu%20Rex%20admirabilis/Jesu%20Salvator%20-%20Jesu%20Rex%20admirabilis.pdf)
+
+- **Monter** un dossier complet pour votre chorale, avec une table des matières ([comme là](99-Commandes/carnet_été/carnet_été.pdf))
+
 - **Harmoniser** une mélodie trouvée par hasard
 
 | Avant | Après |
 | --- | --- |
 | <img src=".doc/readme_medias/Noble époux de Marie-old.png" width="1000px"/> | <a href="01-Général/Noble-époux-de-Marie/Noble-époux-de-Marie.pdf"><img src=".doc/readme_medias/Noble-époux-de-Marie.png" width="1000px"/></a> |
-
-- **Réduire** le nombre de pages d'une partition, ou mettre sur la même feuille deux pièces différentes [(comme ici)](08-Assemblages/Jesu%20Salvator%20-%20Jesu%20Rex%20admirabilis/Jesu%20Salvator%20-%20Jesu%20Rex%20admirabilis.pdf)
-
-- **Monter** un dossier complet pour votre chorale, avec une table des matières ([comme là](99-Commandes/carnet_été/carnet_été.pdf))
 
 KergallScore vous propose des solutions. [Nous attendons vos commandes](mailto:stef.kergall@gmail.com) du lundi au samedi !
 
