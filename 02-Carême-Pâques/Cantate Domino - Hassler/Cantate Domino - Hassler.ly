@@ -9,10 +9,6 @@ global = {
 	\key bes \major
 	\time 2/2
 }
-\paper {
-  systems-per-page = 3
-  page-count = 2
-}
 
 soprano = \relative f' {
   \global  f2 

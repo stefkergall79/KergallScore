@@ -64,7 +64,7 @@ soprano = \relative e' {
 }
 
 sopranoLyrics = \lyricmode {
-  Can -- tá -- _ _ _ _ te Dó -- mi -- no, _
+  Can -- tá -- _ _ _ _ te Dó -- mi -- no, __ _
   can -- tá -- _ _ _ te Dó -- mi -- no,
   can -- tá -- te Dó -- mi -- no,
   cán -- ti -- cum nó -- _ _ _ _ _ vum,
@@ -162,14 +162,14 @@ tenor = \relative e {
    cis4  b4  b4  ais4  % 9
 
    b4  b4. b8 g4  % 10
-   a2.  b4  % 11
-   e,2  fis2  % 12
+   a2. ( b4  % 11
+   e,2  fis2  )
    e2 r2  % 13
   r4  d'4  d8 [  cis8  d8  b8 ]  % 14
    cis4  b4  b4  b4  % 15
    fis'2  b,4  a8 [  g8 ]  % 16
    a2.  b4  % 17
-   e,2  fis2  % 18
+   e,2 ( fis2 )
   \time 3/2 e1 r2  % 19
 
    e'2  e2  d2  % 20
@@ -198,9 +198,9 @@ tenorLyrics = \lyricmode {
   can -- tá -- te Dó -- mi -- no,
   can -- tá -- _ _ te Dó -- mi -- no
   cán -- ti -- cum
-  nó -- _ _ _ vum,
+  nó -- vum,
   can -- tá -- _ te Dó -- mi -- no
-  ó -- _ _ mnis tér -- _ ra.
+  ó -- _ _ mnis tér -- ra.
   
   Can -- tá -- te Dó -- mi -- no,
   et be -- ne -- dí -- ci -- te
@@ -227,14 +227,14 @@ bass = \relative b, {
    a4  b4  e,4  fis4  % 9
 
    b,4  e4. e8 e4  % 10
-   d2.  b4  % 11
-   c2  b2  % 12
+   d2. ( b4  % 11
+   c2  b2 )
    e2 r2  % 13
   r4  b'4  b8 [  a8  b8  g8 ]  % 14
    a4  b4  g4  g4  % 15
-   fis2  e2  % 16
-   d2.  b4  % 17
-   c2  b2  % 18
+   fis2  e2  (
+   d2. ) b4  % 17
+   c2 ( b2 )
   \time 3/2 e1 r2  % 19
 
    e2  e2  g2  % 20
@@ -260,9 +260,9 @@ bassLyrics = \lyricmode {
   Can -- tá -- _ te Dó -- mi -- no,
   can -- tá -- te,
   can -- tá -- te Dó -- _ _ _ mi -- no
-  cán -- ti -- cum nó -- _ _ _ vum,
+  cán -- ti -- cum nó -- vum,
   can -- tá -- _ te Dó -- mi -- no
-  ó -- _ mnis tér -- _ ra.
+  ó -- mnis tér -- ra.
   
   Can -- tá -- te Dó -- mi -- no,
   et be -- ne -- dí -- ci -- te

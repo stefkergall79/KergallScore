@@ -17,14 +17,14 @@ soprano = \relative c'' {
 	cis2 d ~ |
 	4 c bes2 ~ |
 	2 a ~ |
-	2 r4 4 ~ | \break
+	2 r4 4 ~ | 
 	
 	4 4 c2 |
 	d2. 4 |
 	e1 |
 	a, |
 	R
-	r4 a d2 ~ |\break
+	r4 a d2 ~ |
 	4 4 2 |
 	2 cis |
 	d1 |
@@ -32,7 +32,7 @@ soprano = \relative c'' {
 	R1
 	r2 d ~ |
 	2 c |
-	bes1 | \pageBreak
+	bes1 | 
 	
 	a2 r4 4 ~ |
 	4 g8 [ f ] g4 4 |
@@ -40,14 +40,14 @@ soprano = \relative c'' {
 	r4 a2 4 |
 	4 4 bes a ~ |
 	4 g a cis ~ |
-	4 4 4 4 |\break
+	4 4 4 4 |
 	d1 c |
 	r4 a2 4 |
 	4 4 bes2 ~ |
 	2 a ~ |
 	2 r |
 	d f ~ |
-	4 e4 2 ~ |\break
+	4 e4 2 ~ |
 	2 r4 4 ~ |
 	4 4 4 4 |
 	d2. 4 |
@@ -55,7 +55,7 @@ soprano = \relative c'' {
 	f1 |
 	e2 d4. e8 |
 	f2 g |
-	c,1 \pageBreak
+	c,1 
 	
 	R1
 	r2 e ~ |
@@ -64,7 +64,7 @@ soprano = \relative c'' {
 	e c2 f4 ~ |
 	4 d2 e4 ~ |
 	8 [ d ] 2 cis4 |
-	d2 r |\break
+	d2 r |
 	R1
 	r2 d ~ |
 	2 c |
@@ -73,7 +73,7 @@ soprano = \relative c'' {
 	4 g8 [ f ] g4 4 |
 	a1 |
 	r4 a2 4 |
-	4 4 bes a ~ |\break
+	4 4 bes a ~ |
 	4 g a cis ~ |
 	4 4 4 4 |
 	d1 c |
@@ -354,8 +354,8 @@ bass = \fixed c {
 	R1*2
 	r2 r4 	a ~ |
 	4 4 4 4 |
-	d'2 bes |
-	c'1 |
+	d'2 ( bes |
+	c'1 )
 	f4 d2 4 |
 	a a g2 ~ |
 	2 a ~ |
@@ -375,7 +375,7 @@ bassVerseOne = \lyricmode {
 	do -- ló -- rem mé -- um,
 	do -- ló -- rem mé -- _ _ um.
 	Si est dó -- lor sí -- _ _ mi -- lis
-	sí -- cut dó -- lor mé -- _ _ us,
+	sí -- cut dó -- lor mé -- us,
 	sí -- cut dó -- lor mé -- _ us.
 }
 

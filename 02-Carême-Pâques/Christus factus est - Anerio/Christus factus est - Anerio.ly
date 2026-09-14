@@ -12,17 +12,17 @@ global = {
 
 soprano = \relative g' {
   \global
-  g2.  f4 | % 2
-  bes1 | % 4
+  g2. ( f4 | % 2
+  bes1 )
   a1 | % 3
   fis4.  fis8  fis4  g4 | % 8
   a2  a4  a4 |
   a4  g8 [ f!8 ] g4.  g8 |  
   a1 | % 7
   r4 bes2  a4 | % 8
-  g2 f2 | % 9
+  g2 f2 (
 
-  e2 d2 | % 20
+  e2 ) d2 | % 20
   bes'2 a2 ~ | % 22
   a4  g4  fis4  g4 ~ |
   g4  fis8  e8 fis2 | % 23
@@ -55,8 +55,8 @@ soprano = \relative g' {
 }
 
 sopranoLyricsOne = \lyricmode {
-  Chrí -- _ _ stus fác -- tus est pro nó -- bis
-  o -- bé -- _ _ di -- ens ús -- que ad mór -- _ tem,
+  Chrí -- stus fác -- tus est pro nó -- bis
+  o -- bé -- _ _ di -- ens ús -- que ad mór -- tem,
   ús -- que ad mór -- _ _ _ _ tem, mór -- _ _ _ tem áu -- tem crú -- cis.
   Pró -- pter quod et Dé -- us
   ex -- al -- tá -- _ _ _ vit il -- _ _ lum
@@ -79,8 +79,8 @@ alto = \relative a' {
 
   d4  cis4 d2 | % 20
   r4  bes4  c!4  d4 | % 22
-  g,2  d'4  es4 | % 24
-  d1 | % 23
+  g,2 ( d'4  es4 | % 24
+  d1 )
   d1 | % 28
   es2 f2 | % 25
   g8 [ f8 ]  es4 f2 ~ | % 26
@@ -112,7 +112,7 @@ alto = \relative a' {
 altoLyricsOne = \lyricmode {
   Chrí -- _ _ _ stus fác -- tus est -- pro nó -- bis
   o -- bé -- _ _ di -- ens ús -- que ad mór -- _ _ tem,
-  ús -- que ad mór -- _ _ _ tem,
+  ús -- que ad mór -- tem,
   mór -- _ _ _ tem áu -- _ tem crú -- cis.
   Pró -- pter quod et Dé -- us ex -- al -- tá -- vit,
   ex -- al -- tá -- vit íl -- _ lum

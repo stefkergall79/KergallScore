@@ -10,21 +10,23 @@ global = {
 
 sopranoOne = \fixed c'' {
   \global
-  \repeat segno 2 {d2 4 4 4. 8 4(c) d2 r r4
+  \bar ".|:"
+  \repeat volta 2 {\repeat segno 2 {
+    d2 4 4 4. 8 4 c d2 r r4
     bes,4 es2 c4 d c2 bes,2
     d c4 4 es4 8 8 d4 4 4. 8 4 e f2
-    d4 4 cis(d d cis) d2
+    d4 4 cis d ~ d cis d2
     a,4 8 8 bes,4 4 c c d2 4 4 bes,2 c4 bes, a,2 2
-    b, c4 d es8[d] c4 4(bes, a,2) g,1
-  } \bar ":|."
+    b, c4 d es8[d] c4 4 bes, a,2 g,1
+  }}
 }
 
 sopranoTwo = \fixed c' {
   \global
-  bes2 a4 4 bes a g2 fis4 a d'2 bes c' a4(bes2 a4) bes2
-  2 a4 4 c'4 8 8 b4 4 4. 8 4 cis' d' a(4) g g(f e2) d
+  bes2 a4 4 bes a g2 fis4 a d'2 bes c' a4 bes2 a4 bes2
+  2 a4 4 c'4 8 8 b4 4 4. 8 4 cis' d' a ~ 4 g g f e2 d
   fis4 8 8 g4 bes4 4 a bes2
-  4 4 g2 a4 g fis2 2 g2 4 4 4 a8(g) fis4(g2 fis4) g1
+  4 4 g2 a4 g fis2 2 g2 4 4 4 a8 [ g ] fis4 g2 fis4 g1
 }
 
 alto = \fixed c' {
@@ -35,7 +37,24 @@ alto = \fixed c' {
   4 4 es2 c4 4 d2 2 g es4 b, c c d1 g,
 }
 
-verse = \lyricmode {
+verseSopranoOne = \lyricmode {
+  In món -- te O -- li -- vé -- _ ti
+  o -- rá -- vit ad Pá -- trem_:
+  Pá -- ter, si fí -- e -- ri pó -- test,
+  trán -- se -- at a me cá -- lix ís -- _ _ te_;
+  spí -- ri -- tus quí -- dem prómp -- tus est,
+  cá -- ro áu -- tem in -- fír -- ma.
+  Fí -- at vo -- lún -- tas tú -- _ _ a.
+}
+verseSopranoTwo = \lyricmode {
+  In món -- te O -- li -- vé -- ti o -- rá -- vit ad Pá -- _ _ trem_:
+  Pá -- ter, si fí -- e -- ri pó -- test,
+  trán -- se -- at a me cá -- lix ís -- _ _ te_;
+  spí -- ri -- tus quí -- dem prómp -- tus est,
+  cá -- ro áu -- tem in -- fír -- ma.
+  Fí -- at vo -- lún -- tas tú -- _ _ a.
+}
+verseAlto = \lyricmode {
   In món -- te O -- li -- vé -- ti o -- rá -- vit ad Pá -- trem_:
   Pá -- ter, si fí -- e -- ri pó -- test,
   trán -- se -- at a me cá -- lix ís -- te_;
@@ -50,37 +69,36 @@ verse = \lyricmode {
     title = "IN MONTE OLIVETI"
     composer = \martini
   }
-  \new ChoirStaff <<
-      \new Staff \with {
-        midiInstrument = "choir aahs"
-        instrumentName = "Soprano"
-        \consists "Ambitus_engraver"
-      } \new Voice = "soprano1" \sopranoOne
-      \new Lyrics \with {
-        \override VerticalAxisGroup.staff-affinity = #CENTER
-      } \lyricsto "soprano1" \verse
-      
-      \new Staff \with {
-        midiInstrument = "choir aahs"
-        instrumentName = "Mezzo"
-        \consists "Ambitus_engraver"
-      } \new Voice = "soprano2" \sopranoTwo
-      \new Lyrics \with {
-        \override VerticalAxisGroup.staff-affinity = #CENTER
-      } \lyricsto "soprano2" \verse
-      
-      \new Staff \with {
-        midiInstrument = "choir aahs"
-        instrumentName = "Alto"
-        \consists "Ambitus_engraver"
-      } \new Voice = "alto" \alto
-      \new Lyrics \with {
-        \override VerticalAxisGroup.staff-affinity = #CENTER
-      } \lyricsto "alto" \verse
-    >>
-    \layout {\context{\Staff \RemoveAllEmptyStaves }}
-    \midi { \tempo 4=100 }
-  }
+  \new ChoirStaff \with {
+    midiInstrument = "choir aahs"
+  } <<
+    \new Staff \with {
+      instrumentName = "S1."
+      \consists "Ambitus_engraver"
+    } \new Voice = "soprano1" \sopranoOne
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+    } \lyricsto "soprano1" \verseSopranoOne
+    
+    \new Staff \with {
+      instrumentName = "S2."
+      \consists "Ambitus_engraver"
+    } \new Voice = "soprano2" \sopranoTwo
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+    } \lyricsto "soprano2" \verseSopranoTwo
+    
+    \new Staff \with {
+      instrumentName = "A."
+      \consists "Ambitus_engraver"
+    } \new Voice = "alto" \alto
+    \new Lyrics \with {
+      \override VerticalAxisGroup.staff-affinity = #CENTER
+    } \lyricsto "alto" \verseAlto
+  >>
+  \layout {\context{\Staff \RemoveAllEmptyStaves }}
+  \midi { \tempo 4=100 }
+}
 \markup \column {
   "Sur le mont des Oliviers, Il pria son Père :"
   \line {
