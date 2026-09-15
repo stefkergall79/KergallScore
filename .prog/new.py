@@ -549,14 +549,14 @@ class MusicTab(ctk.CTkFrame):
 
 def generic_var(identifier: str, expression: str, content: str = "") -> str:
     """Bloc Lilypond générique : ``identifiant = expression { contenu }``."""
-    return f"{identifier} = {expression} {{\n{content}\t\n}}\n\n"
+    return f"{identifier} = {expression} {{\n{content}  \n}}\n\n"
 
 
 def music_var(identifier: str, fixed: bool, high: bool, global_var: str) -> str:
     """Déclare une variable musicale (voix ou main d'instrument) basée sur ``global_var``."""
     mode = "\\fixed" if fixed else "\\relative"
     octave = "'" if high else ""
-    return generic_var(identifier, f"{mode} c{octave}", f"\t\\{global_var}\n")
+    return generic_var(identifier, f"{mode} c{octave}", f"  \\{global_var}\n")
 
 
 def lyric_var(identifier: str, verse_number: int | None = None) -> str:
@@ -594,7 +594,7 @@ def voice_block(score_index: int, schema: str, staff_voice_index: int | None) ->
     """
     name = voice_name(score_index, schema)
     return (
-        (" " if staff_voice_index is None else "\t\t") +
+        (" " if staff_voice_index is None else "    ") +
         '\\new Voice = "' + name + '" {' +
         (f"\\voice{NUMBERS[staff_voice_index]} " if staff_voice_index is not None else "") +
         "\\" + name + " }\n"
@@ -603,7 +603,7 @@ def voice_block(score_index: int, schema: str, staff_voice_index: int | None) ->
 def lyrics_block(voice: str, verse_index: int, prefix_with_voice: bool) -> str:
     """Bloc ``\\new Lyrics`` rattachant un couplet à sa voix."""
     return (
-        "\t\\new Lyrics \\with { \\override VerticalAxisGroup.staff-affinity = #CENTER\n\t}"
+        "  \\new Lyrics \\with {\n    \\override VerticalAxisGroup.staff-affinity = #CENTER\n  }"
         f' \\lyricsto "{VOICES[voice]}" \\{lyric_name(voice, verse_index, prefix_with_voice)}\n'
     )
 
@@ -640,30 +640,30 @@ def choir_staff(schema: str, verse_count: int, shared_lyrics: bool) -> str:
         is_polyphonic = len(staff_letters) > 1
         first_voice_index = sum(len(group) for group in staff_groups[:group_index])
         
-        text += "\t\\new Staff \\with {\n"
+        text += "  \\new Staff \\with {\n"
         if show_instrument_names:
             if is_polyphonic:
                 names = " ".join(f'"{letter}."' for letter in staff_letters)
-                text += f"\t\tinstrumentName = \\markup \\center-column {{ {names} }}\n"
+                text += f"  \tinstrumentName = \\markup \\center-column {{ {names} }}\n"
             else:
-                text += f'\t\tinstrumentName = "{staff_letters}."\n'
+                text += f'  \tinstrumentName = "{staff_letters}."\n'
         text += (
-            "\t\t\\consists Merge_rests_engraver\n" if is_polyphonic
-            else '\t\t\\consists "Ambitus_engraver"\n'
+            "    \\consists Merge_rests_engraver\n" if is_polyphonic
+            else '    \\consists "Ambitus_engraver"\n'
         )
         
         if "B" in staff_letters or "H" in staff_letters:
-            text += "\t\t\\clef bass\n"
+            text += "    \\clef bass\n"
         elif staff_letters == "T":
-            text += "\t\t\\clef \"treble_8\"\n"
+            text += "    \\clef \"treble_8\"\n"
 
-        text += "\t} "
+        text += "  } "
 
         if is_polyphonic:
             text += "<<\n"
             for voice_offset in range(len(staff_letters)):
                 text += voice_block(first_voice_index + voice_offset, voices, voice_offset)
-            text += "\t>>\n"
+            text += "  >>\n"
         else:
             text += voice_block(first_voice_index, voices, None)
         
@@ -719,7 +719,7 @@ def piano_staff(staffs: list[int]) -> str:
     for staff_index, voice_count in enumerate(staffs):
         if voice_count != 0:
             text += (
-                f'\t\\new Staff = "{PIANO_STAFFS[staff_index]}" '+
+                f'  \\new Staff = "{PIANO_STAFFS[staff_index]}" '+
                 ("{ \\clef bass " if staff_index > 0 else "{ ")
                 )
             if voice_count == 1:
@@ -761,7 +761,7 @@ def solo_staff(verse_count: int) -> str:
         '\tinstrumentName = "Solo"\n'
         '\tshortInstrumentName = "Sl."\n'
         '\tmidiInstrument = "choir aahs"\n'
-        '\t\\consists "Ambitus_engraver"\n'
+        '  \\consists "Ambitus_engraver"\n'
         "} \\soloVoice\n"
     )
     for verse_index in range(verse_count):
@@ -825,9 +825,9 @@ def _build_instruments_reference(active_parts: dict) -> str:
     """Référence les ``...Part`` déclarés : seul, ou combinés dans un ``<< >>``."""
     if len(active_parts) == 1:
         (name,) = active_parts
-        return f"\t\\{name}Part\n"
-    lines = "".join(f"\t\t\\{name}Part\n" for name in active_parts)
-    return f"\t<<\n{lines}\t>>\n"
+        return f"  \\{name}Part\n"
+    lines = "".join(f"    \\{name}Part\n" for name in active_parts)
+    return f"  <<\n{lines}  >>\n"
 
 
 class LilypondCreator(ctk.CTk):
@@ -915,9 +915,9 @@ class LilypondCreator(ctk.CTk):
             "\\include \"composers.ily\"\n"
             "\n"
             "global = {\n"
-            "\t\\autoBeamOff\n"
-            "\t\\mergeDifferentlyHeadedOn\n"
-            "\t\\mergeDifferentlyDottedOn\n"
+            "  \\autoBeamOff\n"
+            "  \\mergeDifferentlyHeadedOn\n"
+            "  \\mergeDifferentlyDottedOn\n"
         )
         for setting in self.music_tab.vars.values():
             if "ly" in setting and ("def" not in setting or setting["var"].get() != setting["def"]):
@@ -925,7 +925,7 @@ class LilypondCreator(ctk.CTk):
                 value = setting["var"].get()
                 quote = '"' if ly_keyword == "tempo" else ""
                 suffix = " \\major" if ly_keyword == "key" else ""
-                content += f"\t\\{ly_keyword} {quote}{value}{quote}{suffix}\n"
+                content += f"  \\{ly_keyword} {quote}{value}{quote}{suffix}\n"
         return content + "}\n\n"
 
     def _build_parts_block(self, active_parts: dict) -> str:
@@ -937,8 +937,10 @@ class LilypondCreator(ctk.CTk):
         title = header_values.get("title")
         if not title:
             return ""
-        composer = header_values.get("composer")
+        composer: str = header_values.get("composer")
         if composer:
+            if composer.startswith("\\"):
+                composer = composer[1:].title()
             return f'\\tocItemComposer "{title}" "{composer}"\n'
         return f'\\tocItem \\markup "{title}"\n'
 
@@ -951,9 +953,9 @@ class LilypondCreator(ctk.CTk):
                     val = '\\markup {"Paroles :" ' + val + '}'
                 elif key == "arranger":
                     val = '\\markup {"Harmonisation :" ' + val + '}'
-                content += f'\t\t{key} = {val}\n'
+                content += f'    {key} = {val}\n'
             else:
-                content += f'\t\t{key} = "{val.upper() if key == "title" else val}"\n'
+                content += f'    {key} = "{val.upper() if key == "title" else val}"\n'
         return content
 
     def _build_score_block(self, header_values: dict, active_parts: dict) -> str:
@@ -961,12 +963,12 @@ class LilypondCreator(ctk.CTk):
         midi_tempo = self.music_tab.vars["Tempo du midi"]["var"].get()
         return (
             "\\score {\n"
-            "\t\\header {\n"
+            "  \\header {\n"
             + self._build_header_fields(header_values)
-            + "\t}\n"
+            + "  }\n"
             + _build_instruments_reference(active_parts)
-            + "\t\\layout {\\context{\\Staff \\RemoveAllEmptyStaves }}\n"
-            + "\t\\midi {\\tempo 4=" + midi_tempo + " }\n"
+            + "  \\layout {\\context{\\Staff \\RemoveAllEmptyStaves }}\n"
+            + "  \\midi {\\tempo 4=" + midi_tempo + " }\n"
             + "}\n"
         )
 
