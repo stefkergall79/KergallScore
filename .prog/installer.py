@@ -12,7 +12,7 @@ APT_LIST = ["timidity", "frescobaldi", "python3-pip", "python3-tk"]
 PIP_LIST = ["customtkinter", "gitpython"]
 
 LILYPOND_URL = "https://gitlab.com/lilypond/lilypond/-/releases/v2.26.0/downloads/lilypond-2.26.0-linux-x86_64.tar.gz"
-MUSESCORE_URL = "https://cdn.jsdelivr.net/musescore/v4.7.4/MuseScore-Studio-4.7.4.260706075-x86_64.AppImage"
+MUSESCORE_URL = "https://cdn.jsdelivr.net/musescore/v4.7.5/MuseScore-Studio-4.7.5.260831071-x86_64.AppImage"
 OBSIDIAN_URL = "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.13.7/Obsidian-1.13.7.AppImage"
 
 
@@ -98,7 +98,7 @@ if lilypond_alias not in bashrc_path.read_text():
         bashrc.write(lilypond_alias)
 
 # Musescore, Obsidian
-download(MUSESCORE_URL, PROG_DIR / "MuseScore-Studio-4.7.4.260706075-x86_64.AppImage")
+download(MUSESCORE_URL, PROG_DIR / "MuseScore-Studio-4.7.5.260831071-x86_64.AppImage")
 download(OBSIDIAN_URL, PROG_DIR / "Obsidian-1.13.7.AppImage")
 print()
 for appimage in PROG_DIR.glob("*.AppImage"):
