@@ -320,7 +320,7 @@ bassVerse = \lyricmode {
   e -- mí -- sit spí -- ri -- tum.
 }
 
-\tocItemComposer "Tenebræ factæ sunt" "\victoria"
+\tocItemComposer "Tenebræ factæ sunt" "Victoria"
 \score {
   \header {
     title = "TENEBRÆ FACTÆ SUNT"

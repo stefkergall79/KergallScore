@@ -415,7 +415,7 @@ ChoeurPart = \new ChoirStaff \with {
 	} \lyricsto "bass" \bassVerseOne
 >>
 
-\tocItemComposer "O vos omnes" "\victoria"
+\tocItemComposer "O vos omnes" "Victoria"
 \score {
 	\header {
 		title = "O VOS OMNES"
