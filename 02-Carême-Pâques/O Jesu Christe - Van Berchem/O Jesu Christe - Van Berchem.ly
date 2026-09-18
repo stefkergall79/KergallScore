@@ -69,7 +69,7 @@ sopranoVerse = \lyricmode {
   Tu es __ _ spes mé -- _ a.
   Cla -- má -- vi, cla -- má -- vi ad Te.
   Mi -- se -- ré -- re,
-  mi -- se -- ré -- re mé -- i,__ _ _ mé -- _ _ i.
+  mi -- se -- ré -- re mé -- i, __ _ _ mé -- _ _ i.
 }
 
 altoVerse = \lyricmode {
