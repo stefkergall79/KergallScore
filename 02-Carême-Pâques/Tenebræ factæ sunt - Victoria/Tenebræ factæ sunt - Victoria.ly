@@ -314,7 +314,7 @@ bassVerse = \lyricmode {
   vó -- ce má -- gna_:
   Dé -- us mé -- us,
   ut quid me de -- re -- li -- quís -- _ _ _ ti,
-  de -- re -- li -- quís -- _ _ _ ti;
+  de -- re -- li -- quís -- _ _ _ ti,
   de -- re -- li -- quís -- _ _ ti_?
   Et in -- cli -- ná -- to cá -- pi -- te,
   e -- mí -- sit spí -- ri -- tum.
