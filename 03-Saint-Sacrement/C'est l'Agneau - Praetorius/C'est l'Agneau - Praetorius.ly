@@ -24,7 +24,7 @@ soprano = \relative bes' {
     g1 | % 8
     g2  g4  g4 | % 9
     
-    c1 | % 10
+    c1 |\bar "||"
     
     \alternative {
         \volta 1 {
