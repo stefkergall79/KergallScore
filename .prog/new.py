@@ -59,24 +59,28 @@ class HeaderTab(ctk.CTkFrame):
         }
         self.available_fields = []
         
+        label_width = 130
         for field in self.fields:
+            name = self.fields[field]
             frame = ctk.CTkFrame(self.left_frame, fg_color="transparent")
-            self.fields[field] = {
-                "name": self.fields[field],
-                "var": ctk.StringVar(),
-                "frame": frame,
-                "remove": ctk.CTkButton(frame, text="-", width=28, height=28, fg_color="#E57373", hover_color="#EF9A9A", command=lambda k=field: self.remove_field(k))
-            }
+            self.fields[field] = {"name": name, "var": ctk.StringVar(), "frame": frame}
 
-            self.fields[field]["entry"] = ctk.CTkEntry(frame, width=260, height=28, font=self.default_font, textvariable=self.fields[field]["var"])
+            ctk.CTkLabel(
+                frame, text=name, font=self.default_font, width=label_width, anchor="w"
+            ).grid(row=0, column=0, padx=(0, 5), pady=2, sticky="w")
+
+            entry = ctk.CTkEntry(frame, width=260, height=28, font=self.default_font, textvariable=self.fields[field]["var"])
+            entry.grid(row=0, column=1, padx=(0, 10), pady=2)
             if field in self.picker_fields:
-                self.fields[field]["entry"].bind("<FocusIn>", lambda _e, k=field: self._set_picker_target(k))
+                entry.bind("<FocusIn>", lambda _e, k=field: self._set_picker_target(k))
+            self.fields[field]["entry"] = entry
 
-            self.fields[field]["remove"].pack(side="left", padx=10)
-            self.fields[field]["entry"].pack(side="left", padx=0)
-            ctk.CTkLabel(frame, text=self.fields[field]["name"], font=self.default_font
-                         ).pack(side="left", padx=5, anchor="w")
-            
+            self.fields[field]["remove"] = ctk.CTkButton(
+                frame, text="-", width=28, height=28, fg_color="#E57373", hover_color="#EF9A9A",
+                command=lambda k=field: self.remove_field(k)
+            )
+            self.fields[field]["remove"].grid(row=0, column=2, pady=2)
+
             if field in ("title", "composer"):
                 frame.pack(pady=4, anchor="w")
             else:
@@ -103,11 +107,13 @@ class HeaderTab(ctk.CTkFrame):
         
         filename_frame = ctk.CTkFrame(self.left_frame, fg_color="transparent")
         self.filename_var = ctk.StringVar()
+        ctk.CTkLabel(
+            filename_frame, text="Nom du dossier", font=self.default_font, width=label_width, anchor="w"
+        ).grid(row=0, column=0, padx=(0, 5), sticky="w")
         entry_filename = ctk.CTkEntry(filename_frame, width=260, height=28, font=self.default_font, textvariable=self.filename_var)
-        entry_filename.pack(side="left", padx=0)
+        entry_filename.grid(row=0, column=1, padx=(0, 10))
         entry_filename.bind("<KeyRelease>", self.on_filename_edit)
-        filename_frame.pack(pady=4, padx=20, anchor="w")
-        ctk.CTkLabel(filename_frame, text="Nom du dossier", font=self.default_font, width=100).pack(side="left", padx=(0, 10))
+        filename_frame.pack(pady=4, anchor="w")
         
         self.fields["title"]["var"].trace_add("write", self.on_title_or_composer_change)
         self.fields["composer"]["var"].trace_add("write", self.on_title_or_composer_change)
@@ -439,7 +445,7 @@ class PartsTab(ctk.CTkFrame):
                 for indice, staff in enumerate(PIANO_STAFFS_FR):
                     self.piano_staffes.append(ctk.CTkFrame(voice_frame, fg_color="transparent"))
                     ctk.CTkEntry(
-                        self.piano_staffes[indice],
+                        self.piano_staffes[indice], width=50, height=28, font=self.default_font, justify="center",
                         textvariable=self.parts["Clavier"]["staffs"][indice]
                     ).pack(side="left", padx=5)
                     ctk.CTkLabel(
@@ -523,24 +529,24 @@ class MusicTab(ctk.CTkFrame):
             }
         }
 
-        for texte in self.vars:
-            frame = ctk.CTkFrame(self, fg_color="transparent")
-            
-            if "val" in self.vars[texte]:
-                ctk.CTkComboBox(
-                    frame, variable=self.vars[texte]["var"],
-                    values=self.vars[texte]["val"]
-                ).pack(side="left", padx=5)
-            else:
-                ctk.CTkEntry(
-                    frame, font=self.default_font,
-                    textvariable=self.vars[texte]["var"],
-                ).pack(side="left", padx=5)
-            
+        self.columnconfigure(1, weight=1)
+
+        for row, texte in enumerate(self.vars):
             ctk.CTkLabel(
-                frame, font=self.default_font, text=texte
-            ).pack(side="left", padx=5)
-            frame.pack(side="top", pady=5, anchor="w")
+                self, font=self.default_font, text=texte, anchor="w", width=140
+            ).grid(row=row, column=0, padx=(15, 5), pady=6, sticky="w")
+
+            if "val" in self.vars[texte]:
+                widget = ctk.CTkComboBox(
+                    self, variable=self.vars[texte]["var"],
+                    values=self.vars[texte]["val"], width=160
+                )
+            else:
+                widget = ctk.CTkEntry(
+                    self, font=self.default_font,
+                    textvariable=self.vars[texte]["var"], width=160
+                )
+            widget.grid(row=row, column=1, padx=5, pady=6, sticky="w")
 
 
 # ==============================================================================
@@ -835,26 +841,55 @@ class LilypondCreator(ctk.CTk):
 
     def __init__(self):
         super().__init__()
+        self.withdraw()  # caché pendant la construction pour éviter un affichage progressif
         self.title("Assistant de création de partition Lilypond")
         self.geometry("700x600")
 
         self.default_font = ("Arial", 12)
         self.alert_same_path = True
-        tabview = ctk.CTkTabview(self, anchor="nw")
+        tabview = ctk.CTkTabview(self, anchor="nw", command=self._on_tab_change)
         tabview.pack(padx=10, pady=(10, 0), fill="both", expand=True, side="top")
-        self.header_tab = HeaderTab(tabview.add("Titres et en-têtes"), self)
-        self.parts_tab = PartsTab(tabview.add("Parties"), self)
-        self.music_tab = MusicTab(tabview.add("Réglages musicaux"), self)
+        self.tabview = tabview
 
+        # Les 3 cadres sont créés tout de suite (peu coûteux), mais le contenu de
+        # "Parties" et "Réglages musicaux" n'est construit qu'à la première visite
+        # de l'onglet correspondant, pour accélérer l'ouverture de la fenêtre.
+        self.header_frame = tabview.add("Titres et en-têtes")
+        self.parts_frame = tabview.add("Parties")
+        self.music_frame = tabview.add("Réglages musicaux")
+
+        self.header_tab = HeaderTab(self.header_frame, self)
         self.header_tab.pack(fill="both", expand=True)
-        self.parts_tab.pack(fill="both", expand=True)
-        self.music_tab.pack(fill="both", expand=True)
+        self.parts_tab = None
+        self.music_tab = None
 
         button_frame = ctk.CTkFrame(self)
         ctk.CTkButton(button_frame, text="Créer", width=160, font=self.default_font, command=self.create_lilypond_file).pack(side="left", padx=(0, 10))
         ctk.CTkButton(button_frame, text="Annuler", width=120, font=self.default_font, fg_color="#8a8a8a", hover_color="#8f8f8f", command=self.destroy).pack(side="left")
         button_frame.pack(pady=15)
+
+        self.update_idletasks()  # force le calcul complet du layout avant l'affichage
+        self.deiconify()
         self.mainloop()
+
+    def _on_tab_change(self):
+        """Construit le contenu de l'onglet sélectionné s'il ne l'a pas encore été."""
+        selected = self.tabview.get()
+        if selected == "Parties" and self.parts_tab is None:
+            self.parts_tab = PartsTab(self.parts_frame, self)
+            self.parts_tab.pack(fill="both", expand=True)
+        elif selected == "Réglages musicaux" and self.music_tab is None:
+            self.music_tab = MusicTab(self.music_frame, self)
+            self.music_tab.pack(fill="both", expand=True)
+
+    def _ensure_all_tabs_built(self):
+        """Construit les onglets pas encore visités, pour disposer de leurs valeurs par défaut."""
+        if self.parts_tab is None:
+            self.parts_tab = PartsTab(self.parts_frame, self)
+            self.parts_tab.pack(fill="both", expand=True)
+        if self.music_tab is None:
+            self.music_tab = MusicTab(self.music_frame, self)
+            self.music_tab.pack(fill="both", expand=True)
 
     # ------------------------------------------------------------------
     # Génération du fichier .ly
@@ -862,6 +897,7 @@ class LilypondCreator(ctk.CTk):
 
     def create_lilypond_file(self):
         """Assemble le contenu Lilypond et l'écrit dans le fichier choisi par l'utilisateur."""
+        self._ensure_all_tabs_built()
         header_values = self._collect_header_values()
         filename = self.header_tab.get_target_filename()
         category = self.header_tab.category_var.get().strip()
